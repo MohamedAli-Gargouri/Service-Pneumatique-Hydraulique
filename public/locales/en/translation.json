@@ -1,0 +1,80 @@
+{
+      "navbar":
+   {
+      "companyname": "Hydraulic Pneumatic Service",
+      "Menus":
+    {
+        "Home":"Home",
+        "About":"About",
+        "Contact":"Contact",
+        "Products":"Products"
+    },
+      "ProductsMenu":
+    {
+        "Fittings_and_accessories":"Fittings And Accessories",
+        "Tubes":"Tubes",
+        "Distributors_and_accessories":"Distributors And Accessories",
+        "Filters_and_accessories":"Filters And Accessories",
+        "Cylinders_and_accessories":"Cylinders And Accessories",
+        "sensors":"Sensors",
+        "compressors":"Compressors",
+        "Dryer_tank_and_drain":"Dryer Tank And Drain",
+        "Wika_pressure_gauge_and_thermometer_regulation":"Wika Pressure Gauge And thermometer regulation",
+        "valves":"valves",
+        "Maxdryer":"Maxdryer",
+        "solenoid_valve":"Solenoid valve",
+        "actuators":"Actuators"
+    },
+    "ProductsMenuDescription":
+    {
+        "Fittings_and_accessories":"Essential components for hydraulic and pneumatic systems.",       
+        "Tubes":"Efficient fluid conveyance for hydraulic and pneumatic systems.",
+        "Distributors_and_accessories":"Enhancing hydraulic and pneumatic system functionality.",
+        "Filters_and_accessories":"Cleanliness and longevity for hydraulic and pneumatic systems.",
+        "Cylinders_and_accessories":"Precision and power for hydraulic and pneumatic systems.",
+        "sensors":"Real-time feedback for hydraulic and pneumatic systems.",
+        "compressors":"Reliable air and gas compression for hydraulic and pneumatic systems.",
+        "Dryer_tank_and_drain":"Moisture-free solutions for hydraulic and pneumatic systems.",
+        "Wika_pressure_gauge_and_thermometer_regulation":"WIKA: Precise pressure gauge & thermometer regulation for peak hydraulic & pneumatic system performance.",
+        "valves":"Optimize fluid control for your hydraulic and pneumatic systems.",
+        "Maxdryer":"Advanced moisture removal for peak hydraulic and pneumatic system efficiency.",
+        "solenoid_valve":"Efficient fluid control for hydraulic and pneumatic systems.",
+        "actuators":"Powering precise movements in hydraulic and pneumatic systems."
+    },
+    "Languages" :
+    {
+        "English":"English",
+        "French":"French",
+        "Arabic":"Arabic"
+    },
+    "Profile" :
+    {
+        "Profile":"Profile",
+        "SignOut":"SignOut"
+    }
+   },
+   "Home":
+   {
+    "Presentation":"SPH (Service Pneumatique Hydraulique), trading, distribution and manufacturing company for pneumatic and hydraulic components. Since its creation in 1992 and after the great experience in the field of automation in general which allowed it to become a reference in Tunisia, SPH anxious to maintain this reference.",
+    "Services":
+    {
+        "Service_Title":"Our Services",
+        "Service1":"Sale",
+        "Service2":"Advice",
+        "Service3":"technical assistance",
+        "Service_Description":"With us you will find a complete service from experts in the hydraulics and pneumatics business."
+    },
+    "Partners":
+    {
+        "Partner_Title":"Our Partners & Brands",
+        "Partner_Description":"To meet the requirements of our customers, all our products, from major manufacturers"
+    },
+    "Team":
+    {
+       "Team_title":"Meet Our Team"
+    }
+    
+   }
+
+   
+}

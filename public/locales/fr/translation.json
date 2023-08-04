@@ -1,0 +1,81 @@
+
+{
+    "navbar":
+    {
+    "companyname": "Service Pneumatique Hydraulique",
+    "Menus":
+    {
+        "Home":"Accueil",
+        "About":"À propos",
+        "Contact":"Contact",
+        "Products":"Produits"
+    },
+    "ProductsMenu":
+    {
+        "Fittings_and_accessories":"Raccords Et Accessoires",       
+        "Tubes":"Tubes",
+        "Distributors_and_accessories":"Distributeurs Et Accessoires",
+        "Filters_and_accessories":"Filtres Et Accessoires",
+        "Cylinders_and_accessories":"Vérins et Accessoires",
+        "sensors":"Capteurs",
+        "compressors":"Compresseurs",
+        "Dryer_tank_and_drain":"Sécheur, réservoir et purgeur",
+        "Wika_pressure_gauge_and_thermometer_regulation":"Régulation Manomètre Et Thermomètre Wika",
+        "valves":"Vannes",
+        "Maxdryer":"Maxdryer",
+        "solenoid_valve":"Electrovannes",
+        "actuators":"Actionneurs"
+    },
+    "ProductsMenuDescription":
+    {
+        "Fittings_and_accessories":"Composants essentiels pour les systèmes hydrauliques et pneumatiques.",       
+        "Tubes":"Transport de fluide efficace pour les systèmes hydrauliques et pneumatiques.",
+        "Distributors_and_accessories":"Améliorer la fonctionnalité des systèmes hydrauliques et pneumatiques.",
+        "Filters_and_accessories":"Propreté et longévité des systèmes hydrauliques et pneumatiques.",
+        "Cylinders_and_accessories":"Précision et puissance pour les systèmes hydrauliques et pneumatiques.",
+        "sensors":"Rétroaction en temps réel pour les systèmes hydrauliques et pneumatiques.",
+        "compressors":"Compression d'air et de gaz fiable pour les systèmes hydrauliques et pneumatiques.",
+        "Dryer_tank_and_drain":"Solutions sans humidité pour les systèmes hydrauliques et pneumatiques.",
+        "Wika_pressure_gauge_and_thermometer_regulation":"WIKA : Régulation précise du manomètre et du thermomètre pour des performances optimales des systèmes hydrauliques et pneumatiques.",
+        "valves":"Optimisez le contrôle des fluides pour vos systèmes hydrauliques et pneumatiques.",
+        "Maxdryer":"Élimination avancée de l'humidité pour une efficacité optimale des systèmes hydrauliques et pneumatiques.",
+        "solenoid_valve":"Contrôle efficace des fluides pour les systèmes hydrauliques et pneumatiques.",
+        "actuators":"Propulser des mouvements précis dans les systèmes hydrauliques et pneumatiques."
+    },
+    "Languages" :
+    {
+        "English":"Anglaise",
+        "French":"Français",
+        "Arabic":"arabe"
+    },
+    "Profile" :
+    {
+        "Profile":"Profil",
+        "SignOut":"Se déconnecter"
+    }
+},
+"Home":
+{
+ "Presentation":"SPH (Service Pneumatique Hydraulique), société de négoce, distribution et fabrication de composants pneumatiques et hydrauliques. Depuis sa création en 1992 et après la grande expérience dans le domaine de l'automatisation en général qui lui a permis de devenir une référence en Tunisie, SPH tient à maintenir cette référence.",
+ "Services":
+ {
+     "Service_Title":"Nos services",
+     "Service1":"Vente",
+     "Service2":"Conseil",
+     "Service3":"Assistance Technique",
+     "Service_Description":"Chez Nous Vous Trouvez Un Service Complet Auprès Des Experts De La Métier De L'hydrolique Et Du Pneumatique"
+ },
+ "Partners":
+ {
+     "Partner_Title":"Nos Partenaires & Marques",
+     "Partner_Description":"Pour répondre aux exigences de nos clients, tous nos produits, issus de grands fabricants"
+ },
+ "Team":
+ {
+    "Team_title":"Rencontrez notre équipe."
+ }
+ 
+}
+
+}
+
