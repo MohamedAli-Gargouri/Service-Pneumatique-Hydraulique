@@ -75,6 +75,27 @@
     "Team_title":"Rencontrez notre équipe."
  }
  
+},
+"Login":
+{
+ "Login_Title":"S'identifier",
+ "Email_Label":"E-mail",
+ "Password_Label":"Mot de passe",
+ "RememberMeLabel":"Souviens-toi de moi",
+ "SignInButtonLabel":"S'IDENTIFIER",
+ "SignUpRecommandationLabel":"Vous n'avez pas de compte ?"
+},
+"Register":
+{
+ "Register_Title":"S'inscrire",
+ "Email_Label":"E-mail",
+ "FirstName_Label":"Prénom",
+ "LastName_Label":"Nom de famille",
+ "Password_Label":"Mot de passe",
+ "Confirm_Password_Label":"Confirmez le mot de passe",
+ "RememberMeLabel":"Souviens-toi de moi",
+ "SignInButtonLabel":"S'INSCRIRE",
+ "SignUpRecommandationLabel":"Avoir un compte?"
 }
 
 }

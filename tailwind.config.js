@@ -8,6 +8,9 @@ module.exports = withMT({
       colors: {
         primary: '#b71c1c', // Replace with your desired primary color
         secondary: '#3f51b5',
+        blue: {
+          500: '#b71c1c', // Red color code
+        }
       },
       animation: {
         'RightToLeft': 'RightToLeft  3s linear',
@@ -15,6 +18,7 @@ module.exports = withMT({
         'rotate': 'rotateAndFade 6s linear infinite',
         'LeftToRight': 'LeftToRight  3s linear',
         'LogoRotate': 'LogoRotate  10s ease-out infinite',
+        'bg': 'animateBg 1s linear infinite',
       },
       keyframes: {
         RightToLeft: {
@@ -47,7 +51,16 @@ module.exports = withMT({
           '100%': {
             transform: 'rotate(0deg)'
           }
-        }
+        },
+        animateBg: {
+          '0%': {
+            'background-position': '0 0',
+          },
+          '100%': {
+            'background-position': '100% 100%',
+          },
+        },
+
       
       }
     },

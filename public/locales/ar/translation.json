@@ -76,6 +76,27 @@
      }
      
      
+    },
+    "Login":
+    {
+     "Login_Title":"تسجيل الدخول",
+     "Email_Label":"بريد إلكتروني",
+     "Password_Label":"كلمة المرور",
+     "RememberMeLabel":"تذكرنى",
+     "SignInButtonLabel":"تسجيل الدخول",
+     "SignUpRecommandationLabel":"ليس لديك حساب؟"
+    },
+    "Register":
+    {
+     "Register_Title":"اشتراك",
+     "Email_Label":"بريد إلكتروني",
+     "FirstName_Label":"الاسم الأول ",
+     "LastName_Label":"اسم العائلة",
+     "Password_Label":"كلمة المرور",
+     "Confirm_Password_Label":"تأكيد كلمة المرور",
+     "RememberMeLabel":"تذكرنى",
+     "SignInButtonLabel":"اشتراك",
+     "SignUpRecommandationLabel":"هل لديك حساب؟"
     }
     
 }

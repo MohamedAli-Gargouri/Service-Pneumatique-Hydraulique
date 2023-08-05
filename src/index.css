@@ -57,3 +57,17 @@
   .shadowed-div {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
+  .ExtraShadowed-div {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .loginBackgroundImage {
+    background-image: url("./assets//images/Login\ Background.png");
+  }
+
+  .Root
+  {
+    width: 100%;
+    height: 100%;
+  }
+

@@ -274,7 +274,7 @@ data={
 }
 DefaultSelectValue={"All"}
 />
-<hr className=" border-red-600 rounded-lg w-[97%] h-[0.35rem] bg-red-600 m-4"/>
+
 </div>
  <Footer/>
  </div>
