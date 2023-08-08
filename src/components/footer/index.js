@@ -22,9 +22,8 @@ const currentYear = new Date().getFullYear();
 export default function FooterWithSocialLinks() {
   const LightModeState=useSelector(state=>state.lightMode)
   return (
-    <>
-    <hr className=" border-red-600 rounded-lg w-[97%] h-[0.35rem] bg-red-600 m-4"/>
     <footer className={`footer relative w-full ${LightModeState==LightMode().type?"":"ContainerDarkMode"}`}>
+    <hr className={ `mx-4 border-red-600 rounded-lg w-[97%] h-[0.35rem] bg-red-600`}/>
       <div className=" mx-auto w-full max-w-7xl px-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
         
@@ -111,6 +110,6 @@ export default function FooterWithSocialLinks() {
         </div>
       </div>
     </footer>
-    </>
+
   );
 }

@@ -132,7 +132,7 @@ const Home =()=>{
   <img
         src={ServiceImage}
         alt="image 3"
-        className="animate-rotate object-fit: cover w-1/1 h-1/1 relative "
+        className="animate-rotate object-fit: cover w-1/1 h-1/1"
         
       />
   </div>

@@ -90,8 +90,10 @@
     "Email_Label":"Email",
     "FirstName_Label":"First Name ",
     "LastName_Label":"Last Name",
+    "Phone_Label":"Phone Number",
     "Password_Label":"Password",
     "Confirm_Password_Label":"Confirm Password",
+    "PasswordCondition_Label":"Use at least 8 characters, one uppercase, one lowercase and one number.",
     "RememberMeLabel":"Remember me",
     "SignInButtonLabel":"SIGN UP",
     "SignUpRecommandationLabel":"Have an account?"

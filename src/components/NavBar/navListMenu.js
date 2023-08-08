@@ -177,7 +177,7 @@ const navListMenuItems = [
           allowHover={true}
         >
           <MenuHandler>
-            <Typography as="div" variant="small" className={`font-normal ${LightModeState==LightMode().type?"":"TextDarkMode "}`}>
+            <Typography as="a" variant="small" href="/products" className={`font-normal ${LightModeState==LightMode().type?"":"TextDarkMode "}`}>
               <ListItem
                 className={`flex items-center gap-2 py-2 pr-4 `}
                 selected={isMenuOpen || isMobileMenuOpen}

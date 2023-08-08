@@ -5,62 +5,76 @@ import {
     CardFooter,
     Typography,
     Button,
+    Rating,
+    IconButton
   } from "@material-tailwind/react";
-   
-  export default  function EcommerceCard({text, ProductImage, ProductName, ProductPrice}) {
+   import productSample1 from "../../assets/images/products/Product1.png"
+  export default  function ProductCard({text, ProductImage, ProductName, ProductPrice}) {
     return (
-      <Card className="h-[38rem] hover:scale-105">
-        <CardHeader shadow={false} floated={false} className="h-96">
-          <img
-            src={ProductImage}
-            alt="card-image"
-            className="h-full w-full object-cover"
-          />
-        </CardHeader>
-        <CardBody>
-          <div className="mb-2 flex items-center justify-between">
-            <Typography color="blue-gray" className="font-medium">
-              {ProductName}
-            </Typography>
-            <Typography color="blue-gray" className="font-medium">
-              {ProductPrice} TND
-            </Typography>
-          </div>
-          <Typography
-            variant="small"
-            color="gray"
-            className="font-normal opacity-75"
-          >
-            {text}
-          </Typography>
-        </CardBody>
-        <CardFooter className="pt-0">
+      <Card className=" rounded-l-md pr-4">
+        <div className="grid grid-cols-5">
+
+            <div className="ProductImage bg-red-200  col-span-1 flex  justify-center items-center">
+             
+             <img src={productSample1} className="w-[90%] h-[90%] Imageshadow" />
+            </div>
+
+            <div className="ProductDescription col-span-3 ml-4">
+
+                <div className="flex-wrap flex justify-center items-center">
+                    <div className="Product Catalog w-full">
+                    <Typography   variant="h6" className={`font-light`}>
+                        Compressor
+                    </Typography>
+                    </div>
+                    <div className="Product Title w-full ">
+                    <Typography   variant="h5" className={`font-body`}>
+                    MX-74070
+                    </Typography>
+                    </div>
+                    <div className="Product Content w-full ">
+                    <Typography   variant="p" className={` font-light`}>
+                    Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus.
+                    </Typography>
+                    </div>
+
+                    
+                </div>
+
+            </div>
+
+            <div className="Product Actions col-span-1 flex-col flex items-end justify-center">
+                <div className="Price">
+                <Typography   variant="small"  color="green" className={`font-bold`}>
+                1000 TND
+                    </Typography> 
+                </div>
+
+                <div className="Review">
+                <Rating />
+                </div>
+                <div className="Actions flex  justify-center items-center">
+                    <div className="Preview mx-1">
+                    <IconButton variant="text" className="rounded-full hover:scale-150">
+                    <i class="fa-regular fa-eye fa-lg"></i>
+                    </IconButton>
+
+                    </div>
+
+                    <div className="AddCart mx-1">
+                    <Button size="sm" className="flex items-center gap-3 hover:scale-105">
+                    <i class="fa-solid fa-cart-shopping fa-sm"></i>
+                    Add to Cart
+                    </Button>
+                    </div>
+
+
+                </div>
+
+            </div>
+            </div>
+
          
-        <Button
-          fullWidth={true}
-          ripple={false}
-           className=" bg-red-600 flex items-center m-2 gap-3 hover:scale-105 active:scale-100">
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-  <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
-</svg>
-
-
-        Discover
-      </Button>
-         <Button
-          fullWidth={true}
-          ripple={false}
-           className=" bg-red-600 flex items-center m-2 gap-3 hover:scale-105 active:scale-100">
-         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-  <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
-</svg>
-
-        Add to Cart
-      </Button>
-
-        
-
-        </CardFooter>
       </Card>
     );
   }

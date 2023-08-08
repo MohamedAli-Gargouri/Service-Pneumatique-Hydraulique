@@ -14,3 +14,9 @@ export default function TranslateText({TranslationPath,TextColor}){
     }
     
 }
+
+export  function TranslateString(TranslationPath){
+    const { t, i18n } = useTranslation();
+        return t(TranslationPath)
+  
+}

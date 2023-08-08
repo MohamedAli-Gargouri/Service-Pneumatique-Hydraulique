@@ -9,7 +9,7 @@ module.exports = withMT({
         primary: '#b71c1c', // Replace with your desired primary color
         secondary: '#3f51b5',
         blue: {
-          500: '#b71c1c', // Red color code
+          500: '#e57373', // Red color code
         }
       },
       animation: {

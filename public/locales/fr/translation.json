@@ -91,8 +91,10 @@
  "Email_Label":"E-mail",
  "FirstName_Label":"Prénom",
  "LastName_Label":"Nom de famille",
+ "Phone_Label":"Numéro de téléphone",
  "Password_Label":"Mot de passe",
  "Confirm_Password_Label":"Confirmez le mot de passe",
+ "PasswordCondition_Label":"Utilisez au moins 8 caractères, une majuscule, une minuscule et un chiffre.",
  "RememberMeLabel":"Souviens-toi de moi",
  "SignInButtonLabel":"S'INSCRIRE",
  "SignUpRecommandationLabel":"Avoir un compte?"

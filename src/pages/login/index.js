@@ -15,15 +15,16 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
   export default function LoginCard() {
     const LightModeState=useSelector(state=>state.lightMode)
     return (
-<div class="loginBackgroundImage bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
+<div class="BackgroundImage2 bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
 <Navbar/> 
         <div className="mt-[10rem]">
-        <Card className={`${LightModeState==LightMode().type?"":"ContainerDarkMode"} w-[20rem] sm:[25rem]  md:w-[30rem] lg:w-[40rem]  ExtraShadowed-div  m-0 bg-opacity-70 backdrop-blur-lg `}>
+        <Card className={`${LightModeState==LightMode().type?"":"ContainerDarkMode"} w-[20rem] sm:[25rem]  md:w-[30rem] lg:w-[40rem]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
         <CardHeader
           variant="gradient"
           color="red"
           className="mb-4 grid h-28 place-items-center"
         >
+          <i class="fa-solid fa-right-to-bracket"></i>
           <Typography variant="h3" color="white">
           <TranslatedText TranslationPath="Login.Login_Title" TextColor="White"/>
           </Typography>
@@ -36,7 +37,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
           </div>
         </CardBody>
         <CardFooter className="pt-0">
-          <Button variant="gradient" color="red" fullWidth>
+          <Button variant="gradient" color="red" className="hover:scale-105" fullWidth>
           <TranslatedText TranslationPath="Login.SignInButtonLabel" TextColor="White"/>
           </Button>
           <Typography variant="small" className="mt-6 flex justify-center">

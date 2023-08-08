@@ -16,6 +16,11 @@ export default function LanguageList() {
   return (
     <div>
       <Select
+              className={`rounded-none `}
+              labelProps={{
+                
+                className: `before:content-none after:content-none`,
+              }}
       value={i18n.language}
       onChange={(e)=>{HandleLanguageChange(e)}}
         size="md"

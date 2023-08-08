@@ -92,8 +92,10 @@
      "Email_Label":"بريد إلكتروني",
      "FirstName_Label":"الاسم الأول ",
      "LastName_Label":"اسم العائلة",
+     "Phone_Label":"رقم التليفون",
      "Password_Label":"كلمة المرور",
      "Confirm_Password_Label":"تأكيد كلمة المرور",
+     "PasswordCondition_Label":"استخدم 8 أحرف على الأقل وحرف كبير واحد وحرف صغير ورقم واحد.",
      "RememberMeLabel":"تذكرنى",
      "SignInButtonLabel":"اشتراك",
      "SignUpRecommandationLabel":"هل لديك حساب؟"

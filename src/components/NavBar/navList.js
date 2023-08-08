@@ -20,10 +20,12 @@ const navListItems = [
     {
       label: <Translate TranslationPath="navbar.Menus.Home"/>,
       icon: HomeIcon,
+      route:"/"
     },
     {
       label: <Translate TranslationPath="navbar.Menus.Contact"/>,
       icon: PhoneIcon,
+      route:"/Contact"
     },
   ];
   
@@ -32,13 +34,13 @@ const navListItems = [
     return (
       <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
         
-        {navListItems.map(({ label, icon }, key) =>
+        {navListItems.map(({ label, icon,route }, key) =>
         {
         return (
           <Typography
           key={key}
             as="a"
-            href="#"
+            href={route}
             variant="small"
             color="blue-gray"
             className={`font-normal ${LightModeState==LightMode().type?"":"TextDarkMode"}`}
