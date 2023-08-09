@@ -5,15 +5,16 @@ import {
   Tab,
   TabPanel,
 } from "@material-tailwind/react";
- 
+ import React from "react";
  export default function TabsCustomAnimation(props) {
   const data =props.data
 
   return (
     <Tabs id="custom-animation" value={props.DefaultSelectValue}>
       <TabsHeader>
-        {data.map(({ label, value }) => (
+        {data.map(({ label, value,icon  }) => (
           <Tab key={value} value={value}>
+            {icon}
             {label}
           </Tab>
         ))}

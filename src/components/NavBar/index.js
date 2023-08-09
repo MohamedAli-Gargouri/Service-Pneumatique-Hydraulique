@@ -63,9 +63,9 @@ export default function ComplexNavbar() {
  })
  //=========Setting Dark and light mode states-end========//
   return (
-    <header className="fixed top-0 left-0 w-screen z-50 mt-4">
-    <Navbar className={` mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6 ${LightModeState==LightMode().type?"":"ContainerDarkMode"}`}>
-      <div className="relative mx-auto flex items-center text-blue-gray-900">
+    <header className="fixed flex justify-center items-center top-0 left-0 w-screen z-50 mt-4">
+    <Navbar className={`lg:rounded-full mx-4 ${LightModeState==LightMode().type?"":"ContainerDarkMode"}`}>
+      <div className=" flex items-center justify-center ">
       
       <img src={SPHlogo} alt="avatar" className="w-15 h-10 animate-LogoRotate"  />
       <Typography
@@ -76,20 +76,23 @@ export default function ComplexNavbar() {
         </Typography>
         
        
-        <div className="hidden lg:block">
+        <div className="hidden lg:block mx-1">
           <NavList />
         </div>
 
+        <div className="LightMode mx-1">
         <IconButton
-          size="sm"
-          color="blue-gray"
-          variant="text"
-          className=" ml-auto mr-auto"
-          onClick={HandleLightModeSwitch}
-        >
-          {(LightModeState==LightMode().type)?<SunIcon className="h-6 w-6" />:<MoonIcon className="h-6 w-6" />}
-        </IconButton>
-
+        size="sm"
+        color="blue-gray"
+        variant="text"
+        className=" ml-auto mr-auto"
+        onClick={HandleLightModeSwitch}
+      >
+        {(LightModeState==LightMode().type)?<SunIcon className="h-6 w-6" />:<MoonIcon className="h-6 w-6" />}
+      </IconButton>
+        </div>
+        
+         <div className="MobileNavButton mx-1">
         <IconButton
           size="sm"
           color="blue-gray"
@@ -99,8 +102,14 @@ export default function ComplexNavbar() {
         >
           <Bars2Icon className="h-6 w-6" />
         </IconButton>
+         </div>
         
+        <div className="Profile mx-1">
         <ProfileMenu />
+        </div>
+
+        
+
       </div>
       <Collapse open={isNavOpen} className="overflow-scroll">
         <NavList />
