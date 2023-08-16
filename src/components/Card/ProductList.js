@@ -6,16 +6,19 @@ import {
     Typography,
     Button,
   } from "@material-tailwind/react";
-   
+  import { useSelector } from "react-redux/es/hooks/useSelector";
+  import {LightMode,DarkMode} from "../../redux/actions/LightActions"
   export default  function ProductList({text, ProductImage, ProductName, ProductPrice}) {
+    const LightModeState=useSelector(state=>state.lightMode)
     return (
-      <Card className="h-[38rem] hover:scale-105">
-        <CardHeader shadow={false} floated={false} className="h-96">
-          <img
-            src={ProductImage}
-            alt="card-image"
-            className="h-full w-full object-cover"
-          />
+      <Card className={`h-[38rem] hover:scale-105 ${LightModeState==LightMode().type?"ContainerExtraWhiteMode":"ContainerExtraWhiteMode"}`}>
+        <CardHeader shadow={false} floated={false} className="h-96 bg-gray-300 rounded-md Selected shadow-lg img border mx-1 my-1  p-4 hover:cursor-pointer">
+        <img
+        className=" Imageshadow h-full w-full rounded-lg object-cover object-center shadow-x"
+        src={ProductImage}
+        />
+
+
         </CardHeader>
         <CardBody>
           <div className="mb-2 flex items-center justify-between">

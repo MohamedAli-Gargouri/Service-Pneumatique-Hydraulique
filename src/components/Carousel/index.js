@@ -12,7 +12,7 @@ export default function CarouselCustomNavigation() {
       autoplay={true}
       autoplayDelay={5000} 
       loop={true}
-      className="h-[20.5rem] sm:h-[44.5rem] w-fit"
+      className="h-halfscreen w-fullscreen  md:h-screen "
       navigation={({ setActiveIndex, activeIndex, length }) => (
         <div className=" relative bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
           {new Array(length).fill("").map((_, i) => (

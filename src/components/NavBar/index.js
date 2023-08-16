@@ -61,16 +61,67 @@ export default function ComplexNavbar() {
     dispatch(LightMode())
   }
  })
+
+ var prevScrollPos = React.useRef(0);
+ var NavbarVisible=React.useRef(true)
+
+ window.addEventListener("scroll", () => {
+   const currentScrollPos = window.pageYOffset;
+   const navbar = document.getElementById("navbar");
+   if (prevScrollPos.current < currentScrollPos) {
+     if(NavbarVisible.current==true)
+     {
+        // Scrolling down, hide the navbar with animation
+     navbar.classList.remove("animate-NavSlideDown");
+     navbar.classList.add("animate-NavSlideUp");
+     // Set final position after animation duration
+     NavbarVisible.current=false
+     setTimeout(() => {
+       navbar.style.transition = "none"; // Disable transition temporarily
+       navbar.style.transform = "translateY(-130%)";
+       setTimeout(() => {
+         navbar.style.transition = ""; // Re-enable transition
+       }, 0);
+     }, 300); // Assuming animation duration is 300ms
+     }    
+
+   } 
+   
+   if(prevScrollPos.current > currentScrollPos) {
+     if(NavbarVisible.current==false)
+     {
+       // Scrolling up, show the navbar with animation
+     navbar.classList.remove("animate-NavSlideUp");
+     navbar.classList.add("animate-NavSlideDown");
+
+     NavbarVisible.current=true
+     setTimeout(() => {
+       navbar.style.transition = "none"; // Disable transition temporarily
+       navbar.style.transform = "translateY(0)";
+       setTimeout(() => {
+         navbar.style.transition = ""; // Re-enable transition
+       }, 0);
+         }, 300); 
+     }           
+   }
+
+   setTimeout(() => {
+    prevScrollPos.current=currentScrollPos
+      }, 0); 
+   
+ });
+
+       
  //=========Setting Dark and light mode states-end========//
   return (
-    <header className="fixed flex justify-center items-center top-0 left-0 w-screen z-50 mt-4">
+    <header id="navbar"  className="fixed flex justify-center items-center top-0 left-0 w-screen z-50 mt-4 animate-NavSlideDown">
     <Navbar className={`lg:rounded-full mx-4 ${LightModeState==LightMode().type?"":"ContainerDarkMode"}`}>
       <div className=" flex items-center justify-center ">
       
       <img src={SPHlogo} alt="avatar" className="w-15 h-10 animate-LogoRotate"  />
       <Typography
           as="div"
-          className={`mr-4 ml-4 cursor-pointer py-1.5 lg:ml-2 ${LightModeState==LightMode().type?"":"TextDarkMode"}`}
+          className={`hidden md:block mr-4 ml-4 cursor-pointer py-1.5 lg:ml-2 ${LightModeState==LightMode().type?"":"TextDarkMode"}`}
         >
           <TranslatedText TranslationPath="navbar.companyname"/>
         </Typography>

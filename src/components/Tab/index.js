@@ -10,10 +10,10 @@ import {
   const data =props.data
 
   return (
-    <Tabs id="custom-animation" value={props.DefaultSelectValue}>
+    <Tabs id="custom-animation"  value={props.DefaultSelectValue}>
       <TabsHeader>
         {data.map(({ label, value,icon  }) => (
-          <Tab key={value} value={value}>
+          <Tab key={value} value={value} className="m-4">
             {icon}
             {label}
           </Tab>

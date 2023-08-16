@@ -31,7 +31,7 @@ import QuantityInput from "../../components/Input/Quantity"
         <React.Fragment>
             <Navbar/>
 
- <div class="h-full w-full mb-[1rem] mt-[5rem] grid grid-cols-2 justify-center items-center ">
+ <div class="h-full w-full mb-[1rem] pt-[5rem] pt-fifthscreen grid grid-cols-2 justify-center items-center ">
 
 <div className="h-full w-full ImageGallery col-span-2 md:col-span-1">
     <Gallery/>

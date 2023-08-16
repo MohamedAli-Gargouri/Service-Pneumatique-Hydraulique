@@ -19,8 +19,23 @@ module.exports = withMT({
         'LeftToRight': 'LeftToRight  3s linear',
         'LogoRotate': 'LogoRotate  10s ease-out infinite',
         'bg': 'animateBg 1s linear infinite',
+        "NavSlideUp": 'SlideUp 0.3s ease-in-out',
+        "NavSlideDown": 'SlideDown 0.3s ease-in-out',
+        "fade": 'fade 1s ease-in-out',
       },
       keyframes: {
+        fade: {
+          '0%': { opacity:'0%' },
+          '100%': { opacity:'100%' },
+        },
+        SlideDown: {
+          '0%': { transform: 'translateY(-130%)' },
+          '100%': { transform: 'translateY(0%)' },
+        },
+        SlideUp: {
+          '0%': { transform: 'translateY(0%)' },
+          '100%': { transform: 'translateY(-130%)' },
+        },
         RightToLeft: {
           '0%': { transform: 'translateX(5%)' },
           '100%': { transform: 'translateX(0%)' },

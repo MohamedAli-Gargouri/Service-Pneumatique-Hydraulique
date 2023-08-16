@@ -1,0 +1,42 @@
+/*.required
+{
+    width: 50vw;
+    height: 50vw;
+}
+
+.required::before
+{
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+}
+[data-tooltip]
+{
+    position: relative;
+}
+[data-tooltip]:hover::after
+{
+    content: attr(data-tooltip);
+    position: absolute;
+    top:100%;
+    left: 0;
+    right: 0;
+    margin-top: 5px;
+    padding: 5px;
+    background-color: azure;
+}
+.required::after
+{
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+}
+
+li:nth-child(1)
+{
+    background-color: aqua;
+}*/

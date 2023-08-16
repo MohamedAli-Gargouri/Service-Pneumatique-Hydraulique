@@ -58,7 +58,7 @@ const [SelectedImgIndex,SetSelectedImgIndex]=useState(1)
                                 return(
                                     <div className="bg-gray-300 rounded-md Selected shadow-lg img border mx-4 my-1  p-4 hover:cursor-pointer">
                                 <img
-                                className="h-full w-full rounded-lg object-cover object-center shadow-x"
+                                className=" Imageshadow h-full w-full rounded-lg object-cover object-center shadow-x"
                                 src={imageurl}
                                 />
     
