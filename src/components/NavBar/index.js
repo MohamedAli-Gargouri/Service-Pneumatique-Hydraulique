@@ -29,12 +29,15 @@ import {
   SunIcon,
   MoonIcon
 } from "@heroicons/react/24/outline";
+import LanguageSelect from "./languageListSelect";
+import Cart from "../Cart"
 import NavList from "./navList"
 import ProfileMenu from "./profileMenu"
 import TranslatedText from "../../utils/Translation"
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+import {OPENCART} from "../../redux/actions/cartActions"
 export default function ComplexNavbar() {
    //=======Setting Mobile View-start=================// 
   const [isNavOpen, setIsNavOpen] = React.useState(false);
@@ -51,6 +54,8 @@ export default function ComplexNavbar() {
  //=========Setting Dark and light mode states-start========//
  const LightModeState=useSelector(state=>state.lightMode)
  const dispatch=useDispatch();
+
+ const toggleCart = () =>{dispatch(OPENCART())};
  const HandleLightModeSwitch=(()=>{
   if (LightModeState==LightMode().type)
   {
@@ -61,7 +66,6 @@ export default function ComplexNavbar() {
     dispatch(LightMode())
   }
  })
-
  var prevScrollPos = React.useRef(0);
  var NavbarVisible=React.useRef(true)
 
@@ -115,13 +119,13 @@ export default function ComplexNavbar() {
  //=========Setting Dark and light mode states-end========//
   return (
     <header id="navbar"  className="fixed flex justify-center items-center top-0 left-0 w-screen z-50 mt-4 animate-NavSlideDown">
-    <Navbar className={`lg:rounded-full mx-4 ${LightModeState==LightMode().type?"":"ContainerDarkMode"}`}>
+    <Navbar className={`lg:rounded-full mx-4 ${LightModeState==LightMode().type?"bg-whiteTheme_T2 tc-whiteTheme_T1":"bg-darkTheme_T2 tc-darkTheme_T1"}`}>
       <div className=" flex items-center justify-center ">
       
       <img src={SPHlogo} alt="avatar" className="w-15 h-10 animate-LogoRotate"  />
       <Typography
-          as="div"
-          className={`hidden md:block mr-4 ml-4 cursor-pointer py-1.5 lg:ml-2 ${LightModeState==LightMode().type?"":"TextDarkMode"}`}
+          color="inherit"
+          className={`hidden md:block mr-4 ml-4 cursor-pointer py-1.5 lg:ml-2`}
         >
           <TranslatedText TranslationPath="navbar.companyname"/>
         </Typography>
@@ -131,33 +135,48 @@ export default function ComplexNavbar() {
           <NavList />
         </div>
 
-        <div className="LightMode mx-1">
-        <IconButton
-        size="sm"
-        color="blue-gray"
-        variant="text"
-        className=" ml-auto mr-auto"
-        onClick={HandleLightModeSwitch}
-      >
-        {(LightModeState==LightMode().type)?<SunIcon className="h-6 w-6" />:<MoonIcon className="h-6 w-6" />}
-      </IconButton>
-        </div>
+        
         
          <div className="MobileNavButton mx-1">
         <IconButton
           size="sm"
-          color="blue-gray"
+          color="inherit"
           variant="text"
           onClick={toggleIsNavOpen}
-          className={`ml-auto mr-2 lg:hidden ${LightModeState==LightMode().type?"":"TextDarkMode"}`}
+          className={`ml-auto mr-2 lg:hidden text-current`}
         >
           <Bars2Icon className="h-6 w-6" />
         </IconButton>
          </div>
-        
-        <div className="Profile mx-1">
+         
+         <div className="LightMode mx-1">
+        <IconButton
+        size="sm"
+        color="inherit"
+        variant="text"
+        className=" ml-auto mr-auto rounded-full"
+        onClick={HandleLightModeSwitch}
+      >
+        {(LightModeState==LightMode().type)?<MoonIcon className="h-6 w-6" />:<SunIcon className="h-6 w-6" />}
+      </IconButton>
+        </div>
+
+         <div className="mx-1">
+         <LanguageSelect/>
+         </div>
+         
+
+         <div className="Cart mx-1">
+          <IconButton variant="text" size="sm" color="inherit" className="rounded-full" onClick={toggleCart}>
+          <i class="fa-solid fa-bag-shopping"></i>
+          </IconButton>
+        </div>
+
+        <div className="Profile mx-1" color="inherit">
         <ProfileMenu />
         </div>
+
+        
 
         
 

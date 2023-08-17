@@ -62,29 +62,25 @@ const profileMenuItems = [
             />
           </Button>
         </MenuHandler>
-        <MenuList className={`p-1 ${LightModeState==LightMode().type?"":"ContainerDarkMode"}`}>
+        <MenuList className={`p-1 ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"}`}>
           {profileMenuItems.map(({ label, icon }, key) => {
             const isLastItem = key === profileMenuItems.length - 1;
             return (
               <MenuItem
                 key={label}
                 onClick={closeMenu}
-                className={`flex items-center gap-2 rounded ${
-                  isLastItem
-                    ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                    : ""
-                }`}
+                className={`flex items-center gap-2 rounded ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}
               >
                 {React.createElement(icon, {
-                  className: `${LightModeState==LightMode().type?"":"TextDarkMode"} h-4 w-4}`,
+                  className: `h-4 w-4}`,
                   strokeWidth: 2,
+                  style:{color:`${isLastItem ? "red" : "inherit"}`}
                 })}
                 <Typography
                   as="span"
                   variant="small"
-                  className={`font-normal ${LightModeState==LightMode().type?"":"TextDarkMode"}`}
+                  className={`font-normal`}
                   color={isLastItem ? "red" : "inherit"}
-
                 >
                   {label}
                 </Typography>

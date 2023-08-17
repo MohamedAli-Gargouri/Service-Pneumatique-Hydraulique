@@ -17,12 +17,12 @@
 
   /*=============COLORS===============*/
 
-  --WHITECONTAINERCOLOR:rgba(236,	239,	241, 0.8);
-  --XLWHITECONTAINERCOLOR:rgba(236,	239,	241, 0.8);
-  --BLACKCONTAINERCOLOR:rgba(21, 21, 21, 0.8);
-  --XLBLACKCONTAINERCOLOR:rgba(207,	216,	220, 0.8);
-  --WHITETXTCOLOR:#263238;
-  --BLACKTXTCOLOR:#90a4ae;
+  --WHITE_THEME_COLOR_T1:rgba(250,	250,	250, 0.8);
+  --WHITE_THEME_COLOR_T2:rgba(255,	255,	255, 0.8);
+  --BLACK_THEME_COLOR_T1:rgba(33, 33, 33, 0.8);
+  --BLACK_THEME_COLOR_T2:rgba(97,97,97, 0.8);
+  --WHITE_TXT_COLOR:black;
+  --BLACK_TXT_COLOR:white;
 
 }
 
@@ -32,38 +32,44 @@
 /*================LIGHTING CLASSES==============*/
 @variants dark {
 
-  .dark .ContainerWhiteMode {
-  background-color: var(--WHITECONTAINERCOLOR);
-  border-color: var(--WHITECONTAINERCOLOR);
+  .dark .bg-whiteTheme_T1 
+  {
+  background-color: var(--WHITE_THEME_COLOR_T1);
+  border-color: var(--WHITE_THEME_COLOR_T1);
   /*backdrop-filter: blur(1px);*/     
-    }
+  }
 
-    .dark .ContainerExtraWhiteMode {       
-      background-color: var(--XLWHITECONTAINERCOLOR);
-      border-color: var(--XLWHITECONTAINERCOLOR);
+  .dark .bg-whiteTheme_T2 
+  {       
+      background-color: var(--WHITE_THEME_COLOR_T2);
+      border-color: var(--WHITE_THEME_COLOR_T2);
       backdrop-filter: blur(26px);       
-        }
-  .dark .ContainerDarkMode {
+  }
+  .dark .bg-darkTheme_T1 
+  {
       
-      background-color: var(--BLACKCONTAINERCOLOR);
-      border-color: var(--BLACKCONTAINERCOLOR);
+      background-color: var(--BLACK_THEME_COLOR_T1);
+      border-color: var(--BLACK_THEME_COLOR_T1);
       /*backdrop-filter: blur(1px);*/  
        
   }
-  .dark .ContainerLightDarkMode {
+  .dark .bg-darkTheme_T2 
+  {
     
-    background-color: var(--XLBLACKCONTAINERCOLOR);
-    border-color: var(--XLBLACKCONTAINERCOLOR);
+    background-color: var(--BLACK_THEME_COLOR_T2);
+    border-color: var(--BLACK_THEME_COLOR_T2);
     /*backdrop-filter: blur(1px);*/  
      
-}
-  .dark .TextDarkMode {
-      color: var(--BLACKTXTCOLOR);     
-    }
+  }
+  .dark .tc-darkTheme_T1 
+  {
+      color: var(--BLACK_TXT_COLOR);     
+  }
 
-    .dark .TextWhiteMode {
-      color: var(--WHITETXTCOLOR);     
-    }
+  .dark .tc-whiteTheme_T1 
+  {
+      color: var(--WHITE_TXT_COLOR);     
+  }
 }
 
 /*==============NORMAL CLASSES=============*/
@@ -122,4 +128,12 @@
 
 .pt-fifthscreen {
   padding-top: var(--FifthScreen-height);
+}
+
+.no-scroll {
+  overflow: hidden !important;
+}
+
+.enable-scroll {
+  overflow: scroll !important;
 }

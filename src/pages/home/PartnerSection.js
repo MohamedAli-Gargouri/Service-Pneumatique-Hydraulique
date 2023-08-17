@@ -23,7 +23,7 @@ import CEOPFP from "../../assets/images/team/CEO.png"
 const Partner =()=>{
   const LightModeState=useSelector(state=>state.lightMode)
     return (<React.Fragment>
-              <div className={`Partner flex flex-wrap  items-center justify-center ${LightModeState==LightMode().type?"ContainerWhiteMode":"ContainerDarkMode"}` }>
+              <div className={`Partner flex flex-wrap  items-center justify-center ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"}` }>
 
             <div className="container mx-auto">
             <div className="grid grid-cols-12 gap-4">

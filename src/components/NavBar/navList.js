@@ -42,8 +42,7 @@ const navListItems = [
             as="a"
             href={route}
             variant="small"
-            color="blue-gray"
-            className={`font-normal ${LightModeState==LightMode().type?"":"TextDarkMode"}`}
+            className={`font-normal text-current ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}
           >
             <MenuItem className="flex items-center gap-2 lg:rounded-full">
               {React.createElement(icon, { className: "h-[18px] w-[18px]" })}{" "}
@@ -52,7 +51,7 @@ const navListItems = [
           </Typography>
         )})}
           <NavListMenu />
-          <LanguageSelect/>
+         
       </ul>
     );
   }

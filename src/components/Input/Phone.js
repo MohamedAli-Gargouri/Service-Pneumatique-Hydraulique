@@ -42,7 +42,7 @@ export default function InputWithDropdown({InputLabel}) {
             {countryCallingCode}
           </Button>
         </MenuHandler>
-        <MenuList className={`${LightModeState==LightMode().type?"":"ContainerDarkMode"} max-h-[20rem] max-w-[18rem]`}>
+        <MenuList className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} max-h-[20rem] max-w-[18rem]`}>
           {countries.map(({ name, flags, countryCallingCode }, index) => {
             return (
               <MenuItem

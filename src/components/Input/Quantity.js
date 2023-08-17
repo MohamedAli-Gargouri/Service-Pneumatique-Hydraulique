@@ -7,9 +7,9 @@ export default function InputWithButton() {
   const increment=()=>{setQuantity(Quantity+1)}
   const decrement=()=>{setQuantity(Quantity-1)}
   return (
-    <div className="flex  w-full m-2">
+    <div className="flex flex-row flex-wrap justify-center items-center  w-full m-2">
              
-<Button onClick={decrement} className="hover:scale-110 flex items-center mx-1">
+<Button onClick={decrement} size="sm" className="hover:scale-110 flex items-center m-1">
 <i class="fa-solid fa-minus"></i>
 </Button>
 
@@ -17,12 +17,13 @@ export default function InputWithButton() {
 <Input
         type="number"       
         label="Quantity"
+        size="sm"
         value={Quantity}
         onChange={onChange}
         className=""
 
       />
-<Button onClick={increment} className="hover:scale-110 flex items-center mx-1">
+<Button onClick={increment} size="sm" className="hover:scale-110 flex items-center m-1">
 <i class="fa-solid fa-plus"></i>
 </Button>
 

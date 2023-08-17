@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import {Route,Routes} from "react-router-dom";
 import Home from "./pages/home"
@@ -8,32 +8,41 @@ import Contact from "./pages/contact"
 import Products from "./pages/products"
 import ProductDetails from "./pages/products/Preview"
 import {LightMode,DarkMode} from "./redux/actions/LightActions"
-import Dev from "./pages/dev"
+import Dev from "./pages/test"
+import Cart from './components/Cart';
 export default function App() {
   const LightModeState=useSelector(state=>state.lightMode)
   const root = document.getElementById("root");
   if(LightModeState==LightMode().type)
   {
-    root.classList.remove("ContainerDarkMode")
-    root.classList.add("ContainerWhiteMode")
+    root.classList.remove("bg-darkTheme_T1")
+    root.classList.add("bg-whiteTheme_T1")
+
+    root.classList.remove("tc-darkTheme_T1")
+    root.classList.add("tc-whiteTheme_T1")
 
   }
   else
   {
-    root.classList.remove("ContainerWhiteMode")
-    root.classList.add("ContainerDarkMode")
+    root.classList.remove("bg-whiteTheme_T1")
+    root.classList.add("bg-darkTheme_T1")
+
+    root.classList.remove("tc-whiteTheme_T1")
+    root.classList.add("tc-darkTheme_T1")
     
   }
   
-  return (
-    <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/Login" element={<Login/>}/>
-      <Route path="/Register" element={<Register/>}/>
-      <Route path="/Contact" element={<Contact/>}/>
-      <Route path="/Products" element={<Products/>}/>
-      <Route path="/ProductDetails" element={<ProductDetails/>}/>
-      <Route path="/Dev" element={<Dev/>}/>
-    </Routes>
+  return (<React.Fragment>
+            <Cart/>
+            <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/Login" element={<Login/>}/>
+            <Route path="/Register" element={<Register/>}/>
+            <Route path="/Contact" element={<Contact/>}/>
+            <Route path="/Products" element={<Products/>}/>
+            <Route path="/ProductDetails" element={<ProductDetails/>}/>
+            <Route path="/Dev" element={<Dev/>}/>
+            </Routes>
+          </React.Fragment>
   );
 }

@@ -36,13 +36,13 @@ import FilterMenu from "../../components/FilterMenu"
   const openMobileDrawer = () => SetMobileDraweropen(true);
   const closeMobileDrawer = () => SetMobileDraweropen(false);
     return (
-        <div className="Products w-screen">     
+        <div className={`Products w-full`}>     
       <Drawer open={MobileDraweropen} onClose={closeMobileDrawer} className="md:hidden p-4">
       <FilterMenu/>
       </Drawer>
      
       <Navbar/>
-      <div class="mb-[1rem] pt-[15vh] w-full grid grid-cols-8 sm:grid-cols-8 md:grid-cols-8 lg:grid-cols-8 ">
+      <div class="mb-[1rem] pt-[15vh] w-full grid grid-cols-8 sm:grid-cols-8 md:grid-cols-8 lg:grid-cols-8  ">
 
         
             <div class="hidden md:block pl-3 col-span-2 ml-4 bg-white rounded-lg shadow-lg " >
@@ -68,7 +68,7 @@ import FilterMenu from "../../components/FilterMenu"
 
                 <div className="flex flex-col justify-center items-stretch ">
 
-                    <div className="filters grid grid-cols-2">
+                    <div className="filters grid grid-cols-1 md:grid-cols-2">
                         <div className=" col-span-1  flex justify-center items-center">
 
                                                 

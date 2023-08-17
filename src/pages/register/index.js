@@ -21,7 +21,7 @@ import PhoneInput from "../../components/Input/Phone"
       <Navbar/>
      
       <div className="mt-[10rem]">
-      <Card className={`${LightModeState==LightMode().type?"":"ContainerDarkMode"} w-[20rem] sm:[25rem]  md:w-[30rem] lg:w-[40rem]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
+      <Card className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} w-[20rem] sm:[25rem]  md:w-[30rem] lg:w-[40rem]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
       <CardHeader
         variant="gradient"
         color="red"

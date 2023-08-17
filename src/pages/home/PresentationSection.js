@@ -16,7 +16,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 const Presentation =()=>{
   const LightModeState=useSelector(state=>state.lightMode)
   return (<React.Fragment>
-<div className={`Presentation flex flex-wrap  items-center justify-center ${LightModeState==LightMode().type?"ContainerWhiteMode":"ContainerDarkMode"}`}>
+<div className={`Presentation flex flex-wrap  items-center justify-center `}>
 
 <div className=" flex flex-col flex-wrap  justify-center items-center">
         <div className="col-span-12">
@@ -43,7 +43,7 @@ const Presentation =()=>{
         <div className="col-span-12">
           
           <div className="flex items-center justify-center">
-          <Typography   variant="h1" color="blue-gray" className={` text-center m-4 ${LightModeState==LightMode().type?"TextWhiteMode":"TextDarkMode"}`}>
+          <Typography   variant="h1" color="inherit"  className={` text-center m-4 `}>
           Unleashing Fluid Power Innovation
             </Typography>
 
@@ -83,7 +83,7 @@ const Presentation =()=>{
 
           <div className="flex items-center justify-center h-full">
             
-          <Typography   variant="p" color="blue-gray" className={`m-4 ${LightModeState==LightMode().type?"TextWhiteMode":"TextDarkMode"}`}><TranslatedText TranslationPath="Home.Presentation"/> </Typography>
+          <Typography   variant="p" color="inherit" className={`m-4 `}><TranslatedText TranslationPath="Home.Presentation"/> </Typography>
           </div>
         </div>
 

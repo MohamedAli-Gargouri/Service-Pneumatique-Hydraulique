@@ -18,7 +18,7 @@ import {
     if(variant==1)
     {
         return (
-            <Card className=" shadow-md pr-2 m-2">
+            <Card className="ContainerLightDarkMode rounded-none shadow-lg p-1 pr-4 m-1  ">
               <div className="grid grid-cols-5">
       
                   <div className="ProductImage bg-gray-300  col-span-1 flex  justify-center items-center " onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>        
@@ -90,9 +90,9 @@ import {
     if(variant==2 ||variant==3)
     {
         return (
-            <Card className=" rounded-none flex flex-col flex-wrap items-stretch justify-center m-4 ">
+            <Card className=" rounded-none shadow-lg p-1  m-1 flex flex-col flex-wrap items-stretch justify-center  ">
               
-              <div className="image-container rounded-t-md bg-gray-300 col-span-1 flex flex-col  justify-center items-center" 
+              <div className="image-container  bg-gray-300 col-span-1 flex flex-col  justify-center items-center" 
               onMouseEnter={() =>{
              setIsHovered(true); 
             }}

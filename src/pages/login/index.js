@@ -18,7 +18,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 <div class="BackgroundImage2 bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
 <Navbar/> 
         <div className="mt-[10rem]">
-        <Card className={`${LightModeState==LightMode().type?"":"ContainerDarkMode"} w-[20rem] sm:[25rem]  md:w-[30rem] lg:w-[40rem]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
+        <Card className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} w-[90vw] md:[50vw]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
         <CardHeader
           variant="gradient"
           color="red"

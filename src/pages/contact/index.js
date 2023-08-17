@@ -11,7 +11,10 @@ import {
     ListItemPrefix,
     ListItemSuffix,
     Chip,
-    IconButton
+    IconButton,
+    Popover,
+  PopoverHandler,
+  PopoverContent,
   } from "@material-tailwind/react";
   import { Textarea } from "@material-tailwind/react";
  import Navbar from "../../components/NavBar"
@@ -24,197 +27,141 @@ import Footer from "../../components/footer"
     const LightModeState=useSelector(state=>state.lightMode)
     return (
       <>
-<div class=" p-4 BackgroundImage bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-1 place-items-center">
-<Navbar/> 
-        <div className="mt-[9rem]">
-        <Card className={`${LightModeState==LightMode().type?"":"ContainerDarkMode"} w-[20rem] sm:[25rem]  md:w-[30rem] lg:w-[40rem]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
-        <CardHeader
-          variant="gradient"
-          color="red"
-          className="mb-4 grid h-28 place-items-center"
-        >
-          <Typography variant="h3" color="white">
-          <i class="fa-solid fa-envelope "></i> Contact
-          </Typography>
-        </CardHeader>
-        <CardBody className="flex flex-col gap-4">
-        <Input label="Email" size="lg"  required/>
-          <Input label="First Name" size="lg"required />
-          <Input label="Last Name" size="lg" required/>
-          <PhoneInput/>          
-      <Textarea label="Message" required/>
-
-
-        </CardBody>
-        <CardFooter className="pt-0">
-          <Button variant="gradient" className=" hover:scale-105" color="red" fullWidth>
-              Send Message
-          </Button>
-        </CardFooter>
-      </Card>
-        </div>
-
-
-        <div className="mt-[9rem]">
-        <Card className={`${LightModeState==LightMode().type?"":"ContainerDarkMode"} w-[20rem] sm:[25rem]  md:w-[30rem] lg:w-[40rem]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
-        <CardHeader
-          variant="gradient"
-          color="red"
-          className="mb-4 grid h-28 place-items-center"
-        >
-          
-          <Typography variant="h3">
-          <i class="fa-solid fa-circle-info"></i> Information
-          </Typography>
-        </CardHeader>
-        <CardBody className="flex flex-col gap-4">
-
-        <List className="my-2 p-0 bg-transparent opacity-80">
-        <Typography variant="h6">
-        Siège social et Point de vente
-          </Typography>
-        <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
-          <ListItemPrefix>
-          <i class="fa-solid fa-location-dot"></i>
-          </ListItemPrefix>
-          Adresse
-          <ListItemSuffix>
-            <Chip
-              value="Rte de Gabes KM 0.5 Immeuble Elfrikha Sfax - Tunisie"
-              variant="ghost"
-              size="sm"
-              className="text-black rounded-full px-2 py-1 text-xs"
-            />
-          </ListItemSuffix>
-        </ListItem>
-        <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
-          <ListItemPrefix>
-          <i class="fa-solid fa-phone"></i>
-          </ListItemPrefix>
-          Téléphone 1: 
-          <ListItemSuffix>
-            <Chip
-              value="(+216) 74 21 18 76"
-              variant="ghost"
-              size="sm"
-              className="text-black rounded-full px-2 py-1 text-xs"
-            />
-          </ListItemSuffix>
-        </ListItem>
-
-
-        <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
-          <ListItemPrefix>
-          <i class="fa-solid fa-fax"></i>
-          </ListItemPrefix>
-          Fax: 
-          <ListItemSuffix>
-            <Chip
-              value="(+216) 74 22 66 09"
-              variant="ghost"
-              size="sm"
-              className="text-black rounded-full px-2 py-1 text-xs"
-            />
-          </ListItemSuffix>
-        </ListItem>
-
-        <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
-          <ListItemPrefix>
-          <i class="fa-solid fa-at"></i>
-          </ListItemPrefix>
-          Email:
-          <ListItemSuffix>
-            <Chip
+      <Navbar/>
+        <div class="BackgroundImage py-4 px-2  bg-cover bg-center min-h-screen flex flex-row flex-wrap  justify-center items-center gap-4">         
+          <div className=" mt-[10vh] md:mt-[20vh]">
+          <Card className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} w-[90vw] sm:[70vw]  md:w-[50vw] lg:w-[50vw]  ExtraShadowed-div  m-0  backdrop-blur-sm `}>
+          <CardHeader
+            variant="gradient"
+            color="red"
+            className="mb-4 grid h-28 place-items-center"
+          >
             
-              value="sph@sph-tn.com"
-              variant="ghost"
-              size="sm"
-              className=" text-black rounded-full px-2 py-1 text-xs"
-            />
-          </ListItemSuffix>
-        </ListItem>
+            <Typography variant="h3" >
+            <i class="fa-solid fa-circle-info "></i> Information
+            </Typography>
+          </CardHeader>
+          <CardBody className="flex flex-col gap-4 ">
+
+          <List  className={`my-2 p-0 bg-transparent  opacity-80  ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}>
+          <Typography variant="h6" color="inherit">
+          Siège social et Point de vente
+            </Typography>
+          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+            <ListItemPrefix>
+            <i class="fa-solid fa-location-dot"></i>
+            </ListItemPrefix>
+            Adresse
+            <ListItemSuffix color="inherit" className="text-current">
+             Rte de Gabes KM 0.5 Immeuble Elfrikha Sfax - Tunisie
+            </ListItemSuffix>
+          </ListItem>
+          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+            <ListItemPrefix>
+            <i class="fa-solid fa-phone"></i>
+            </ListItemPrefix>
+            Téléphone 1: 
+            <ListItemSuffix className="text-current">
+             (+216) 74 21 18 76
+
+            </ListItemSuffix>
+          </ListItem>
 
 
-        <Typography variant="h6" >
-        Point de vente
-          </Typography>
+          <ListItem className="group  hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+            <ListItemPrefix>
+            <i class="fa-solid fa-fax"></i>
+            </ListItemPrefix>
+            Fax: 
+            <ListItemSuffix className="text-current">
+             (+216) 74 22 66 09
+            </ListItemSuffix>
+          </ListItem>
+
+          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+            <ListItemPrefix>
+            <i class="fa-solid fa-at"></i>
+            </ListItemPrefix>
+            Email:
+            <ListItemSuffix className="text-current">
+             sph@sph-tn.com
+
+            </ListItemSuffix>
+          </ListItem>
+
+
+          <Typography variant="h6" >
+          Point de vente
+            </Typography>
+
+
+            <ListItem className="group  hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+            <ListItemPrefix>
+            <i class="fa-solid fa-location-dot"></i>
+            </ListItemPrefix>
+            Adresse
+            <ListItemSuffix className="text-current"> Rte de Gabes KM 0.5 Immeuble Elfrikha Sfax - Tunisie
+            </ListItemSuffix>
+          </ListItem>
+          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+            <ListItemPrefix>
+            <i class="fa-solid fa-phone"></i>
+            </ListItemPrefix>
+            Téléphone 1: 
+            <ListItemSuffix className="text-current">
+                (+216) 74 21 18 76    
+            </ListItemSuffix>
+          </ListItem>
 
 
           <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
-          <ListItemPrefix>
-          <i class="fa-solid fa-location-dot"></i>
-          </ListItemPrefix>
-          Adresse
-          <ListItemSuffix>
-            <Chip
-              value="Rte de Gabes KM 0.5 Immeuble Elfrikha Sfax - Tunisie"
-              variant="ghost"
-              size="sm"
-              className="text-black rounded-full px-2 py-1 text-xs"
-            />
-          </ListItemSuffix>
-        </ListItem>
-        <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
-          <ListItemPrefix>
-          <i class="fa-solid fa-phone"></i>
-          </ListItemPrefix>
-          Téléphone 1: 
-          <ListItemSuffix>
-            <Chip
-              value="(+216) 74 21 18 76"
-              variant="ghost"
-              size="sm"
-              className="text-black rounded-full px-2 py-1 text-xs"
-            />
-          </ListItemSuffix>
-        </ListItem>
+            <ListItemPrefix>
+            <i class="fa-solid fa-fax"></i>
+            </ListItemPrefix>
+            Fax: 
+            <ListItemSuffix className="text-current">
+              (+216) 74 22 66 09
+                
 
+            </ListItemSuffix>
+          </ListItem>
 
-        <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
-          <ListItemPrefix>
-          <i class="fa-solid fa-fax"></i>
-          </ListItemPrefix>
-          Fax: 
-          <ListItemSuffix>
-            <Chip
-              value="(+216) 74 22 66 09"
-              variant="ghost"
-              size="sm"
-              className="text-black rounded-full px-2 py-1 text-xs"
-            />
-          </ListItemSuffix>
-        </ListItem>
+          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+            <ListItemPrefix>
+            <i class="fa-solid fa-at"></i>
+            </ListItemPrefix>
+            Email:
+            <ListItemSuffix className="text-current">
+               sph@sph-tn.com  
+            </ListItemSuffix>
+          </ListItem>
 
-        <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
-          <ListItemPrefix>
-          <i class="fa-solid fa-at"></i>
-          </ListItemPrefix>
-          Email:
-          <ListItemSuffix>
-            <Chip
-            
-              value="sph@sph-tn.com"
-              variant="ghost"
-              size="sm"
-              className=" text-black rounded-full px-2 py-1 text-xs"
-            />
-          </ListItemSuffix>
-        </ListItem>
+          
+          
+          
+        </List>
 
-        
-        
-        
-      </List>
-
-      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-1 place-items-center">    
-        <div class="hover:scale-125">
-        <IconButton variant="gradient" className="rounded-full">
-        <i class="fa-regular fa-copy"></i>
-      </IconButton>
-        </div>
-        
-        
-        
+        <div class=" flex flex-row justify-around items-center">    
+         
+          <div class="hover:scale-125">
+          <Popover
+           animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0, y: 25 },
+          }}
+           
+    >
+      <PopoverHandler>
+      <IconButton variant="filled" color="red" className=" ">
+      <i class="fa-regular fa-copy"></i>
+        </IconButton>
+      </PopoverHandler>
+      <PopoverContent>
+       Information Copied !
+      </PopoverContent>
+    </Popover>
+          </div>
+          
 
       </div>
 
@@ -227,10 +174,35 @@ import Footer from "../../components/footer"
         </CardFooter>
       </Card>
         </div>
-        
-        <div>
+        <div className=" mt-6 md:mt-[20vh]">
+          <Card className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} w-[90vw] sm:[40vw]  md:w-[40vw] lg:w-[40vw]  ExtraShadowed-div  backdrop-blur-sm `}>
+          <CardHeader
+            variant="gradient"
+            color="red"
+            className="mb-4 grid h-28 place-items-center"
+          >
+            <Typography variant="h3" color="white">
+            <i class="fa-solid fa-envelope "></i> Contact
+            </Typography>
+          </CardHeader>
+          <CardBody className="flex flex-col gap-4 ">
+          <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Email" size="lg" color="inherit"  required/>
+            <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="First Name" color="inherit" size="lg"required />
+            <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Last Name" color="inherit" size="lg" required/>
+            <PhoneInput/>          
+        <Textarea labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}  label="Message" color="inherit" required/>
 
-        </div>
+
+          </CardBody>
+          <CardFooter className="pt-0">
+            <Button variant="gradient" className=" hover:scale-105 " color="red" fullWidth>
+                Send Message
+            </Button>
+          </CardFooter>
+        </Card>
+          </div>
+        
+
         
 
       </div>       

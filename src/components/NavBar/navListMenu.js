@@ -202,11 +202,11 @@ const navListMenuItems = [
               </ListItem>
             </Typography>
           </MenuHandler>
-          <MenuList className={`hidden max-w-screen-xl rounded-xl lg:block ${LightModeState==LightMode().type?"":"ContainerDarkMode "}`}>
+          <MenuList className={`hidden max-w-screen-xl rounded-xl lg:block ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2 "}`}>
             <ul className="grid grid-cols-4 gap-y-2">{renderItems}</ul>
           </MenuList>
         </Menu>
-        <div className={`block lg:hidden  ${LightModeState==LightMode().type?"":"ContainerDarkMode "}`}>
+        <div className={`block lg:hidden  ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2 "}`}>
           <Collapse open={isMobileMenuOpen}>
           <div style={{ maxHeight: '350px', overflow: 'auto' }}>{renderItems}</div></Collapse>
         </div>
