@@ -154,10 +154,10 @@ export default function ComplexNavbar() {
         size="sm"
         color="inherit"
         variant="text"
-        className=" ml-auto mr-auto rounded-full"
+        className="rounded-full"
         onClick={HandleLightModeSwitch}
       >
-        {(LightModeState==LightMode().type)?<MoonIcon className="h-6 w-6" />:<SunIcon className="h-6 w-6" />}
+        {(LightModeState==LightMode().type)?<MoonIcon className="h-4 w-4 md:h-6 md:w-6" />:<SunIcon className="h-6 w-6" />}
       </IconButton>
         </div>
 
@@ -181,7 +181,7 @@ export default function ComplexNavbar() {
         
 
       </div>
-      <Collapse open={isNavOpen} className="overflow-scroll">
+      <Collapse open={isNavOpen} className="h-[80vh] w-[80vw] overflow-scroll">
         <NavList />
       </Collapse>
     </Navbar>

@@ -7,7 +7,10 @@
         "Home":"الصفحة الرئيسية",
         "About":"حول الصفحة",
         "Contact":"اتصال",
-        "Products":"منتجات"
+        "Products":"منتجات",
+        "Login":"تسجيل الدخول",
+        "Register":"يسجل"
+        
     },
     "ProductsMenu":
     {

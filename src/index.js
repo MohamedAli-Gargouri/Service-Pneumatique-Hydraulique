@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
 import store from "./redux/store/store"
 import './i18n';
-
+import Loading from "./pages/loading"
 
 //=========font & icons configuration-start ==========//
 
@@ -18,7 +18,7 @@ root.render(
   <React.StrictMode>
     <ThemeProvider>
     <BrowserRouter>
-    <Suspense fallback="loading">
+    <Suspense fallback={<Loading/>}>
     <Provider store={store}>
     <App />
     </Provider>

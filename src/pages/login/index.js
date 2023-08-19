@@ -18,7 +18,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 <div class="BackgroundImage2 bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
 <Navbar/> 
         <div className="mt-[10rem]">
-        <Card className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} w-[90vw] md:[50vw]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
+        <Card className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} w-[90vw] md:w-[50vw]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
         <CardHeader
           variant="gradient"
           color="red"
@@ -29,18 +29,18 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
           <TranslatedText TranslationPath="Login.Login_Title" TextColor="White"/>
           </Typography>
         </CardHeader>
-        <CardBody className="flex flex-col gap-4">
-          <Input label={<TranslatedText TranslationPath="Login.Email_Label" />} size="lg" />
-          <Input label={<TranslatedText TranslationPath="Login.Password_Label" />} size="lg" />
+        <CardBody className={`flex flex-col gap-4`}>
+          <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Login.Email_Label" />} size="lg" />
+          <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Login.Password_Label" />} size="lg" />
           <div className="-ml-2.5">
-            <Checkbox label={<TranslatedText TranslationPath="Login.RememberMeLabel" />} />
+            <Checkbox labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Login.RememberMeLabel" />} />
           </div>
         </CardBody>
-        <CardFooter className="pt-0">
+        <CardFooter className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}>
           <Button variant="gradient" color="red" className="hover:scale-105" fullWidth>
           <TranslatedText TranslationPath="Login.SignInButtonLabel" TextColor="White"/>
           </Button>
-          <Typography variant="small" className="mt-6 flex justify-center">
+          <Typography variant="small"  className="mt-6 flex justify-center">
           <TranslatedText TranslationPath="Login.SignUpRecommandationLabel" />
             <Typography
               as="a"

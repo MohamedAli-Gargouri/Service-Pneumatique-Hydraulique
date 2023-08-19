@@ -1,4 +1,5 @@
 import React from "react";
+import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 import {
   Accordion,
   AccordionHeader,
@@ -11,7 +12,7 @@ import {
   Input,
   Button
 } from "@material-tailwind/react";
-
+import { useSelector } from "react-redux/es/hooks/useSelector";
 function Icon({ id, open }) {
   return (
     <svg
@@ -30,15 +31,15 @@ function Icon({ id, open }) {
 
 export default function AccordionCustom() {
   const [open, setOpen] = React.useState(0);
- 
+  const LightModeState=useSelector(state=>state.lightMode)
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
  
   return (
     <>
-      <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(1)}><i class="fa-solid fa-bars"></i> Category</AccordionHeader>
-        <AccordionBody>
-        <List>
+      <Accordion className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}  open={open === 1} icon={<Icon id={1} open={open} />}>
+        <AccordionHeader className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`} onClick={() => handleOpen(1)}><i class="fa-solid fa-bars"></i> Category</AccordionHeader>
+        <AccordionBody >
+        <List className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}>
         <ListItem className="p-0">
           <label
             htmlFor="vertical-list-react"
@@ -54,7 +55,7 @@ export default function AccordionCustom() {
                 }}
               />
             </ListItemPrefix>
-            <Typography color="blue-gray" className="font-medium">
+            <Typography  className="font-medium">
               Compressor
             </Typography>
           </label>
@@ -74,7 +75,7 @@ export default function AccordionCustom() {
                 }}
               />
             </ListItemPrefix>
-            <Typography color="blue-gray" className="font-medium">
+            <Typography  className="font-medium">
               Tubes
             </Typography>
           </label>
@@ -94,7 +95,7 @@ export default function AccordionCustom() {
                 }}
               />
             </ListItemPrefix>
-            <Typography color="blue-gray" className="font-medium">
+            <Typography  className="font-medium">
               Secheur
             </Typography>
           </label>
@@ -104,11 +105,11 @@ export default function AccordionCustom() {
         </AccordionBody>
       </Accordion>
       <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(2)}>
+        <AccordionHeader className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`} onClick={() => handleOpen(2)}>
         <i class="fa-solid fa-list"></i> Brand 
         </AccordionHeader>
-        <AccordionBody>
-        <List>
+        <AccordionBody >
+        <List className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`} >
         <ListItem className="p-0">
           <label
             htmlFor="vertical-list-react"
@@ -124,7 +125,7 @@ export default function AccordionCustom() {
                 }}
               />
             </ListItemPrefix>
-            <Typography color="blue-gray" className="font-medium">
+            <Typography  className="font-medium">
               Hertz
             </Typography>
           </label>
@@ -144,7 +145,7 @@ export default function AccordionCustom() {
                 }}
               />
             </ListItemPrefix>
-            <Typography color="blue-gray" className="font-medium">
+            <Typography  className="font-medium">
               AMI
             </Typography>
           </label>
@@ -164,7 +165,7 @@ export default function AccordionCustom() {
                 }}
               />
             </ListItemPrefix>
-            <Typography color="blue-gray" className="font-medium">
+            <Typography  className="font-medium">
               SOMCEF
             </Typography>
           </label>
@@ -173,11 +174,11 @@ export default function AccordionCustom() {
         </AccordionBody>
       </Accordion>
       <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(3)}>
+        <AccordionHeader className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`} onClick={() => handleOpen(3)}>
         <i class="fa-solid fa-up-right-and-down-left-from-center"></i> size
         </AccordionHeader>
         <AccordionBody>
-        <List>
+        <List className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}>
         <ListItem className="p-0">
           <label
             htmlFor="vertical-list-react"
@@ -193,7 +194,7 @@ export default function AccordionCustom() {
                 }}
               />
             </ListItemPrefix>
-            <Typography color="blue-gray" className="font-medium">
+            <Typography  className="font-medium">
               50ML
             </Typography>
           </label>
@@ -213,7 +214,7 @@ export default function AccordionCustom() {
                 }}
               />
             </ListItemPrefix>
-            <Typography color="blue-gray" className="font-medium">
+            <Typography  className="font-medium">
               100ML
             </Typography>
           </label>
@@ -233,7 +234,7 @@ export default function AccordionCustom() {
                 }}
               />
             </ListItemPrefix>
-            <Typography color="blue-gray" className="font-medium">
+            <Typography  className="font-medium">
               200ML
             </Typography>
           </label>
@@ -243,11 +244,11 @@ export default function AccordionCustom() {
       </Accordion>
 <div className="mt-4 Price Range flex justify-start w-full flex-wrap">
     <div className="MinPrice my-4 w-full">
-    <Input variant="static" label="Minimum Price" placeholder="0TND" />
+    <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} variant="static" label="Minimum Price" placeholder="0TND" />
     </div>
 
     <div className="MaxPrice my-4 w-full">
-    <Input variant="static" label="Maxiumum Price" placeholder="5000TND" />
+    <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} variant="static" label="Maxiumum Price" placeholder="5000TND" />
     </div>
 
     <div className="MaxPrice my-4 w-full flex justify-center">

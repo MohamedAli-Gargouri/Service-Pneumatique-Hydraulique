@@ -10,7 +10,9 @@ import {
   HomeIcon,
   PhoneIcon,
   InformationCircleIcon,
-  CircleStackIcon
+  CircleStackIcon,
+  ArrowLeftOnRectangleIcon,
+  ArrowRightOnRectangleIcon
 } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
@@ -27,6 +29,16 @@ const navListItems = [
       icon: PhoneIcon,
       route:"/Contact"
     },
+    {
+      label: <Translate TranslationPath="navbar.Menus.Login"/>,
+      icon: ArrowRightOnRectangleIcon,
+      route:"/login"
+    },
+    {
+      label: <Translate TranslationPath="navbar.Menus.Register"/>,
+      icon: ArrowLeftOnRectangleIcon,
+      route:"/register"
+    },
   ];
   
   export default function NavList() {
@@ -42,7 +54,7 @@ const navListItems = [
             as="a"
             href={route}
             variant="small"
-            className={`font-normal text-current ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}
+            className={`font-normal  ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}
           >
             <MenuItem className="flex items-center gap-2 lg:rounded-full">
               {React.createElement(icon, { className: "h-[18px] w-[18px]" })}{" "}

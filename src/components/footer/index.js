@@ -28,9 +28,9 @@ export default function FooterWithSocialLinks() {
       <div className=" mx-auto w-full max-w-7xl px-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
         
-          <Typography variant="div" className={`mt-4 mb-6 `}>
-          <img src={logo} alt="logo-ct" className="w-[10rem]" /> <h5>Service Pneumatique Hydraulique</h5>
-          </Typography>
+          <div  className={`mt-4 mb-6 flex flex-wrap justify-center items-center sm: `}>
+          <img src={logo} alt="logo-ct" className="w-[10vw] m-4" /> <h5>Service Pneumatique Hydraulique</h5>
+          </div>
           <div className="grid grid-cols-3 justify-between gap-4">
             {LINKS.map(({ title, items }) => (
               <ul key={title}>

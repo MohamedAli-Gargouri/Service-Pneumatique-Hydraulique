@@ -7,7 +7,9 @@
         "Home":"Home",
         "About":"About",
         "Contact":"Contact",
-        "Products":"Products"
+        "Products":"Products",
+        "Login":"Login",
+        "Register":"Register"
     },
       "ProductsMenu":
     {

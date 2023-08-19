@@ -29,7 +29,7 @@ import Footer from "../../components/footer"
       <>
       <Navbar/>
         <div class="BackgroundImage py-4 px-2  bg-cover bg-center min-h-screen flex flex-row flex-wrap  justify-center items-center gap-4">         
-          <div className=" mt-[10vh] md:mt-[20vh]">
+          <div className=" mt-[20vh]">
           <Card className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} w-[90vw] sm:[70vw]  md:w-[50vw] lg:w-[50vw]  ExtraShadowed-div  m-0  backdrop-blur-sm `}>
           <CardHeader
             variant="gradient"

@@ -142,23 +142,23 @@ const navListMenuItems = [
     const LightModeState=useSelector(state=>state.lightMode)
     const renderItems = navListMenuItems.map(
       ({ icon, title, description, color }, key) => (
-        <a href="#" key={key}>
+        <a href="products" key={key}>
           <MenuItem className="flex items-center gap-3 rounded-lg">
             <div className={`rounded-lg p-3 ${colors[color]}`}>
-              <div>
+
               <img  strokeWidth="2" className="h-10 w-20"src={icon}/>
-              </div>
               
             </div>
             <div>
               <Typography
                 variant="h6"
                 color="blue-gray"
-                className={`flex items-center text-sm ${LightModeState==LightMode().type?"":"TextDarkMode"}`}
+                className={`flex items-center text-sm ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}
+                
               >
                 {title}
               </Typography>
-              <Typography variant="small" color="gray" className={`font-normal ${LightModeState==LightMode().type?"":"TextDarkMode"}`}>
+              <Typography variant="small" color="gray" className={`font-normal ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}>
                 {description}
               </Typography>
             </div>
@@ -177,27 +177,25 @@ const navListMenuItems = [
           allowHover={true}
         >
           <MenuHandler>
-            <Typography as="a" variant="small" href="/products" className={`font-normal ${LightModeState==LightMode().type?"":"TextDarkMode "}`}>
+            <Typography as="a" variant="small"  className={`font-normal`}>
               <ListItem
                 className={`flex items-center gap-2 py-2 pr-4 `}
                 selected={isMenuOpen || isMobileMenuOpen}
                 onClick={() => setIsMobileMenuOpen((cur) => !cur)}
               >
-                <Square3Stack3DIcon color={`${LightModeState==LightMode().type?"#263238":"white "}`} className={`h-[18px] w-[18px color`} />
+                <Square3Stack3DIcon  className={`h-[18px] w-[18px ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`} />
                 <Translate  TranslationPath="navbar.Menus.Products" className={` text-cyan-600`}/>
                 <ChevronDownIcon
-                color={`${LightModeState==LightMode().type?"#263238":"white "}`}
                   strokeWidth={2.5}
                   className={`hidden h-3 w-3 transition-transform lg:block ${
                     isMenuOpen ? "rotate-180" : ""
-                  }`}
+                  } ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}
                 />
                 <ChevronDownIcon
-                color={`${LightModeState==LightMode().type?"#263238":"white "}`}
                   strokeWidth={2.5}
                   className={`block h-3 w-3 transition-transform lg:hidden ${
                     isMobileMenuOpen ? "rotate-180" : ""
-                  }`}
+                  } ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}
                 />
               </ListItem>
             </Typography>
@@ -208,7 +206,7 @@ const navListMenuItems = [
         </Menu>
         <div className={`block lg:hidden  ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2 "}`}>
           <Collapse open={isMobileMenuOpen}>
-          <div style={{ maxHeight: '350px', overflow: 'auto' }}>{renderItems}</div></Collapse>
+          <div style={{ maxHeight: '34vh', overflow: 'auto' }}>{renderItems}</div></Collapse>
         </div>
       </React.Fragment>
     );

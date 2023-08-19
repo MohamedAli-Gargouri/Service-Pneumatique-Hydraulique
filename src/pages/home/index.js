@@ -7,9 +7,11 @@ import PresentationSection from "./PresentationSection"
 import ServicesSection from "./ServicesSection"
 const Home =()=>{
 
-  return(<React.Fragment>
+  return(<React.Fragment>   
 <Navbar/>
+<div className="h-[70vh] md:h-[97vh] rounded-md px-2  w-full pt-[20vh] ">
 <Carousel/>
+</div>
 <PresentationSection/>
 <ServicesSection/>
  <Footer/>

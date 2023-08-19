@@ -19,14 +19,15 @@
 {
     position: relative;
     overflow: hidden;
+    
 }
 
 .image-container:hover .hover-content
 {
     
     position: absolute;
-    top: 75%;
-    background-color: #eceff1;
+    bottom: 0rem;
+    background-color: rgb(236,239,241,0.9);
     animation: moveUp 0.3s ease-in-out
 }
 
@@ -35,8 +36,8 @@
     display: block;
     width: 100%;
     position: absolute;
-    top: 100%;
-    background-color: #eceff1;
+    bottom: -5.0rem;
+    background-color: rgb(236,239,241,0.9);
     animation: moveDown 0.3s ease-in-out
 }
 

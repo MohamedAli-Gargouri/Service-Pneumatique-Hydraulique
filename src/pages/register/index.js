@@ -16,12 +16,13 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 import PhoneInput from "../../components/Input/Phone"
   export default function RegisterCard() {
     const LightModeState=useSelector(state=>state.lightMode)
+    
     return (
       <div class="BackgroundImage2 bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
       <Navbar/>
      
       <div className="mt-[10rem]">
-      <Card className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} w-[20rem] sm:[25rem]  md:w-[30rem] lg:w-[40rem]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
+      <Card className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} w-[90vw] md:w-[50vw]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}>
       <CardHeader
         variant="gradient"
         color="red"
@@ -33,17 +34,16 @@ import PhoneInput from "../../components/Input/Phone"
         </Typography>
       </CardHeader>
       <CardBody className="flex flex-col gap-4">
-        <Input label={<TranslatedText TranslationPath="Register.Email_Label" />} size="lg" />
-        <Input label={<TranslatedText TranslationPath="Register.FirstName_Label" />} size="lg" />
-        <Input label={<TranslatedText TranslationPath="Register.LastName_Label" />} size="lg" />
-        <Input label={<TranslatedText TranslationPath="Register.Password_Label" />} size="lg" />
+        <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Register.Email_Label" />} size="lg" />
+        <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Register.FirstName_Label" />} size="lg" />
+        <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Register.LastName_Label" />} size="lg" />
+        <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Register.Password_Label" />} size="lg" />
       
-        <PhoneInput InputLabel={TranslateString("Register.Phone_Label")}/>
-        <Input label={<TranslatedText TranslationPath="Register.Confirm_Password_Label" />} size="lg" />
+        <PhoneInput labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} InputLabel={TranslateString("Register.Phone_Label")}/>
+        <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Register.Confirm_Password_Label" />} size="lg" />
         <Typography
         variant="small"
-        color="gray"
-        className="mt-2 flex items-center gap-1 font-normal"
+        className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}  mt-2 flex items-center gap-1 font-normal`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -60,11 +60,11 @@ import PhoneInput from "../../components/Input/Phone"
         {<TranslatedText TranslationPath="Register.PasswordCondition_Label" />}
       </Typography>
       </CardBody>
-      <CardFooter className="pt-0">
+      <CardFooter className={``}>
         <Button variant="gradient" color="red" fullWidth className="hover:scale-105">
         <TranslatedText TranslationPath="Register.SignInButtonLabel" TextColor="White"/>
         </Button>
-        <Typography variant="small" className="mt-6 flex justify-center">
+        <Typography variant="small" className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"} mt-6 flex justify-center`}>
         <TranslatedText TranslationPath="Register.SignUpRecommandationLabel" />
           <Typography
             as="a"

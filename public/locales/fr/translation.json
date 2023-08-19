@@ -8,7 +8,9 @@
         "Home":"Accueil",
         "About":"À propos",
         "Contact":"Contact",
-        "Products":"Produits"
+        "Products":"Produits",
+        "Login":"Se connecter",
+        "Register":"Registre"
     },
     "ProductsMenu":
     {

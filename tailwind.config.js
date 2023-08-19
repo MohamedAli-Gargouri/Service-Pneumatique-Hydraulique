@@ -5,11 +5,23 @@ module.exports = withMT({
   darkMode: 'class',
   theme: {
     extend: {
+      width: {
+        '50vw': '50vw',
+        '30vw': '33vw',
+        '20vw': '20vw',
+        '10vw': '10vw',
+      },
+      height: {
+        '50vh': '50vh',
+        '30vh': '33vh',
+        '20vh': '20vh',
+        '10vh': '10vh',
+      },
       colors: {
         primary: '#b71c1c', // Replace with your desired primary color
         secondary: '#3f51b5',
         blue: {
-          500: '#e57373', // Red color code
+          500: '#bf360c', // Red color code
         }
       },
       animation: {
@@ -21,7 +33,7 @@ module.exports = withMT({
         'bg': 'animateBg 1s linear infinite',
         "NavSlideUp": 'SlideUp 0.3s ease-in-out',
         "NavSlideDown": 'SlideDown 0.3s ease-in-out',
-        "fade": 'fade 1s ease-in-out',
+        "fade": 'fade 1.5s ease-in-out',
       },
       keyframes: {
         fade: {

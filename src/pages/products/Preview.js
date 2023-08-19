@@ -25,13 +25,16 @@ import {
 import Footer from "../../components/footer"
 import Gallery from "../../components/Gallery"
 import QuantityInput from "../../components/Input/Quantity"
+import Breadcrump from "../../components/Breadcrump"
   export default function Products() {
     const LightModeState=useSelector(state=>state.lightMode)
     return (
         <React.Fragment>
             <Navbar/>
-
- <div class="h-full w-full mb-[1rem] pt-[5rem] pt-fifthscreen grid grid-cols-2 justify-center items-center ">
+            <div className=" w-full pt-[20vh] md:pt-[15vh] ">
+    <Breadcrump List={false} Parent={{PageUrl:"/Products",PageName:"Shop"}} Child={{PageUrl:"/ProductDetails",PageName:"Product"}} />
+    </div>
+ <div class="h-full w-full mb-[1rem]  grid grid-cols-2 justify-center items-center ">
 
 <div className="h-full w-full ImageGallery col-span-2 md:col-span-1">
     <Gallery/>

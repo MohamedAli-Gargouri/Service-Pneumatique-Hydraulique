@@ -30,8 +30,9 @@ export default function LanguageList() {
       <MenuHandler>
       <img
               src={SelectedLanguage=="en"?enflag:SelectedLanguage=="fr"?frflag:tnflag}
-              alt={"ar"}
-              className={`h-8 w-8 rounded-full object-cover hover:bg-red-100 md:hover:opacity-70 p-1`}
+              alt={"language"}
+              style={{padding:"1px"}}
+              className={` h-4 w-4 md:h-5 md:w-5 rounded-full  hover:bg-red-100 md:hover:opacity-70`}
             />
         
       </MenuHandler>

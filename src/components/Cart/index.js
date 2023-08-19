@@ -12,6 +12,7 @@ import {disableScroll,enableScroll} from "../../utils/others/Scroll"
 import CartCard from "../Card/CartCard"
 export default function Cart() {
   const dispatch=useDispatch();
+  const smBreakpoint = 540;
   const [openRight, setOpenRight] = React.useState(false);
   const closeDrawerRight = () => dispatch(CLOSECART());
 
@@ -30,11 +31,12 @@ export default function Cart() {
         placement="right"
         open={CartStatus}
         onClose={closeDrawerRight}
-        className="p-4 rounded-l-md enable-scroll"
+        className="p-2 rounded-l-md enable-scroll"
+        size={window.innerWidth < smBreakpoint?"100vw":"30vw"}
       >
         {/*==========================S-Header========================== */}
         <div className="mb-6 flex items-center justify-between">
-          <Typography variant="h5" className="text-center" color="blue-gray">
+          <Typography variant="h5" className="text-center" color={"blue"}>
           <i class="fa-solid fa-bag-shopping m-4 "></i>
             My cart
           </Typography>
@@ -61,14 +63,14 @@ export default function Cart() {
           </Typography>
         </div>
 
-        <div className="Total  flex flex-col justify-stretch  items-stretch ">
+        <div className="Total  flex flex-col justify-stretch mx-4 mt-4 items-stretch ">
         <Button className="flex items-center gap-3">
         <i class="fa-solid fa-cart-shopping"></i>
         Order Products
       </Button>
         </div>
 
-        <div className=" flex flex-col flex-wrap justify-stretch items-start">
+        <div className=" flex flex-col flex-wrap justify-center items-center p-4">
 
             <CartCard/>
 

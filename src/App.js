@@ -10,6 +10,7 @@ import ProductDetails from "./pages/products/Preview"
 import {LightMode,DarkMode} from "./redux/actions/LightActions"
 import Dev from "./pages/test"
 import Cart from './components/Cart';
+import Loading from "./pages/loading"
 export default function App() {
   const LightModeState=useSelector(state=>state.lightMode)
   const root = document.getElementById("root");
@@ -32,17 +33,19 @@ export default function App() {
     
   }
   
-  return (<React.Fragment>
-            <Cart/>
+  return (<div className='animate-fade w-full'>
+            <Cart />
             <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path="/Home" element={<Home/>}/>
             <Route path="/Login" element={<Login/>}/>
             <Route path="/Register" element={<Register/>}/>
             <Route path="/Contact" element={<Contact/>}/>
             <Route path="/Products" element={<Products/>}/>
             <Route path="/ProductDetails" element={<ProductDetails/>}/>
             <Route path="/Dev" element={<Dev/>}/>
+            <Route path="/Loading" element={<Loading/>}/>
             </Routes>
-          </React.Fragment>
+          </div>
   );
 }
