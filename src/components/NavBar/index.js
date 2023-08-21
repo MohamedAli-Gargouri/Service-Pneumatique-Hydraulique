@@ -13,18 +13,9 @@ import {
   Avatar,
   Card,
   IconButton,
+  Badge
 } from "@material-tailwind/react";
 import {
-  CubeTransparentIcon,
-  UserCircleIcon,
-  CodeBracketSquareIcon,
-  Square3Stack3DIcon,
-  ChevronDownIcon,
-  Cog6ToothIcon,
-  InboxArrowDownIcon,
-  LifebuoyIcon,
-  PowerIcon,
-  RocketLaunchIcon,
   Bars2Icon,
   SunIcon,
   MoonIcon
@@ -167,9 +158,11 @@ export default function ComplexNavbar() {
          
 
          <div className="Cart mx-1">
+         <Badge content="2"  className="">
           <IconButton variant="text" size="sm" color="inherit" className="rounded-full" onClick={toggleCart}>
           <i class="fa-solid fa-bag-shopping"></i>
           </IconButton>
+          </Badge>
         </div>
 
         <div className="Profile mx-1" color="inherit">

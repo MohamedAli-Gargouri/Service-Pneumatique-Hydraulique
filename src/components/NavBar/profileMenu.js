@@ -20,17 +20,16 @@ import {
     import { useSelector } from "react-redux/es/hooks/useSelector";
   import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 const profileMenuItems = [
+    
     {
-      label: "Edit Profile",
-      icon: Cog6ToothIcon,
-    },
-    {
-      label: "Inbox",
+      label: "Control Center",
       icon: InboxArrowDownIcon,
+      href:"/UCP/Orders"
     },
     {
       label: "Sign Out",
       icon: PowerIcon,
+      href:"/login"
     },
   ];
 
@@ -63,7 +62,7 @@ const profileMenuItems = [
           </Button>
         </MenuHandler>
         <MenuList className={`p-1 ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"}`}>
-          {profileMenuItems.map(({ label, icon }, key) => {
+          {profileMenuItems.map(({ label, icon,href }, key) => {
             const isLastItem = key === profileMenuItems.length - 1;
             return (
               <MenuItem
@@ -77,8 +76,9 @@ const profileMenuItems = [
                   style:{color:`${isLastItem ? "red" : "inherit"}`}
                 })}
                 <Typography
-                  as="span"
+                  as="a"
                   variant="small"
+                  href={href}
                   className={`font-normal`}
                   color={isLastItem ? "red" : "inherit"}
                 >

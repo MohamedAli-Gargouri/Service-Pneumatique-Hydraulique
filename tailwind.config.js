@@ -29,11 +29,12 @@ module.exports = withMT({
         'PulseSlow': 'pulse 6s linear infinite',
         'rotate': 'rotateAndFade 6s linear infinite',
         'LeftToRight': 'LeftToRight  3s linear',
+        'QuickLeftToRight': 'LeftToRight  0.3s ease-in-out',
         'LogoRotate': 'LogoRotate  10s ease-out infinite',
         'bg': 'animateBg 1s linear infinite',
         "NavSlideUp": 'SlideUp 0.3s ease-in-out',
         "NavSlideDown": 'SlideDown 0.3s ease-in-out',
-        "fade": 'fade 1.5s ease-in-out',
+        "fade": 'fade 0.3s ease-in-out',
       },
       keyframes: {
         fade: {

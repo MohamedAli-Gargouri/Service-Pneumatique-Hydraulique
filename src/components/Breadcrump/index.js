@@ -1,14 +1,14 @@
 import { Breadcrumbs } from "@material-tailwind/react";
 
  import Breadcrumbsbg from "../../assets/images/BreadCrumpbg.jpg"
- import Breadcrumbsbgdark from "../../assets/images/BreadCrumpbg_dark.jpeg"
+ import Breadcrumbsbgdark from "../../assets/images/BreadCrumpbg_dark.jpg"
  import { useSelector } from "react-redux/es/hooks/useSelector";
  import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 export default function BreadcrumbsWithIcon({Parent,Child,List}) {
   const LightModeState=useSelector(state=>state.lightMode)
   return (
 
-        <div className=" rounded-md shadow-sm mx-4 grid grid-cols-1 bg-blue-gray-50 justify-center items-center gap-3 bg-cover " style={{backgroundImage:`${LightModeState==LightMode().type?`url(${Breadcrumbsbg})`:`url(${Breadcrumbsbgdark})`}`}}>
+        <div className=" rounded-md shadow-sm mx-4 grid grid-cols-1  justify-center items-center gap-3 bg-cover " style={{backgroundImage:`${LightModeState==LightMode().type?`url(${Breadcrumbsbg})`:`url(${Breadcrumbsbgdark})`}`}}>
             
             {List==true?<div className=" col-span-1">
             <p className=" text-center" style={{  fontFamily:"Roboto, sans-serif",fontSize:"35px"}}>List</p>

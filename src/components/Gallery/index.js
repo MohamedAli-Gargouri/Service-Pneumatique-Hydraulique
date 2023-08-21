@@ -61,7 +61,14 @@ const [SelectedImgIndex,SetSelectedImgIndex]=useState(1)
                                 className=" Imageshadow h-full w-full rounded-lg object-cover object-center shadow-x"
                                 src={imageurl}
                                 />
-    
+                                {props.Addable!=undefined ||props.Deletable!=false ?<IconButton className="mx-2 rounded-full">
+                                    <i class="fa-solid fa-plus"></i>
+                                    </IconButton>:null}
+                                   {props.Deletable!=undefined ||props.Deletable!=false ?<IconButton className="mx-2 rounded-full">
+                                   <i class="fa-solid fa-circle-xmark"></i>
+                                    </IconButton>:null}
+                                    
+
                                 </div>
     
                                 )

@@ -11,6 +11,10 @@ import {LightMode,DarkMode} from "./redux/actions/LightActions"
 import Dev from "./pages/test"
 import Cart from './components/Cart';
 import Loading from "./pages/loading"
+import UCP_Profile from "./pages/UCP/Profile"
+import UCP_Orders from "./pages/UCP/Orders"
+import UCP_Order from "./pages/UCP/Order"
+import UCP_Product from "./pages/UCP/Product"
 export default function App() {
   const LightModeState=useSelector(state=>state.lightMode)
   const root = document.getElementById("root");
@@ -43,6 +47,10 @@ export default function App() {
             <Route path="/Contact" element={<Contact/>}/>
             <Route path="/Products" element={<Products/>}/>
             <Route path="/ProductDetails" element={<ProductDetails/>}/>
+            <Route path="/UCP/Profil" element={<UCP_Profile/>}/>
+            <Route path="/UCP/Orders" element={<UCP_Orders/>}/>
+            <Route path="/UCP/Order" element={<UCP_Order/>}/>
+            <Route path="/UCP/Product" element={<UCP_Product/>}/>
             <Route path="/Dev" element={<Dev/>}/>
             <Route path="/Loading" element={<Loading/>}/>
             </Routes>
