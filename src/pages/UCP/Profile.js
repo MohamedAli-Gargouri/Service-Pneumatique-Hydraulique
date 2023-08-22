@@ -43,7 +43,7 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
         </section>
 
         <section className="w-full flex justify-center  text-center">      
-        <Card  className={`p-2 w-[100%]  min-h-[72vh] m-4 z-0 grid grid-cols-1 md:grid-cols-2 gap-3 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
+        <Card  className={`p-2 w-[100%] max-w-6xl  min-h-[72vh] m-4 z-0 grid grid-cols-1 md:grid-cols-2 gap-3 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
 
           <div className=" flex flex-col justify-center items-center col-span-1" >
           <img

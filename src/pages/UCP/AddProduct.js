@@ -29,7 +29,7 @@ import SideBar from "../../components/SideBar"
 import React from "react";
 import TopBar from "../../components/Topbar"
 import Topbarbg from "../../assets/images/Topbarbg.jpg"
-import Product from "../../components/Product"
+import AddProduct from "../../components/Product/Add"
   export default function User_Control_Panel() {
     const LightModeState=useSelector(state=>state.lightMode)
     return (
@@ -41,13 +41,13 @@ import Product from "../../components/Product"
 
       <main className="w-full min-h-screen flex flex-col justify-start items-center ">  
         <section className=" flex flex-col justify-center items-stretch w-full text-center h-[17vh] p-4 shadow-xl shadow-blue-gray-900/ bg-cover" style={{backgroundImage:`url(${Topbarbg})`}} >     
-        <TopBar SectionName="Product" />
+        <TopBar SectionName="Add Product" />
         </section>
 
         <section className="w-full flex justify-center  text-center">      
         <Card  className={`p-2 w-[100%] max-w-6xl  min-h-[72vh] m-4 z-0   ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
 
-          <Product/>
+          <AddProduct/>
 
     </Card>
         </section>

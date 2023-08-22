@@ -9,7 +9,7 @@ import {
     IconButton
   } from "@material-tailwind/react";
   import "./ProductCard.css"
-   import productSample1 from "../../assets/images/products/Product1.png"
+   import productSample1 from "../../assets/images/products/product_1.png"
    import productSample2 from "../../assets/images/products/product_2.png"
    import React from "react";
    import QuantityInput from "../Input/Quantity"

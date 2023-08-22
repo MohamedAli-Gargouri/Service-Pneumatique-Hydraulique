@@ -9,12 +9,13 @@ import SPHLOGO from "../../assets/images/SPH Logo.png"
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+import {OPENCART} from "../../redux/actions/cartActions"
 import {
     Bars2Icon,
     SunIcon,
     MoonIcon
   } from "@heroicons/react/24/outline";
-  import {OPENCART} from "../../redux/actions/cartActions"
+
   import LanguageSelect from "../NavBar/languageListSelect";
 export default function SidebarWithLogo( props) {
   const [open, setOpen] = React.useState(false);
@@ -66,7 +67,7 @@ export default function SidebarWithLogo( props) {
 
 <div className="Cart mx-1">
 <Badge content="2"  className="">
-          <IconButton variant="text" size="sm" color="white" className="rounded-full" onClick={toggleCart}>
+          <IconButton variant="text" size="sm" color="white" className="rounded-full" onClick={()=>{toggleCart()}}>
           <i class="fa-solid fa-bag-shopping"></i>
           </IconButton>
           </Badge>
@@ -112,7 +113,7 @@ src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1
       </Collapse>
     </div>
     <Typography color="red" variant="h3" className={`text-center md:text-left col-span-1  tc-darkTheme_T1 `} >
-            <i class="fa-solid fa-circle-info "></i> {props.SectionName}
+            - {props.SectionName}
             </Typography>
     </div>
   );

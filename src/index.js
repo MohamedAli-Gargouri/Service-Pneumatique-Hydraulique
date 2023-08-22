@@ -6,10 +6,10 @@ import i18next from "i18next"
 import { ThemeProvider } from "@material-tailwind/react";
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
-import store from "./redux/store/store"
+import store,{persistor} from "./redux/store/store"
 import './i18n';
 import Loading from "./pages/loading"
-
+import { PersistGate } from "redux-persist/integration/react";
 //=========font & icons configuration-start ==========//
 
 //=========font & icons configuration-end ==========//
@@ -20,7 +20,9 @@ root.render(
     <BrowserRouter>
     <Suspense fallback={<Loading/>}>
     <Provider store={store}>
+    <PersistGate persistor={persistor}>
     <App />
+    </PersistGate>
     </Provider>
     </Suspense>
     </BrowserRouter>

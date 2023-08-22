@@ -1,8 +1,7 @@
 
 import React from "react";
 import { useState } from "react";
-import ProductImg1 from "../../assets/images/products/Product1.png"
-import ProductImg2 from "../../assets/images/products/product_2.png"
+
 import {
     Card,
     CardHeader,
@@ -19,9 +18,12 @@ import {
     Option,
     IconButton
   } from "@material-tailwind/react";
+  import ConfirmDialog from "../Dialog/Confirm"
+  import PlaceHolderImg from "../../assets/images/Placeholderimg.png"
    export default function Gallery(props) {
-const [SelectedImgIndex,SetSelectedImgIndex]=useState(1)   
- const [ProduictImages,SetProductImages]=useState([ProductImg1,ProductImg2,ProductImg2,ProductImg1]) 
+const [SelectedImgIndex,SetSelectedImgIndex]=useState(0) 
+const [OpenDeleteDialog,SetOpenDeleteDialog]=useState(false)
+ const [ProduictImages,SetProductImages]=useState(props.Images!=undefined?props.Images:[PlaceHolderImg]) 
     return (
       <React.Fragment>
                 <div className="w-full h-full Images container grid grid-cols-8 items-center justify-center">
@@ -61,10 +63,11 @@ const [SelectedImgIndex,SetSelectedImgIndex]=useState(1)
                                 className=" Imageshadow h-full w-full rounded-lg object-cover object-center shadow-x"
                                 src={imageurl}
                                 />
-                                {props.Addable!=undefined ||props.Deletable!=false ?<IconButton className="mx-2 rounded-full">
+                                {props.Addable!=undefined &&props.Addable==true ?<IconButton className="mx-2 rounded-full" onClick={()=>{document.getElementById("ProductImgInput").click()}}>
                                     <i class="fa-solid fa-plus"></i>
                                     </IconButton>:null}
-                                   {props.Deletable!=undefined ||props.Deletable!=false ?<IconButton className="mx-2 rounded-full">
+                                    {console.log(props.Deletable)}
+                                   {props.Deletable!=undefined &&props.Deletable==true ?<IconButton className="mx-2 rounded-full" onClick={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}}>
                                    <i class="fa-solid fa-circle-xmark"></i>
                                     </IconButton>:null}
                                     
@@ -80,6 +83,7 @@ const [SelectedImgIndex,SetSelectedImgIndex]=useState(1)
 
                     </div>
 
+                    <ConfirmDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Image")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash"></i>'} Title={"Delete Product Image"} Content="Are you sure you want to delete?" />
                 </div>
 
            

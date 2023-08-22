@@ -26,6 +26,9 @@ import Footer from "../../components/footer"
 import Gallery from "../../components/Gallery"
 import QuantityInput from "../../components/Input/Quantity"
 import Breadcrump from "../../components/Breadcrump"
+import ProductImg1 from "../../assets/images/products/product_1.png"
+import ProductImg2 from "../../assets/images/products/product_2.png"
+import ProductImg3 from "../../assets/images/products/product_3.png"
   export default function Products() {
     const LightModeState=useSelector(state=>state.lightMode)
     return (
@@ -37,7 +40,7 @@ import Breadcrump from "../../components/Breadcrump"
  <div class="h-full w-full mb-[1rem]  grid grid-cols-2 justify-center items-center ">
 
 <div className="h-full w-full ImageGallery col-span-2 md:col-span-1">
-    <Gallery/>
+    <Gallery Images={[ProductImg1,ProductImg2,ProductImg3]}/>
 </div>
 
 <div className="h-full w-full Description col-span-2 md:col-span-1 flex flex-col items-center md:items-start  justify-center">

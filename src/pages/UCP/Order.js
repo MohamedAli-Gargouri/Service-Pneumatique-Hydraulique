@@ -45,7 +45,7 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
         </section>
 
         <section className="w-full flex justify-center  text-center">      
-        <Card  className={`p-2 w-[100%]  min-h-[72vh] m-4 z-0   ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
+        <Card  className={`p-2 w-[100%] max-w-6xl  min-h-[72vh] m-4 z-0   ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
 <Order/>
           
 

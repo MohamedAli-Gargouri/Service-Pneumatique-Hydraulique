@@ -6,6 +6,6 @@ import {combineReducers} from 'redux';
 const allReducers=combineReducers({
     lightMode:LightModeReducer,
     isLogged:isLoggedReducer,
-    cartStatus:cartReducer
+    cartStatus:cartReducer,
 })
 export default allReducers

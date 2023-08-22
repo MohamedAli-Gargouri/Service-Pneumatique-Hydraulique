@@ -27,6 +27,10 @@ import Footer from "../../components/footer"
 import Gallery from "../../components/Gallery"
 import QuantityInput from "../../components/Input/Quantity"
 import Breadcrump from "../../components/Breadcrump"
+
+import ProductImg1 from "../../assets/images/products/product_1.png"
+import ProductImg2 from "../../assets/images/products/product_2.png"
+import ProductImg3 from "../../assets/images/products/product_3.png"
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 
   export default function Product() {
@@ -37,29 +41,34 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
  <div class="h-full w-full mb-[1rem]  grid grid-cols-2 justify-center items-center ">
 
 <div className="h-full w-full ImageGallery col-span-2 md:col-span-1">
-    <Gallery Deletable={true} Addable={true}/>
+    <Gallery Deletable={true} Addable={true} Images={[ProductImg1,ProductImg2,ProductImg3]}/>
 </div>
 
-<div className="mt-4 h-full gap-2 w-full Description col-span-2 md:col-span-1 flex flex-col items-center  justify-center">
+<div  className="mt-4 h-full gap-2 w-full Description col-span-2 md:col-span-1 flex flex-col items-center  justify-center">
 
 
+    <Input   id="ProductImgInput" type="file" variant="static"  className="hidden"    />
+    <Input  defaultValue="MX-15648679" labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label=" Product Name"   icon={<i class="fa-solid fa-info"></i>} />   
 
-    <Input defaultValue="MX-15648679" labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label=" Product Name"   icon={<i class="fa-solid fa-info"></i>} />   
+    <Input  defaultValue="500TND" labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Product Price"   icon={<i class="fa-solid fa-dollar-sign"></i>} /> 
+    <Input  defaultValue="25648497889" labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Product Code"   icon={<i class="fa-solid fa-barcode"></i>} />
 
-    <Input defaultValue="500TND" labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Product Price"   icon={<i class="fa-solid fa-dollar-sign"></i>} /> 
-    <Input defaultValue="25648497889" labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Product Code"   icon={<i class="fa-solid fa-barcode"></i>} /> 
-
-    <Textarea size="lg" label="Product Description"  defaultValue="Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus."/>
+    <Input defaultValue="20" labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Store Quantity"   icon={<i class="fa-solid fa-store"></i>} />
+    <Input  defaultValue="500" labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Stock Quanitty"   icon={<i class="fa-solid fa-warehouse"></i>} />
+    <Textarea  labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}  size="lg"   label="Short Description"  defaultValue="Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus."/>
 
 
     <hr className="m-1"/>
 
-    <Select value="Compressor" label="Product Category">
-  <Option value={1}>Max Dryer</Option>
+
+<Select  value="Compressor" label="Product Category">
+  <Option  value={1}>Max Dryer</Option>
   <Option value={2}>Tube</Option>
   <Option value={3}>Another Option</Option>
   <Option value={4}>Compressor</Option>
 </Select>
+
+   
 </div>
 </div>
 <div className="w-full">
@@ -67,13 +76,13 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 data={
   [
     {
-      label: "Description",
-      value: "Description",
+      label: "Long Description",
+      value: "Long Description",
       icon:<i class="fa-solid fa-circle-info mx-4"></i>,
       desc: 
       <div class="">
         <Typography variant="h6" className="font-bold m-4">
-     Product Information
+     Long Description
     </Typography>
 
     <Textarea size="lg" label="Product Description"  defaultValue="    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus.
@@ -91,7 +100,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque vo
       icon:<i class="fa-solid fa-info mx-4"></i>,
       desc:   <div class="">
          <Typography variant="h6" className="font-bold m-4">
-         Information
+         Additional Information
     </Typography>
     <Textarea size="lg" label="Product Description"  defaultValue="    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus.
 Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit.
@@ -118,7 +127,7 @@ We hope you’ll love every purchase, but if you ever need to return an item you
     }
   ]
 }
-DefaultSelectValue={"Description"}
+DefaultSelectValue={"Long Description"}
 />
 </div>
 

@@ -18,10 +18,10 @@ module.exports = withMT({
         '10vh': '10vh',
       },
       colors: {
-        primary: '#b71c1c', // Replace with your desired primary color
-        secondary: '#3f51b5',
+        primary: '#e53935', // Replace with your desired primary color
+        secondary: '#e53935',
         blue: {
-          500: '#bf360c', // Red color code
+          500: '#e53935', // Red color code
         }
       },
       animation: {

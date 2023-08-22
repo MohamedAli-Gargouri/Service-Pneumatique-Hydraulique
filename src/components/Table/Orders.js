@@ -1,122 +1,134 @@
-import { PencilIcon } from "@heroicons/react/24/solid";
 import {
   ArrowDownTrayIcon,
   MagnifyingGlassIcon,
   EyeIcon,
   XMarkIcon,
   PauseIcon
-  ,CurrencyDollarIcon
+  ,CurrencyDollarIcon,
+  ChevronUpDownIcon
 } from "@heroicons/react/24/outline";
+import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
+  Input,
   Typography,
   Button,
   CardBody,
   Chip,
   CardFooter,
+  Tabs,
+  TabsHeader,
+  Tab,
   Avatar,
   IconButton,
   Tooltip,
-  Input,
 } from "@material-tailwind/react";
- 
-const TABLE_HEAD = ["Transaction", "Amount", "Date", "Status", "Account", ""];
- 
-const TABLE_ROWS = [
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+const TABS = [
   {
-    img: "/img/logos/logo-spotify.svg",
-    name: "Spotify",
-    amount: "$2,500",
-    date: "Wed 3:00pm",
-    status: "paid",
-    account: "visa",
-    accountNumber: "1234",
-    expiry: "06/2026",
+    label: "All",
+    value: "all",
   },
   {
-    img: "/img/logos/logo-amazon.svg",
-    name: "Amazon",
-    amount: "$5,000",
-    date: "Wed 1:00pm",
-    status: "paid",
-    account: "master-card",
-    accountNumber: "1234",
-    expiry: "06/2026",
+    label: "Pending",
+    value: "Pending",
   },
   {
-    img: "/img/logos/logo-pinterest.svg",
-    name: "Pinterest",
-    amount: "$3,400",
-    date: "Mon 7:40pm",
-    status: "pending",
-    account: "master-card",
-    accountNumber: "1234",
-    expiry: "06/2026",
-  },
-  {
-    img: "/img/logos/logo-google.svg",
-    name: "Google",
-    amount: "$1,000",
-    date: "Wed 5:00pm",
-    status: "paid",
-    account: "visa",
-    accountNumber: "1234",
-    expiry: "06/2026",
-  },
-  {
-    img: "/img/logos/logo-netflix.svg",
-    name: "netflix",
-    amount: "$14,000",
-    date: "Wed 3:30am",
-    status: "cancelled",
-    account: "visa",
-    accountNumber: "1234",
-    expiry: "06/2026",
+    label: "Paid",
+    value: "Paid",
   },
 ];
  
-export default function TransactionsTable() {
+const TABLE_HEAD = ["Order ID", "Client", "Number", "Status", "Date","Total",""];
+ 
+const TABLE_ROWS = [
+  {
+    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+    name: "John Michael",
+    email: "john@creative-tim.com",
+    number: "56705203",
+    OrderID: "123576",
+    Total: "5000TND",
+    status: "paid",
+    date: "23/04/18",
+  },
+  {
+    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+    name: "John Michael",
+    email: "john@creative-tim.com",
+    number: "56705203",
+    OrderID: "123576",
+    Total: "5000TND",
+    status: "paid",
+    date: "23/04/18",
+  },
+  {
+    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+    name: "John Michael",
+    email: "john@creative-tim.com",
+    number: "56705203",
+    OrderID: "123576",
+    Total: "5000TND",
+    status: "paid",
+    date: "23/04/18",
+  },
+  
+];
+ 
+export default function OrdersTable() {
+  const LightModeState=useSelector(state=>state.lightMode)
   return (
     <>
-      <CardHeader floated={false} shadow={false} className="rounded-none">
-        <div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
+      <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
+        <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-            <Typography variant="h5" color="blue-gray">
-              Recent Transactions
+            <Typography variant="h5" >
+              Orders list
             </Typography>
-            <Typography color="gray" className="mt-1 font-normal">
-              These are details about the last transactions
+            <Typography  className="mt-1 font-normal">
+              See information about all Orders
             </Typography>
           </div>
-          <div className="flex w-full shrink-0 gap-2 md:w-max">
-            <div className="w-full md:w-72">
-              <Input
-                label="Search"
-                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-              />
-            </div>
-            <Button className="flex items-center gap-3" size="sm">
-              <ArrowDownTrayIcon strokeWidth={2} className="h-4 w-4" /> Download
-            </Button>
+          
+        </div>
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <Tabs value="all" className="w-full md:w-max">
+            <TabsHeader>
+              {TABS.map(({ label, value }) => (
+                <Tab key={value} value={value}>
+                  &nbsp;&nbsp;{label}&nbsp;&nbsp;
+                </Tab>
+              ))}
+            </TabsHeader>
+          </Tabs>
+          <div className="w-full md:w-72">
+            <Input
+              label="Search"
+              labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}
+              icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+            />
           </div>
         </div>
       </CardHeader>
       <CardBody className="overflow-scroll px-0">
-        <table className="w-full min-w-max table-auto text-left">
+        <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
-              {TABLE_HEAD.map((head) => (
+              {TABLE_HEAD.map((head, index) => (
                 <th
                   key={head}
-                  className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
+                  className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                 >
                   <Typography
                     variant="small"
-                    color="blue-gray"
-                    className="font-normal leading-none opacity-70"
+                    className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                   >
-                    {head}
+                    {head}{" "}
+                    {index !== TABLE_HEAD.length - 1 && (
+                      <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
+                    )}
                   </Typography>
                 </th>
               ))}
@@ -124,19 +136,7 @@ export default function TransactionsTable() {
           </thead>
           <tbody>
             {TABLE_ROWS.map(
-              (
-                {
-                  img,
-                  name,
-                  amount,
-                  date,
-                  status,
-                  account,
-                  accountNumber,
-                  expiry,
-                },
-                index,
-              ) => {
+              ({ img, name, email, Total,status,number, OrderID, online, date }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
                   ? "p-4"
@@ -144,46 +144,53 @@ export default function TransactionsTable() {
  
                 return (
                   <tr key={name}>
+
                     <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <Avatar
-                          src={img}
-                          alt={name}
-                          size="md"
-                          className="border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1"
-                        />
+                      <div className="flex flex-col">
                         <Typography
                           variant="small"
-                          color="blue-gray"
-                          className="font-bold"
+                          className="font-normal"
                         >
-                          {name}
+                          #{OrderID}
                         </Typography>
                       </div>
                     </td>
+
                     <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {amount}
-                      </Typography>
+                      <div className="flex items-center gap-3">
+                        <Avatar src={img} alt={name} size="sm" />
+                        <div className="flex flex-col">
+                          <Typography
+                            variant="small"
+                            className="font-normal"
+                          >
+                            {name}
+                          </Typography>
+                          <Typography
+                            variant="small"
+                            className="font-normal opacity-70"
+                          >
+                            {email}
+                          </Typography>
+                        </div>
+                      </div>
                     </td>
                     <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {date}
-                      </Typography>
+                      <div className="flex flex-col">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                        >
+                          {number}
+                        </Typography>
+
+                      </div>
                     </td>
                     <td className={classes}>
-                      <div className="w-max">
+                    <div className="w-max">
                         <Chip
                           size="sm"
-                          variant="ghost"
+                          variant="filled"
                           value={status}
                           color={
                             status === "paid"
@@ -196,61 +203,44 @@ export default function TransactionsTable() {
                       </div>
                     </td>
                     <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <div className="h-9 w-12 rounded-md border border-blue-gray-50 p-1">
-                          <Avatar
-                            src={
-                              account === "visa"
-                                ? "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/visa.png"
-                                : "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/mastercard.png"
-                            }
-                            size="sm"
-                            alt={account}
-                            variant="square"
-                            className="h-full w-full object-contain p-1"
-                          />
-                        </div>
-                        <div className="flex flex-col">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal capitalize"
-                          >
-                            {account.split("-").join(" ")} {accountNumber}
-                          </Typography>
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal opacity-70"
-                          >
-                            {expiry}
-                          </Typography>
-                        </div>
-                      </div>
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                      >
+                        {date}
+                      </Typography>
                     </td>
                     <td className={classes}>
-                      <Tooltip content="Inspect Order">
-                        <IconButton variant="text" onClick={()=>{window.location.href="/UCP/Order"}}>
-                          <EyeIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                     
-                      <Tooltip content="Confirm Payment">
-                        <IconButton variant="text">
-                          <CurrencyDollarIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                      >
+                        {Total}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                    <Tooltip content="Inspect Order">
+                      <IconButton variant="text" onClick={()=>{window.location.href="/UCP/Order"}}>
+                        <EyeIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
+                   
+                    <Tooltip content="Confirm Payment">
+                      <IconButton variant="text">
+                        <CurrencyDollarIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
 
-                      <Tooltip content="Pause Order">
-                        <IconButton variant="text">
-                          <PauseIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip content="Cancel Order">
-                        <IconButton variant="text">
-                          <XMarkIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
+                    <Tooltip content="Pause Order">
+                      <IconButton variant="text">
+                        <PauseIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip content="Cancel Order">
+                      <IconButton variant="text">
+                        <XMarkIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
                     </td>
                   </tr>
                 );
@@ -259,37 +249,20 @@ export default function TransactionsTable() {
           </tbody>
         </table>
       </CardBody>
-      <CardFooter className="flex flex-wrap items-center justify-center gap-1 border-t border-blue-gray-50 p-4">
-        <Button variant="outlined" size="sm">
-          Previous
-        </Button>
-        <div className="flex items-center gap-2">
-          <IconButton variant="outlined" size="sm">
-            1
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            2
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            3
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            ...
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            8
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            9
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            10
-          </IconButton>
+      <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+        <Typography variant="small"  className="font-normal">
+          Page 1 of 10
+        </Typography>
+        <div className="flex gap-2">
+          <Button variant="outlined" size="sm">
+            Previous
+          </Button>
+          <Button variant="outlined" size="sm">
+            Next
+          </Button>
         </div>
-        <Button variant="outlined" size="sm">
-          Next
-        </Button>
       </CardFooter>
+      
     </>
   );
 }

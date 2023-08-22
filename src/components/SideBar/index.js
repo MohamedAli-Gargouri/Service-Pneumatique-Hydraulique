@@ -67,19 +67,19 @@ export default function SidebarWithCta() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
-              <ListItem>
+              <ListItem style={{color:`${LightModeState==LightMode().type?"black":"white"}`}}>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
                 Analytics
               </ListItem>
-              <ListItem>
+              <ListItem style={{color:`${LightModeState==LightMode().type?"black":"white"}`}}>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
                 Reporting
               </ListItem>
-              <ListItem>
+              <ListItem style={{color:`${LightModeState==LightMode().type?"black":"white"}`}}>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
@@ -109,13 +109,19 @@ export default function SidebarWithCta() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className={`p-0 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
-              <ListItem onClick={()=>{window.location.href="/UCP/Orders"}}>
+              <ListItem style={{color:`${LightModeState==LightMode().type?"black":"white"}`}} onClick={()=>{window.location.href="/UCP/Orders"}}>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
                 Orders
               </ListItem>
-              <ListItem>
+              <ListItem style={{color:`${LightModeState==LightMode().type?"black":"white"}`}} onClick={()=>{window.location.href="/UCP/MyOrders"}}>
+                <ListItemPrefix>
+                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                </ListItemPrefix>
+                My Orders
+              </ListItem>
+              <ListItem style={{color:`${LightModeState==LightMode().type?"black":"white"}`}} onClick={()=>{window.location.href="/UCP/Products"}}>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
@@ -138,14 +144,9 @@ export default function SidebarWithCta() {
           <ListItemPrefix>
             <UserCircleIcon className="h-5 w-5" />
           </ListItemPrefix>
-          Profile
+          Profil
         </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <Cog6ToothIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Settings
-        </ListItem>
+
         <ListItem>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />

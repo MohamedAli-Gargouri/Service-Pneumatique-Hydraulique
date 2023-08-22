@@ -1,4 +1,4 @@
-const LightReducer=(state="LightMode",action)=>
+const LightReducer=(state="LIGHTMODE",action)=>
 {
     switch(action.type){
         case "LIGHTMODE": return "LIGHTMODE";

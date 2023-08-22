@@ -1,97 +1,131 @@
-import { PencilIcon } from "@heroicons/react/24/solid";
 import {
   ArrowDownTrayIcon,
   MagnifyingGlassIcon,
-  EyeIcon
+  EyeIcon,
+  XMarkIcon,
+  PauseIcon
+  ,CurrencyDollarIcon,
+  ChevronUpDownIcon
 } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
+  Input,
   Typography,
   Button,
   CardBody,
   Chip,
   CardFooter,
+  Tabs,
+  TabsHeader,
+  Tab,
   Avatar,
   IconButton,
   Tooltip,
-  Input,
 } from "@material-tailwind/react";
  
-const TABLE_HEAD = ["Product", "Product Reference", "Quantity", "Status", "Unit Price", " Total Price",""];
+const TABS = [
+  {
+    label: "All Products",
+    value: "All_Products",
+  },
+  {
+    label: "Low Stock",
+    value: "Low_Stock",
+  },
+  {
+    label: "Out of Stock",
+    value: "Out_of_Stock",
+  },
+];
+ 
+const TABLE_HEAD = ["Product Code", "Product", "Quantity", "Status", "Unit Price","Total",""];
  
 const TABLE_ROWS = [
   {
-    img: "/img/logos/logo-spotify.svg",
-    name: "Compressor X1658",
-    Quantity: "3x",
-    Status: "Available",
-    Unit_Price: "500TND",
-    Total_Price: "1500TND",
-
+    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+    name: "Compressor X156",
+    Description: "200ML V12",
+    P_Code: "15894564564",
+    Quantity: "2",
+    Unit: "100",
+    status: "Low Stock",
+    Total: "200",
   },
   {
-    img: "/img/logos/logo-spotify.svg",
-    name: "Compressor X1658",
-    Quantity: "3x",
-    Status: "No Stock",
-    Unit_Price: "500TND",
-    Total_Price: "1500TND",
-
+    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+    name: "Compressor X156",
+    Description: "200ML V12",
+    P_Code: "15894564564",
+    Quantity: "5",
+    Unit: "100",
+    status: "High Stock",
+    Total: "500",
   },
-  {
-    img: "/img/logos/logo-spotify.svg",
-    name: "Compressor X1658",
-    Quantity: "3x",
-    Status: "Low Stock",
-    Unit_Price: "500TND",
-    Total_Price: "1500TND",
-
-  },
-  
 ];
  
-export default function TransactionsTable() {
+export default function OrderTable() {
+  const LightModeState=useSelector(state=>state.lightMode)
   return (
     <>
-      <CardHeader floated={false} shadow={false} className="rounded-none">
-        <div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
+      <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
+        <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-            <Typography variant="h5" color="blue-gray">
-              Order #156489
+            <Typography variant="h5" >
+              Ordered Products list
             </Typography>
-            <Typography color="gray" className="mt-1 font-normal">
-              These are Products Ordered
+            <Typography  className="mt-1 font-normal">
+              See information about all the ordered products
             </Typography>
           </div>
-          <div className="flex w-full shrink-0 gap-2 md:w-max">
-            <div className="w-full md:w-72">
-              <Input
-                label="Search"
-                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-              />
-            </div>
-            <Button className="flex items-center gap-3" size="sm">
-              <ArrowDownTrayIcon strokeWidth={2} className="h-4 w-4" /> Download
+          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+            <Button variant="outlined" size="sm">
+              view all
             </Button>
+            <Button className="flex items-center gap-3" size="sm">
+              <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add member
+            </Button>
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <Tabs value="all" className="w-full md:w-max">
+            <TabsHeader>
+              {TABS.map(({ label, value }) => (
+                <Tab key={value} value={value}>
+                  &nbsp;&nbsp;{label}&nbsp;&nbsp;
+                </Tab>
+              ))}
+            </TabsHeader>
+          </Tabs>
+          <div className="w-full md:w-72">
+            <Input
+              label="Search"
+              labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}
+              icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+            />
           </div>
         </div>
       </CardHeader>
       <CardBody className="overflow-scroll px-0">
-        <table className="w-full min-w-max table-auto text-left">
+        <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
-              {TABLE_HEAD.map((head) => (
+              {TABLE_HEAD.map((head, index) => (
                 <th
                   key={head}
-                  className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
+                  className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                 >
                   <Typography
                     variant="small"
-                    color="blue-gray"
-                    className="font-normal leading-none opacity-70"
+                    className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                   >
-                    {head}
+                    {head}{" "}
+                    {index !== TABLE_HEAD.length - 1 && (
+                      <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
+                    )}
                   </Typography>
                 </th>
               ))}
@@ -99,17 +133,7 @@ export default function TransactionsTable() {
           </thead>
           <tbody>
             {TABLE_ROWS.map(
-              (
-                {
-                  img,
-                  name,
-                  Quantity,
-                  Status,
-                  Unit_Price,
-                  Total_Price,
-                },
-                index,
-              ) => {
+              ({ img, name, Description, P_Code,Quantity,Unit, status, Total }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
                   ? "p-4"
@@ -117,45 +141,58 @@ export default function TransactionsTable() {
  
                 return (
                   <tr key={name}>
+
                     <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <Avatar
-                          src={img}
-                          alt={name}
-                          size="md"
-                          className="border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1"
-                        />
+                      <div className="flex flex-col">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                        >
+                          #{P_Code}
+                        </Typography>
                       </div>
                     </td>
 
                     <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {name}
-                      </Typography>
+                      <div className="flex items-center gap-3">
+                        <Avatar src={img} alt={name} size="sm" />
+                        <div className="flex flex-col">
+                          <Typography
+                            variant="small"
+                            className="font-normal"
+                          >
+                            {name}
+                          </Typography>
+                          <Typography
+                            variant="small"
+                            className="font-normal opacity-70"
+                          >
+                            {Description}
+                          </Typography>
+                        </div>
+                      </div>
                     </td>
                     <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {Quantity}
-                      </Typography>
+                      <div className="flex flex-col">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                        >
+                          {Quantity}x
+                        </Typography>
+
+                      </div>
                     </td>
                     <td className={classes}>
-                      <div className="w-max">
+                    <div className="w-max">
                         <Chip
                           size="sm"
-                          variant="ghost"
-                          value={Status}
+                          variant="filled"
+                          value={status}
                           color={
-                            Status === "Available"
+                            status === "High Stock"
                               ? "green"
-                              : Status === "Low Stock"
+                              : status === "Low Stock"
                               ? "amber"
                               : "red"
                           }
@@ -165,29 +202,27 @@ export default function TransactionsTable() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        color="blue-gray"
                         className="font-normal"
                       >
-                        {Unit_Price}
+                        {Unit} TND
                       </Typography>
                     </td>
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        color="blue-gray"
                         className="font-normal"
                       >
-                        {Total_Price}
+                        {Total} TND
                       </Typography>
                     </td>
                     <td className={classes}>
                     <Tooltip content="Inspect Product">
-                        <IconButton onClick={()=>{window.location.href="/UCP/Product"}} variant="text">
-                          <EyeIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-
-                      
+                      <IconButton variant="text" onClick={()=>{window.location.href="/UCP/Product"}}>
+                        <EyeIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
+                   
+                    
                     </td>
                   </tr>
                 );
@@ -196,36 +231,18 @@ export default function TransactionsTable() {
           </tbody>
         </table>
       </CardBody>
-      <CardFooter className="flex flex-wrap items-center justify-center gap-1 border-t border-blue-gray-50 p-4">
-        <Button variant="outlined" size="sm">
-          Previous
-        </Button>
-        <div className="flex items-center gap-2">
-          <IconButton variant="outlined" size="sm">
-            1
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            2
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            3
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            ...
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            8
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            9
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            10
-          </IconButton>
+      <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+        <Typography variant="small" color="blue-gray" className="font-normal">
+          Page 1 of 10
+        </Typography>
+        <div className="flex gap-2">
+          <Button variant="outlined" size="sm">
+            Previous
+          </Button>
+          <Button variant="outlined" size="sm">
+            Next
+          </Button>
         </div>
-        <Button variant="outlined" size="sm">
-          Next
-        </Button>
       </CardFooter>
     </>
   );
