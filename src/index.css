@@ -1,9 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('./resources/AwsomeFonts/css/all.min.css');
+@font-face {
+  font-family: 'Roboto';
+  src: url('/src/resources/Googlefonts/Roboto-Regular.ttf') format('truetype');
+  /* Add other font properties (e.g., font-weight, font-style) here */
+}
 
-
-
+body {
+  font-family: 'Roboto', sans-serif;
+}
 
 /*=========VARIABLES======================*/
 :root {

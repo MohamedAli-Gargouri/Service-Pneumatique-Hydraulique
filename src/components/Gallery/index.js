@@ -83,7 +83,7 @@ const [OpenDeleteDialog,SetOpenDeleteDialog]=useState(false)
 
                     </div>
 
-                    <ConfirmDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Image")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash"></i>'} Title={"Delete Product Image"} Content="Are you sure you want to delete?" />
+                    <ConfirmDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Image")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Product Image"} Content="Are you sure you want to delete this product's image ?" />
                 </div>
 
            

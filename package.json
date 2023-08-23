@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@material-tailwind/react": "2.0.4",
     "i18next": "^23.3.0",
     "i18next-browser-languagedetector": "^7.1.0",

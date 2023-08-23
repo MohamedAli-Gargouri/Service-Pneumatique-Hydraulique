@@ -28,6 +28,10 @@ import {
   import { useSelector } from "react-redux/es/hooks/useSelector";
   import {LightMode,DarkMode} from "../../redux/actions/LightActions"
   import {OPENCART} from "../../redux/actions/cartActions"
+  import ConfirmDialog from "../Dialog/Confirm"
+  import React from "react";
+  import Pagination from "../../utils/Table/Pagination";
+  import SortData from "../../utils/Table/SortRows"
   const TABS = [
     {
       label: "All",
@@ -43,17 +47,62 @@ import {
     },
   ];
    
-  const TABLE_HEAD = ["Order ID", "Employee", "Status", "Date","Total",""];
+  const TABLE_HEAD = ["Order", "Employee", "Status", "Date","Total",""];
    
   const TABLE_ROWS = [
     {
       img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-      name: "John Michael",
+      name: "A",
       email: "john@creative-tim.com",
-      OrderID: "123576",
-      Total: "5000TND",
+      OrderID: "1",
+      Total: "100",
       status: "paid",
-      date: "23/04/18",
+      date: "01/04/18",
+    },
+    {
+      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+      name: "C",
+      email: "john@creative-tim.com",
+      OrderID: "2",
+      Total: "200",
+      status: "paid",
+      date: "2/04/2018",
+    },
+    {
+      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+      name: "B",
+      email: "john@creative-tim.com",
+      OrderID: "3",
+      Total: "5000",
+      status: "paid",
+      date: "3/04/2018",
+    },
+    {
+      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+      name: "G",
+      email: "john@creative-tim.com",
+      OrderID: "4",
+      Total: "700",
+      status: "paid",
+      date: "06/04/2018",
+    },
+    {
+      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+      name: "E",
+      email: "john@creative-tim.com",
+      OrderID: "5",
+      Total: "50",
+      status: "paid",
+      date: "08/04/2018",
+    },
+    {
+      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+      name: "F",
+      email: "john@creative-tim.com",
+      OrderID: "6",
+      Total: "250",
+      status: "paid",
+      date: "9/04/2018",
     },
     
     
@@ -64,6 +113,12 @@ import {
     const dispatch=useDispatch();
     const LightModeState=useSelector(state=>state.lightMode)
     const toggleCart = () =>{dispatch(OPENCART())};
+    const [ConfirmCancelDialog,SetConfirmCancelDialog]=React.useState(false)
+    const [Data,SetData] = React.useState([]);
+    const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
+
+
+
     return (
       <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
@@ -107,6 +162,7 @@ import {
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
+                  onClick={()=>{SortData(head,sortDirection,setSortDirection,Data,SetData,"MyOrders")}}
                     key={head}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
@@ -124,7 +180,8 @@ import {
               </tr>
             </thead>
             <tbody>
-              {TABLE_ROWS.map(
+              {
+              Data.map(
                 ({ img, name, email, Total,status,number, OrderID, online, date }, index) => {
                   const isLast = index === TABLE_ROWS.length - 1;
                   const classes = isLast
@@ -194,7 +251,7 @@ import {
                           variant="small"
                           className="font-normal"
                         >
-                          {Total}
+                          {Total} TND
                         </Typography>
                       </td>
                       <td className={classes}>
@@ -203,7 +260,11 @@ import {
                           <EyeIcon className="h-4 w-4" />
                         </IconButton>
                       </Tooltip>
-                     
+                      <Tooltip content="Cancel Order" >
+                        <IconButton variant="text" onClick={()=>{SetConfirmCancelDialog(true)}} >
+                        <i class="fa-solid fa-xmark h-4 w-4"></i>
+                        </IconButton>
+                      </Tooltip>
                       
                       </td>
                     </tr>
@@ -214,18 +275,11 @@ import {
           </table>
         </CardBody>
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-          <Typography variant="small"  className="font-normal">
-            Page 1 of 10
-          </Typography>
-          <div className="flex gap-2">
-            <Button variant="outlined" size="sm">
-              Previous
-            </Button>
-            <Button variant="outlined" size="sm">
-              Next
-            </Button>
-          </div>
+        <Pagination
+            Data={TABLE_ROWS}
+            SetData={SetData}/>
         </CardFooter>
+        <ConfirmDialog  Open={ConfirmCancelDialog} Action={()=>{console.log("Canceling order")}} HandleOpen={()=>{SetConfirmCancelDialog(!ConfirmCancelDialog)}} Icon={'<i class="fa-solid fa-store-slash h-4 w-4 m-1"></i>'} Title={"Cancel Order"} Content="Are you sure you wanna cancel your order?" />
       </>
     );
   }

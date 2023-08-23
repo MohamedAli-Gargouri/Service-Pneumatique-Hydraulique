@@ -39,7 +39,7 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
 
       <main className="w-full min-h-screen flex flex-col justify-start items-center ">  
         <section className=" flex flex-col justify-center items-stretch w-full text-center h-[17vh] p-4 shadow-xl shadow-blue-gray-900/ bg-cover" style={{backgroundImage:`url(${Topbarbg})`}} >     
-        <TopBar SectionName="Orders" />
+        <TopBar SectionName="Orders" Icon='<i class="fa-solid fa-clipboard-list"></i>'/>
         </section>
 
         <section className="w-full flex justify-center  text-center">      

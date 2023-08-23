@@ -46,7 +46,7 @@ export default function SidebarWithCta() {
         </Typography>
       </div>
       <List className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
-        <Accordion
+       {/* <Accordion
           open={open === 1}
           icon={
             <ChevronDownIcon
@@ -131,6 +131,50 @@ export default function SidebarWithCta() {
           </AccordionBody>
         </Accordion>
         <hr className="my-2 border-blue-gray-50" />
+        */}
+
+        <ListItem onClick={()=>{window.location.href="/UCP/MyOrders"}}>
+          <ListItemPrefix>
+          <i class="fa-solid fa-cart-shopping h-5 w-5"></i>
+          </ListItemPrefix>
+          My Orders
+          <ListItemSuffix>
+            <Chip value="5" size="sm" color="green" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
+          </ListItemSuffix>
+        </ListItem>
+
+        <ListItem onClick={()=>{window.location.href="/UCP/Orders"}}>
+          <ListItemPrefix>
+          <i class="fa-solid fa-file-invoice h-5 w-5"></i>
+          </ListItemPrefix>
+          Orders
+          <ListItemSuffix>
+            <Chip value="14" size="sm" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
+          </ListItemSuffix>
+        </ListItem>
+
+        <ListItem onClick={()=>{window.location.href="/UCP/Products"}}>
+          <ListItemPrefix>
+          <i class="fa-solid fa-boxes-stacked h-5 w-5"></i>
+          </ListItemPrefix>
+          Products
+          <ListItemSuffix>
+            <Chip value="50" size="sm" color="green" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
+          </ListItemSuffix>
+        </ListItem>
+
+        <ListItem onClick={()=>{window.location.href="/UCP/Products"}}>
+          <ListItemPrefix>
+          <i class="fa-solid fa-users h-5 w-5"></i>
+          </ListItemPrefix>
+          Manage Accounts
+          <ListItemSuffix>
+            <Chip value="100" size="sm" color="green" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
+          </ListItemSuffix>
+        </ListItem>
+
+        
+
         <ListItem>
           <ListItemPrefix>
             <InboxIcon className="h-5 w-5" />
@@ -146,7 +190,12 @@ export default function SidebarWithCta() {
           </ListItemPrefix>
           Profil
         </ListItem>
-
+        <ListItem onClick={()=>{window.location.href="/"}}>
+          <ListItemPrefix>
+          <i class="fa-solid fa-arrow-left"></i>
+          </ListItemPrefix>
+          Back
+        </ListItem>
         <ListItem>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />

@@ -26,19 +26,24 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
- 
+import Product_1 from "../../assets/images/products/product_1.png"
+import Product_2 from "../../assets/images/products/product_2.png"
+import Product_3 from "../../assets/images/products/product_3.png"
+import Pagination from "../../utils/Table/Pagination";
+import SortData from "../../utils/Table/SortRows"
+import React from "react";
 const TABS = [
   {
-    label: "All Products",
-    value: "All_Products",
+    label: "All",
+    value: "All",
   },
   {
-    label: "Low Stock",
-    value: "Low_Stock",
+    label: "Low",
+    value: "Low",
   },
   {
-    label: "Out of Stock",
-    value: "Out_of_Stock",
+    label: "Unavailable",
+    value: "Unavailable",
   },
 ];
  
@@ -46,29 +51,41 @@ const TABLE_HEAD = ["Product Code", "Product", "Quantity", "Status", "Unit Price
  
 const TABLE_ROWS = [
   {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-    name: "Compressor X156",
+    img: Product_1,
+    name: "Compressor X56",
     Description: "200ML V12",
-    P_Code: "15894564564",
+    P_Code: "1",
     Quantity: "2",
-    Unit: "100",
+    Unit: "50",
     status: "Low Stock",
     Total: "200",
   },
   {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-    name: "Compressor X156",
+    img: Product_2,
+    name: "Compressor X1",
     Description: "200ML V12",
-    P_Code: "15894564564",
+    P_Code: "2",
     Quantity: "5",
     Unit: "100",
     status: "High Stock",
     Total: "500",
   },
+  {
+    img: Product_3,
+    name: "Compressor X66",
+    Description: "300ML V12",
+    P_Code: "1564",
+    Quantity: "1",
+    Unit: "500",
+    status: "Low Stock",
+    Total: "100",
+  },
 ];
  
 export default function OrderTable() {
   const LightModeState=useSelector(state=>state.lightMode)
+  const [Data,SetData] = React.useState([]);
+  const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
   return (
     <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
@@ -91,7 +108,7 @@ export default function OrderTable() {
           </div>
         </div>
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <Tabs value="all" className="w-full md:w-max">
+          <Tabs value="All" className="w-full md:w-max">
             <TabsHeader>
               {TABS.map(({ label, value }) => (
                 <Tab key={value} value={value}>
@@ -115,6 +132,7 @@ export default function OrderTable() {
             <tr>
               {TABLE_HEAD.map((head, index) => (
                 <th
+                  onClick={()=>{SortData(head,sortDirection,setSortDirection,Data,SetData,"Order")}}
                   key={head}
                   className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                 >
@@ -132,7 +150,7 @@ export default function OrderTable() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
+            {Data.map(
               ({ img, name, Description, P_Code,Quantity,Unit, status, Total }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
@@ -232,17 +250,9 @@ export default function OrderTable() {
         </table>
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-        <Typography variant="small" color="blue-gray" className="font-normal">
-          Page 1 of 10
-        </Typography>
-        <div className="flex gap-2">
-          <Button variant="outlined" size="sm">
-            Previous
-          </Button>
-          <Button variant="outlined" size="sm">
-            Next
-          </Button>
-        </div>
+      <Pagination
+            Data={TABLE_ROWS}
+            SetData={SetData}/>
       </CardFooter>
     </>
   );

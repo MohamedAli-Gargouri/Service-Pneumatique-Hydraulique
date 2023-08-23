@@ -22,7 +22,8 @@ module.exports = withMT({
         secondary: '#e53935',
         blue: {
           500: '#e53935', // Red color code
-        }
+        },
+        yellow:{500:"#fbc02d"}
       },
       animation: {
         'RightToLeft': 'RightToLeft  3s linear',

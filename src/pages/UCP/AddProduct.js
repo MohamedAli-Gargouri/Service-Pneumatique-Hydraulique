@@ -41,7 +41,7 @@ import AddProduct from "../../components/Product/Add"
 
       <main className="w-full min-h-screen flex flex-col justify-start items-center ">  
         <section className=" flex flex-col justify-center items-stretch w-full text-center h-[17vh] p-4 shadow-xl shadow-blue-gray-900/ bg-cover" style={{backgroundImage:`url(${Topbarbg})`}} >     
-        <TopBar SectionName="Add Product" />
+        <TopBar SectionName="Add Product" Icon='<i class="fa-solid fa-plus"></i>' />
         </section>
 
         <section className="w-full flex justify-center  text-center">      

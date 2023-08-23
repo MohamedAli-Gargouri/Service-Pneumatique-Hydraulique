@@ -107,13 +107,13 @@ src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1
     </div>
 
     <Collapse style={{position:"absolute",top:"10vh", left:"0"}} className="z-50" open={open}>
-        <Card className=" mx-auto w-[95%] h-full">
+        <Card className={ `${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"} mx-auto w-[95%] h-full`}>
           <Sidebar/>          
         </Card>
       </Collapse>
     </div>
     <Typography color="red" variant="h3" className={`text-center md:text-left col-span-1  tc-darkTheme_T1 `} >
-            - {props.SectionName}
+    {props.Icon!=undefined?<span className="mr-4" dangerouslySetInnerHTML={{ __html: props.Icon }}></span>:null}{props.SectionName}
             </Typography>
     </div>
   );

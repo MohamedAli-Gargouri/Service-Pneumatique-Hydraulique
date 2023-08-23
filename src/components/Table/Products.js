@@ -9,7 +9,11 @@ import {
   } from "@heroicons/react/24/outline";
   import { useSelector } from "react-redux/es/hooks/useSelector";
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
-  import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+import ConfirmDeleteDialog from "../../components/Dialog/Confirm"
+import Product_1 from "../../assets/images/products/product_1.png"
+import Product_2 from "../../assets/images/products/product_2.png"
+import Product_3 from "../../assets/images/products/product_3.png"
+import React from "react";
   import {
     Card,
     CardHeader,
@@ -26,12 +30,14 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
     IconButton,
     Tooltip,
   } from "@material-tailwind/react";
-   
+  import Pagination from "../../utils/Table/Pagination";
+  import SortData from "../../utils/Table/SortRows"
+  import CategoryDialog from "../../components/Dialog/Category" 
   import CustomTooltip from "../../components/ToolTip"
   const TABS = [
     {
       label: "All",
-      value: "all",
+      value: "All",
     },
     {
       label: "Low",
@@ -43,12 +49,12 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
     },
   ];
    
-  const TABLE_HEAD = ["Product Code", "Product", "Price", "Category","Shop Quantity","Stock Quantity" ,"Short Description", "Long Description","Information","Shipping","Status",""];
+  const TABLE_HEAD = ["Product Code", "Product", "Price","Status", "Category","Shop Quantity","Stock Quantity" ,"Short Description", "Long Description","Information","Shipping",""];
    
   const TABLE_ROWS = [
     {
       ProductCode: "501",
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
+      img: Product_1,
       Brand: "Hertz",
       Model: "X478897 200ML X1",
       Price: "705",
@@ -60,13 +66,107 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
       Information: "You need X to do Y and Z",
       Shipping: "VW Caddy 2008 will deliver it to u",
       Status: "Low Stock",
+    },
+    {
+      ProductCode: "650",
+      img: Product_2,
+      Brand: "Hertz",
+      Model: "ABSQD4 200ML X1",
+      Price: "250",
+      Category: "Compressors",
+      Shop_Quantity: "100",
+      StockRoom_Quantity: "10",
+      SDescription: "Impressive Compressor",
+      LDescription: "Very impressive Compressor",
+      Information: "You need X to do Y and Z",
+      Shipping: "VW Caddy 2008 will deliver it to u",
+      Status: "Low Stock",
+    },
+    {
+      ProductCode: "700",
+      img: Product_3,
+      Brand: "Hertz",
+      Model: "X478897 200ML X1",
+      Price: "500",
+      Category: "Compressors",
+      Shop_Quantity: "16",
+      StockRoom_Quantity: "100",
+      SDescription: "Impressive Compressor",
+      LDescription: "Very impressive Compressor",
+      Information: "You need X to do Y and Z",
+      Shipping: "VW Caddy 2008 will deliver it to u",
+      Status: "High Stock",
     }
-    
+    ,
+    {
+      ProductCode: "700",
+      img: Product_3,
+      Brand: "Hertz",
+      Model: "X478897 200ML X1",
+      Price: "500",
+      Category: "Compressors",
+      Shop_Quantity: "16",
+      StockRoom_Quantity: "100",
+      SDescription: "Impressive Compressor",
+      LDescription: "Very impressive Compressor",
+      Information: "You need X to do Y and Z",
+      Shipping: "VW Caddy 2008 will deliver it to u",
+      Status: "High Stock",
+    },
+    {
+      ProductCode: "700",
+      img: Product_3,
+      Brand: "Hertz",
+      Model: "X478897 200ML X1",
+      Price: "500",
+      Category: "Compressors",
+      Shop_Quantity: "16",
+      StockRoom_Quantity: "100",
+      SDescription: "Impressive Compressor",
+      LDescription: "Very impressive Compressor",
+      Information: "You need X to do Y and Z",
+      Shipping: "VW Caddy 2008 will deliver it to u",
+      Status: "High Stock",
+    },
+    {
+      ProductCode: "700",
+      img: Product_3,
+      Brand: "Hertz",
+      Model: "X478897 200ML X1",
+      Price: "500",
+      Category: "Compressors",
+      Shop_Quantity: "16",
+      StockRoom_Quantity: "100",
+      SDescription: "Impressive Compressor",
+      LDescription: "Very impressive Compressor",
+      Information: "You need X to do Y and Z",
+      Shipping: "VW Caddy 2008 will deliver it to u",
+      Status: "High Stock",
+    },
+    {
+      ProductCode: "700",
+      img: Product_3,
+      Brand: "Hertz",
+      Model: "X478897 200ML X1",
+      Price: "500",
+      Category: "Compressors",
+      Shop_Quantity: "16",
+      StockRoom_Quantity: "100",
+      SDescription: "Impressive Compressor",
+      LDescription: "Very impressive Compressor",
+      Information: "You need X to do Y and Z",
+      Shipping: "VW Caddy 2008 will deliver it to u",
+      Status: "High Stock",
+    }
     
   ];
    
   export default function Products() {
+    const [OpenCategoryDialog,SetOpenCategoryDialog]=React.useState(false)
+    const [OpenDeleteDialog,SetOpenDeleteDialog]=React.useState(false)
     const LightModeState=useSelector(state=>state.lightMode)
+    const [Data,SetData] = React.useState([]);
+    const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
     return (
       <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
@@ -83,13 +183,13 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
               <Button className="flex items-center gap-3" size="sm" onClick={()=>{window.location.href="/UCP/AddProduct"}}>
               <i class="fa-solid fa-plus"></i> Add Product
               </Button>
-              <Button className="flex items-center gap-3" size="sm">
+              <Button className="flex items-center gap-3" size="sm" onClick={()=>{SetOpenCategoryDialog(true)}}>
               <i class="fa-solid fa-plus"></i> Add Category
               </Button>
             </div>
           </div>
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <Tabs value="all" className="w-full md:w-max">
+            <Tabs value="All" className="w-full md:w-max">
               <TabsHeader>
                 {TABS.map(({ label, value }) => (
                   <Tab key={value} value={value}>
@@ -113,6 +213,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
+                    onClick={()=>{SortData(head,sortDirection,setSortDirection,Data,SetData,"Products")}}
                     key={head}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
@@ -130,7 +231,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
               </tr>
             </thead>
             <tbody>
-              {TABLE_ROWS.map(
+              {Data.map(
                 ({ ProductCode,img,Brand,Model,Price,Category,Shop_Quantity,StockRoom_Quantity,SDescription,LDescription,Information,Shipping,Status}, index) => {
                   const isLast = index === TABLE_ROWS.length - 1;
                   const classes = isLast
@@ -181,7 +282,22 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
   
                         </div>
                       </td>
-
+                      <td className={classes}>
+                      <div className="w-max">
+                          <Chip
+                            size="sm"
+                            variant="filled"
+                            value={Status}
+                            color={
+                                Status === "High Stock"
+                                ? "green"
+                                : Status === "Low Stock"
+                                ? "amber"
+                                : "red"
+                            }
+                          />
+                        </div>
+                      </td>
                       <td className={classes}>
                         <div className="flex flex-col">
                           <Typography
@@ -244,22 +360,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
                         </div>
                       </td>
                       
-                      <td className={classes}>
-                      <div className="w-max">
-                          <Chip
-                            size="sm"
-                            variant="filled"
-                            value={Status}
-                            color={
-                                Status === "High Stock"
-                                ? "green"
-                                : Status === "Low Stock"
-                                ? "amber"
-                                : "red"
-                            }
-                          />
-                        </div>
-                      </td>
+                      
                       
                       <td className={classes}>
                       <Tooltip content="Edit Product">
@@ -269,7 +370,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
                       </Tooltip>
                      
                       <Tooltip content="Delete Product">
-                        <IconButton variant="text">
+                        <IconButton variant="text" onClick={()=>{SetOpenDeleteDialog(true)}}>
                         <i class="fa-solid fa-trash"></i>
                         </IconButton>
                       </Tooltip>
@@ -284,18 +385,12 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
           </table>
         </CardBody>
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-          <Typography variant="small"  className="font-normal">
-            Page 1 of 10
-          </Typography>
-          <div className="flex gap-2">
-            <Button variant="outlined" size="sm">
-              Previous
-            </Button>
-            <Button variant="outlined" size="sm">
-              Next
-            </Button>
-          </div>
+        <Pagination
+            Data={TABLE_ROWS}
+            SetData={SetData}/>
         </CardFooter>
+        <ConfirmDeleteDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Product")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Product"} Content="Are you sure you want to delete this product?" />
+        <CategoryDialog  Open={OpenCategoryDialog} Action={()=>{console.log("Opening the Catalog")}} HandleOpen={()=>{SetOpenCategoryDialog(!OpenCategoryDialog)}} Icon={'<i class="fa-solid fa-file-lines"></i>'} Title={"Category Management"} Content="Do you want to manage your E-Commerce categories? here is the right place." />
       </>
     );
   }
