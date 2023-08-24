@@ -110,6 +110,59 @@ export default  function  SortData (ColumTitle,sortDirection,setSortDirection,Da
       break;
                       }
   }
+
+  if(Table=="Accounts")
+  {
+    switch (ColumTitle) {
+      case "Account ID":
+      CollumnName="AccountId"
+      break;
+      case "Username":
+      CollumnName="UserName"
+      break;
+      case "Full Name":
+      CollumnName="FirstName"
+      break;
+      case "privilege":
+      CollumnName="Privilege"
+      break;
+      case "Total Spent":
+      CollumnName="TotalSpent"
+    }
+  }
+
+  if(Table=="Inbox_Order")
+  {
+    switch (ColumTitle) {
+      case "Order":
+      CollumnName="OrderID"
+      break;
+      case "Message":
+      CollumnName="Notification_Message"
+      break;
+    }
+  }
+
+  if(Table=="Inbox_Contact")
+  {
+    switch (ColumTitle) {
+      case "Email":
+      CollumnName="Email"
+      break;
+      case "First Name":
+      CollumnName="F_Name"
+      break;
+      case "Last Name":
+      CollumnName="L_Name"
+      break;
+      case "Phone Number":
+      CollumnName="PhoneNumber"
+      break;
+      case "Message":
+      CollumnName="Notification_Message"
+      break;
+    }
+  }
     // Toggle sorting direction
     const newSortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
 

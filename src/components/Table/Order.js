@@ -31,21 +31,10 @@ import Product_2 from "../../assets/images/products/product_2.png"
 import Product_3 from "../../assets/images/products/product_3.png"
 import Pagination from "../../utils/Table/Pagination";
 import SortData from "../../utils/Table/SortRows"
+import TabFilter from "../../utils/Table/TabFilter"
+import SearchRow from "../../utils/Table/Search"
 import React from "react";
-const TABS = [
-  {
-    label: "All",
-    value: "All",
-  },
-  {
-    label: "Low",
-    value: "Low",
-  },
-  {
-    label: "Unavailable",
-    value: "Unavailable",
-  },
-];
+
  
 const TABLE_HEAD = ["Product Code", "Product", "Quantity", "Status", "Unit Price","Total",""];
  
@@ -80,12 +69,47 @@ const TABLE_ROWS = [
     status: "Low Stock",
     Total: "100",
   },
+  {
+    img: Product_3,
+    name: "Compressor X66",
+    Description: "300ML V12",
+    P_Code: "1564",
+    Quantity: "1",
+    Unit: "500",
+    status: "Unavailable",
+    Total: "100",
+  },
 ];
  
 export default function OrderTable() {
   const LightModeState=useSelector(state=>state.lightMode)
-  const [Data,SetData] = React.useState([]);
+  const [AllData,SetAllData] = React.useState(TABLE_ROWS);
+  const [VisibleData,SetVisibleData] = React.useState([]);
   const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const TABS = [
+    {
+      label: "All",
+      value: "All",
+      Filter_fn:()=>TabFilter("status","All",TABLE_ROWS,SetAllData,currentPage)
+    },
+    {
+      label: "Low",
+      value: "Low",
+      Filter_fn:()=>TabFilter("status","Low Stock",TABLE_ROWS,SetAllData,currentPage)
+    },
+    {
+      label: "High",
+      value: "High",
+      Filter_fn:()=>TabFilter("status","High Stock",TABLE_ROWS,SetAllData,currentPage)
+    },
+    {
+      label: "Unavailable",
+      value: "Unavailable",
+      Filter_fn:()=>TabFilter("status","Unavailable",TABLE_ROWS,SetAllData,currentPage)
+    },
+  ];
+
   return (
     <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
@@ -98,31 +122,25 @@ export default function OrderTable() {
               See information about all the ordered products
             </Typography>
           </div>
-          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-            <Button variant="outlined" size="sm">
-              view all
-            </Button>
-            <Button className="flex items-center gap-3" size="sm">
-              <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add member
-            </Button>
-          </div>
+          
         </div>
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <Tabs value="All" className="w-full md:w-max">
             <TabsHeader>
-              {TABS.map(({ label, value }) => (
-                <Tab key={value} value={value}>
-                  &nbsp;&nbsp;{label}&nbsp;&nbsp;
-                </Tab>
-              ))}
+            {TABS.map(({ label, value,Filter_fn }) => (
+                  <Tab key={value} value={value} onClick={()=>{Filter_fn()}}>
+                    &nbsp;&nbsp;{label}&nbsp;&nbsp;
+                  </Tab>
+                ))}
             </TabsHeader>
           </Tabs>
           <div className="w-full md:w-72">
-            <Input
-              label="Search"
-              labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}
-              icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-            />
+          <Input
+                label="Search"
+                onChange={(e)=>{SearchRow(TABLE_ROWS,AllData,SetAllData,e)}}
+                labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}
+                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+              />
           </div>
         </div>
       </CardHeader>
@@ -132,7 +150,7 @@ export default function OrderTable() {
             <tr>
               {TABLE_HEAD.map((head, index) => (
                 <th
-                  onClick={()=>{SortData(head,sortDirection,setSortDirection,Data,SetData,"Order")}}
+                  onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Order")}}
                   key={head}
                   className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                 >
@@ -150,7 +168,7 @@ export default function OrderTable() {
             </tr>
           </thead>
           <tbody>
-            {Data.map(
+            {VisibleData.map(
               ({ img, name, Description, P_Code,Quantity,Unit, status, Total }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
@@ -251,8 +269,11 @@ export default function OrderTable() {
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
       <Pagination
-            Data={TABLE_ROWS}
-            SetData={SetData}/>
+            AllData={AllData}
+            VisibleData={VisibleData}
+            SetVisibleData={SetVisibleData}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}/>
       </CardFooter>
     </>
   );

@@ -18,6 +18,8 @@ import UCP_Product from "./pages/UCP/Product"
 import UCP_Products from "./pages/UCP/Products"
 import UCP_AddProduct from "./pages/UCP/AddProduct"
 import UCP_MyOrders from "./pages/UCP/MyOrders"
+import UCP_Accounts from "./pages/UCP/Accounts"
+import UCP_Inbox from "./pages/UCP/Inbox"
 export default function App() {
   const LightModeState=useSelector(state=>state.lightMode)
   const root = document.getElementById("root");
@@ -57,6 +59,8 @@ export default function App() {
             <Route path="/UCP/Product" element={<UCP_Product/>}/>
             <Route path="/UCP/Products" element={<UCP_Products/>}/>
             <Route path="/UCP/AddProduct" element={<UCP_AddProduct/>}/>
+            <Route path="/UCP/Accounts" element={<UCP_Accounts/>}/>
+            <Route path="/UCP/Inbox" element={<UCP_Inbox/>}/>
             <Route path="/Dev" element={<Dev/>}/>
             <Route path="/Loading" element={<Loading/>}/>
             </Routes>

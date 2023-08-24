@@ -32,21 +32,8 @@ import {
   import React from "react";
   import Pagination from "../../utils/Table/Pagination";
   import SortData from "../../utils/Table/SortRows"
-  const TABS = [
-    {
-      label: "All",
-      value: "all",
-    },
-    {
-      label: "Pending",
-      value: "Pending",
-    },
-    {
-      label: "Paid",
-      value: "Paid",
-    },
-  ];
-   
+  import SearchRow from "../../utils/Table/Search"
+  
   const TABLE_HEAD = ["Category ID", "Category Name",""];
    
   const TABLE_ROWS = [
@@ -87,11 +74,23 @@ import {
     const dispatch=useDispatch();
     const LightModeState=useSelector(state=>state.lightMode)
     const [OpenDeleteDialog,SetOpenDeleteDialog]=React.useState(false)
-    const [Data,SetData] = React.useState([]);
+    const [AllData,SetAllData] = React.useState(TABLE_ROWS);
+    const [VisibleData,SetVisibleData] = React.useState([]);
     const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
+    const [currentPage, setCurrentPage] = React.useState(1);
     return (
       <>
-
+<CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
+            <div className="w-full mt-2 ">
+              <Input
+                label="Search"
+                onChange={(e)=>{SearchRow(TABLE_ROWS,AllData,SetAllData,e)}}
+                labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}
+                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+              />
+            </div>
+          
+        </CardHeader>
         <CardBody className="overflow-scroll px-0">
 
             
@@ -100,7 +99,7 @@ import {
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
-                    onClick={()=>{SortData(head,sortDirection,setSortDirection,Data,SetData,"MyOrders")}}
+                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"MyOrders")}}
                     key={head}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
@@ -118,7 +117,7 @@ import {
               </tr>
             </thead>
             <tbody>
-              {Data.map(
+              {VisibleData.map(
                 ({ CategoryID,name}, index) => {
                   const isLast = index === TABLE_ROWS.length - 1;
                   const classes = isLast
@@ -172,8 +171,11 @@ import {
         </CardBody>
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
         <Pagination
-            Data={TABLE_ROWS}
-            SetData={SetData}/>
+            AllData={AllData}
+            VisibleData={VisibleData}
+            SetVisibleData={SetVisibleData}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}/>
         </CardFooter>
         <ConfirmDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Category")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Category"} Content="Are you sure you want to delete This Category and All of it's products?" />
       </>

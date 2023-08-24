@@ -76,7 +76,7 @@ export default function Category(props) {
         </DialogBody>
         <DialogFooter>
           <Button
-            variant="filled"
+            variant="text"
             onClick={props.HandleOpen}
             className="mr-1"
           >

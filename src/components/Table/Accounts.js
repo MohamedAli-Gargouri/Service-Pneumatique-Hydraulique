@@ -7,7 +7,12 @@ import {
     ,CurrencyDollarIcon,
     ChevronUpDownIcon
   } from "@heroicons/react/24/outline";
-  import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+  import { useSelector } from "react-redux/es/hooks/useSelector";
+import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+import ConfirmDialog from "../../components/Dialog/Confirm"
+import Person_1 from "../../assets/images/Person 1.jpg"
+import Person_2 from "../../assets/images/Person 2.jpg"
+import React from "react";
   import {
     Card,
     CardHeader,
@@ -24,147 +29,89 @@ import {
     IconButton,
     Tooltip,
   } from "@material-tailwind/react";
-  import { useDispatch } from "react-redux/es/hooks/useDispatch";
-  import { useSelector } from "react-redux/es/hooks/useSelector";
-  import {LightMode,DarkMode} from "../../redux/actions/LightActions"
-  import {OPENCART} from "../../redux/actions/cartActions"
-  import ConfirmDialog from "../Dialog/Confirm"
-  import React from "react";
   import Pagination from "../../utils/Table/Pagination";
   import SortData from "../../utils/Table/SortRows"
   import TabFilter from "../../utils/Table/TabFilter"
   import SearchRow from "../../utils/Table/Search"
-
    
-  const TABLE_HEAD = ["Order", "Employee", "Status", "Date","Total",""];
+  const TABLE_HEAD = ["Account ID", "Username", "Full Name","privilege", "Total Spent",""];
    
   const TABLE_ROWS = [
     {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-      name: "A",
-      email: "john@creative-tim.com",
-      OrderID: "1",
-      Total: "100",
-      status: "Paid",
-      date: "01/04/18",
+      AccountId: "1",
+      Img: Person_1,
+      UserName: "Housi",
+      FirstName: "Hassen",
+      LastName: "Jeribi",
+      Privilege: "Client",
+      TotalSpent: "10000",
     },
     {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-      name: "C",
-      email: "john@creative-tim.com",
-      OrderID: "2",
-      Total: "200",
-      status: "Pending",
-      date: "2/04/2018",
+      AccountId: "6",
+      Img: Person_1,
+      UserName: "DALI",
+      FirstName: "Mohamed Ali",
+      LastName: "Gargouri",
+      Privilege: "Employee",
+      TotalSpent: "0",
     },
     {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-      name: "B",
-      email: "john@creative-tim.com",
-      OrderID: "3",
-      Total: "5000",
-      status: "Paused",
-      date: "3/04/2018",
+      AccountId: "2",
+      Img: Person_2,
+      UserName: "Loukka",
+      FirstName: "Melek",
+      LastName: "Hachicha",
+      Privilege: "Admin",
+      TotalSpent: "0",
     },
-    {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-      name: "G",
-      email: "john@creative-tim.com",
-      OrderID: "4",
-      Total: "700",
-      status: "Cancelled",
-      date: "06/04/2018",
-    },
-    {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-      name: "E",
-      email: "john@creative-tim.com",
-      OrderID: "5",
-      Total: "50",
-      status: "Pending",
-      date: "08/04/2018",
-    },
-    {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-      name: "F",
-      email: "john@creative-tim.com",
-      OrderID: "6",
-      Total: "250",
-      status: "Ready",
-      date: "9/04/2018",
-    },
-    
     
   ];
    
-  export default function MyOrdersTable() {
-
-    const dispatch=useDispatch();
+  export default function Products() {
+    const [OpenDeleteDialog,SetOpenDeleteDialog]=React.useState(false)
+    const [OpenConfirmAdminDialog,SetOpenConfirmAdminDialog]=React.useState(false)
+    const [OpenConfirmEmployeeDialog,SetOpenConfirmEmployeeDialog]=React.useState(false)
+    const [OpenConfirmRemovePermissionDialog,SetOpenConfirmRemovePermissionDialog]=React.useState(false)
     const LightModeState=useSelector(state=>state.lightMode)
-    const toggleCart = () =>{dispatch(OPENCART())};
-    const [ConfirmCancelDialog,SetConfirmCancelDialog]=React.useState(false)
+
     const [AllData,SetAllData] = React.useState(TABLE_ROWS);
     const [VisibleData,SetVisibleData] = React.useState([]);
     const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
-    const [currentPage, setCurrentPage] = React.useState(1); // 'asc' or 'desc'
-
-
+    const [currentPage, setCurrentPage] = React.useState(1);
     const TABS = [
       {
         label: "All",
         value: "All",
-        Filter_fn:()=>TabFilter("status","All",TABLE_ROWS,SetAllData,currentPage)
-      },
-      
-      {
-        label: "Paid",
-        value: "Paid",
-        Filter_fn:()=>TabFilter("status","Paid",TABLE_ROWS,SetAllData,currentPage)
+        Filter_fn:()=>TabFilter("Privilege","All",TABLE_ROWS,SetAllData,currentPage)
       },
       {
-        label: "Ready",
-        value: "Ready",
-        Filter_fn:()=>TabFilter("status","Ready",TABLE_ROWS,SetAllData,currentPage)
+        label: "Admin",
+        value: "Admin",
+        Filter_fn:()=>TabFilter("Privilege","Admin",TABLE_ROWS,SetAllData,currentPage)
       },
       {
-        label: "Pending",
-        value: "Pending",
-        Filter_fn:()=>TabFilter("status","Pending",TABLE_ROWS,SetAllData,currentPage)
-      },
-      {
-        label: "Paused",
-        value: "Paused",
-        Filter_fn:()=>TabFilter("status","Paused",TABLE_ROWS,SetAllData,currentPage)
-      },
-      {
-        label: "Cancelled",
-        value: "Cancelled",
-        Filter_fn:()=>TabFilter("status","Cancelled",TABLE_ROWS,SetAllData,currentPage)
+        label: "Employee",
+        value: "Employee",
+        Filter_fn:()=>TabFilter("Privilege","Employee",TABLE_ROWS,SetAllData,currentPage)
       },
     ];
-
     return (
       <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
           <div className="mb-8 flex items-center justify-between gap-8">
             <div>
               <Typography variant="h5" >
-                My Orders list
+                Accounts list
               </Typography>
               <Typography  className="mt-1 font-normal">
-                See information about all of my Orders
+                See information about all platform Accounts
               </Typography>
-            </div>
-            <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-              <Button onClick={()=>{toggleCart()}} className="flex items-center gap-3" size="sm">
-              <i class="fa-solid fa-cart-shopping"></i> Add Order
-              </Button>
             </div>
           </div>
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <Tabs value="All" className="w-full md:w-max">
               <TabsHeader>
-              {TABS.map(({ label, value,Filter_fn }) => (
+                {TABS.map(({ label, value,Filter_fn }) => (
                   <Tab key={value} value={value} onClick={()=>{Filter_fn()}}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;
                   </Tab>
@@ -187,7 +134,7 @@ import {
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
-                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"MyOrders")}}
+                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Accounts")}}
                     key={head}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
@@ -205,16 +152,15 @@ import {
               </tr>
             </thead>
             <tbody>
-              {
-              VisibleData.map(
-                ({ img, name, email, Total,status,number, OrderID, online, date }, index) => {
+              {VisibleData.map(
+                ({AccountId,Img,UserName,FirstName,LastName,Privilege,TotalSpent }, index) => {
                   const isLast = index === TABLE_ROWS.length - 1;
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-blue-gray-50";
    
                   return (
-                    <tr key={name}>
+                    <tr key={index}>
   
                       <td className={classes}>
                         <div className="flex flex-col">
@@ -222,76 +168,90 @@ import {
                             variant="small"
                             className="font-normal"
                           >
-                            #{OrderID}
+                            #{AccountId}
+                          </Typography>
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <div className="flex flex-col">
+                          <Typography
+                            variant="small"
+                            className="font-normal"
+                          >
+                            #{UserName}
                           </Typography>
                         </div>
                       </td>
   
                       <td className={classes}>
                         <div className="flex items-center gap-3">
-                          <Avatar src={img} alt={name} size="sm" />
+                          <Avatar src={Img}  size="sm" />
                           <div className="flex flex-col">
                             <Typography
                               variant="small"
                               className="font-normal"
                             >
-                              {name}
+                              {FirstName}
                             </Typography>
                             <Typography
                               variant="small"
                               className="font-normal opacity-70"
                             >
-                              {email}
+                              {LastName}
                             </Typography>
                           </div>
                         </div>
                       </td>
-
                       <td className={classes}>
                       <div className="w-max">
                           <Chip
                             size="sm"
                             variant="filled"
-                            value={status}
+                            value={Privilege}
                             color={
-                              (status === "Paid"||status=="Ready")
+                              Privilege === "Client"
                                 ? "green"
-                                : status === "Pending"
+                                : Privilege === "Employee"
                                 ? "amber"
-                                : status === "Paused"
-                                ? "pink"
                                 : "red"
                             }
                           />
                         </div>
                       </td>
                       <td className={classes}>
-                        <Typography
-                          variant="small"
-                          className="font-normal"
-                        >
-                          {date}
-                        </Typography>
+                        <div className="flex flex-col">
+                          <Typography
+                            variant="small"
+                            className="font-normal"
+                          >
+                            {TotalSpent}
+                          </Typography>
+  
+                        </div>
                       </td>
+                      
                       <td className={classes}>
-                        <Typography
-                          variant="small"
-                          className="font-normal"
-                        >
-                          {Total} TND
-                        </Typography>
-                      </td>
-                      <td className={classes}>
-                      <Tooltip content="Inspect Order">
-                        <IconButton variant="text" onClick={()=>{window.location.href="/UCP/Order"}}>
-                          <EyeIcon className="h-4 w-4" />
+                      <Tooltip content="Set Admin">
+                        <IconButton variant="text" onClick={()=>{SetOpenConfirmAdminDialog(true)}} >
+                        <i class="fa-solid fa-shield"></i>
                         </IconButton>
                       </Tooltip>
-                      <Tooltip content="Cancel Order" >
-                        <IconButton variant="text" onClick={()=>{SetConfirmCancelDialog(true)}} >
-                        <i class="fa-solid fa-xmark h-4 w-4"></i>
+                      <Tooltip content="Set Employee">
+                        <IconButton variant="text" onClick={()=>{SetOpenConfirmEmployeeDialog(true)}}>
+                        <i class="fa-solid fa-shield-halved"></i>
                         </IconButton>
                       </Tooltip>
+                      <Tooltip content="Remove Permissions">
+                        <IconButton variant="text" onClick={()=>{SetOpenConfirmRemovePermissionDialog(true)}}>
+                        <i class="fa-solid fa-handshake-slash w-5 h-5 mx-1"></i>
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip content="Delete Account">
+                        <IconButton variant="text" onClick={()=>{SetOpenDeleteDialog(true)}}>
+                        <i class="fa-solid fa-trash"></i>
+                        </IconButton>
+                      </Tooltip>
+  
                       
                       </td>
                     </tr>
@@ -309,7 +269,10 @@ import {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}/>
         </CardFooter>
-        <ConfirmDialog  Open={ConfirmCancelDialog} Action={()=>{console.log("Canceling order")}} HandleOpen={()=>{SetConfirmCancelDialog(!ConfirmCancelDialog)}} Icon={'<i class="fa-solid fa-store-slash h-4 w-4 m-1"></i>'} Title={"Cancel Order"} Content="Are you sure you wanna cancel your order?" />
+        <ConfirmDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Account")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Account"} Content="Are you sure you want to delete this Account?" />
+        <ConfirmDialog  Open={OpenConfirmAdminDialog} Action={()=>{console.log("Setting user to admin")}} HandleOpen={()=>{SetOpenConfirmAdminDialog(!OpenConfirmAdminDialog)}} Icon={'<i class="fa-solid fa-shield h-5 w-5 mx-1"></i>'} Title={"Admin Permission"} Content="Are you sure you want to give this user an admin  permission?" />
+        <ConfirmDialog  Open={OpenConfirmEmployeeDialog} Action={()=>{console.log("Setting user to employee")}} HandleOpen={()=>{SetOpenConfirmEmployeeDialog(!OpenConfirmEmployeeDialog)}} Icon={'<i class="fa-solid fa-shield-halved h-5 w-5 mx-1"></i>'} Title={"Employee Permission"} Content="Are you sure you want to give this user an employee permission?" />
+        <ConfirmDialog  Open={OpenConfirmRemovePermissionDialog} Action={()=>{console.log("Setting user to employee")}} HandleOpen={()=>{SetOpenConfirmRemovePermissionDialog(!OpenConfirmRemovePermissionDialog)}} Icon={'<i class="fa-solid fa-handshake-slash w-5 h-5 mx-1"></i>'} Title={"Remove Permissions"} Content="Are you sure you want to remove this user's permissions and set him back to being a standard client?" />
       </>
     );
   }

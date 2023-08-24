@@ -163,7 +163,7 @@ export default function SidebarWithCta() {
           </ListItemSuffix>
         </ListItem>
 
-        <ListItem onClick={()=>{window.location.href="/UCP/Products"}}>
+        <ListItem onClick={()=>{window.location.href="/UCP/Accounts"}}>
           <ListItemPrefix>
           <i class="fa-solid fa-users h-5 w-5"></i>
           </ListItemPrefix>
@@ -175,7 +175,7 @@ export default function SidebarWithCta() {
 
         
 
-        <ListItem>
+        <ListItem onClick={()=>{window.location.href="/UCP/Inbox"}}>
           <ListItemPrefix>
             <InboxIcon className="h-5 w-5" />
           </ListItemPrefix>

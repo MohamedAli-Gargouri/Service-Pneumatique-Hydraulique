@@ -15,22 +15,28 @@ import {
     IconButton,
     Tooltip,
   } from "@material-tailwind/react";
-function Pagination(props) {
-
-  const [currentPage, setCurrentPage] = React.useState(1);
+function Pagination({AllData,VisibleData,SetVisibleData,currentPage,setCurrentPage}) {
     //Items per page
-  const itemsPerPage = 4;
+  const itemsPerPage = 2;
     // Calculate the index range for the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  // Slice the data array to display only the items for the current page
-  const currentData = props.Data.slice(startIndex, endIndex);
+  // Slice the VisibleData array to display only the items for the current page
+  const currentData = AllData.slice(startIndex, endIndex);
   // Calculate the total number of pages
-  const totalPages = Math.ceil(props.Data.length / itemsPerPage);
+  const [totalPages,SettotalPages] = React.useState(Math.ceil(AllData.length / itemsPerPage))
   React.useEffect(()=>{
-    props.SetData(currentData) 
+    SetVisibleData(currentData) 
   },[currentPage])
+
+  React.useEffect(()=>{
+    setCurrentPage(1)
+    SetVisibleData(currentData)
+    SettotalPages(Math.ceil(AllData.length / itemsPerPage))
+  },[AllData])
+
+
   const handleNextChange = () => {
     if(totalPages>=currentPage+1)
      {

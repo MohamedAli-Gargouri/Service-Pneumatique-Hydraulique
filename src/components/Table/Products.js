@@ -32,22 +32,12 @@ import React from "react";
   } from "@material-tailwind/react";
   import Pagination from "../../utils/Table/Pagination";
   import SortData from "../../utils/Table/SortRows"
+  import TabFilter from "../../utils/Table/TabFilter"
+  import SearchRow from "../../utils/Table/Search"
+
   import CategoryDialog from "../../components/Dialog/Category" 
   import CustomTooltip from "../../components/ToolTip"
-  const TABS = [
-    {
-      label: "All",
-      value: "All",
-    },
-    {
-      label: "Low",
-      value: "Low",
-    },
-    {
-      label: "High",
-      value: "High",
-    },
-  ];
+
    
   const TABLE_HEAD = ["Product Code", "Product", "Price","Status", "Category","Shop Quantity","Stock Quantity" ,"Short Description", "Long Description","Information","Shipping",""];
    
@@ -165,8 +155,29 @@ import React from "react";
     const [OpenCategoryDialog,SetOpenCategoryDialog]=React.useState(false)
     const [OpenDeleteDialog,SetOpenDeleteDialog]=React.useState(false)
     const LightModeState=useSelector(state=>state.lightMode)
-    const [Data,SetData] = React.useState([]);
+
+    const [AllData,SetAllData] = React.useState(TABLE_ROWS);
+    const [VisibleData,SetVisibleData] = React.useState([]);
     const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
+    const [currentPage, setCurrentPage] = React.useState(1); // 'asc' or 'desc'
+
+    const TABS = [
+      {
+        label: "All",
+        value: "All",
+        Filter_fn:()=>TabFilter("Status","All",TABLE_ROWS,SetAllData,currentPage)
+      },
+      {
+        label: "Low",
+        value: "Low",
+        Filter_fn:()=>TabFilter("Status","Low Stock",TABLE_ROWS,SetAllData,currentPage)
+      },
+      {
+        label: "High",
+        value: "High",
+        Filter_fn:()=>TabFilter("Status","High Stock",TABLE_ROWS,SetAllData,currentPage)
+      },
+    ];
     return (
       <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
@@ -184,23 +195,24 @@ import React from "react";
               <i class="fa-solid fa-plus"></i> Add Product
               </Button>
               <Button className="flex items-center gap-3" size="sm" onClick={()=>{SetOpenCategoryDialog(true)}}>
-              <i class="fa-solid fa-plus"></i> Add Category
+              <i class="fa-solid fa-gear"></i> Manage Product Categories
               </Button>
             </div>
           </div>
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <Tabs value="All" className="w-full md:w-max">
+          <Tabs value="All" className="w-full md:w-max">
               <TabsHeader>
-                {TABS.map(({ label, value }) => (
-                  <Tab key={value} value={value}>
+                {TABS.map(({ label, value,Filter_fn }) => (
+                  <Tab key={value} value={value} onClick={()=>{Filter_fn()}}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;
                   </Tab>
                 ))}
               </TabsHeader>
             </Tabs>
             <div className="w-full md:w-72">
-              <Input
+            <Input
                 label="Search"
+                onChange={(e)=>{SearchRow(TABLE_ROWS,AllData,SetAllData,e)}}
                 labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}
                 icon={<MagnifyingGlassIcon className="h-5 w-5" />}
               />
@@ -213,7 +225,7 @@ import React from "react";
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
-                    onClick={()=>{SortData(head,sortDirection,setSortDirection,Data,SetData,"Products")}}
+                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Products")}}
                     key={head}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
@@ -231,7 +243,7 @@ import React from "react";
               </tr>
             </thead>
             <tbody>
-              {Data.map(
+              {VisibleData.map(
                 ({ ProductCode,img,Brand,Model,Price,Category,Shop_Quantity,StockRoom_Quantity,SDescription,LDescription,Information,Shipping,Status}, index) => {
                   const isLast = index === TABLE_ROWS.length - 1;
                   const classes = isLast
@@ -386,11 +398,14 @@ import React from "react";
         </CardBody>
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
         <Pagination
-            Data={TABLE_ROWS}
-            SetData={SetData}/>
+            AllData={AllData}
+            VisibleData={VisibleData}
+            SetVisibleData={SetVisibleData}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}/>
         </CardFooter>
         <ConfirmDeleteDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Product")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Product"} Content="Are you sure you want to delete this product?" />
-        <CategoryDialog  Open={OpenCategoryDialog} Action={()=>{console.log("Opening the Catalog")}} HandleOpen={()=>{SetOpenCategoryDialog(!OpenCategoryDialog)}} Icon={'<i class="fa-solid fa-file-lines"></i>'} Title={"Category Management"} Content="Do you want to manage your E-Commerce categories? here is the right place." />
+        <CategoryDialog  Open={OpenCategoryDialog} Action={()=>{console.log("Opening the Catalog")}} HandleOpen={()=>{SetOpenCategoryDialog(!OpenCategoryDialog)}} Icon={'<i class="fa-solid fa-gear"></i>'} Title={"Category Management"} Content="" />
       </>
     );
   }
