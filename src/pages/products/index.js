@@ -87,7 +87,7 @@ import Breadcrump from "../../components/Breadcrump"
                         
 
                         <div className="col-span-1 flex justify-stretch flex-wrap p-3">
-                            <div className="Order">
+                            <div className="Order" >
                             <Select  labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} variant="static" size="md" label="Sort by">
                             <Option>Default</Option>
                             <Option>Most Popular</Option>

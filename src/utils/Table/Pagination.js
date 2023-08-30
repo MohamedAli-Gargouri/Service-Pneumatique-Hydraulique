@@ -17,7 +17,7 @@ import {
   } from "@material-tailwind/react";
 function Pagination({AllData,VisibleData,SetVisibleData,currentPage,setCurrentPage}) {
     //Items per page
-  const itemsPerPage = 2;
+  const itemsPerPage = 5;
     // Calculate the index range for the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;

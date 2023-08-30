@@ -12,10 +12,10 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
   const data =props.data
   const LightModeState=useSelector(state=>state.lightMode)
   return (
-    <Tabs id="custom-animation"  value={props.DefaultSelectValue}>
+    <Tabs id="custom-animation" className=" overflow-scroll"  value={props.DefaultSelectValue}>
       <TabsHeader>
         {data.map(({ label, value,icon  }) => (
-          <Tab key={value} value={value} className="m-4">
+          <Tab key={value} value={value} className="m-1">
             {icon}
             {label}
           </Tab>

@@ -30,21 +30,21 @@ import ProductImg1 from "../../assets/images/products/product_1.png"
 import ProductImg2 from "../../assets/images/products/product_2.png"
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 
+
   export default function Product() {
     const LightModeState=useSelector(state=>state.lightMode)
+    const AddedImages=React.useRef([])
     return (
         <React.Fragment>
 
  <div class="h-full w-full mb-[1rem]  grid grid-cols-2 justify-center items-center ">
 
 <div className="h-full w-full ImageGallery col-span-2 md:col-span-1">
-    <Gallery Deletable={false} Addable={true} />
+    <Gallery AddedImages={AddedImages} Deletable={true} Addable={true} />
 </div>
 
 <div  className="mt-4 h-full gap-2 w-full Description col-span-2 md:col-span-1 flex flex-col items-center  justify-center">
 
-
-    <Input   id="ProductImgInput" type="file" variant="static"  className="hidden"    />
     <Input   labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label=" Product Name"   icon={<i class="fa-solid fa-info"></i>} />   
 
     <Input   labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Product Price"   icon={<i class="fa-solid fa-dollar-sign"></i>} /> 

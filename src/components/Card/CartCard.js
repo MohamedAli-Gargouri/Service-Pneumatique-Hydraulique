@@ -17,68 +17,42 @@ import {
     const [isHovered, setIsHovered] = React.useState(false);
 
         return (
-            <Card className=" shadow-md p-2 m-2" >
-              <div className="flex flex-col justify-center items-stretch">
-      
-                  <div className=" bg-gray-300 w-full " onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>        
-                   <img src={isHovered?productSample1:productSample2} className=" w-full h-full cover-full Imageshadow" />
-                  </div>
-      
+            <div className="w-full  shadow-lg" >
+              <div className=" grid grid-row grid-cols-6 justify-center items-center">
 
+                      <div className=" col-span-1">
+                          <IconButton size="sm" variant="text" className=" ml-4 rounded-full hover:scale-150">
+                          <i class="fa-solid fa-trash"></i>
+                          </IconButton>
       
-                      <div className="flex flex-row gap-2 justify-center items-center">
-                          <div className="Product Catalog ">
-                          <Typography   variant="p" className={`font-light`}>
+                      </div>
+         
+                      <div className=" col-span-2 flex flex-col justify-center items-center">
+
+                          <Typography   variant="h6" className={`font-light`}>
                               Compressor
                           </Typography>
-                          </div>
-                          <div className="Product Title  ">
+
                           <Typography   variant="p" className={`font-body`}>
                           MX-74070
                           </Typography>
-                          </div>
-
-                          <div className="Price">
                             <Typography   variant="p"  color="green" className={`font-bold`}>
-                             1000 TND
+                             2x 1000TND
                           </Typography> 
-                            </div>
+                            
 
 
       
                           
                       </div>
-      
-                  
-      
-                 
-                    <div className="flex flex-row w-full  justify-evenly ">
-                    <div className="Love my-2">
-                          <IconButton size="sm" variant="text" className="rounded-full hover:scale-150">
-                          <i class="fa-solid fa-heart"></i>
-                          </IconButton>
-      
-                    </div>
-                    <div className="Trash my-2">
-                          <IconButton size="sm" variant="text" className="rounded-full hover:scale-150">
-                          <i class="fa-solid fa-trash"></i>
-                          </IconButton>
-      
-                    </div>
-                    </div>
-                        
-                          <div className="relative w-full flex flex-wrap justify-center items-center">
+                    <div className=" col-span-3 relative w-full flex flex-wrap justify-center items-center">
                           <QuantityInput/>
                           </div>
-      
-                          
-                     
-      
-                  
+
                   </div>
       
                
-            </Card>
+            </div>
           );
     
 

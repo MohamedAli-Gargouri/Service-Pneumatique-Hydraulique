@@ -20,6 +20,9 @@ import UCP_AddProduct from "./pages/UCP/AddProduct"
 import UCP_MyOrders from "./pages/UCP/MyOrders"
 import UCP_Accounts from "./pages/UCP/Accounts"
 import UCP_Inbox from "./pages/UCP/Inbox"
+import UCP_Invoice from "./pages/UCP/Invoice"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function App() {
   const LightModeState=useSelector(state=>state.lightMode)
   const root = document.getElementById("root");
@@ -43,6 +46,18 @@ export default function App() {
   }
   
   return (<div className='animate-fade w-full'>
+            <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={LightModeState==LightMode?"colored":"dark"}
+            />
             <Cart />
             <Routes>
             <Route path="/" element={<Home/>}/>
@@ -61,6 +76,7 @@ export default function App() {
             <Route path="/UCP/AddProduct" element={<UCP_AddProduct/>}/>
             <Route path="/UCP/Accounts" element={<UCP_Accounts/>}/>
             <Route path="/UCP/Inbox" element={<UCP_Inbox/>}/>
+            <Route path="/UCP/Invoice" element={<UCP_Invoice/>}/>
             <Route path="/Dev" element={<Dev/>}/>
             <Route path="/Loading" element={<Loading/>}/>
             </Routes>

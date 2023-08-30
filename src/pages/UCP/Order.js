@@ -34,7 +34,7 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
     return (
       <div className="flex flex-row items-stretch flex-nowrap">
 
-<aside className={`rounded-none p-4 shadow-xl shadow-blue-gray-900/5 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden md:block w-[20rem] animate-fade`}>
+<aside className={`rounded-none p-4 shadow-xl shadow-blue-gray-900/5 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
 <SideBar/>
 </aside>
 
@@ -44,8 +44,8 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
         
         </section>
 
-        <section className="w-full flex justify-center  text-center">      
-        <Card  className={`p-2 w-[100%] max-w-6xl  min-h-[72vh] m-4 z-0   ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
+        <section className="w-[98vw] xl:w-[80vw] flex justify-center  text-center">      
+        <Card  className={`p-2 w-full  min-h-[72vh] mt-4 mx-2 z-0   ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
 <Order/>
           
 

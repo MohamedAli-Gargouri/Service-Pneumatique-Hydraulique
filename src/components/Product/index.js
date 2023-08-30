@@ -32,22 +32,19 @@ import ProductImg1 from "../../assets/images/products/product_1.png"
 import ProductImg2 from "../../assets/images/products/product_2.png"
 import ProductImg3 from "../../assets/images/products/product_3.png"
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
-
   export default function Product() {
     const LightModeState=useSelector(state=>state.lightMode)
+    const AddedImages=React.useRef([])
     return (
         <React.Fragment>
 
  <div class="h-full w-full mb-[1rem]  grid grid-cols-2 justify-center items-center ">
 
 <div className="h-full w-full ImageGallery col-span-2 md:col-span-1">
-    <Gallery Deletable={true} Addable={true} Images={[ProductImg1,ProductImg2,ProductImg3]}/>
+    <Gallery AddedImages={AddedImages}  Deletable={true} Addable={true} Images={[ProductImg1,ProductImg2,ProductImg3]}/>
 </div>
 
-<div  className="mt-4 h-full gap-2 w-full Description col-span-2 md:col-span-1 flex flex-col items-center  justify-center">
-
-
-    <Input   id="ProductImgInput" type="file" variant="static"  className="hidden"    />
+<div  className="mt-4 h-full gap-2 w-full Description col-span-2 md:col-span-1 flex flex-col items-center  justify-center">    
     <Input  defaultValue="MX-15648679" labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label=" Product Name"   icon={<i class="fa-solid fa-info"></i>} />   
 
     <Input  defaultValue="500TND" labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Product Price"   icon={<i class="fa-solid fa-dollar-sign"></i>} /> 
@@ -95,7 +92,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque vo
   </div>      
     },
     {
-      label: "Additional Information",
+      label: "Additional  Information",
       value: "Additional Information",
       icon:<i class="fa-solid fa-info mx-4"></i>,
       desc:   <div class="">
@@ -111,11 +108,11 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque vo
         </div>,
     },
     {
-      label: "Shipping & returns",
+      label: "Delivery, Returns",
       value: "Shipping & returns",
       icon:<i class="fa-solid fa-truck-fast mx-4"></i>,
       desc:   <div class="">
-         <Typography variant="h5" className=" font-bold m-4">
+         <Typography variant="h6" className=" font-bold m-4">
          Delivery & returns
     </Typography>
 

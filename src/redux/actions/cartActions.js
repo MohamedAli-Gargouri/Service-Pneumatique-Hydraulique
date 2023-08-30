@@ -1,10 +1,10 @@
 export const OPENCART=()=>{
     return{
-        type:"OPEN_CART"
+        type:"CARTOPEN"
     }
 }
 export const CLOSECART=()=>{
     return{
-        type:"CLOSE_CART"
+        type:"CARTCLOSED"
     }
 }

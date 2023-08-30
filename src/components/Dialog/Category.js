@@ -19,12 +19,12 @@ export default function Category(props) {
   const mdbreakpoint=720
   const CategoryTabs = [
     {
-      label: "Manage Categories",
+      label: "Manage",
       value: "Manage",
 
     },
     {
-      label: "Add Category",
+      label: "Add",
       value: "Add",
     },
     
@@ -35,7 +35,7 @@ export default function Category(props) {
         open={props.Open}
         handler={props.HandleOpen}
         size={window.innerWidth<mdbreakpoint?"xxl":"xl"}
-        className="]"
+        className=""
         animate={{
           mount: { scale: 1, y: 0 },
           unmount: { scale: 0.9, y: -100 },
@@ -50,7 +50,7 @@ export default function Category(props) {
         <DialogBody divider className=" max-h-[70vh] overflow-scroll">
            {props.Content}
 
-           <Tabs value="Manage" className="" >
+           <Tabs value="Manage" className=" overflow-scroll" >
       <TabsHeader
         className="bg-transparent"
         indicatorProps={{

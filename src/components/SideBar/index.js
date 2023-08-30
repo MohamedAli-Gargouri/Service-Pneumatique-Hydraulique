@@ -173,6 +173,17 @@ export default function SidebarWithCta() {
           </ListItemSuffix>
         </ListItem>
 
+
+        <ListItem onClick={()=>{window.location.href="/UCP/Invoice"}}>
+          <ListItemPrefix>
+          <i class="fa-solid fa-receipt"></i>
+          </ListItemPrefix>
+          Invoice
+          <ListItemSuffix>
+            <Chip value="100" size="sm" color="green" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
+          </ListItemSuffix>
+        </ListItem>
+
         
 
         <ListItem onClick={()=>{window.location.href="/UCP/Inbox"}}>

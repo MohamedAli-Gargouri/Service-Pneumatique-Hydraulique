@@ -1,9 +1,13 @@
-const CartReducer=(state=false,action)=>
-{
-    switch(action.type){
-        case "OPEN_CART": return true
-        case "CLOSE_CART": return false
-        default : return false
+const CartReducer = (state = false, action) => {
+    switch (action.type) {
+      case "CARTOPEN":
+        return true;
+      case "CARTCLOSED":
+        return false;
+      default:
+        return state;
     }
-}
-export default CartReducer;
+  };
+  
+  export default CartReducer;
+  

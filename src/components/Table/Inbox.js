@@ -118,7 +118,7 @@ import React from "react";
           </div>
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <Tabs value={SelectedTab} className="w-full md:w-max">
-              <TabsHeader>
+              <TabsHeader className=" overflow-auto">
                 {TABS.map(({ label, value,Tab_fn }) => (
                   <Tab key={value} value={value} onClick={()=>{Tab_fn()}}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;

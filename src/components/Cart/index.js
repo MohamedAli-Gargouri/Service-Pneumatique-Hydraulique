@@ -10,7 +10,9 @@ import {CLOSECART} from "../../redux/actions/cartActions"
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import {disableScroll,enableScroll} from "../../utils/others/Scroll"
 import CartCard from "../Card/CartCard"
+import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 export default function Cart() {
+  const LightModeState=useSelector(state=>state.lightMode)
   const dispatch=useDispatch();
   const smBreakpoint = 540;
   const [openRight, setOpenRight] = React.useState(false);
@@ -31,7 +33,7 @@ export default function Cart() {
         placement="right"
         open={CartStatus}
         onClose={closeDrawerRight}
-        className="p-2 rounded-l-md enable-scroll"
+        className={`p-2 rounded-l-md enable-scroll ${LightModeState==LightMode().type?"bg-whiteTheme_T1":"bg-darkTheme_T1"}`}
         size={window.innerWidth < smBreakpoint?"100vw":"30vw"}
       >
         {/*==========================S-Header========================== */}
@@ -42,7 +44,6 @@ export default function Cart() {
           </Typography>
           <IconButton
             variant="text"
-            color="blue-gray"
             onClick={closeDrawerRight}
           >
             <svg
@@ -53,7 +54,7 @@ export default function Cart() {
         {/*==========================E-Header========================== */}
 
         <div className="Total w-full flex justify-between items-center ">
-        <Typography variant="h6" className="text-center" color="blue-gray">
+        <Typography variant="h6" className="text-center">
         <i class="fa-solid fa-dollar-sign m-2"></i>
             Cart Total :
           </Typography>
@@ -63,14 +64,14 @@ export default function Cart() {
           </Typography>
         </div>
 
-        <div className="Total  flex flex-col justify-stretch mx-4 mt-4 items-stretch ">
+        <div className="Total  flex flex-col justify-stretch mx-4 my-4 items-stretch ">
         <Button className="flex items-center gap-3">
         <i class="fa-solid fa-cart-shopping"></i>
         Order Products
       </Button>
         </div>
 
-        <div className=" flex flex-col flex-wrap justify-center items-center p-4">
+        <div className=" flex flex-col flex-wrap justify-center items-center gap-1">
 
             <CartCard/>
 

@@ -29,10 +29,19 @@ import TopBar from "../../components/Topbar"
 import Topbarbg from "../../assets/images/Topbarbg.jpg"
   export default function User_Control_Panel() {
     const LightModeState=useSelector(state=>state.lightMode)
+    const [imageSrc, setImageSrc] = React.useState('');
+
+    const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setImageSrc(imageUrl);
+    }
+  };
     return (
       <div className="flex flex-row items-stretch flex-nowrap">
 
-<aside className={`rounded-none p-4 shadow-xl shadow-blue-gray-900/5 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden md:block w-[20rem] animate-fade`}>
+<aside className={`rounded-none p-4 shadow-xl shadow-blue-gray-900/5 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
 <SideBar/>
 </aside>
 
@@ -42,16 +51,16 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
 
         </section>
 
-        <section className="w-full flex justify-center  text-center">      
-        <Card  className={`p-2 w-[100%] max-w-6xl  min-h-[72vh] m-4 z-0 grid grid-cols-1 gap-3 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
+        <section className="w-[98vw] xl:w-[80vw] flex justify-center  text-center">      
+        <Card  className={`p-2 w-full  min-h-[72vh] mt-4 mx-1 z-0 grid grid-cols-1 gap-3 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
 
           <div className=" flex flex-col justify-center items-center col-span-1" >
           <img
           className="h-[30vh] w-[30vh] rounded-full object-cover object-center mb-4 "
-          src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
+          src={imageSrc==''?'https://via.placeholder.com/300x200.png?text=Placeholder+Image':imageSrc}
           alt="nature image"
           />
-          <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Profile Image" type="file" icon={<i class="fa-solid fa-image"></i>} />
+          <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Profile Image" type="file" accept="image/*" onChange={handleImageUpload} icon={<i class="fa-solid fa-image"></i>} />
 
           </div>
           <div className="col-span-1 flex flex-col justify-center items-center gap-2" >
@@ -68,7 +77,7 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="-mt-px h-4 w-4"
+                    className="-mt-px h-4 w-4 inline"
                   >
                     <path
                       fillRule="evenodd"

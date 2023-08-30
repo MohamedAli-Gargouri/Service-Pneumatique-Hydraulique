@@ -195,13 +195,13 @@ import React from "react";
               <i class="fa-solid fa-plus"></i> Add Product
               </Button>
               <Button className="flex items-center gap-3" size="sm" onClick={()=>{SetOpenCategoryDialog(true)}}>
-              <i class="fa-solid fa-gear"></i> Manage Product Categories
+              <i class="fa-solid fa-gear"></i> Manage Categories
               </Button>
             </div>
           </div>
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <Tabs value="All" className="w-full md:w-max">
-              <TabsHeader>
+              <TabsHeader className=" overflow-auto">
                 {TABS.map(({ label, value,Filter_fn }) => (
                   <Tab key={value} value={value} onClick={()=>{Filter_fn()}}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;

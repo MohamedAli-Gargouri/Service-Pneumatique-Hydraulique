@@ -15,14 +15,14 @@ import {
     SunIcon,
     MoonIcon
   } from "@heroicons/react/24/outline";
-
+ import Notification from "../Notification";
   import LanguageSelect from "../NavBar/languageListSelect";
 export default function SidebarWithLogo( props) {
   const [open, setOpen] = React.useState(false);
   const toggleOpen = () => setOpen(!open);
-  const MdBreakPoint=720;
+  const XLBreakPoint=1140;
   const updateWindowDimensions = () => {
-    if(window.innerWidth>MdBreakPoint)
+    if(window.innerWidth>XLBreakPoint)
     {
         setOpen(false);
     }
@@ -58,7 +58,7 @@ export default function SidebarWithLogo( props) {
 <div className="grid col-span-1 grid-cols-2">
 <div className=" flex justify-start col-span-1">
 
-<IconButton className="rounded-full md:hidden" onClick={()=>toggleOpen()} >
+<IconButton className="rounded-full xl:hidden" onClick={()=>toggleOpen()} >
 <i class="fa-solid fa-bars"></i>
 </IconButton>
 
@@ -88,18 +88,14 @@ export default function SidebarWithLogo( props) {
          <LanguageSelect/>
          </div>
 
-<Badge content="5"  className="">
-<IconButton className="rounded-full" >
-<i class="fa-solid fa-bell"></i>
-</IconButton>
-</Badge>
 
+<Notification/>
 
  <Avatar
 variant="circular"
 size="sm"
-alt="tania andrew"
-className="border border-blue-500 ml-4"
+alt="User"
+className="border border-blue-500 ml-4 hover:scale-125"
 src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
 />
 
@@ -112,7 +108,7 @@ src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1
         </Card>
       </Collapse>
     </div>
-    <Typography color="red" variant="h3" className={`text-center md:text-left col-span-1  tc-darkTheme_T1 `} >
+    <Typography color="red" variant="h3" className={`text-center xl:text-left col-span-1  tc-darkTheme_T1 `} >
     {props.Icon!=undefined?<span className="mr-4" dangerouslySetInnerHTML={{ __html: props.Icon }}></span>:null}{props.SectionName}
             </Typography>
     </div>

@@ -20,24 +20,62 @@ import {
   } from "@material-tailwind/react";
   import ConfirmDialog from "../Dialog/Confirm"
   import PlaceHolderImg from "../../assets/images/Placeholderimg.png"
-   export default function Gallery(props) {
+
+  import {toast } from 'react-toastify';
+  
+   export default function Gallery({AddedImages,Images,Addable,Deletable}) {
 const [SelectedImgIndex,SetSelectedImgIndex]=useState(0) 
 const [OpenDeleteDialog,SetOpenDeleteDialog]=useState(false)
- const [ProduictImages,SetProductImages]=useState(props.Images!=undefined?props.Images:[PlaceHolderImg]) 
+const [ProductImages,SetProductImages]=useState(Images!=undefined?Images:[PlaceHolderImg]) 
+const PlaceholderURL="https://via.placeholder.com/300x200.png?text=Placeholder+Image"
+  
+const handleImageUpload = (e) => {
+    if(ProductImages.length<3)
+    {
+        const file = e.target.files[0];
+        if (file) {
+          const imageUrl = URL.createObjectURL(file);
+          SetProductImages(ProductImages.length==1&&ProductImages[0]==PlaceholderURL?[imageUrl]:[...ProductImages,imageUrl])
+          SetSelectedImgIndex(ProductImages.length==1&&ProductImages[0]==PlaceholderURL?0:ProductImages.length)
+          AddedImages.current=[...AddedImages.current,imageUrl]
+          
+        }
+    }else
+    {
+        toast.info('You cannot add more than three images.', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: toast.SLIDE, // This enables the slide animation
+              
+            });
+    }
+ 
+};
+
+const handleDelete = (e) => {
+    SetProductImages(ProductImages.length==1?[PlaceholderURL]:ProductImages.filter((a,index)=>index!=SelectedImgIndex))
+    SetSelectedImgIndex(0)
+  };
     return (
       <React.Fragment>
-                <div className="w-full h-full Images container grid grid-cols-8 items-center justify-center">
+                <div className="w-full h-full grid grid-cols-8 items-center justify-center">
+                          {/*==================Here is the unselected Pictures=================== */}
+                    <div className=" order-2 md:order-1 col-span-8 md:block w-full h-full UnselectedImages md:col-span-2 ">
 
-                    <div className="w-full h-full UnselectedImages col-span-2">
+                        <div className="flex w-full h-full flex-row  md:flex-col justify-center md:justify-start items-center flex-wrap">
 
-                        <div className=" w-full h-full flex flex-col justify-start items-center flex-wrap">
-
-                           {ProduictImages.map((imageurl,index)=>{
+                           {ProductImages.map((imageurl,index)=>{
                             
                                 return(
-                                    <div onClick={()=>{SetSelectedImgIndex(index)}} className={`${index==SelectedImgIndex?"border-red-200":""} Unselected bg-gray-300 rounded-md img border shadow-lg mx-4 my-1  p-4 hover:scale-110 hover:border-red-200 transition duration-300 ease-in-out cursor-pointer`}>                            
+                                    <div onClick={()=>{SetSelectedImgIndex(index)}} className={`w-18 h-16 md:w-28 md:h-24 ${index==SelectedImgIndex?"border-red-200":""} Unselected bg-gray-300 rounded-md img border shadow-lg mx-1  my-1  p-1 hover:scale-110 hover:border-red-200 transition duration-300 ease-in-out cursor-pointer`}>                            
                                         <img
-                                className="h-full w-full rounded-sm object-cover object-center shadow-x"
+                                className="rounded-sm w-full h-full  shadow-x"
                                 src={imageurl}
                                 />
                                 </div>
@@ -53,24 +91,30 @@ const [OpenDeleteDialog,SetOpenDeleteDialog]=useState(false)
                         </div>
 
                     </div>
-                    <div className="selectedImage col-span-6 ">
-                    {ProduictImages.map((imageurl,index)=>{
+
+                    {/*==================Here is the selected Picture=================== */}
+                    <div className="order-1 selectedImage col-span-8 md:col-span-6 w-full h-full ">
+                    {ProductImages.map((imageurl,index)=>{
                             if(index==SelectedImgIndex)
                             {
                                 return(
-                                    <div className="bg-gray-300 rounded-md Selected shadow-lg img border mx-4 my-1  p-4 hover:cursor-pointer">
+                                <div className="relative h-52 bg-gray-300 rounded-md Selected shadow-lg img border mx-1  my-1 md:mr-2 md:h-96 p-1 hover:cursor-pointer">
                                 <img
-                                className=" Imageshadow h-full w-full rounded-lg object-cover object-center shadow-x"
+                                className=" Imageshadow w-full h-full  rounded-md  bg-cover  shadow-x"
                                 src={imageurl}
                                 />
-                                {props.Addable!=undefined &&props.Addable==true ?<IconButton className="mx-2 rounded-full" onClick={()=>{document.getElementById("ProductImgInput").click()}}>
+
+                                <Input   id="ProductImgInput" type="file" variant="static" accept="image/*" onChange={handleImageUpload}  className="hidden"    />
+                                <div className="absolute p-2 w-full bottom-[0%] flex flex-row justify-around items-center flex-wrap"> 
+                                {Addable!=undefined &&Addable==true ?<IconButton className="mx-2 rounded-full" onClick={()=>{document.getElementById("ProductImgInput").click()}}>
                                     <i class="fa-solid fa-plus"></i>
                                     </IconButton>:null}
-                                    {console.log(props.Deletable)}
-                                   {props.Deletable!=undefined &&props.Deletable==true ?<IconButton className="mx-2 rounded-full" onClick={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}}>
+                                   {Deletable!=undefined &&Deletable==true ?<IconButton className="mx-2 rounded-full" onClick={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}}>
                                    <i class="fa-solid fa-circle-xmark"></i>
                                     </IconButton>:null}
-                                    
+
+
+                                </div>
 
                                 </div>
     
@@ -83,7 +127,7 @@ const [OpenDeleteDialog,SetOpenDeleteDialog]=useState(false)
 
                     </div>
 
-                    <ConfirmDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Image")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Product Image"} Content="Are you sure you want to delete this product's image ?" />
+                    <ConfirmDialog  Open={OpenDeleteDialog} Action={()=>{handleDelete()}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Product Image"} Content="Are you sure you want to delete this product's image ?" />
                 </div>
 
            

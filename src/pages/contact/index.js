@@ -44,10 +44,10 @@ import Footer from "../../components/footer"
           <CardBody className="flex flex-col gap-4 ">
 
           <List  className={`my-2 p-0 bg-transparent  opacity-80  ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}>
-          <Typography variant="h6" color="inherit">
+          <Typography variant="h6"  className={` mx-1 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}>
           Siège social et Point de vente
             </Typography>
-          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+          <ListItem className={`mx-1 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"} group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}>
             <ListItemPrefix>
             <i class="fa-solid fa-location-dot"></i>
             </ListItemPrefix>
@@ -56,7 +56,7 @@ import Footer from "../../components/footer"
              Rte de Gabes KM 0.5 Immeuble Elfrikha Sfax - Tunisie
             </ListItemSuffix>
           </ListItem>
-          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+          <ListItem className={`mx-1 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"} group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}>
             <ListItemPrefix>
             <i class="fa-solid fa-phone"></i>
             </ListItemPrefix>
@@ -68,7 +68,7 @@ import Footer from "../../components/footer"
           </ListItem>
 
 
-          <ListItem className="group  hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+          <ListItem className={`mx-1 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"} group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}>
             <ListItemPrefix>
             <i class="fa-solid fa-fax"></i>
             </ListItemPrefix>
@@ -78,7 +78,7 @@ import Footer from "../../components/footer"
             </ListItemSuffix>
           </ListItem>
 
-          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+          <ListItem className={`mx-1 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"} group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}>
             <ListItemPrefix>
             <i class="fa-solid fa-at"></i>
             </ListItemPrefix>
@@ -90,12 +90,12 @@ import Footer from "../../components/footer"
           </ListItem>
 
 
-          <Typography variant="h6" >
+          <Typography variant="h6"className={`mx-1 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`} >
           Point de vente
             </Typography>
 
 
-            <ListItem className="group  hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+            <ListItem className={`mx-1 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"} group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}>
             <ListItemPrefix>
             <i class="fa-solid fa-location-dot"></i>
             </ListItemPrefix>
@@ -103,7 +103,7 @@ import Footer from "../../components/footer"
             <ListItemSuffix className="text-current"> Rte de Gabes KM 0.5 Immeuble Elfrikha Sfax - Tunisie
             </ListItemSuffix>
           </ListItem>
-          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+          <ListItem className={`mx-1 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"} group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}>
             <ListItemPrefix>
             <i class="fa-solid fa-phone"></i>
             </ListItemPrefix>
@@ -114,7 +114,7 @@ import Footer from "../../components/footer"
           </ListItem>
 
 
-          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+          <ListItem className={`mx-1 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"} group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}>
             <ListItemPrefix>
             <i class="fa-solid fa-fax"></i>
             </ListItemPrefix>
@@ -126,7 +126,7 @@ import Footer from "../../components/footer"
             </ListItemSuffix>
           </ListItem>
 
-          <ListItem className="group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105">
+          <ListItem className={`mx-1 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"} group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}>
             <ListItemPrefix>
             <i class="fa-solid fa-at"></i>
             </ListItemPrefix>
@@ -156,7 +156,7 @@ import Footer from "../../components/footer"
       <i class="fa-regular fa-copy"></i>
         </IconButton>
       </PopoverHandler>
-      <PopoverContent>
+      <PopoverContent className={`${LightModeState==LightMode().type?"bg-whiteTheme_T1 tc-whiteTheme_T1":"bg-darkTheme_T1 tc-darkTheme_T1"}`}>
        Information Copied !
       </PopoverContent>
     </Popover>
@@ -185,7 +185,7 @@ import Footer from "../../components/footer"
             <i class="fa-solid fa-envelope "></i> Contact
             </Typography>
           </CardHeader>
-          <CardBody className="flex flex-col gap-4 ">
+          <CardBody className={`flex flex-col gap-4 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`} >
           <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Email" size="lg" color="inherit"  required/>
             <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="First Name" color="inherit" size="lg"required />
             <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Last Name" color="inherit" size="lg" required/>

@@ -29,7 +29,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
           <TranslatedText TranslationPath="Login.Login_Title" TextColor="White"/>
           </Typography>
         </CardHeader>
-        <CardBody className={`flex flex-col gap-4`}>
+        <CardBody className={`flex flex-col gap-4 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}>
           <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Login.Email_Label" />} size="lg" />
           <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Login.Password_Label" />} size="lg" />
           <div className="-ml-2.5">

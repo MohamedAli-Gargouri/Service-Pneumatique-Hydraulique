@@ -46,7 +46,9 @@ export default function ComplexNavbar() {
  const LightModeState=useSelector(state=>state.lightMode)
  const dispatch=useDispatch();
 
- const toggleCart = () =>{dispatch(OPENCART())};
+ const toggleCart = () =>{
+  dispatch(OPENCART())
+};
  const HandleLightModeSwitch=(()=>{
   if (LightModeState==LightMode().type)
   {
@@ -133,7 +135,7 @@ export default function ComplexNavbar() {
           size="sm"
           color="inherit"
           variant="text"
-          onClick={toggleIsNavOpen}
+          onClick={()=>toggleIsNavOpen()}
           className={`ml-auto mr-2 lg:hidden text-current`}
         >
           <Bars2Icon className="h-6 w-6" />
@@ -146,7 +148,7 @@ export default function ComplexNavbar() {
         color="inherit"
         variant="text"
         className="rounded-full"
-        onClick={HandleLightModeSwitch}
+        onClick={()=>HandleLightModeSwitch()}
       >
         {(LightModeState==LightMode().type)?<MoonIcon className="h-4 w-4 md:h-6 md:w-6" />:<SunIcon className="h-6 w-6" />}
       </IconButton>
@@ -159,7 +161,7 @@ export default function ComplexNavbar() {
 
          <div className="Cart mx-1">
          <Badge content="2"  className="">
-          <IconButton variant="text" size="sm" color="inherit" className="rounded-full" onClick={toggleCart}>
+          <IconButton variant="text" size="sm" color="inherit" className="rounded-full" onClick={()=>toggleCart()}>
           <i class="fa-solid fa-bag-shopping"></i>
           </IconButton>
           </Badge>

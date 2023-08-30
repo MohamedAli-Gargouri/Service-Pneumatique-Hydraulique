@@ -33,7 +33,7 @@ import PhoneInput from "../../components/Input/Phone"
         <TranslatedText TranslationPath="Register.Register_Title" TextColor="White"/>
         </Typography>
       </CardHeader>
-      <CardBody className="flex flex-col gap-4">
+      <CardBody className={`flex flex-col gap-4 ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}>
         <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Register.Email_Label" />} size="lg" />
         <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Register.FirstName_Label" />} size="lg" />
         <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="Register.LastName_Label" />} size="lg" />

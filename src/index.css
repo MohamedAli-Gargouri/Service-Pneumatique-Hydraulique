@@ -8,8 +8,14 @@
   /* Add other font properties (e.g., font-weight, font-style) here */
 }
 
+html
+{
+  height: -webkit-fill-available;
+}
 body {
   font-family: 'Roboto', sans-serif;
+  height: 100%;
+  height: -webkit-fill-available;
 }
 
 /*=========VARIABLES======================*/
@@ -204,10 +210,5 @@ body {
 {
   color: inherit !important;
 }
-
-
-
-
-
 
 /*==============E-OVERRIDING THE DEFAULT TAILWIND COLORS FOR INPUTS & ICONS====================*/
