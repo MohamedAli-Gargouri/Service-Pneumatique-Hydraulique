@@ -5,11 +5,19 @@ import PDFFooter from "./PDF_Footer"
 import PDFHeader from "./PDF_Header"
 import SPHLOGO from "../../assets/images/SPH Logo.png"
 export default function InvoiceTemplate({
+  InvoiceNumber,
+  DocumentType,
   SetPDFLoaded,
-  FirstName,
-  LastName,
-  Adress,
-  PhoneNumber,
+  D_FirstName,
+  D_LastName,
+  D_Adress,
+  D_PhoneNumber,
+  D_TaxNumber,
+  H_FirstName,
+  H_LastName,
+  H_Adress,
+  H_PhoneNumber,
+  H_TaxNumber,
   CreationDate,
   LimitDate,
   Discount,
@@ -18,6 +26,7 @@ export default function InvoiceTemplate({
 }) 
 {
 
+      console.log(H_FirstName)
 
   // Define styles for the PDF
 const styles = StyleSheet.create({
@@ -132,10 +141,18 @@ var NbPages = Math.ceil(ProductsData.length==0?1:ProductsData.length / ProductsL
         return(<Page size="A4" style={styles.page}>
 
               <PDFHeader 
-              FirstName={FirstName}
-              LastName={LastName}
-              Adress={Adress}
-              PhoneNumber ={PhoneNumber}
+              InvoiceNumber={InvoiceNumber}
+              DocumentType={DocumentType}
+              D_FirstName={D_FirstName}
+              D_LastName={D_LastName}
+              D_Adress={D_Adress}
+              D_PhoneNumber={D_PhoneNumber}
+              D_TaxNumber={D_TaxNumber}
+              H_FirstName={H_FirstName}
+              H_LastName={H_LastName}
+              H_Adress={H_Adress}
+              H_PhoneNumber={H_PhoneNumber}
+              H_TaxNumber={H_TaxNumber}
               CreationDate ={CreationDate}
               LimitDate ={LimitDate}
               ShowClientInformation={true} />
@@ -162,10 +179,18 @@ var NbPages = Math.ceil(ProductsData.length==0?1:ProductsData.length / ProductsL
 
         return(<Page size="A4" style={styles.page}>
               <PDFHeader 
-              FirstName={FirstName}
-              LastName={LastName}
-              Adress={Adress}
-              PhoneNumber ={PhoneNumber}
+              InvoiceNumber={InvoiceNumber}
+              DocumentType={DocumentType}
+              D_FirstName={D_FirstName}
+              D_LastName={D_LastName}
+              D_Adress={D_Adress}
+              D_PhoneNumber={D_PhoneNumber}
+              D_TaxNumber={D_TaxNumber}
+              H_FirstName={H_FirstName}
+              H_LastName={H_LastName}
+              H_Adress={H_Adress}
+              H_PhoneNumber={H_PhoneNumber}
+              H_TaxNumber={H_TaxNumber}
               CreationDate ={CreationDate}
               LimitDate ={LimitDate}
               ShowClientInformation={false} />
@@ -189,10 +214,18 @@ var NbPages = Math.ceil(ProductsData.length==0?1:ProductsData.length / ProductsL
 
         return(<Page size="A4" style={styles.page}>
               <PDFHeader 
-              FirstName={FirstName}
-              LastName={LastName}
-              Adress={Adress}
-              PhoneNumber ={PhoneNumber}
+              InvoiceNumber={InvoiceNumber}
+              DocumentType={DocumentType}
+              D_FirstName={D_FirstName}
+              D_LastName={D_LastName}
+              D_Adress={D_Adress}
+              D_PhoneNumber={D_PhoneNumber}
+              D_TaxNumber={D_TaxNumber}
+              H_FirstName={H_FirstName}
+              H_LastName={H_LastName}
+              H_Adress={H_Adress}
+              H_PhoneNumber={H_PhoneNumber}
+              H_TaxNumber={H_TaxNumber}
               CreationDate ={CreationDate}
               LimitDate ={LimitDate}
               ShowClientInformation={false} />

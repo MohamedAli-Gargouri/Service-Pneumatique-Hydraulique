@@ -68,12 +68,12 @@ const handleDelete = (e) => {
                           {/*==================Here is the unselected Pictures=================== */}
                     <div className=" order-2 md:order-1 col-span-8 md:block w-full h-full UnselectedImages md:col-span-2 ">
 
-                        <div className="flex w-full h-full flex-row  md:flex-col justify-center md:justify-start items-center flex-wrap">
+                        <div className="flex w-full h-full flex-row md:flex-col justify-center md:justify-center items-center flex-wrap">
 
                            {ProductImages.map((imageurl,index)=>{
                             
                                 return(
-                                    <div onClick={()=>{SetSelectedImgIndex(index)}} className={`w-18 h-16 md:w-28 md:h-24 ${index==SelectedImgIndex?"border-red-200":""} Unselected bg-gray-300 rounded-md img border shadow-lg mx-1  my-1  p-1 hover:scale-110 hover:border-red-200 transition duration-300 ease-in-out cursor-pointer`}>                            
+                                    <div onClick={()=>{SetSelectedImgIndex(index)}} className={` w-20  h-16 md:w-28 md:h-24 ${index==SelectedImgIndex?"border border-red-400":""} Unselected bg-gray-300 rounded-md img  shadow-lg mx-1  my-1 hover:scale-110 hover:border-red-200 transition duration-300 ease-in-out cursor-pointer`}>                            
                                         <img
                                 className="rounded-sm w-full h-full  shadow-x"
                                 src={imageurl}
@@ -98,7 +98,7 @@ const handleDelete = (e) => {
                             if(index==SelectedImgIndex)
                             {
                                 return(
-                                <div className="relative h-52 bg-gray-300 rounded-md Selected shadow-lg img border mx-1  my-1 md:mr-2 md:h-96 p-1 hover:cursor-pointer">
+                                <div className="relative h-52  bg-gray-300 rounded-md Selected shadow-lg img  mx-1  my-1 md:mr-2 md:h-96  hover:cursor-pointer">
                                 <img
                                 className=" Imageshadow w-full h-full  rounded-md  bg-cover  shadow-x"
                                 src={imageurl}

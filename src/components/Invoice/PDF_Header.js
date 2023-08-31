@@ -5,10 +5,18 @@ import { Page,Font, Text, View, Document, StyleSheet,Image } from '@react-pdf/re
 import SPHLOGO from "../../assets/images/SPH Logo.png"
 // Invoice component
 export default function InvoiceHeader({
-  FirstName,
-  LastName,
-  Adress,
-  PhoneNumber,
+  InvoiceNumber,
+  DocumentType,
+  D_FirstName,
+  D_LastName,
+  D_Adress,
+  D_PhoneNumber,
+  D_TaxNumber,
+  H_FirstName,
+  H_LastName,
+  H_Adress,
+  H_PhoneNumber,
+  H_TaxNumber,
   CreationDate,
   LimitDate,
   ShowClientInformation
@@ -59,7 +67,6 @@ const styles = StyleSheet.create({
   },
   logo:
   {
-     left:"5%",
      width:"100rem",
      height:"55rem",
      margin:"10px"
@@ -113,26 +120,39 @@ const styles = StyleSheet.create({
   },
   
 });
-
   return (
     <>
-        <Image src={SPHLOGO} style={styles.logo} />
+    <View style={{ flexDirection:"row",justifyContent:"flex-start", alignItems:"center",left:"5%"}}>
+    <Image src={SPHLOGO} style={styles.logo} />
+
+    <View>
+        <Text style={{ fontSize:11,fontWeight:"black"}}>Company <Text style={{ fontSize:9}}>{H_FirstName} {H_LastName}</Text></Text>
+        <Text style={{ fontSize:11,fontWeight:"black"}}>Address: <Text style={{ fontSize:9}} >{H_Adress}</Text></Text>
+        <Text style={{ fontSize:11,fontWeight:"black"}}>Phone Num: <Text style={{ fontSize:9}}>{H_PhoneNumber}</Text></Text>
+        {DocumentType=="Invoice"?<Text style={{ fontSize:11,fontWeight:"black"}}>Tax Registration: <Text style={{ fontSize:9}}>{H_TaxNumber}</Text></Text>:null}
+        </View>
+    </View>
+        
         <View style={styles.HeaderContainer}>
         <View style={{backgroundColor:"#e53935",width:"60%",height:"15rem"}}></View>
-        <Text>Facture</Text>          
+        <View>
+        <Text>{DocumentType}</Text>
+        {DocumentType=="Invoice"?<Text style={{ fontSize:9,fontWeight:"black"}}>Invoice Num: <Text style={{ fontSize:7,fontWeight:"black"}}>{InvoiceNumber}</Text></Text>:null}
+        </View>         
         <View style={{backgroundColor:"#e53935",width:"15%",height:"15rem"}}></View>
         </View>
 
         {ShowClientInformation&&
         <View style={styles.HContainerBetween}>
         <View>
-        <Text style={{ fontSize:11,fontWeight:"black"}}>Billed to Mr/Ms <Text style={{ fontSize:9}}>{FirstName} {LastName}</Text></Text>
-        <Text style={{ fontSize:11,fontWeight:"black"}}>Address: <Text style={{ fontSize:9}} >{Adress}</Text></Text>
-        <Text style={{ fontSize:11,fontWeight:"black"}}>Phone Number: <Text style={{ fontSize:9}}>{PhoneNumber}</Text></Text>
+        <Text style={{ fontSize:11,fontWeight:"black"}}>Billed to <Text style={{ fontSize:9}}>{D_FirstName} {D_LastName}</Text></Text>
+        <Text style={{ fontSize:11,fontWeight:"black"}}>Address: <Text style={{ fontSize:9}} >{D_Adress}</Text></Text>
+        <Text style={{ fontSize:11,fontWeight:"black"}}>Phone Num: <Text style={{ fontSize:9}}>{D_PhoneNumber}</Text></Text>
+        {DocumentType=="Invoice"?<Text style={{ fontSize:11,fontWeight:"black"}}>Tax Registration: <Text style={{ fontSize:9}}>{D_TaxNumber}</Text></Text>:null}
         </View>
         <View style={styles.LimitsContainer}>
-        <Text style={{ fontSize:13,fontWeight:"black"}}>Creation Date: <Text style={{ fontSize:9}}>{CreationDate}</Text></Text>
-        <Text style={{ fontSize:13,fontWeight:"black"}} >Limit Date: <Text style={{ fontSize:9}}>{LimitDate}</Text></Text>
+        <Text style={{ fontSize:11,fontWeight:"black"}}>Creation Date: <Text style={{ fontSize:9}}>{CreationDate}</Text></Text>
+        <Text style={{ fontSize:11,fontWeight:"black"}} >Limit Date: <Text style={{ fontSize:9}}>{LimitDate}</Text></Text>
         </View>
         </View>
         }

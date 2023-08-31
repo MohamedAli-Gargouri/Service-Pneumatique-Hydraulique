@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   SubTable: {
-    width: '30%',
+    width: '40%',
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: '#000',
@@ -117,6 +117,15 @@ const CalculateTotal=((Products)=>{
     });
     return total;
   })
+
+const subTotal_value = CalculateTotal(ProductsData); 
+
+const taxAmount = (subTotal_value * (TaxRate / 100)).toFixed(2); 
+
+const discountAmount = (subTotal_value * (Discount / 100)).toFixed(2); 
+
+const total = (subTotal_value + parseFloat(taxAmount) - parseFloat(discountAmount)).toFixed(2);
+
   return (
        <>
         <View style={styles.section}>
@@ -160,8 +169,8 @@ const CalculateTotal=((Products)=>{
           <View style={{flexDirection:"row",justifyContent:"flex-end",alignItems:"flex-end"}}>
           <View style={styles.SubTable}>
           <View  style={styles.tableHeader}>
-          <Text style={{fontSize:12}}>Total </Text>
-          <Text style={{fontSize:12}}>{CalculateTotal(ProductsData).toFixed(2)} TND</Text>
+          <Text style={{fontSize:12}}>Sub Total </Text>
+          <Text style={{fontSize:12}}>{subTotal_value} TND</Text>
           </View>
           </View>
           </View>
@@ -171,6 +180,7 @@ const CalculateTotal=((Products)=>{
           <View  style={styles.tableHeader}>
           <Text style={{fontSize:12}}>Discount </Text>
           <Text style={{fontSize:12}}>{Discount}%</Text>
+          <Text style={{fontSize:12}}>-{discountAmount} TND</Text>
           </View>
           </View>
           </View>
@@ -180,6 +190,7 @@ const CalculateTotal=((Products)=>{
           <View  style={styles.tableHeader}>
           <Text style={{fontSize:12}}>Tax Rate </Text>
           <Text style={{fontSize:12}}>{TaxRate}%</Text>
+          <Text style={{fontSize:12}}>+{taxAmount} TND</Text>
           </View>
           </View>
           </View>
@@ -187,8 +198,8 @@ const CalculateTotal=((Products)=>{
           <View style={{flexDirection:"row",justifyContent:"flex-end",alignItems:"flex-end"}}>
           <View style={styles.SubTable}>
           <View  style={styles.tableHeader}>
-          <Text style={{fontSize:12}}>Total (TTI) </Text>
-          <Text style={{fontSize:12}}>{(CalculateTotal(ProductsData)+CalculateTotal(ProductsData)*(TaxRate)/100-CalculateTotal(ProductsData)*(Discount/100)).toFixed(2)}</Text>
+          <Text style={{fontSize:12}}>Total (TTC) </Text>
+          <Text style={{fontSize:12}}>{total} TND</Text>
           </View>
           </View>
           </View>
