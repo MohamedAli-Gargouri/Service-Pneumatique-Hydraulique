@@ -1,5 +1,5 @@
 import React from "react";
-
+import TranslatedText from "../../utils/Translation"
 import {
   Button,
   Dialog,
@@ -15,16 +15,19 @@ import {
 } from "@material-tailwind/react";
 import AddCategory from "../Category/Add"
  import CategoryTable from "../Table/Category"
-export default function Category(props) {
+ import { useSelector } from "react-redux/es/hooks/useSelector";
+import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+export default function Category({Icon,Open,HandleOpen,Title,Content}) {
+  const LightModeState=useSelector(state=>state.lightMode)
   const mdbreakpoint=720
   const CategoryTabs = [
     {
-      label: "Manage",
+      label: <TranslatedText TranslationPath="UCP.CategoryTable.TabFilter.Manage"/>,
       value: "Manage",
 
     },
     {
-      label: "Add",
+      label: <TranslatedText TranslationPath="UCP.CategoryTable.TabFilter.Add"/>,
       value: "Add",
     },
     
@@ -32,10 +35,10 @@ export default function Category(props) {
   return (
     <>
       <Dialog
-        open={props.Open}
-        handler={props.HandleOpen}
-        size={window.innerWidth<mdbreakpoint?"xxl":"xl"}
-        className=""
+        open={Open}
+        handler={HandleOpen}
+        size="xxl"
+        className={` ${LightModeState==LightMode().type?"bg-whiteTheme_T1 tc-whiteTheme_T1":"bg-darkTheme_T1 tc-darkTheme_T1"}`}
         animate={{
           mount: { scale: 1, y: 0 },
           unmount: { scale: 0.9, y: -100 },
@@ -43,45 +46,45 @@ export default function Category(props) {
       >
         <DialogHeader>
             
-        <Typography  variant="p"  className={`m-1 flex justify-center items-center gap-2 font-black  `}>
-        <div dangerouslySetInnerHTML={{ __html: props.Icon }}></div> {props.Title}
+        <Typography  variant="p" color={LightModeState==LightMode().type?"black":"white"}  className={`m-1 flex justify-center items-center gap-2 font-black  `}>
+        <div dangerouslySetInnerHTML={{ __html: Icon }}></div> {Title}
         </Typography> 
             </DialogHeader>
-        <DialogBody divider className=" max-h-[70vh] overflow-scroll">
-           {props.Content}
+        <DialogBody divider className=" h-full w-full overflow-scroll">
+           {Content}
 
-           <Tabs value="Manage" className=" overflow-scroll" >
+           <Tabs value="Manage"  >
       <TabsHeader
-        className="bg-transparent"
+        className=""
         indicatorProps={{
-          className: "bg-gray-900/10 shadow-none !text-gray-900",
+          className: ` ${LightModeState==LightMode().type?" tc-whiteTheme_T1":" tc-darkTheme_T1"}`
         }}
       >
         {CategoryTabs.map(({ label, value }) => (
-          <Tab key={value} value={value}>
+          <Tab style={{ textWrap:"nowrap"}}  key={value} value={value}>
             {value=="Manage"?<i class="fa-solid fa-list-check h-5 w-5 m-1"></i>:<i class="fa-solid fa-plus h-5 w-5 m-1"></i>}
             {label}
           </Tab>
         ))}
       </TabsHeader>
-      <TabsBody>
+      <TabsBody className={`w-full h-full ${LightModeState==LightMode().type?" tc-whiteTheme_T1":" tc-darkTheme_T1"}`}>
         {CategoryTabs.map(({ value, desc }) => (
-          <TabPanel key={value} value={value}>
-            {value=="Manage"?<CategoryTable/>:<AddCategory/>}
+          <TabPanel className="w-full h-full" key={value} value={value}>
+            {value=="Manage"?<CategoryTable HandleOpen={HandleOpen}/>:<AddCategory HandleOpen={HandleOpen}/>}
           </TabPanel>
         ))}
       </TabsBody>
     </Tabs>
            
         </DialogBody>
-        <DialogFooter>
+        <DialogFooter >
           <Button
             variant="text"
-            onClick={props.HandleOpen}
+            onClick={HandleOpen}
             className="mr-1"
           >
             <i class="fa-solid fa-arrow-left mx-1"></i>
-            <span>Back</span>
+            <span><TranslatedText TranslationPath="UCP.CategoryTable.TabActions.Back"/></span>
           </Button>
         </DialogFooter>
       </Dialog>

@@ -25,6 +25,7 @@ import {
   ChevronDownIcon,
   CubeTransparentIcon,
 } from "@heroicons/react/24/outline";
+import TranslatedText from "../../utils/Translation"
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
  import SPHLOGO from "../../assets/images/SPH Logo.png"
@@ -42,7 +43,7 @@ export default function SidebarWithCta() {
       <div className="mb-2 p-4 flex flex-col justify-center items-center">
         <img src={SPHLOGO} className="Imageshadow w-22 h-12 m-1"/>
         <Typography variant="h5" >
-          Control Center
+        <TranslatedText TranslationPath="UCP.SideBar.Title"/>
         </Typography>
       </div>
       <List className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
@@ -137,7 +138,7 @@ export default function SidebarWithCta() {
           <ListItemPrefix>
           <i class="fa-solid fa-cart-shopping h-5 w-5"></i>
           </ListItemPrefix>
-          My Orders
+          <TranslatedText TranslationPath="UCP.SideBar.MyOrders"/>
           <ListItemSuffix>
             <Chip value="5" size="sm" color="green" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
           </ListItemSuffix>
@@ -147,7 +148,7 @@ export default function SidebarWithCta() {
           <ListItemPrefix>
           <i class="fa-solid fa-file-invoice h-5 w-5"></i>
           </ListItemPrefix>
-          Orders
+          <TranslatedText TranslationPath="UCP.SideBar.Orders"/>
           <ListItemSuffix>
             <Chip value="14" size="sm" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
           </ListItemSuffix>
@@ -157,9 +158,18 @@ export default function SidebarWithCta() {
           <ListItemPrefix>
           <i class="fa-solid fa-boxes-stacked h-5 w-5"></i>
           </ListItemPrefix>
-          Products
+          <TranslatedText TranslationPath="UCP.SideBar.Products"/>
           <ListItemSuffix>
             <Chip value="50" size="sm" color="green" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
+          </ListItemSuffix>
+        </ListItem>
+        <ListItem onClick={()=>{window.location.href="/UCP/Inbox"}}>
+          <ListItemPrefix>
+            <InboxIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          <TranslatedText TranslationPath="UCP.SideBar.Inbox"/>
+          <ListItemSuffix>
+            <Chip value="14" size="sm" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
           </ListItemSuffix>
         </ListItem>
 
@@ -167,10 +177,7 @@ export default function SidebarWithCta() {
           <ListItemPrefix>
           <i class="fa-solid fa-users h-5 w-5"></i>
           </ListItemPrefix>
-          Manage Accounts
-          <ListItemSuffix>
-            <Chip value="100" size="sm" color="green" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
-          </ListItemSuffix>
+          <TranslatedText TranslationPath="UCP.SideBar.ManageAccounts"/>
         </ListItem>
 
 
@@ -178,7 +185,7 @@ export default function SidebarWithCta() {
           <ListItemPrefix>
           <i class="fa-solid fa-file-invoice"></i>
           </ListItemPrefix>
-          Invoice
+          <TranslatedText TranslationPath="UCP.SideBar.InvoiceEstimate"/>
           <ListItemSuffix>
             
           </ListItemSuffix>
@@ -186,32 +193,23 @@ export default function SidebarWithCta() {
 
         
 
-        <ListItem onClick={()=>{window.location.href="/UCP/Inbox"}}>
-          <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Inbox
-          <ListItemSuffix>
-            <Chip value="14" size="sm" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
-          </ListItemSuffix>
-        </ListItem>
         <ListItem onClick={()=>{window.location.href="/UCP/Profil"}}>
           <ListItemPrefix>
             <UserCircleIcon className="h-5 w-5" />
           </ListItemPrefix>
-          Profil
+          <TranslatedText TranslationPath="UCP.SideBar.Profil"/>
         </ListItem>
         <ListItem onClick={()=>{window.location.href="/"}}>
           <ListItemPrefix>
           <i class="fa-solid fa-arrow-left"></i>
           </ListItemPrefix>
-          Back
+          <TranslatedText TranslationPath="UCP.SideBar.Back"/>
         </ListItem>
         <ListItem>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>
-          Log Out
+          <TranslatedText TranslationPath="UCP.SideBar.Logout"/>
         </ListItem>
       </List>
       {/*<Alert open={openAlert} className="mt-auto" onClose={() => setOpenAlert(false)}>

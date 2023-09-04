@@ -10,9 +10,6 @@ import {
   import { useSelector } from "react-redux/es/hooks/useSelector";
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 import ConfirmDeleteDialog from "../../components/Dialog/Confirm"
-import Product_1 from "../../assets/images/products/product_1.png"
-import Product_2 from "../../assets/images/products/product_2.png"
-import Product_3 from "../../assets/images/products/product_3.png"
 import React from "react";
   import {
     Card,
@@ -32,14 +29,24 @@ import React from "react";
   } from "@material-tailwind/react";
   import Pagination from "../../utils/Table/Pagination";
   import SortData from "../../utils/Table/SortRows"
-  import TabFilter from "../../utils/Table/TabFilter"
   import SearchRow from "../../utils/Table/Search"
+  import TranslatedText from "../../utils/Translation"
+  import {CreateToast}  from "../../utils/Toast"
+  import ReactDOMServer from 'react-dom/server';
 
-  import CategoryDialog from "../../components/Dialog/Category" 
-  import CustomTooltip from "../../components/ToolTip"
-
-  const TABLE_HEAD2_ContactNotification = ["","Email","First Name","Last Name","Phone Number","Message",""];
-  const TABLE_HEAD_OrderNotification = ["","Order","Message",""];
+  const TABLE_HEAD2_ContactNotification = [
+  {label:<TranslatedText TranslationPath="UCP.InboxTable.TabHeader.ID"/>,value:""},
+  {label:<TranslatedText TranslationPath="UCP.InboxTable.TabHeader.Email"/>,value:"Email"},
+  {label:<TranslatedText TranslationPath="UCP.InboxTable.TabHeader.FirstName"/>,value:"First Name"},
+  {label:<TranslatedText TranslationPath="UCP.InboxTable.TabHeader.LastName"/>,value:"Last Name"},
+  {label:<TranslatedText TranslationPath="UCP.InboxTable.TabHeader.PhoneNumber"/>,value:"Phone Number"},
+  {label:<TranslatedText TranslationPath="UCP.InboxTable.TabHeader.Message"/>,value:"Message"},{label:"",value:""}]
+                                                                         
+  const TABLE_HEAD_OrderNotification = [
+    {label:<TranslatedText TranslationPath="UCP.InboxTable.TabHeader.ID"/>,value:""},
+    {label:<TranslatedText TranslationPath="UCP.InboxTable.TabHeader.Order"/>,value:"Order"},
+    {label:<TranslatedText TranslationPath="UCP.InboxTable.TabHeader.Message"/>,value:"Message"},
+    {label:"",value:""}];
    
   const TABLE_ROWS_OrderNotifications = [
     {
@@ -93,26 +100,73 @@ import React from "react";
 
     const TABS = [
       {
-        label: "Orders",
+        label: <TranslatedText TranslationPath="UCP.InboxTable.TabFilter.Orders"/>,
         value: "Orders",
         Tab_fn:()=>{SetSelectedTab("Orders");SetAllData(TABLE_ROWS_OrderNotifications)}
       },
       {
-        label: "Contacts",
+        label: <TranslatedText TranslationPath="UCP.InboxTable.TabFilter.Contacts"/>,
         value: "Contacts",
         Tab_fn:()=>{SetSelectedTab("Contacts");SetAllData(TABLE_ROWS_ContactNofiications)}
       }
     ];
+
+    const HandleNotificationDelete=()=>
+    {
+   try{
+     const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+          resolve("API Fetch is done!")
+      },3000)})
+  
+  
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Error"/>),
+        "promise",
+        LightModeState==LightMode().type)
+      }
+      catch(e)
+      {
+  
+      }
+    }
+
+
+    const HandleMessageDelete=()=>
+    {
+   try{
+     const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+          resolve("API Fetch is done!")
+      },3000)})
+  
+  
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Error"/>),
+        "promise",
+        LightModeState==LightMode().type)
+      }
+      catch(e)
+      {
+  
+      }
+    }
     return (
       <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
           <div className="mb-8 flex items-center justify-between gap-8">
             <div>
               <Typography variant="h5" >
-                Inbox
+              <TranslatedText TranslationPath="UCP.InboxTable.Title"/>
               </Typography>
               <Typography  className="mt-1 font-normal">
-                See All your notifications
+              <TranslatedText TranslationPath="UCP.InboxTable.Description"/>
               </Typography>
             </div>
           </div>
@@ -120,7 +174,7 @@ import React from "react";
           <Tabs value={SelectedTab} className="w-full md:w-max">
               <TabsHeader className=" overflow-auto">
                 {TABS.map(({ label, value,Tab_fn }) => (
-                  <Tab key={value} value={value} onClick={()=>{Tab_fn()}}>
+                  <Tab style={{ textWrap:"nowrap"}} key={value} value={value} onClick={()=>{Tab_fn()}}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;
                   </Tab>
                 ))}
@@ -144,15 +198,15 @@ import React from "react";
                 SelectedTab=="Orders"?
                 TABLE_HEAD_OrderNotification.map((head, index) => (
                   <th
-                    onClick={()=>{if(index !== TABLE_HEAD_OrderNotification.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Inbox_Order")}} 
-                    key={head}
+                    onClick={()=>{if(index !== TABLE_HEAD_OrderNotification.length - 1)SortData(head.value,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Inbox_Order")}} 
+                    key={head.value}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
                     <Typography
                       variant="small"
                       className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                     >
-                      {head}{" "}
+                      {head.label}{" "}
                       {(index !== TABLE_HEAD_OrderNotification.length - 1 )&& (
                         <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                       )}
@@ -161,15 +215,15 @@ import React from "react";
                 )):
                 TABLE_HEAD2_ContactNotification.map((head, index) => (
                   <th
-                    onClick={()=>{if(index !== TABLE_HEAD2_ContactNotification.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Inbox_Contact")}}
-                    key={head}
+                    onClick={()=>{if(index !== TABLE_HEAD2_ContactNotification.length - 1)SortData(head.value,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Inbox_Contact")}}
+                    key={head.value}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
                     <Typography
                       variant="small"
                       className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                     >
-                      {head}{" "}
+                      {head.label}{" "}
                       {(index !== TABLE_HEAD2_ContactNotification.length - 1 )&& (
                         <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                       )}
@@ -188,7 +242,7 @@ import React from "react";
                     : "p-4 border-b border-blue-gray-50";
    
                   return (
-                    <tr key={index}>
+                    <tr key={Notification_ID}>
   
                       <td className={classes}>
                         <div className="flex flex-col">
@@ -253,7 +307,7 @@ import React from "react";
                   : "p-4 border-b border-blue-gray-50";
  
                 return (
-                  <tr key={index}>
+                  <tr key={Notification_ID}>
 
                     <td className={classes}>
                       <div className="flex flex-col">
@@ -354,7 +408,8 @@ import React from "react";
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}/>
         </CardFooter>
-        <ConfirmDeleteDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Notification")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Notification"} Content="Are you sure you want to delete this notification?" />
+       {SelectedTab=="Orders"?<ConfirmDeleteDialog  Open={OpenDeleteDialog} Action={HandleNotificationDelete} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Confirm"/>} />
+       :<ConfirmDeleteDialog  Open={OpenDeleteDialog} Action={HandleMessageDelete} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Confirm"/>} />}
       </>
     );
   }

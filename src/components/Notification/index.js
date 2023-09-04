@@ -10,9 +10,9 @@ import {
   CardHeader
 } from "@material-tailwind/react";
  import NotificationTable from "../Table/Notification"
- import { useDispatch } from "react-redux/es/hooks/useDispatch";
  import { useSelector } from "react-redux/es/hooks/useSelector";
  import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+ import TranslatedText from "../../utils/Translation"
 export default function Notification() {
   const [open, setOpen] = React.useState(false);
   const LightModeState=useSelector(state=>state.lightMode)
@@ -29,13 +29,13 @@ export default function Notification() {
         <div className=" w-full h-full overflow-hidden p-0  flex flex-col  justify-stretch items-end">
 
         <div style={{ backgroundColor:"#e53935",color:"white"}} className={`text-center w-full  `}> 
-        <p>Notifications</p></div>
+        <p><TranslatedText TranslationPath="UCP.Notifications.Title"/></p></div>
         <div className="Body p-2 w-full">
         <NotificationTable/>
         </div>
           
           <div className="footer  texw-full flex  justify-center items-center">
-          <Button variant="text" className="mb-1 mr-1" onClick={()=>{window.location.href="/UCP/Inbox"}}>View All</Button>
+          <Button variant="text" className="mb-1 mr-1" onClick={()=>{window.location.href="/UCP/Inbox"}}><TranslatedText TranslationPath="UCP.Notifications.TabActions.ViewAll"/></Button>
           </div>
 
         </div>

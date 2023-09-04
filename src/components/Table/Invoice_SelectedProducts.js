@@ -12,6 +12,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 import ConfirmDeleteDialog from "../../components/Dialog/Confirm"
 import InvoiceProductDialog from "../Dialog/InvoiceProduct"
 import React from "react";
+import TranslatedText from "../../utils/Translation"
   import {
     Card,
     CardHeader,
@@ -30,7 +31,13 @@ import React from "react";
   } from "@material-tailwind/react";
   import Pagination from "../../utils/Table/Pagination";
   import SortData from "../../utils/Table/SortRows"
-  const TABLE_HEAD = ["Product Code", "Product", "Unit Price","Quantity","Total",""];
+  const TABLE_HEAD = [
+  {label:<TranslatedText TranslationPath="UCP.InvoiceSelectedProductsTable.TabHeader.ProductCode"/>,value:"Product Code"},
+  {label:<TranslatedText TranslationPath="UCP.InvoiceSelectedProductsTable.TabHeader.Product"/>,value:"Product"},
+  {label:<TranslatedText TranslationPath="UCP.InvoiceSelectedProductsTable.TabHeader.Price"/>,value:"Unit Price"},
+  {label:<TranslatedText TranslationPath="UCP.InvoiceSelectedProductsTable.TabHeader.Quantity"/>,value:"Quantity"},
+  {label:<TranslatedText TranslationPath="UCP.InvoiceSelectedProductsTable.TabHeader.Total"/>,value:"Total"},
+  {label:"",value:""}];
    
    
  
@@ -58,15 +65,15 @@ import React from "react";
           <div className="mb-8 flex items-center justify-between gap-8">
             <div>
               <Typography variant="h5" >
-                Selected Products
+              <TranslatedText TranslationPath="UCP.InvoiceSelectedProductsTable.Title"/>
               </Typography>
               <Typography  className="mt-1 font-normal">
-                These are the products you selected for your Invoice
+              <TranslatedText TranslationPath="UCP.InvoiceSelectedProductsTable.Description"/>
               </Typography>
             </div>
             
               <Button className="flex items-center gap-1 md:gap-3" size="sm" onClick={()=>{SetOpenInvoiceAddProduct(true)}}>
-              <i class="fa-solid fa-plus"></i> Add Product
+              <i class="fa-solid fa-plus"></i>               <TranslatedText TranslationPath="UCP.InvoiceSelectedProductsTable.TabActions.Add"/>
               </Button>
             
           </div>
@@ -77,15 +84,15 @@ import React from "react";
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
-                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Products")}}
-                    key={head}
+                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head.value,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Products")}}
+                    key={head.value}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
                     <Typography
                       variant="small"
                       className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                     >
-                      {head}{" "}
+                      {head.label}{" "}
                       {index !== TABLE_HEAD.length - 1 && (
                         <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                       )}
@@ -103,7 +110,7 @@ import React from "react";
                     : "p-4 border-b border-blue-gray-50";
    
                   return (
-                    <tr key={index}>
+                    <tr key={ProductCode}>
   
                       <td className={classes}>
                         <div className="flex flex-col">

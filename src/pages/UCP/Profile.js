@@ -16,17 +16,18 @@ import {
   PopoverHandler,
   PopoverContent,
   } from "@material-tailwind/react";
-  import { Textarea } from "@material-tailwind/react";
- import Navbar from "../../components/NavBar"
- import TranslatedText from "../../utils/Translation"
- import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
-import PhoneInput from "../../components/Input/Phone"
+
 import Footer from "../../components/footer"
 import SideBar from "../../components/SideBar"
 import React from "react";
 import TopBar from "../../components/Topbar"
 import Topbarbg from "../../assets/images/Topbarbg.jpg"
+import TranslatedText from "../../utils/Translation"
+import {CreateToast}  from "../../utils/Toast"
+import ReactDOMServer from 'react-dom/server';
+
   export default function User_Control_Panel() {
     const LightModeState=useSelector(state=>state.lightMode)
     const [imageSrc, setImageSrc] = React.useState('');
@@ -38,6 +39,30 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
       setImageSrc(imageUrl);
     }
   };
+
+
+  const HandleProfilEdit=()=>
+  {
+ try{
+   const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+        resolve("API Fetch is done!")
+    },3000)})
+
+
+    CreateToast(
+      promise,
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Profile.SaveProfile_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Profile.SaveProfile_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Profile.SaveProfile_Error"/>),
+      "promise",
+      LightModeState==LightMode().type)
+    }
+    catch(e)
+    {
+
+    }
+  }
     return (
       <div className="flex flex-row items-stretch flex-nowrap">
 
@@ -47,7 +72,7 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
 
       <main className="w-full min-h-screen flex flex-col justify-start items-center ">  
         <section className=" flex flex-col justify-center items-stretch w-full text-center h-[17vh] p-4 shadow-xl shadow-blue-gray-900/ bg-cover" style={{backgroundImage:`url(${Topbarbg})`}} >     
-        <TopBar SectionName="Profil" Icon='<i class="fa-solid fa-user-gear"></i>'  />
+        <TopBar SectionName={<TranslatedText TranslationPath="UCP.TopNav.TabTitles.Profil"/>} Icon='<i class="fa-solid fa-user-gear"></i>'  />
 
         </section>
 
@@ -60,15 +85,15 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
           src={imageSrc==''?'https://via.placeholder.com/300x200.png?text=Placeholder+Image':imageSrc}
           alt="nature image"
           />
-          <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Profile Image" type="file" accept="image/*" onChange={handleImageUpload} icon={<i class="fa-solid fa-image"></i>} />
+          <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="UCP.Profil.TabInputs.ProfilImage"/>} type="file" accept="image/*" onChange={handleImageUpload} icon={<i class="fa-solid fa-image"></i>} />
 
           </div>
           <div className="col-span-1 flex flex-col justify-center items-center gap-2" >
 
-                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="First Name"   icon={<i class="fa-solid fa-circle-info"></i>} />
-                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Last Name"   icon={<i class="fa-solid fa-circle-info"></i>} />
-                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="New Password"   icon={<i class="fa-solid fa-key"></i>} />
-                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label="Verification Password"   icon={<i class="fa-solid fa-lock"></i>} required type="password"  />
+                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="UCP.Profil.TabInputs.FName"/>}   icon={<i class="fa-solid fa-circle-info"></i>} />
+                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="UCP.Profil.TabInputs.LName"/>}   icon={<i class="fa-solid fa-circle-info"></i>} />
+                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="UCP.Profil.TabInputs.NewPassword"/>}   icon={<i class="fa-solid fa-key"></i>} />
+                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="UCP.Profil.TabInputs.VerifyPassword"/>}   icon={<i class="fa-solid fa-lock"></i>} required type="password"  />
                   <Typography
                   variant="small"
                   className="mt-2 flex items-center gap-1 font-normal"
@@ -85,14 +110,14 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
                       clipRule="evenodd"
                     />
                   </svg>
-                  You need to input your current password in the verification Password to be able to make changes.
+                  {<TranslatedText TranslationPath="UCP.Profil.TabHeader.PasswordInfo"/>}
                 </Typography>
-                 <Button  className="flex items-center gap-3 mt-4">
+                 <Button onClick={HandleProfilEdit}  className="flex items-center gap-3 mt-4">
         <svg
           xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-5 w-5">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"/>
         </svg>
-        Save Infomration
+        {<TranslatedText TranslationPath="UCP.Profil.TabActions.SaveInformation"/>}
       </Button>
 
           </div>

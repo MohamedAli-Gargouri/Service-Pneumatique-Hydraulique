@@ -15,6 +15,7 @@ import {
     IconButton,
     Tooltip,
   } from "@material-tailwind/react";
+  import TranslatedText from "../../utils/Translation"
 function Pagination({AllData,VisibleData,SetVisibleData,currentPage,setCurrentPage}) {
     //Items per page
   const itemsPerPage = 5;
@@ -56,14 +57,14 @@ function Pagination({AllData,VisibleData,SetVisibleData,currentPage,setCurrentPa
   return (
     <>
       <Typography variant="small"  className="font-normal">
-            Page {currentPage} out of {totalPages}
+      <TranslatedText TranslationPath="Table.Labels.Page.Part1"/>{currentPage} <TranslatedText TranslationPath="Table.Labels.Page.Part2"/> {totalPages}
           </Typography>
           <div className="flex gap-2">
             <Button variant="outlined" size="sm" onClick={()=>{handlePreviousChange()}}>
-              Previous
+            <TranslatedText TranslationPath="Table.Actions.Previous"/>
             </Button>
             <Button variant="outlined" size="sm" onClick={()=>{handleNextChange()}}>
-              Next
+            <TranslatedText TranslationPath="Table.Actions.Next"/>
             </Button>
           </div>
     </>

@@ -1,0 +1,22 @@
+/*==============E-OVERRIDING THE DEFAULT TAILWIND COLORS FOR INPUTS & ICONS====================*/
+
+.highlightOption
+{
+    color: white !important;
+  background-color: #e53935 !important;
+}
+.option:hover{
+    color: white !important;
+  background-color: #e53935 !important;
+}
+
+.multiSelectContainer input
+{
+    margin-left: 0.5rem;
+}
+.multiSelectContainer input::placeholder
+{
+    opacity: 1;
+    color: black;
+}
+/*==============E-OVERRIDING THE DEFAULT MULTISELECT====================*/

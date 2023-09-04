@@ -24,6 +24,7 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
+import ReactDOMServer from 'react-dom/server';
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 import React from "react";
@@ -32,9 +33,18 @@ import Pagination from "../../utils/Table/Pagination";
 import SortData from "../../utils/Table/SortRows"
 import TabFilter from "../../utils/Table/TabFilter"
 import SearchRow from "../../utils/Table/Search"
-
- 
-const TABLE_HEAD = ["Order ID", "Client", "Number", "Status", "Date","Total",""];
+import TranslatedText from "../../utils/Translation"
+import {CreateToast}  from "../../utils/Toast" 
+const TABLE_HEAD = 
+[
+  {label:<TranslatedText TranslationPath="UCP.Orders.TabHeader.OrderID"/>,value:"Order ID"},
+  {label:<TranslatedText TranslationPath="UCP.Orders.TabHeader.Client"/>,value:"Client"},
+  {label:<TranslatedText TranslationPath="UCP.Orders.TabHeader.ClientNumber"/>,value:"Number"},
+  {label:<TranslatedText TranslationPath="UCP.Orders.TabHeader.Status"/>,value:"Status"},
+  {label:<TranslatedText TranslationPath="UCP.Orders.TabHeader.Date"/>,value:"Date"},
+  {label:<TranslatedText TranslationPath="UCP.Orders.TabHeader.Total"/>,value:"Total"},
+  {label:"",value:""}
+];
  
 const TABLE_ROWS = [
   {
@@ -125,46 +135,179 @@ export default function OrdersTable() {
 
   const TABS = [
     {
-      label: "All",
+      label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.All"/>,
       value: "All",
       Filter_fn:()=>TabFilter("status","All",TABLE_ROWS,SetAllData,currentPage)
     },
     {
-      label: "Paid",
+      label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.Paid"/>,
       value: "Paid",
       Filter_fn:()=>TabFilter("status","Paid",TABLE_ROWS,SetAllData,currentPage)
     },
     {
-      label: "Ready",
+      label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.Ready"/>,
       value: "Ready",
       Filter_fn:()=>TabFilter("status","Ready",TABLE_ROWS,SetAllData,currentPage)
     },
     {
-      label: "Pending",
+      label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.Pending"/>,
       value: "Pending",
       Filter_fn:()=>TabFilter("status","Pending",TABLE_ROWS,SetAllData,currentPage)
     },
     {
-      label: "Paused",
+      label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.Paused"/>,
       value: "Paused",
       Filter_fn:()=>TabFilter("status","Paused",TABLE_ROWS,SetAllData,currentPage)
     },
     {
-      label: "Cancelled",
+      label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.Cancelled"/>,
       value: "Cancelled",
       Filter_fn:()=>TabFilter("status","Cancelled",TABLE_ROWS,SetAllData,currentPage)
     },
   ];
+
+
+  const HandleOrdercancel=()=>
+  {
+ try{
+   const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+        resolve("API Fetch is done!")
+    },3000)})
+
+
+    CreateToast(
+      promise,
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Error"/>),
+      "promise",
+      LightModeState==LightMode().type)
+    }
+    catch(e)
+    {
+
+    }
+  }
+
+
+  const HandleOrderPause=()=>
+  {
+try
+{
+      const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+        resolve("API Fetch is done!")
+    },3000)})
+
+
+    CreateToast(
+      promise,
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Error"/>),
+      "promise",
+      LightModeState==LightMode().type)
+    }
+    catch(e)
+     {
+
+     }
+  }
+
+  const HandleOrderResume=()=>
+  {
+
+    try
+    {
+      const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+        resolve("API Fetch is done!")
+    },3000)})
+
+    CreateToast(
+      promise,
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Error"/>),
+      "promise",
+      LightModeState==LightMode().type)
+
+    }
+    catch(e)
+    {
+
+    }
+
+
+
+
+  }
+
+
+
+  const HandleOrderMarkedPaid=()=>
+  {
+    try
+    {
+      const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+        resolve("API Fetch is done!")
+    },1000)})
+
+
+    CreateToast(
+      promise,
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Error"/>),
+      "promise",
+      LightModeState==LightMode().type)
+    }
+    catch(e)
+    {
+
+    }
+  }
+
+  const HandleOrderMarkedReady=()=>
+  {
+try
+{
+
+
+      const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+        resolve("API Fetch is done!")
+    },1000)})
+
+
+    CreateToast(
+      promise,
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Error"/>),
+      "promise",
+      LightModeState==LightMode().type)
+    }
+    catch(e)
+    {
+
+    }
+  }
+  
+
+
   return (
     <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
             <Typography variant="h5" >
-              Orders list
+            <TranslatedText TranslationPath="UCP.Orders.Title"/>
             </Typography>
             <Typography  className="mt-1 font-normal">
-              See information about all Orders
+            <TranslatedText TranslationPath="UCP.Orders.Description"/>
             </Typography>
           </div>
           
@@ -173,7 +316,7 @@ export default function OrdersTable() {
         <Tabs value="All" className="w-full md:w-max">
               <TabsHeader className=" overflow-auto">
                 {TABS.map(({ label, value,Filter_fn }) => (
-                  <Tab key={value} value={value} onClick={()=>{Filter_fn()}}>
+                  <Tab style={{ textWrap:"nowrap"}} key={value} value={value} onClick={()=>{Filter_fn()}}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;
                   </Tab>
                 ))}
@@ -195,15 +338,15 @@ export default function OrdersTable() {
             <tr>
               {TABLE_HEAD.map((head, index) => (
                 <th
-                  onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Orders")}}
-                  key={head}
+                  onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head.value,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Orders")}}
+                  key={head.value}
                   className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                 >
                   <Typography
                     variant="small"
                     className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                   >
-                    {head}{" "}
+                    {head.label}{" "}
                     {index !== TABLE_HEAD.length - 1 && (
                       <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                     )}
@@ -221,7 +364,7 @@ export default function OrdersTable() {
                   : "p-4 border-b border-blue-gray-50";
  
                 return (
-                  <tr key={name}>
+                  <tr key={OrderID}>
 
                     <td className={classes}>
                       <div className="flex flex-col">
@@ -347,11 +490,11 @@ export default function OrdersTable() {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}/>
       </CardFooter>
-      <ConfirmDialog  Open={OpenConfirmDialog_Cancel} Action={()=>{console.log("Terminate Order")}} HandleOpen={()=>{SetOpenConfirmDialog_Cancel(!OpenConfirmDialog_Cancel)}} Icon={'<i class="fa-solid fa-ban h-5 w-5 mx-1"></i>'} Title={"Terminate Order"} Content="Are you sure you want to Terminate the order" />
-      <ConfirmDialog color="yellow" Open={OpenConfirmDialog_Pause} Action={()=>{console.log("Pause Order")}} HandleOpen={()=>{SetOpenConfirmDialog_Pause(!OpenConfirmDialog_Pause)}} Icon={'<i class="fa-solid fa-circle-pause h-5 w-5 mx-1"></i>'} Title={"Pause Order"} Content="Are you sure you want to Pause the order?" />
-      <ConfirmDialog color="green" Open={OpenConfirmDialog_Resume} Action={()=>{console.log("Resume Order")}} HandleOpen={()=>{SetOpenConfirmDialog_Resume(!OpenConfirmDialog_Resume)}} Icon={'<i class="fa-solid fa-play h-5 w-5 mx-1"></i>'} Title={"Resume Order"} Content="Are you sure you want to resume this order?" />
-      <ConfirmDialog color="green" Open={OpenConfirmDialog_Ready} Action={()=>{console.log("Ready Order")}} HandleOpen={()=>{SetOpenConfirmDialog_Ready(!OpenConfirmDialog_Ready)}} Icon={'<i class="fa-solid fa-clipboard-check h-5 w-5 mx-1"></i>'} Title={"Ready Order"} Content="Are you sure you want to mark this order as ready?" />
-      <ConfirmDialog color="green" Open={OpenConfirmDialog_Pay} Action={()=>{console.log("Confirm Payment")}} HandleOpen={()=>{SetOpenConfirmDialog_Pay(!OpenConfirmDialog_Pay)}} Icon={'<i class="fa-solid fa-money-bill-1-wave w-5 h-5 mx-1"></i>'} Title={"Confirm Payment"} Content="Are you sure you want to confirm the payment and close the order?" />
+      <ConfirmDialog  Open={OpenConfirmDialog_Cancel} Action={HandleOrdercancel} HandleOpen={()=>{SetOpenConfirmDialog_Cancel(!OpenConfirmDialog_Cancel)}} Icon={'<i class="fa-solid fa-ban h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Confirm"/>} />
+      <ConfirmDialog color="yellow" Open={OpenConfirmDialog_Pause} Action={HandleOrderPause} HandleOpen={()=>{SetOpenConfirmDialog_Pause(!OpenConfirmDialog_Pause)}} Icon={'<i class="fa-solid fa-circle-pause h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Confirm"/>} />
+      <ConfirmDialog color="green" Open={OpenConfirmDialog_Resume} Action={HandleOrderResume} HandleOpen={()=>{SetOpenConfirmDialog_Resume(!OpenConfirmDialog_Resume)}} Icon={'<i class="fa-solid fa-play h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Confirm"/>} />
+      <ConfirmDialog color="green" Open={OpenConfirmDialog_Ready} Action={HandleOrderMarkedReady} HandleOpen={()=>{SetOpenConfirmDialog_Ready(!OpenConfirmDialog_Ready)}} Icon={'<i class="fa-solid fa-clipboard-check h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Confirm"/>} />
+      <ConfirmDialog color="green" Open={OpenConfirmDialog_Pay} Action={HandleOrderMarkedPaid} HandleOpen={()=>{SetOpenConfirmDialog_Pay(!OpenConfirmDialog_Pay)}} Icon={'<i class="fa-solid fa-money-bill-1-wave w-5 h-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Confirm"/>} />
     </>
   );
 }

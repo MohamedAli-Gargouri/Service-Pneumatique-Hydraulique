@@ -21,8 +21,8 @@ import UCP_MyOrders from "./pages/UCP/MyOrders"
 import UCP_Accounts from "./pages/UCP/Accounts"
 import UCP_Inbox from "./pages/UCP/Inbox"
 import UCP_Invoice from "./pages/UCP/Invoice"
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 export default function App() {
   const LightModeState=useSelector(state=>state.lightMode)
   const root = document.getElementById("root");
@@ -47,16 +47,10 @@ export default function App() {
   
   return (<div className='animate-fade w-full'>
             <ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
             closeOnClick
             rtl={false}
             pauseOnFocusLoss
             draggable
-            pauseOnHover
-            theme={LightModeState==LightMode?"colored":"dark"}
             />
             <Cart />
             <Routes>

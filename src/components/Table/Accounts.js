@@ -12,6 +12,7 @@ import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 import ConfirmDialog from "../../components/Dialog/Confirm"
 import Person_1 from "../../assets/images/Person 1.jpg"
 import Person_2 from "../../assets/images/Person 2.jpg"
+import TranslatedText from "../../utils/Translation"
 import React from "react";
   import {
     Card,
@@ -33,9 +34,16 @@ import React from "react";
   import SortData from "../../utils/Table/SortRows"
   import TabFilter from "../../utils/Table/TabFilter"
   import SearchRow from "../../utils/Table/Search"
-   
-  const TABLE_HEAD = ["Account ID", "Username", "Full Name","privilege", "Total Spent",""];
-   
+  import ReactDOMServer from 'react-dom/server';
+  import {CreateToast}  from "../../utils/Toast"
+  const TABLE_HEAD = [
+  {label:<TranslatedText TranslationPath="UCP.AccountsTable.TabHeader.AccountID"/>,value:"Account ID"},
+   {label:<TranslatedText TranslationPath="UCP.AccountsTable.TabHeader.Username"/>,value:"Username"},
+   {label:<TranslatedText TranslationPath="UCP.AccountsTable.TabHeader.FullName"/>,value:"Full Name"},
+   {label:<TranslatedText TranslationPath="UCP.AccountsTable.TabHeader.privilege"/>,value:"privilege"},
+   {label:<TranslatedText TranslationPath="UCP.AccountsTable.TabHeader.TotalSpent"/>,value:"Total Spent"},
+   {label:"",value:""}];
+
   const TABLE_ROWS = [
     {
       AccountId: "1",
@@ -80,31 +88,131 @@ import React from "react";
     const [currentPage, setCurrentPage] = React.useState(1);
     const TABS = [
       {
-        label: "All",
+        label: <TranslatedText TranslationPath="UCP.AccountsTable.TabFilter.All"/>,
         value: "All",
         Filter_fn:()=>TabFilter("Privilege","All",TABLE_ROWS,SetAllData,currentPage)
       },
       {
-        label: "Admin",
+        label: <TranslatedText TranslationPath="UCP.AccountsTable.TabFilter.Admin"/>,
         value: "Admin",
         Filter_fn:()=>TabFilter("Privilege","Admin",TABLE_ROWS,SetAllData,currentPage)
       },
       {
-        label: "Employee",
+        label: <TranslatedText TranslationPath="UCP.AccountsTable.TabFilter.Employee"/>,
         value: "Employee",
         Filter_fn:()=>TabFilter("Privilege","Employee",TABLE_ROWS,SetAllData,currentPage)
       },
+      {
+        label: <TranslatedText TranslationPath="UCP.AccountsTable.TabFilter.Client"/>,
+        value: "Client",
+        Filter_fn:()=>TabFilter("Privilege","Client",TABLE_ROWS,SetAllData,currentPage)
+      },
     ];
+
+    const HandleSetAdmin=()=>
+    {
+   try{
+     const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+          resolve("API Fetch is done!")
+      },3000)})
+  
+  
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetAdmin_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetAdmin_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetAdmin_Error"/>),
+        "promise",
+        LightModeState==LightMode().type)
+      }
+      catch(e)
+      {
+  
+      }
+    }
+
+
+    const HandleSetEmployee=()=>
+    {
+   try{
+     const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+          resolve("API Fetch is done!")
+      },3000)})
+  
+  
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetEmployee_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetEmployee_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetEmployee_Error"/>),
+        "promise",
+        LightModeState==LightMode().type)
+      }
+      catch(e)
+      {
+  
+      }
+    }
+
+
+    const HandleSetNormalUser=()=>
+    {
+   try{
+     const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+          resolve("API Fetch is done!")
+      },3000)})
+  
+  
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Error"/>),
+        "promise",
+        LightModeState==LightMode().type)
+      }
+      catch(e)
+      {
+  
+      }
+    }
+
+    const HandleDeleteUser=()=>
+    {
+   try{
+     const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+          resolve("API Fetch is done!")
+      },3000)})
+  
+  
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetDeleteUser_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetDeleteUser_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetDeleteUser_Error"/>),
+        "promise",
+        LightModeState==LightMode().type)
+      }
+      catch(e)
+      {
+  
+      }
+    }
+
     return (
       <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
           <div className="mb-8 flex items-center justify-between gap-8">
             <div>
               <Typography variant="h5" >
-                Accounts list
+              <TranslatedText TranslationPath="UCP.AccountsTable.Title"/>
               </Typography>
               <Typography  className="mt-1 font-normal">
-                See information about all platform Accounts
+              <TranslatedText TranslationPath="UCP.AccountsTable.Description"/>
               </Typography>
             </div>
           </div>
@@ -112,7 +220,7 @@ import React from "react";
             <Tabs value="All" className="w-full md:w-max">
               <TabsHeader className=" overflow-auto">
                 {TABS.map(({ label, value,Filter_fn }) => (
-                  <Tab key={value} value={value} onClick={()=>{Filter_fn()}}>
+                  <Tab style={{ textWrap:"nowrap"}} key={value} value={value} onClick={()=>{Filter_fn()}}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;
                   </Tab>
                 ))}
@@ -134,15 +242,15 @@ import React from "react";
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
-                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Accounts")}}
-                    key={head}
+                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head.value,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Accounts")}}
+                    key={head.value}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
                     <Typography
                       variant="small"
                       className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                     >
-                      {head}{" "}
+                      {head.label}{" "}
                       {index !== TABLE_HEAD.length - 1 && (
                         <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                       )}
@@ -160,7 +268,7 @@ import React from "react";
                     : "p-4 border-b border-blue-gray-50";
    
                   return (
-                    <tr key={index}>
+                    <tr key={AccountId}>
   
                       <td className={classes}>
                         <div className="flex flex-col">
@@ -269,10 +377,10 @@ import React from "react";
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}/>
         </CardFooter>
-        <ConfirmDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Account")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Account"} Content="Are you sure you want to delete this Account?" />
-        <ConfirmDialog  Open={OpenConfirmAdminDialog} Action={()=>{console.log("Setting user to admin")}} HandleOpen={()=>{SetOpenConfirmAdminDialog(!OpenConfirmAdminDialog)}} Icon={'<i class="fa-solid fa-shield h-5 w-5 mx-1"></i>'} Title={"Admin Permission"} Content="Are you sure you want to give this user an admin  permission?" />
-        <ConfirmDialog  Open={OpenConfirmEmployeeDialog} Action={()=>{console.log("Setting user to employee")}} HandleOpen={()=>{SetOpenConfirmEmployeeDialog(!OpenConfirmEmployeeDialog)}} Icon={'<i class="fa-solid fa-shield-halved h-5 w-5 mx-1"></i>'} Title={"Employee Permission"} Content="Are you sure you want to give this user an employee permission?" />
-        <ConfirmDialog  Open={OpenConfirmRemovePermissionDialog} Action={()=>{console.log("Setting user to employee")}} HandleOpen={()=>{SetOpenConfirmRemovePermissionDialog(!OpenConfirmRemovePermissionDialog)}} Icon={'<i class="fa-solid fa-handshake-slash w-5 h-5 mx-1"></i>'} Title={"Remove Permissions"} Content="Are you sure you want to remove this user's permissions and set him back to being a standard client?" />
+        <ConfirmDialog  Open={OpenDeleteDialog} Action={HandleDeleteUser} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetDeleteUser_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetDeleteUser_Confirm"/>} />
+        <ConfirmDialog  Open={OpenConfirmAdminDialog} Action={HandleSetAdmin} HandleOpen={()=>{SetOpenConfirmAdminDialog(!OpenConfirmAdminDialog)}} Icon={'<i class="fa-solid fa-shield h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetAdmin_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetAdmin_Confirm"/>} />
+        <ConfirmDialog  Open={OpenConfirmEmployeeDialog} Action={HandleSetEmployee} HandleOpen={()=>{SetOpenConfirmEmployeeDialog(!OpenConfirmEmployeeDialog)}} Icon={'<i class="fa-solid fa-shield-halved h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetEmployee_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetEmployee_Confirm"/>} />
+        <ConfirmDialog  Open={OpenConfirmRemovePermissionDialog} Action={HandleSetNormalUser} HandleOpen={()=>{SetOpenConfirmRemovePermissionDialog(!OpenConfirmRemovePermissionDialog)}} Icon={'<i class="fa-solid fa-handshake-slash w-5 h-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Confirm"/>} />
       </>
     );
   }

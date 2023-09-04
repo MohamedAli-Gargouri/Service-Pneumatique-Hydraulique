@@ -16,6 +16,10 @@ import {
  import InvboxProductTable from "../Table/Invoice_ProductsList"
  import { useSelector } from "react-redux/es/hooks/useSelector";
  import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+ import TranslatedText from "../../utils/Translation"
+ import {CreateToast}  from "../../utils/Toast"
+import ReactDOMServer from 'react-dom/server';
+
 export default function Invoice({SetAllData,Open,HandleOpen,Content,Icon,Title}) {
   const mdbreakpoint=720
   const LightModeState=useSelector(state=>state.lightMode)
@@ -50,6 +54,16 @@ export default function Invoice({SetAllData,Open,HandleOpen,Content,Icon,Title})
     );
     SetAllData(filteredSelectedProductsQuantities)
     HandleOpen()
+
+    CreateToast(
+      null,
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Invoice.AddProductInvoice_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Invoice.AddProductInvoice_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Invoice.AddProductInvoice_Error"/>),
+      "info",
+      LightModeState==LightMode().type)
+
   };
   return (
     <>
@@ -81,16 +95,16 @@ export default function Invoice({SetAllData,Open,HandleOpen,Content,Icon,Title})
             className="mr-1"
           >
             <i class="fa-solid fa-arrow-left mx-1"></i>
-            <span>Back</span>
+            <span><TranslatedText TranslationPath="UCP.InvoiceProductList.TabActions.Back"/></span>
           </Button>
           <Button
           
             variant="filled"
-            onClick={()=>{HandleAddProductToInvoice()}}
+            onClick={HandleAddProductToInvoice}
             className="mr-1"
           >
             <i class="fa-solid fa-plus mx-1"></i>
-            <span>Add Selection to Invoice</span>
+            <span><TranslatedText TranslationPath="UCP.InvoiceProductList.TabActions.Add"/></span>
           </Button>
         </DialogFooter>
       </Dialog>

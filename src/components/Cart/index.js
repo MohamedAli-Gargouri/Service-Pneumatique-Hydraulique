@@ -11,6 +11,11 @@ import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import {disableScroll,enableScroll} from "../../utils/others/Scroll"
 import CartCard from "../Card/CartCard"
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+
+import TranslatedText from "../../utils/Translation"
+import {CreateToast}  from "../../utils/Toast"
+import ReactDOMServer from 'react-dom/server';
+
 export default function Cart() {
   const LightModeState=useSelector(state=>state.lightMode)
   const dispatch=useDispatch();
@@ -25,6 +30,30 @@ export default function Cart() {
     enableScroll();
   }
 
+  const HandleOrder=()=>
+  {
+    try
+    {
+      const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+        resolve("API Fetch is done!")
+    },3000)})
+
+
+    CreateToast(
+      promise,
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.CreateOrder_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.CreateOrder_Success"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.CreateOrder_Error"/>),
+      "promise",
+      LightModeState==LightMode().type)
+      closeDrawerRight()
+    }
+    catch(e)
+    {
+      
+    }
+  }
   return (
     <React.Fragment>
       
@@ -40,7 +69,7 @@ export default function Cart() {
         <div className="mb-6 flex items-center justify-between">
           <Typography variant="h5" className="text-center" color={"blue"}>
           <i class="fa-solid fa-bag-shopping m-4 "></i>
-            My cart
+          <TranslatedText TranslationPath="Cart.Labels.Title"/>
           </Typography>
           <IconButton
             variant="text"
@@ -56,7 +85,7 @@ export default function Cart() {
         <div className="Total w-full flex justify-between items-center ">
         <Typography variant="h6" className="text-center">
         <i class="fa-solid fa-dollar-sign m-2"></i>
-            Cart Total :
+        <TranslatedText TranslationPath="Cart.Labels.Total"/> :
           </Typography>
 
           <Typography variant="p" className="text-center  font-bold" color="green">
@@ -65,9 +94,9 @@ export default function Cart() {
         </div>
 
         <div className="Total  flex flex-col justify-stretch mx-4 my-4 items-stretch ">
-        <Button className="flex items-center gap-3">
+        <Button className="flex items-center gap-3" onClick={HandleOrder}>
         <i class="fa-solid fa-cart-shopping"></i>
-        Order Products
+        <TranslatedText TranslationPath="Cart.Actions.Order"/>
       </Button>
         </div>
 

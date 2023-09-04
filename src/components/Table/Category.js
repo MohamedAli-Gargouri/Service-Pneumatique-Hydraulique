@@ -33,53 +33,108 @@ import {
   import Pagination from "../../utils/Table/Pagination";
   import SortData from "../../utils/Table/SortRows"
   import SearchRow from "../../utils/Table/Search"
-  
-  const TABLE_HEAD = ["Category ID", "Category Name",""];
+  import TranslatedText from "../../utils/Translation"
+  import {CreateToast}  from "../../utils/Toast"
+  import ReactDOMServer from 'react-dom/server';
+  const TABLE_HEAD = [
+   {label:<TranslatedText TranslationPath="UCP.CategoryTable.TabHeader.CategoryID"/>,value:"Category ID"}
+  ,{label:<TranslatedText TranslationPath="UCP.CategoryTable.TabHeader.CategoryName"/>,value:"Category Name"}
+  ,{label:<TranslatedText TranslationPath="UCP.CategoryTable.TabHeader.CategoryType"/>,value:"Category Type"}
+  ,{label:"",value:""}];
    
   const TABLE_ROWS = [
     {
       CategoryID:"1",
-      name: "Compressors1",
+      name: "Compressors",
+      type:"Main Category"
 
     },
     {
         CategoryID:"4",
         name: "Dryers",
-  
+        type:"Main Category"
       },
       {
         CategoryID:"3",
         name: "Tubes",
-  
+        type:"Main Category"
       },
       {
         CategoryID:"2",
-        name: "Compressors2",
-  
+        name: "Size",
+        type:"Sub Category"
       },
       {
           CategoryID:"5",
-          name: "Dryers2",
-    
+          name: "Power",
+          type:"Sub Category"
         },
         {
           CategoryID:"6",
-          name: "Tubes2",
-    
+          name: "V Rating",
+          type:"Sub Category"
         },
   ];
    
-  export default function CategoriesTable() {
+  export default function CategoriesTable({HandleOpen}) {
 
-    const dispatch=useDispatch();
     const LightModeState=useSelector(state=>state.lightMode)
     const [OpenDeleteDialog,SetOpenDeleteDialog]=React.useState(false)
     const [AllData,SetAllData] = React.useState(TABLE_ROWS);
     const [VisibleData,SetVisibleData] = React.useState([]);
     const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
     const [currentPage, setCurrentPage] = React.useState(1);
+    
+    const HandleDeleteCategory=()=>
+    {
+   try{
+     const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+          resolve("API Fetch is done!")
+      },3000)})
+  
+  
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Category.DeleteCategory_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Category.DeleteCategory_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Category.DeleteCategory_Success"/>),
+        "promise",
+        LightModeState==LightMode().type)
+        HandleOpen()
+      }
+      catch(e)
+      {
+  
+      }
+    }
+
+
+    const HandleEditCategory=()=>
+    {
+   try{
+     const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+          resolve("API Fetch is done!")
+      },3000)})
+  
+  
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Error"/>),
+        "promise",
+        LightModeState==LightMode().type)
+        HandleOpen()
+      }
+      catch(e)
+      {
+  
+      }
+    }
     return (
-      <>
+      <Card className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T1":"tc-darkTheme_T1 bg-darkTheme_T1"}`}>
 <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
             <div className="w-full mt-2 ">
               <Input
@@ -99,15 +154,15 @@ import {
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
-                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"MyOrders")}}
-                    key={head}
+                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head.value,sortDirection,setSortDirection,VisibleData,SetVisibleData,"MyOrders")}}
+                    key={head.value}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
                     <Typography
                       variant="small"
                       className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                     >
-                      {head}{" "}
+                      {head.label}{" "}
                       {index !== TABLE_HEAD.length - 1 && (
                         <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                       )}
@@ -118,14 +173,14 @@ import {
             </thead>
             <tbody>
               {VisibleData.map(
-                ({ CategoryID,name}, index) => {
+                ({ CategoryID,name,type}, index) => {
                   const isLast = index === TABLE_ROWS.length - 1;
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-blue-gray-50";
    
                   return (
-                    <tr key={name}>
+                    <tr key={CategoryID}>
   
                       <td className={classes}>
                         <div className="flex flex-col">
@@ -140,18 +195,27 @@ import {
                       <td className={classes}>
                         <div className="flex flex-col">
 
-                        <Input variant="standard" size="md" defaultValue={name}   labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}    />
+                        <Input label="Name" size="md" defaultValue={name}   labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}    />
 
                             
                        
                         </div>
                       </td>
                       
-
+                      <td className={classes}>
+                        <div className="flex flex-col">
+                          <Typography
+                            variant="small"
+                            className="font-normal"
+                          >
+                            {type}
+                          </Typography>
+                        </div>
+                      </td>
                       
                       <td className={classes}>
                       <Tooltip content="Save Category">
-                        <IconButton variant="text" >
+                        <IconButton variant="text" onClick={HandleEditCategory} >
                         <i class="fa-solid fa-floppy-disk h-4 w-4"></i>
                         </IconButton>
                       </Tooltip>
@@ -177,7 +241,7 @@ import {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}/>
         </CardFooter>
-        <ConfirmDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Category")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Category"} Content="Are you sure you want to delete This Category and All of it's products?" />
-      </>
+        <ConfirmDialog  Open={OpenDeleteDialog} Action={HandleDeleteCategory} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Category.DeleteCategory_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Category.DeleteCategory_Confirm"/>} />
+      </Card>
     );
   }

@@ -20,46 +20,43 @@ import {
   } from "@material-tailwind/react";
   import ConfirmDialog from "../Dialog/Confirm"
   import PlaceHolderImg from "../../assets/images/Placeholderimg.png"
-
-  import {toast } from 'react-toastify';
-  
+  import TranslatedText from "../../utils/Translation"
+  import {CreateToast}  from "../../utils/Toast"
+  import ReactDOMServer from 'react-dom/server';
+  import { useSelector } from "react-redux/es/hooks/useSelector";
+import {LightMode,DarkMode} from "../../redux/actions/LightActions"
    export default function Gallery({AddedImages,Images,Addable,Deletable}) {
+const LightModeState=useSelector(state=>state.lightMode)
 const [SelectedImgIndex,SetSelectedImgIndex]=useState(0) 
 const [OpenDeleteDialog,SetOpenDeleteDialog]=useState(false)
-const [ProductImages,SetProductImages]=useState(Images!=undefined?Images:[PlaceHolderImg]) 
-const PlaceholderURL="https://via.placeholder.com/300x200.png?text=Placeholder+Image"
-  
+const [ProductImages,SetProductImages]=useState(Images!=undefined?(Images.length==0?[PlaceHolderImg]:Images):[PlaceHolderImg]) 
 const handleImageUpload = (e) => {
     if(ProductImages.length<3)
     {
         const file = e.target.files[0];
         if (file) {
           const imageUrl = URL.createObjectURL(file);
-          SetProductImages(ProductImages.length==1&&ProductImages[0]==PlaceholderURL?[imageUrl]:[...ProductImages,imageUrl])
-          SetSelectedImgIndex(ProductImages.length==1&&ProductImages[0]==PlaceholderURL?0:ProductImages.length)
+          SetProductImages((ProductImages.length==1&&ProductImages[0]==PlaceHolderImg)?[imageUrl]:[...ProductImages,imageUrl])
+          SetSelectedImgIndex(ProductImages.length==1&&ProductImages[0]==PlaceHolderImg?0:ProductImages.length)
           AddedImages.current=[...AddedImages.current,imageUrl]
           
         }
     }else
     {
-        toast.info('You cannot add more than three images.', {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            transition: toast.SLIDE, // This enables the slide animation
-              
-            });
+        CreateToast(
+            null,
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Products.ProductThreeImagesLimit_Error"/>),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Products.ProductThreeImagesLimit_Error"/>),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Products.ProductThreeImagesLimit_Error"/>),
+            "info",
+            LightModeState==LightMode().type)
     }
  
 };
 
 const handleDelete = (e) => {
-    SetProductImages(ProductImages.length==1?[PlaceholderURL]:ProductImages.filter((a,index)=>index!=SelectedImgIndex))
+    SetProductImages(ProductImages.length==1?[PlaceHolderImg]:ProductImages.filter((a,index)=>index!=SelectedImgIndex))
     SetSelectedImgIndex(0)
   };
     return (

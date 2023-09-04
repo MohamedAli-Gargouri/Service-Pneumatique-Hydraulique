@@ -34,12 +34,25 @@ import React from "react";
   import SortData from "../../utils/Table/SortRows"
   import TabFilter from "../../utils/Table/TabFilter"
   import SearchRow from "../../utils/Table/Search"
-
+  import TranslatedText from "../../utils/Translation"
   import CategoryDialog from "../../components/Dialog/Category" 
   import CustomTooltip from "../../components/ToolTip"
-
+  import {CreateToast}  from "../../utils/Toast"
+  import ReactDOMServer from 'react-dom/server';
    
-  const TABLE_HEAD = ["Product Code", "Product", "Price","Status", "Category","Shop Quantity","Stock Quantity" ,"Short Description", "Long Description","Information","Shipping",""];
+  const TABLE_HEAD = [
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.ProductCode"/>,value:"Product Code"},
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.Product"/>,value:"Product"},
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.Price"/>,value:"Price"},
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.Status"/>,value:"Status"},
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.Quantity"/>,value:"Category"} ,
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.ShopQuantity"/>,value:"Shop Quantity"},
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.StockQuantity"/>,value:"Stock Quantity"} ,
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.ShortDescription"/>,value:"Short Description"},
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.LongDescription"/>,value:"Long Description"},
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.Information"/>,value:"Information"},
+  {label:<TranslatedText TranslationPath="UCP.Products.TabHeader.Shipping"/>,value:"Shipping"},
+  {label:"",value:""}];
    
   const TABLE_ROWS = [
     {
@@ -58,7 +71,7 @@ import React from "react";
       Status: "Low Stock",
     },
     {
-      ProductCode: "650",
+      ProductCode: "502",
       img: Product_2,
       Brand: "Hertz",
       Model: "ABSQD4 200ML X1",
@@ -73,7 +86,7 @@ import React from "react";
       Status: "Low Stock",
     },
     {
-      ProductCode: "700",
+      ProductCode: "503",
       img: Product_3,
       Brand: "Hertz",
       Model: "X478897 200ML X1",
@@ -89,7 +102,7 @@ import React from "react";
     }
     ,
     {
-      ProductCode: "700",
+      ProductCode: "504",
       img: Product_3,
       Brand: "Hertz",
       Model: "X478897 200ML X1",
@@ -104,7 +117,7 @@ import React from "react";
       Status: "High Stock",
     },
     {
-      ProductCode: "700",
+      ProductCode: "506",
       img: Product_3,
       Brand: "Hertz",
       Model: "X478897 200ML X1",
@@ -119,7 +132,7 @@ import React from "react";
       Status: "High Stock",
     },
     {
-      ProductCode: "700",
+      ProductCode: "507",
       img: Product_3,
       Brand: "Hertz",
       Model: "X478897 200ML X1",
@@ -134,7 +147,7 @@ import React from "react";
       Status: "High Stock",
     },
     {
-      ProductCode: "700",
+      ProductCode: "508",
       img: Product_3,
       Brand: "Hertz",
       Model: "X478897 200ML X1",
@@ -163,39 +176,63 @@ import React from "react";
 
     const TABS = [
       {
-        label: "All",
+        label: <TranslatedText TranslationPath="UCP.Products.TabFilter.All"/>,
         value: "All",
         Filter_fn:()=>TabFilter("Status","All",TABLE_ROWS,SetAllData,currentPage)
       },
       {
-        label: "Low",
+        label: <TranslatedText TranslationPath="UCP.Products.TabFilter.Low"/>,
         value: "Low",
         Filter_fn:()=>TabFilter("Status","Low Stock",TABLE_ROWS,SetAllData,currentPage)
       },
       {
-        label: "High",
+        label: <TranslatedText TranslationPath="UCP.Products.TabFilter.High"/>,
         value: "High",
         Filter_fn:()=>TabFilter("Status","High Stock",TABLE_ROWS,SetAllData,currentPage)
       },
     ];
+
+
+    const HandleProductDelete=()=>
+    {
+   try{
+     const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+          resolve("API Fetch is done!")
+      },3000)})
+  
+  
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Error"/>),
+        "promise",
+        LightModeState==LightMode().type)
+      }
+      catch(e)
+      {
+  
+      }
+    }
     return (
       <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
           <div className="mb-8 flex items-center justify-between gap-8">
             <div>
               <Typography variant="h5" >
-                Products list
+              <TranslatedText TranslationPath="UCP.Products.Title"/>
               </Typography>
               <Typography  className="mt-1 font-normal">
-                See information about all Products
+              <TranslatedText TranslationPath="UCP.Products.Description"/>
               </Typography>
             </div>
             <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
               <Button className="flex items-center gap-3" size="sm" onClick={()=>{window.location.href="/UCP/AddProduct"}}>
-              <i class="fa-solid fa-plus"></i> Add Product
+              <i class="fa-solid fa-plus"></i> <TranslatedText TranslationPath="UCP.Products.TabActions.AddProduct"/>
               </Button>
               <Button className="flex items-center gap-3" size="sm" onClick={()=>{SetOpenCategoryDialog(true)}}>
-              <i class="fa-solid fa-gear"></i> Manage Categories
+              <i class="fa-solid fa-gear"></i><TranslatedText TranslationPath="UCP.Products.TabActions.ManageCategory"/>
               </Button>
             </div>
           </div>
@@ -203,7 +240,7 @@ import React from "react";
           <Tabs value="All" className="w-full md:w-max">
               <TabsHeader className=" overflow-auto">
                 {TABS.map(({ label, value,Filter_fn }) => (
-                  <Tab key={value} value={value} onClick={()=>{Filter_fn()}}>
+                  <Tab style={{ textWrap:"nowrap"}} key={value} value={value} onClick={()=>{Filter_fn()}}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;
                   </Tab>
                 ))}
@@ -225,15 +262,15 @@ import React from "react";
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
-                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Products")}}
-                    key={head}
+                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head.value,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Products")}}
+                    key={head.value}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
                     <Typography
                       variant="small"
                       className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                     >
-                      {head}{" "}
+                      {head.label}{" "}
                       {index !== TABLE_HEAD.length - 1 && (
                         <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                       )}
@@ -251,7 +288,7 @@ import React from "react";
                     : "p-4 border-b border-blue-gray-50";
    
                   return (
-                    <tr key={index}>
+                    <tr key={ProductCode}>
   
                       <td className={classes}>
                         <div className="flex flex-col">
@@ -404,8 +441,8 @@ import React from "react";
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}/>
         </CardFooter>
-        <ConfirmDeleteDialog  Open={OpenDeleteDialog} Action={()=>{console.log("Deleting Product")}} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={"Delete Product"} Content="Are you sure you want to delete this product?" />
-        <CategoryDialog  Open={OpenCategoryDialog} Action={()=>{console.log("Opening the Catalog")}} HandleOpen={()=>{SetOpenCategoryDialog(!OpenCategoryDialog)}} Icon={'<i class="fa-solid fa-gear"></i>'} Title={"Category Management"} Content="" />
+        <ConfirmDeleteDialog  Open={OpenDeleteDialog} Action={HandleProductDelete} HandleOpen={()=>{SetOpenDeleteDialog(!OpenDeleteDialog)}} Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Title"/>} Content={<TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Confirm"/>} />
+        <CategoryDialog  Open={OpenCategoryDialog} Action={()=>{console.log("Opening the Catalog")}} HandleOpen={()=>{SetOpenCategoryDialog(!OpenCategoryDialog)}} Icon={'<i class="fa-solid fa-gear"></i>'} Title={<TranslatedText TranslationPath="UCP.DialogMessages.Category.Category_Title"/>} Content="" />
       </>
     );
   }

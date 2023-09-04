@@ -34,9 +34,16 @@ import {
   import SortData from "../../utils/Table/SortRows"
   import TabFilter from "../../utils/Table/TabFilter"
   import SearchRow from "../../utils/Table/Search"
-
-   
-  const TABLE_HEAD = ["Order", "Employee", "Status", "Date","Total",""];
+  import TranslatedText from "../../utils/Translation"
+  import {CreateToast}  from "../../utils/Toast"
+  import ReactDOMServer from 'react-dom/server';
+  const TABLE_HEAD = 
+  [{label:<TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.OrderID"/>,value:"Order"},
+   {label:<TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Employee"/>,value:"Employee"},
+   {label:<TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Status"/>,value:"Status"},
+   {label:<TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Date"/>,value:"Date"},
+   {label:<TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Total"/>,value:"Total"},
+   {label:"",value:""}];
    
   const TABLE_ROWS = [
     {
@@ -111,53 +118,76 @@ import {
 
     const TABS = [
       {
-        label: "All",
+        label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.All"/>,
         value: "All",
         Filter_fn:()=>TabFilter("status","All",TABLE_ROWS,SetAllData,currentPage)
       },
       
       {
-        label: "Paid",
+        label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Paid"/>,
         value: "Paid",
         Filter_fn:()=>TabFilter("status","Paid",TABLE_ROWS,SetAllData,currentPage)
       },
       {
-        label: "Ready",
+        label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Ready"/>,
         value: "Ready",
         Filter_fn:()=>TabFilter("status","Ready",TABLE_ROWS,SetAllData,currentPage)
       },
       {
-        label: "Pending",
+        label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Pending"/>,
         value: "Pending",
         Filter_fn:()=>TabFilter("status","Pending",TABLE_ROWS,SetAllData,currentPage)
       },
       {
-        label: "Paused",
+        label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Paused"/>,
         value: "Paused",
         Filter_fn:()=>TabFilter("status","Paused",TABLE_ROWS,SetAllData,currentPage)
       },
       {
-        label: "Cancelled",
+        label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Cancelled"/>,
         value: "Cancelled",
         Filter_fn:()=>TabFilter("status","Cancelled",TABLE_ROWS,SetAllData,currentPage)
       },
     ];
 
+    const HandleOrdercancel=()=>
+    {
+  try
+  {  
+        const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
+          resolve("API Fetch is done!")
+      },1000)})
+  
+  
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Success"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Error"/>),
+        "promise",
+        LightModeState==LightMode().type)
+  }
+  catch(e)
+  {
+
+  }
+    }
     return (
       <>
       <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
           <div className="mb-8 flex items-center justify-between gap-8">
             <div>
               <Typography variant="h5" >
-                My Orders list
+              <TranslatedText TranslationPath="UCP.MyOrdersTable.Title"/>
               </Typography>
               <Typography  className="mt-1 font-normal">
-                See information about all of my Orders
+              <TranslatedText TranslationPath="UCP.MyOrdersTable.Description"/>
               </Typography>
             </div>
             <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
               <Button onClick={()=>{toggleCart()}} className="flex items-center gap-3" size="sm">
-              <i class="fa-solid fa-cart-shopping"></i> Add Order
+              <i class="fa-solid fa-cart-shopping"></i> <TranslatedText TranslationPath="UCP.MyOrdersTable.TabActions.AddOrder"/>
               </Button>
             </div>
           </div>
@@ -165,7 +195,7 @@ import {
             <Tabs value="All" className="w-full md:w-max">
               <TabsHeader className=" overflow-auto">
               {TABS.map(({ label, value,Filter_fn }) => (
-                  <Tab key={value} value={value} onClick={()=>{Filter_fn()}}>
+                  <Tab style={{ textWrap:"nowrap"}} key={value} value={value} onClick={()=>{Filter_fn()}}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;
                   </Tab>
                 ))}
@@ -187,15 +217,15 @@ import {
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
-                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"MyOrders")}}
-                    key={head}
+                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head.value,sortDirection,setSortDirection,VisibleData,SetVisibleData,"MyOrders")}}
+                    key={head.value}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
                     <Typography
                       variant="small"
                       className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                     >
-                      {head}{" "}
+                      {head.label}{" "}
                       {index !== TABLE_HEAD.length - 1 && (
                         <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                       )}
@@ -207,14 +237,14 @@ import {
             <tbody>
               {
               VisibleData.map(
-                ({ img, name, email, Total,status,number, OrderID, online, date }, index) => {
+                ({ img, name, email, Total,status, OrderID, online, date }, index) => {
                   const isLast = index === TABLE_ROWS.length - 1;
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-blue-gray-50";
    
                   return (
-                    <tr key={name}>
+                    <tr key={OrderID}>
   
                       <td className={classes}>
                         <div className="flex flex-col">
@@ -309,7 +339,7 @@ import {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}/>
         </CardFooter>
-        <ConfirmDialog  Open={ConfirmCancelDialog} Action={()=>{console.log("Canceling order")}} HandleOpen={()=>{SetConfirmCancelDialog(!ConfirmCancelDialog)}} Icon={'<i class="fa-solid fa-store-slash h-4 w-4 m-1"></i>'} Title={"Cancel Order"} Content="Are you sure you wanna cancel your order?" />
+        <ConfirmDialog  Open={ConfirmCancelDialog} Action={HandleOrdercancel} HandleOpen={()=>{SetConfirmCancelDialog(!ConfirmCancelDialog)}} Icon={'<i class="fa-solid fa-store-slash h-4 w-4 m-1"></i>'} Title={"Cancel Order"} Content={<TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Confirm"/>} />
       </>
     );
   }

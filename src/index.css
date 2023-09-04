@@ -30,11 +30,11 @@ body {
 
   /*=============COLORS===============*/
 
-  --WHITE_THEME_COLOR_T1:rgba(236,	239,	241, 0.8);
-  --WHITE_THEME_COLOR_T2:rgba(255,	255,	255, 0.8);
-  --BLACK_THEME_COLOR_T1:rgba(51, 51, 51, 0.8);
+  --WHITE_THEME_COLOR_T1:rgba(236,	239,	241, 1);
+  --WHITE_THEME_COLOR_T2:rgba(255,	255,	255, 1);
+  --BLACK_THEME_COLOR_T1:rgba(51, 51, 51, 1);
   --RED_THEME_COLOR_T1:rgba(191,54,12, 1);
-  --BLACK_THEME_COLOR_T2:rgba(40,40,40, 0.6);
+  --BLACK_THEME_COLOR_T2:rgba(40,40,40, 1);
   --LOADING_THEME_COLOR:#ffcdd2;
   --WHITE_TXT_COLOR:black;
   --BLACK_TXT_COLOR:white;
@@ -212,3 +212,14 @@ body {
 }
 
 /*==============E-OVERRIDING THE DEFAULT TAILWIND COLORS FOR INPUTS & ICONS====================*/
+
+.highlightOption
+{
+  background-color: #e53935 !important;
+}
+.option:hover{
+  background-color: #e53935 !important;
+}
+
+/*==============E-OVERRIDING THE DEFAULT MULTISELECT====================*/
+

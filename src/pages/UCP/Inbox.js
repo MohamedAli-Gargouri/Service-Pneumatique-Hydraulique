@@ -16,7 +16,7 @@ import {
   PopoverHandler,
   PopoverContent,
   } from "@material-tailwind/react";
-
+  import TranslatedText from "../../utils/Translation"
  import { useSelector } from "react-redux/es/hooks/useSelector";
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 import Footer from "../../components/footer"
@@ -38,7 +38,7 @@ import InboxTable from "../../components/Table/Inbox"
 
       <main className="w-full min-h-screen flex flex-col justify-start items-center ">  
         <section className=" flex flex-col justify-center items-stretch w-full text-center h-[17vh] p-4 shadow-xl shadow-blue-gray-900/ bg-cover" style={{backgroundImage:`url(${Topbarbg})`}} >     
-        <TopBar SectionName="Inbox" Icon='<i class="fa-solid fa-inbox"></i>' />
+        <TopBar SectionName={<TranslatedText TranslationPath="UCP.TopNav.TabTitles.Inbox"/>} Icon='<i class="fa-solid fa-inbox"></i>' />
         </section>
 
         <section className="w-[98vw] xl:w-[80vw] flex  justify-center  text-center">      

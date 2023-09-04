@@ -9,27 +9,26 @@ import React from "react";
     Alert,
     IconButton 
   } from "@material-tailwind/react";
-
-  const TABLE_HEAD_OrderNotification = ["","Order","Message",""];
-   
+  import TranslatedText from "../../utils/Translation"
+  
   const TABLE_ROWS_OrderNotifications = [
     {
-      Notification_ID: "156154",
-      OrderID: "2",
+      Notification_ID: "1",
+      OrderID: "1",
       NotificationType:"Normal",
       Notification_Message: "Your order is now set to Pending, this usually mean it's gonna take sometime to prepare your order, be patient..",
     },
     
     {
-      Notification_ID: "1687",
+      Notification_ID: "2",
       OrderID: "2",
       NotificationType:"Good",
       Notification_Message: "Your order is now ready !",
     },
     
     {
-      Notification_ID: "156154",
-      OrderID: "2",
+      Notification_ID: "3",
+      OrderID: "3",
       NotificationType:"Normal",
       Notification_Message: "Your order is now set to Pending, this usually mean it's gonna take sometime to prepare your order, be patient..",
     },
@@ -69,7 +68,7 @@ import React from "react";
                                 : NotificationType === "Normal"
                                 ? "amber"
                                 : "red"
-                            }>Order #{OrderID} {Notification_Message}<IconButton variant="text" size="sm" className=" mx-2 rounded-full">
+                            }><TranslatedText TranslationPath="UCP.Notifications.TabHeader.Order"/>  #{OrderID} {Notification_Message}<IconButton variant="text" size="sm" className=" mx-2 rounded-full">
                             <i class="fa-solid fa-xmark  "></i>
                           </IconButton></Alert> 
 

@@ -37,9 +37,15 @@ import React from "react";
 
   import CategoryDialog from "../../components/Dialog/Category" 
   import CustomTooltip from "../../components/ToolTip"
+  import TranslatedText from "../../utils/Translation"
 
-   
-  const TABLE_HEAD = ["","Product Code", "Product", "Price","Quantity"];
+
+  const TABLE_HEAD = [  
+  {label:"",value:""},
+  {label:<TranslatedText TranslationPath="UCP.InvoiceProductList.TabHeader.ProductCode"/>,value:"Product Code"},
+  {label:<TranslatedText TranslationPath="UCP.InvoiceProductList.TabHeader.Product"/>,value:"Product"},
+  {label:<TranslatedText TranslationPath="UCP.InvoiceProductList.TabHeader.Price"/>,value:"Price"},
+  {label:<TranslatedText TranslationPath="UCP.InvoiceProductList.TabHeader.Quantity"/>,value:"Quantity"}];
    
 
   export default function Invoice_ProductsList({P_Selected, P_Quantities, P_Products}) {
@@ -229,10 +235,10 @@ import React from "react";
           <div className="mb-8 flex items-center justify-between gap-8">
             <div>
               <Typography variant="h5" >
-                Products list
+              <TranslatedText TranslationPath="UCP.InvoiceProductList.Title"/>
               </Typography>
               <Typography  className="mt-1 font-normal">
-                See information about all Products
+              <TranslatedText TranslationPath="UCP.InvoiceProductList.Description"/>
               </Typography>
             </div>
 
@@ -255,15 +261,15 @@ import React from "react";
               <tr>
                 {TABLE_HEAD.map((head, index) => (
                   <th
-                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Products")}}
-                    key={head}
+                    onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head.value,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Products")}}
+                    key={head.value}
                     className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                   >
                     <Typography
                       variant="small"
                       className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                     >
-                      {head}{" "}
+                      {head.label}{" "}
                       {index !== TABLE_HEAD.length - 1 && (
                         <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                       )}

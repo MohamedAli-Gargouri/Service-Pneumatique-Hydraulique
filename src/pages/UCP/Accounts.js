@@ -40,7 +40,7 @@ import AccountsTable from "../../components/Table/Accounts"
 
       <main className="w-full min-h-screen flex flex-col justify-start items-center ">  
         <section className=" flex flex-col justify-center items-stretch w-full text-center h-[17vh] p-4 shadow-xl shadow-blue-gray-900/ bg-cover" style={{backgroundImage:`url(${Topbarbg})`}} >     
-        <TopBar SectionName="Accounts" Icon='<i class="fa-solid fa-users"></i>'/>
+        <TopBar SectionName={<TranslatedText TranslationPath="UCP.TopNav.TabTitles.Accounts"/>} Icon='<i class="fa-solid fa-users"></i>'/>
         </section>
 
         <section className="w-[98vw] xl:w-[80vw] flex justify-center  text-center">      

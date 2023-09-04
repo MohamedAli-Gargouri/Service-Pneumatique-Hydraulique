@@ -33,10 +33,16 @@ import Pagination from "../../utils/Table/Pagination";
 import SortData from "../../utils/Table/SortRows"
 import TabFilter from "../../utils/Table/TabFilter"
 import SearchRow from "../../utils/Table/Search"
+import TranslatedText from "../../utils/Translation"
 import React from "react";
 
  
-const TABLE_HEAD = ["Product Code", "Product", "Quantity", "Status", "Unit Price","Total",""];
+const TABLE_HEAD = [{label:"Product Code",value:"Product Code"},
+{label:<TranslatedText TranslationPath="UCP.Order.TabHeader.Product"/>,value:"Product"},
+{label:<TranslatedText TranslationPath="UCP.Order.TabHeader.Quantity"/>,value:"Quantity"},
+{label:<TranslatedText TranslationPath="UCP.Order.TabHeader.Status"/>,value:"Status"},
+{label:<TranslatedText TranslationPath="UCP.Order.TabHeader.Price"/>,value:"Unit Price"},
+{label:<TranslatedText TranslationPath="UCP.Order.TabHeader.Total"/>,value:"Total"}];
  
 const TABLE_ROWS = [
   {
@@ -63,7 +69,7 @@ const TABLE_ROWS = [
     img: Product_3,
     name: "Compressor X66",
     Description: "300ML V12",
-    P_Code: "1564",
+    P_Code: "3",
     Quantity: "1",
     Unit: "500",
     status: "Low Stock",
@@ -73,7 +79,7 @@ const TABLE_ROWS = [
     img: Product_3,
     name: "Compressor X66",
     Description: "300ML V12",
-    P_Code: "1564",
+    P_Code: "4",
     Quantity: "1",
     Unit: "500",
     status: "Unavailable",
@@ -89,22 +95,22 @@ export default function OrderTable() {
   const [currentPage, setCurrentPage] = React.useState(1);
   const TABS = [
     {
-      label: "All",
+      label: <TranslatedText TranslationPath="UCP.Order.TabFilter.All"/>,
       value: "All",
       Filter_fn:()=>TabFilter("status","All",TABLE_ROWS,SetAllData,currentPage)
     },
     {
-      label: "Low",
+      label: <TranslatedText TranslationPath="UCP.Order.TabFilter.Low"/>,
       value: "Low",
       Filter_fn:()=>TabFilter("status","Low Stock",TABLE_ROWS,SetAllData,currentPage)
     },
     {
-      label: "High",
+      label: <TranslatedText TranslationPath="UCP.Order.TabFilter.High"/>,
       value: "High",
       Filter_fn:()=>TabFilter("status","High Stock",TABLE_ROWS,SetAllData,currentPage)
     },
     {
-      label: "Unavailable",
+      label: <TranslatedText TranslationPath="UCP.Order.TabFilter.Unavailable"/>,
       value: "Unavailable",
       Filter_fn:()=>TabFilter("status","Unavailable",TABLE_ROWS,SetAllData,currentPage)
     },
@@ -116,10 +122,10 @@ export default function OrderTable() {
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
             <Typography variant="h5" >
-              Ordered Products list
+            <TranslatedText TranslationPath="UCP.Order.Title"/>
             </Typography>
             <Typography  className="mt-1 font-normal">
-              See information about all the ordered products
+            <TranslatedText TranslationPath="UCP.Order.Description"/>
             </Typography>
           </div>
           
@@ -128,7 +134,7 @@ export default function OrderTable() {
           <Tabs value="All" className="w-full md:w-max">
             <TabsHeader className=" overflow-auto" >
             {TABS.map(({ label, value,Filter_fn }) => (
-                  <Tab key={value} value={value} onClick={()=>{Filter_fn()}}>
+                  <Tab style={{ textWrap:"nowrap"}} key={value} value={value} onClick={()=>{Filter_fn()}}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;
                   </Tab>
                 ))}
@@ -150,15 +156,15 @@ export default function OrderTable() {
             <tr>
               {TABLE_HEAD.map((head, index) => (
                 <th
-                  onClick={()=>{if(index !== TABLE_HEAD.length - 1)SortData(head,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Order")}}
-                  key={head}
+                  onClick={()=>{if(index !== TABLE_HEAD.length - 1){SortData(head.value,sortDirection,setSortDirection,VisibleData,SetVisibleData,"Order")}}}
+                  key={head.value}
                   className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                 >
                   <Typography
                     variant="small"
                     className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                   >
-                    {head}{" "}
+                    {head.label}{" "}
                     {index !== TABLE_HEAD.length - 1 && (
                       <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                     )}
@@ -176,7 +182,7 @@ export default function OrderTable() {
                   : "p-4 border-b border-blue-gray-50";
  
                 return (
-                  <tr key={name}>
+                  <tr key={P_Code}>
 
                     <td className={classes}>
                       <div className="flex flex-col">
@@ -250,15 +256,6 @@ export default function OrderTable() {
                       >
                         {Total} TND
                       </Typography>
-                    </td>
-                    <td className={classes}>
-                    <Tooltip content="Inspect Product">
-                      <IconButton variant="text" onClick={()=>{window.location.href="/UCP/Product"}}>
-                        <EyeIcon className="h-4 w-4" />
-                      </IconButton>
-                    </Tooltip>
-                   
-                    
                     </td>
                   </tr>
                 );

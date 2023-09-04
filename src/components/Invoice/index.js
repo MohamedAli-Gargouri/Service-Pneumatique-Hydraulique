@@ -9,7 +9,10 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import InvoicePDF from "./PDFGenerator"
 import debounce from 'lodash/debounce';
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import TranslatedText from "../../utils/Translation"
 import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+import {CreateToast}  from "../../utils/Toast"
+import ReactDOMServer from 'react-dom/server';
 
 const Invoice = () => {
 const [DemanderType,setDemanderType]=React.useState("Company")
@@ -40,12 +43,30 @@ const Discount = React.useRef(0);
 const TaxRate = React.useRef(18);
 const [ProductsData, SetProductsData] = React.useState([]);
 const [PDFLoaded, SetPDFLoaded] = React.useState(false);
-const [GeneratedPDF, SetGeneratedPDF] = React.useState(<Document>
-  <Page style={{flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-  <Text>Your document is not generated yet, click</Text>
-  <Text style={{ textDecoration:"underline", color:"red"}}>Generate Invoice.</Text>
-    </Page>
-</Document>
+const [GeneratedPDF, SetGeneratedPDF] = React.useState(
+  <InvoicePDF
+  InvoiceNumber={InvoiceNumber.current}
+  HostType={HostType}
+  DemanderType={DemanderType}
+  DocumentType={DocumentType}
+  SetPDFLoaded={SetPDFLoaded}
+  PreviewInvoice={PreviewInvoice}
+  D_FirstName={D_FirstName.current}
+  D_LastName={D_LastName.current}
+  D_Adress={D_Adress.current}
+  D_PhoneNumber={D_PhoneNumber.current}
+  D_TaxNumber={D_TaxNumber.current}
+  H_FirstName={H_FirstName.current}
+  H_LastName={H_LastName.current}
+  H_Adress={H_Adress.current}
+  H_PhoneNumber={H_PhoneNumber.current}
+  H_TaxNumber={H_TaxNumber.current}
+  CreationDate={CreationDate.current}
+  LimitDate={LimitDate.current}
+  Discount={Discount.current}
+  TaxRate={TaxRate.current}
+  ProductsData={ProductsData}
+/>
 );
 
 React.useEffect(()=>{
@@ -59,6 +80,8 @@ D_LastName.current=""
 React.useEffect(()=>{
   H_LastName.current=""
 },[HostType])
+
+
 const GenerateNewPDF=(()=>{
   SetPDFLoaded(true)
   const pdf = (
@@ -88,6 +111,22 @@ const GenerateNewPDF=(()=>{
   );
   SetGeneratedPDF(pdf)
 })
+
+const ShowDownloadInvoice=(()=>
+{
+
+
+  CreateToast(
+    null,
+    ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Invoice.DownloadInvoice_Success"/>),
+    ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Invoice.DownloadInvoice_Success"/>),
+    ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Invoice.DownloadInvoice_Success"/>),
+    ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Invoice.DownloadInvoice_Error"/>),
+    "info",
+    LightModeState==LightMode().type)
+  })
+
+
 
 //This function handles fetching data from the input DOM elements and updating the refs
 const HandleInvoiceValueChanges=debounce((e,type)=>
@@ -156,7 +195,7 @@ const HandleInvoiceValueChanges=debounce((e,type)=>
         className='rounded-md'
       >
         <Pane  minSize={10} maxSize='70%' className=' rounded-md rounded-r-none flex flex-col justify-start items-center'>
-             <div className='w-full' style={{ color:"white",backgroundColor:"#e53935"}}> <h5>Generate Invoice </h5></div>
+             <div className='w-full' style={{ color:"white",backgroundColor:"#e53935"}}> <h5><TranslatedText TranslationPath="UCP.Invoice.Title1"/> </h5></div>
 
              <div className='w-full h-full flex flex-col justify-start items-center gap-1'>
                 
@@ -171,13 +210,13 @@ const HandleInvoiceValueChanges=debounce((e,type)=>
             return(
               loading ?
               <div className='flex flex-col justify-center items-center'>
-                <p>Generating your download please wait...</p>
+                <p>{<TranslatedText TranslationPath="UCP.Invoice.TabActions.GeneratingDownload"/>}</p>
                 <Spinner color="red" className=" m-2 h-5 w-5" />
                 </div>    
                   :     
-                <Button className=" justify-items-stretch flex items-center gap-3 col-span-2 m-2">
+                <Button onClick={ShowDownloadInvoice} className=" justify-items-stretch flex items-center gap-3 col-span-2 m-2">
                 <i class="fa-solid fa-file-invoice"></i>
-                 Download Invoice
+                {<TranslatedText TranslationPath="UCP.Invoice.TabActions.DownloadInvoice_Estimate"/>}
                 </Button>
             )
           } }
@@ -187,65 +226,64 @@ const HandleInvoiceValueChanges=debounce((e,type)=>
 
         <Button onClick={()=>{GenerateNewPDF()}} className=" justify-items-stretch flex items-center gap-3 col-span-2 m-2">
         <i class="fa-solid fa-gears"></i>
-        Generate Invoice
-        </Button>
-
+        {<TranslatedText TranslationPath="UCP.Invoice.TabActions.GenerateINvoice_Estimate"/>}
+        </Button>    
         </div>
 
-                <h4 className='mt-2'><i class="fa-solid fa-file-invoice mr-2"></i>  Document Type</h4>
+                <h4 className='mt-2'><i class="fa-solid fa-file-invoice mr-2"></i>  {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.DocumentType"/>}</h4>
 
                 <div className=" flex justify-evenly w-full">
-                <Checkbox labelProps={{style:{color:"inherit"}}} checked={DocumentType=="Invoice"?true:false} onClick={()=>{SetDocumentType("Invoice")}} label="Invoice" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
-                <Checkbox labelProps={{style:{color:"inherit"}}} checked={DocumentType=="Estimate"?true:false} onClick={()=>{SetDocumentType("Estimate")}} label="Estimate" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+                <Checkbox labelProps={{style:{color:"inherit"}}} checked={DocumentType=="Invoice"?true:false} onClick={()=>{SetDocumentType("Invoice")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Invoice"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+                <Checkbox labelProps={{style:{color:"inherit"}}} checked={DocumentType=="Estimate"?true:false} onClick={()=>{SetDocumentType("Estimate")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Estimate"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
               </div>
               {DocumentType=="Invoice"?<div className=' grid grid-cols-2 justify-center item w-full gap-3 p-2'>
                 <div className=' col-span-2 mx-2'>
-                <Input containerProps={{style: {minWidth: '10px' }}} variant="outlined" type='number' onChange={(e)=>{HandleInvoiceValueChanges(e,"InvoiceNumber")}} label="Invoice number" />
+                <Input containerProps={{style: {minWidth: '10px' }}} variant="outlined" type='number' onChange={(e)=>{HandleInvoiceValueChanges(e,"InvoiceNumber")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.InvoiceNumber"/>} />
                 </div>
               </div>:null}
                 
 
 
-                <h4 className='mt-2'><i class="fa-solid fa-user-tag mr-2"></i> Demander Information</h4>
+                <h4 className='mt-2'><i class="fa-solid fa-user-tag mr-2"></i> {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.DemanderInformations"/>}</h4>
                 <div className="flex justify-evenly w-full">
-                <Checkbox labelProps={{style:{color:"inherit"}}} checked={DemanderType=="Person"?true:false} onClick={()=>{setDemanderType("Person")}} label="Person" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
-                <Checkbox labelProps={{style:{color:"inherit"}}} checked={DemanderType=="Company"?true:false} onClick={()=>{setDemanderType("Company")}} label="Company" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+                <Checkbox labelProps={{style:{color:"inherit"}}} checked={DemanderType=="Person"?true:false} onClick={()=>{setDemanderType("Person")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Person"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+                <Checkbox labelProps={{style:{color:"inherit"}}} checked={DemanderType=="Company"?true:false} onClick={()=>{setDemanderType("Company")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Company"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
                 </div>
                 <div className=' grid grid-cols-2 justify-evenly w-full gap-3 p-2'>
-                <Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_FNAME")}} label={DemanderType=="Person"?"First Person":"Company Name"} className=' col-span-1' />
-                {DemanderType=="Person"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_LNAME")}} label="Last Name" className=' col-span-1' />:null}
-                <Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_ADRESS")}} label="Adress" className=' col-span-1' />
-                <Input type='number' containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_PHONE")}} label="Phone Number" className=' col-span-1' />
-                {DocumentType=="Invoice"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_TAXNUMBER")}} label="Tax number" className=' col-span-1' />:null}
+                <Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_FNAME")}} label={DemanderType=="Person"?<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_FirstName"/>:<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_CompanyName"/>} className=' col-span-1' />
+                {DemanderType=="Person"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_LNAME")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_LastName"/>} className=' col-span-1' />:null}
+                <Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_ADRESS")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_Adress"/>} className=' col-span-1' />
+                <Input type='number' containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_PHONE")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_PhoneNumber"/>} className=' col-span-1' />
+                {DocumentType=="Invoice"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_TAXNUMBER")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_FiscaleNumber"/>} className=' col-span-1' />:null}
                 </div>
 
                 
-                <h4 className='mt-2'><i class="fa-solid fa-calendar-days mr-2"></i> Facture/Devis limits </h4>
+                <h4 className='mt-2'><i class="fa-solid fa-calendar-days mr-2"></i> {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.Invoice_EstimateLimits"/>} </h4>
                 <div className=' grid grid-cols-2 justify-evenly w-full gap-3 p-2'>
-                <Input type='date' defaultValue={new Date().toISOString().substr(0, 10)} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"CDATE")}} variant="outlined" label="Creation Date" className=' col-span-1' />
-                <Input type='date' containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"LDATE")}} variant="outlined" label="Limit Date" className=' col-span-1' />
+                <Input type='date' defaultValue={new Date().toISOString().substr(0, 10)} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"CDATE")}} variant="outlined" label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.CreateDate"/>} className=' col-span-1' />
+                <Input type='date' containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"LDATE")}} variant="outlined" label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.LimitDate"/>} className=' col-span-1' />
                 </div>
-                <h4 className='mt-2'><i class="fa-solid fa-hand-holding-dollar mr-2"></i> Tax & Discount </h4>
+                <h4 className='mt-2'><i class="fa-solid fa-hand-holding-dollar mr-2"></i> {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.TaxDiscount"/>} </h4>
                 <div className=' grid grid-cols-2 justify-evenly w-full gap-3 p-2'>
-                <Input type='number' defaultValue={0} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"DISCOUNT")}} variant="outlined" label="Discount" className=' col-span-1' />
-                <Input type='number' defaultValue={18} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"TAXRATE")}} variant="outlined" label="Tax rate" className=' col-span-1' />
+                <Input type='number' defaultValue={0} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"DISCOUNT")}} variant="outlined" label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.Discount"/>} className=' col-span-1' />
+                <Input type='number' defaultValue={18} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"TAXRATE")}} variant="outlined" label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.TaxRate"/>} className=' col-span-1' />
                 </div>
 
-                <h4 className='mt-2'><i class="fa-solid fa-building mr-2"></i> Company Information</h4>
+                <h4 className='mt-2'><i class="fa-solid fa-building mr-2"></i> {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.HostInformations"/>}</h4>
                 <div className="flex justify-evenly w-full">
-                <Checkbox labelProps={{style:{color:"inherit"}}} checked={HostType=="Person"?true:false} onClick={()=>{SetHostType("Person")}}  label="Person" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
-                <Checkbox labelProps={{style:{color:"inherit"}}} checked={HostType=="Company"?true:false} onClick={()=>{SetHostType("Company")}} label="Company" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+                <Checkbox labelProps={{style:{color:"inherit"}}} checked={HostType=="Person"?true:false} onClick={()=>{SetHostType("Person")}}  label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Person"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+                <Checkbox labelProps={{style:{color:"inherit"}}} checked={HostType=="Company"?true:false} onClick={()=>{SetHostType("Company")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Company"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
                 </div>
                 <div className=' grid grid-cols-2 justify-evenly w-full gap-3 p-2'>
-                <Input defaultValue={"Service Pneumatique Hydraulique SPH"} containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_FNAME")}} label={HostType=="Person"?"First Name":"Company Name"} className=' col-span-1' />
-                {HostType=="Person"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_LNAME")}} label="Last Name" className=' col-span-1' />:null}
-                <Input defaultValue={"Av Med Jammousi Immeuble el HANA 3000 Sfax - Tunis"} containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_ADRESS")}} label="Adress" className=' col-span-1' />
-                <Input defaultValue={74227074} type='number' containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_PHONE")}} label="Phone Number" className=' col-span-1' />
-                {DocumentType=="Invoice"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_TAXNUMBER")}} label="Tax number" className=' col-span-1' />:null}
+                <Input defaultValue={"Service Pneumatique Hydraulique SPH"} containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_FNAME")}} label={HostType=="Person"?<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_FirstName"/>:<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_CompanyName"/>} className=' col-span-1' />
+                {HostType=="Person"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_LNAME")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_LastName"/>} className=' col-span-1' />:null}
+                <Input defaultValue={"Av Med Jammousi Immeuble el HANA 3000 Sfax - Tunis"} containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_ADRESS")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_Adress"/>} className=' col-span-1' />
+                <Input defaultValue={74227074} type='number' containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_PHONE")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_PhoneNumber"/>} className=' col-span-1' />
+                {DocumentType=="Invoice"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_TAXNUMBER")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_FiscaleNumber"/>} className=' col-span-1' />:null}
                 </div>
                 
                 
-                <h4 className='mt-2 '> Products </h4>
+                <h4 className='mt-2 '> {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.Invoice_Estimate_Products"/>} </h4>
                 <InvoiceProductTable ProductsData={ProductsData} SetProductsData={SetProductsData}/>
 
                 
@@ -254,21 +292,21 @@ const HandleInvoiceValueChanges=debounce((e,type)=>
         </Pane>
         <Pane minSize={10} maxSize='70%' className='rounded-md rounded-l-none flex flex-col justify-center items-center'>
             <div className='w-full' style={{color:"white",backgroundColor:"#e53935"}}>
-            <h5>Preview Invoice </h5>
+            <h5><TranslatedText TranslationPath="UCP.Invoice.Title2"/></h5>
             </div>
             <div className='w-full h-full flex flex-col justify-start items-center '>  
 
 
         <div className='w-full flex flex-row  justify-evenly items-center'>
 
-        <Tooltip content="Toggle Preview" placement="top">
+        <Tooltip content={<TranslatedText TranslationPath="UCP.Invoice.TabActions.TogglePreview"/>} placement="top">
         <IconButton onClick={()=>{SetPreviewInvoice(!PreviewInvoice)}} variant='text' className="rounded-full">
         {PreviewInvoice?<i class="fa-solid fa-eye-slash"></i>:<i class="fa-solid fa-eye"></i>}
         </IconButton>
         </Tooltip>
          
 
-        <Tooltip content="Refresh Invoice/Estimate" placement="top">
+        <Tooltip content={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Refresh"/>} placement="top">
         <IconButton onClick={()=>{GenerateNewPDF()}} variant='text' className="rounded-full">
         <i class="fa-solid fa-arrows-rotate"></i>
         </IconButton> 
@@ -280,7 +318,7 @@ const HandleInvoiceValueChanges=debounce((e,type)=>
             {GeneratedPDF}
           </PDFViewer>
          :
-          <p>Preview is disabled.</p>
+          <p>{<TranslatedText TranslationPath="UCP.Invoice.TabActions.PreviewDisabledMsg"/>}</p>
        
         }
              
@@ -295,7 +333,7 @@ const HandleInvoiceValueChanges=debounce((e,type)=>
 <div  className={` w-full h-full lg:hidden ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2Z":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
 
         <Card  className=' text-current bg-transparent rounded-md rounded-r-none flex flex-col justify-start items-center'>
-        <div className='w-full' style={{ color:"white",backgroundColor:"#e53935"}}> <h5>Generate Invoice </h5></div>
+        <div className='w-full' style={{ color:"white",backgroundColor:"#e53935"}}> <h5><TranslatedText TranslationPath="UCP.Invoice.Title1"/> </h5></div>
 
 <div className='w-full h-full flex flex-col justify-start items-center gap-1'>
    
@@ -310,13 +348,13 @@ const HandleInvoiceValueChanges=debounce((e,type)=>
 return(
  loading ?
  <div className='flex flex-col justify-center items-center'>
-   <p>Generating your download please wait...</p>
+   <p>{<TranslatedText TranslationPath="UCP.Invoice.TabActions.GeneratingDownload"/>}</p>
    <Spinner color="red" className=" m-2 h-5 w-5" />
    </div>    
      :     
-   <Button className=" justify-items-stretch flex items-center gap-3 col-span-2 m-2">
+   <Button onClick={ShowDownloadInvoice} className=" justify-items-stretch flex items-center gap-3 col-span-2 m-2">
    <i class="fa-solid fa-file-invoice"></i>
-    Download Invoice
+   {<TranslatedText TranslationPath="UCP.Invoice.TabActions.DownloadInvoice_Estimate"/>}
    </Button>
 )
 } }
@@ -326,65 +364,65 @@ return(
 
 <Button onClick={()=>{GenerateNewPDF()}} className=" justify-items-stretch flex items-center gap-3 col-span-2 m-2">
 <i class="fa-solid fa-gears"></i>
-Generate Invoice
+{<TranslatedText TranslationPath="UCP.Invoice.TabActions.GenerateINvoice_Estimate"/>}
 </Button>
 
 </div>
 
-   <h4 className='mt-2'><i class="fa-solid fa-file-invoice mr-2"></i>  Document Type</h4>
+   <h4 className='mt-2'><i class="fa-solid fa-file-invoice mr-2"></i>  {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.DocumentType"/>}</h4>
 
    <div className=" flex justify-evenly w-full">
-   <Checkbox labelProps={{style:{color:"inherit"}}} checked={DocumentType=="Invoice"?true:false} onClick={()=>{SetDocumentType("Invoice")}} label="Invoice" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
-   <Checkbox labelProps={{style:{color:"inherit"}}} checked={DocumentType=="Estimate"?true:false} onClick={()=>{SetDocumentType("Estimate")}} label="Estimate" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+   <Checkbox labelProps={{style:{color:"inherit"}}} checked={DocumentType=="Invoice"?true:false} onClick={()=>{SetDocumentType("Invoice")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Invoice"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+   <Checkbox labelProps={{style:{color:"inherit"}}} checked={DocumentType=="Estimate"?true:false} onClick={()=>{SetDocumentType("Estimate")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Estimate"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
  </div>
  {DocumentType=="Invoice"?<div className=' grid grid-cols-2 justify-center item w-full gap-3 p-2'>
    <div className=' col-span-2 mx-2'>
-   <Input containerProps={{style: {minWidth: '10px' }}} variant="outlined" type='number' onChange={(e)=>{HandleInvoiceValueChanges(e,"InvoiceNumber")}} label="Invoice number" />
+   <Input containerProps={{style: {minWidth: '10px' }}} variant="outlined" type='number' onChange={(e)=>{HandleInvoiceValueChanges(e,"InvoiceNumber")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.InvoiceNumber"/>} />
    </div>
  </div>:null}
    
 
 
-   <h4 className='mt-2'><i class="fa-solid fa-user-tag mr-2"></i> Demander Information</h4>
+   <h4 className='mt-2'><i class="fa-solid fa-user-tag mr-2"></i> {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.DemanderInformations"/>}</h4>
    <div className="flex justify-evenly w-full">
-   <Checkbox labelProps={{style:{color:"inherit"}}} checked={DemanderType=="Person"?true:false} onClick={()=>{setDemanderType("Person")}} label="Person" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
-   <Checkbox labelProps={{style:{color:"inherit"}}} checked={DemanderType=="Company"?true:false} onClick={()=>{setDemanderType("Company")}} label="Company" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+   <Checkbox labelProps={{style:{color:"inherit"}}} checked={DemanderType=="Person"?true:false} onClick={()=>{setDemanderType("Person")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Person"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+   <Checkbox labelProps={{style:{color:"inherit"}}} checked={DemanderType=="Company"?true:false} onClick={()=>{setDemanderType("Company")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Company"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
    </div>
    <div className=' grid grid-cols-2 justify-evenly w-full gap-3 p-2'>
-   <Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_FNAME")}} label={DemanderType=="Person"?"First Person":"Company Name"} className=' col-span-1' />
-   {DemanderType=="Person"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_LNAME")}} label="Last Name" className=' col-span-1' />:null}
-   <Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_ADRESS")}} label="Adress" className=' col-span-1' />
-   <Input type='number' containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_PHONE")}} label="Phone Number" className=' col-span-1' />
-   {DocumentType=="Invoice"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_TAXNUMBER")}} label="Tax number" className=' col-span-1' />:null}
+   <Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_FNAME")}} label={DemanderType=="Person"?<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_FirstName"/>:<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_CompanyName"/>} className=' col-span-1' />
+   {DemanderType=="Person"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_LNAME")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_LastName"/>} className=' col-span-1' />:null}
+   <Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_ADRESS")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_Adress"/>} className=' col-span-1' />
+   <Input type='number' containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_PHONE")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_PhoneNumber"/>} className=' col-span-1' />
+   {DocumentType=="Invoice"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"D_TAXNUMBER")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.D_FiscaleNumber"/>} className=' col-span-1' />:null}
    </div>
 
    
-   <h4 className='mt-2'><i class="fa-solid fa-calendar-days mr-2"></i> Facture/Devis limits </h4>
+   <h4 className='mt-2'><i class="fa-solid fa-calendar-days mr-2"></i> {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.Invoice_EstimateLimits"/>}</h4>
    <div className=' grid grid-cols-2 justify-evenly w-full gap-3 p-2'>
-   <Input type='date' defaultValue={new Date().toISOString().substr(0, 10)} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"CDATE")}} variant="outlined" label="Creation Date" className=' col-span-1' />
-   <Input type='date' containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"LDATE")}} variant="outlined" label="Limit Date" className=' col-span-1' />
+   <Input type='date' defaultValue={new Date().toISOString().substr(0, 10)} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"CDATE")}} variant="outlined" label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.CreateDate"/>} className=' col-span-1' />
+   <Input type='date' containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"LDATE")}} variant="outlined" label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.LimitDate"/>} className=' col-span-1' />
    </div>
-   <h4 className='mt-2'><i class="fa-solid fa-hand-holding-dollar mr-2"></i> Tax & Discount </h4>
+   <h4 className='mt-2'><i class="fa-solid fa-hand-holding-dollar mr-2"></i> {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.TaxDiscount"/>} </h4>
    <div className=' grid grid-cols-2 justify-evenly w-full gap-3 p-2'>
-   <Input type='number' defaultValue={0} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"DISCOUNT")}} variant="outlined" label="Discount" className=' col-span-1' />
-   <Input type='number' defaultValue={18} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"TAXRATE")}} variant="outlined" label="Tax rate" className=' col-span-1' />
+   <Input type='number' defaultValue={0} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"DISCOUNT")}} variant="outlined" label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.Discount"/>} className=' col-span-1' />
+   <Input type='number' defaultValue={18} containerProps={{style: {minWidth: '10px', }}}  onChange={(e)=>{HandleInvoiceValueChanges(e,"TAXRATE")}} variant="outlined" label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.TaxRate"/>} className=' col-span-1' />
    </div>
 
-   <h4 className='mt-2'><i class="fa-solid fa-building mr-2"></i> Company Information</h4>
+   <h4 className='mt-2'><i class="fa-solid fa-building mr-2"></i> {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.HostInformations"/>}</h4>
    <div className="flex justify-evenly w-full">
-   <Checkbox labelProps={{style:{color:"inherit"}}} checked={HostType=="Person"?true:false} onClick={()=>{SetHostType("Person")}}  label="Person" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
-   <Checkbox labelProps={{style:{color:"inherit"}}} checked={HostType=="Company"?true:false} onClick={()=>{SetHostType("Company")}} label="Company" ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+   <Checkbox labelProps={{style:{color:"inherit"}}} checked={HostType=="Person"?true:false} onClick={()=>{SetHostType("Person")}}  label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Person"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
+   <Checkbox labelProps={{style:{color:"inherit"}}} checked={HostType=="Company"?true:false} onClick={()=>{SetHostType("Company")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Company"/>} ripple={false} className="h-8 w-8 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"/>
    </div>
    <div className=' grid grid-cols-2 justify-evenly w-full gap-3 p-2'>
-   <Input defaultValue={"Service Pneumatique Hydraulique SPH"} containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_FNAME")}} label={HostType=="Person"?"First Name":"Company Name"} className=' col-span-1' />
-   {HostType=="Person"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_LNAME")}} label="Last Name" className=' col-span-1' />:null}
-   <Input defaultValue={"Av Med Jammousi Immeuble el HANA 3000 Sfax - Tunis"} containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_ADRESS")}} label="Adress" className=' col-span-1' />
-   <Input defaultValue={74227074} type='number' containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_PHONE")}} label="Phone Number" className=' col-span-1' />
-   {DocumentType=="Invoice"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_TAXNUMBER")}} label="Tax number" className=' col-span-1' />:null}
+   <Input defaultValue={"Service Pneumatique Hydraulique SPH"} containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_FNAME")}} label={HostType=="Person"?<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_FirstName"/>:<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_CompanyName"/>} className=' col-span-1' />
+   {HostType=="Person"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_LNAME")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_LastName"/>} className=' col-span-1' />:null}
+   <Input defaultValue={"Av Med Jammousi Immeuble el HANA 3000 Sfax - Tunis"} containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_ADRESS")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_Adress"/>} className=' col-span-1' />
+   <Input defaultValue={74227074} type='number' containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_PHONE")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_PhoneNumber"/>} className=' col-span-1' />
+   {DocumentType=="Invoice"?<Input containerProps={{style: {minWidth: '10px', }}} variant="outlined" onChange={(e)=>{HandleInvoiceValueChanges(e,"H_TAXNUMBER")}} label={<TranslatedText TranslationPath="UCP.Invoice.TabInputs.H_FiscaleNumber"/>} className=' col-span-1' />:null}
    </div>
    
    
-   <h4 className='mt-2 '> Products </h4>
+   <h4 className='mt-2 '> {<TranslatedText TranslationPath="UCP.Invoice.TabHeader.Invoice_Estimate_Products"/>} </h4>
    <InvoiceProductTable ProductsData={ProductsData} SetProductsData={SetProductsData}/>
 
    
@@ -399,21 +437,21 @@ Generate Invoice
 
         <Card  className={`text-current bg-transparent mt-2 h-[90vh] rounded-md rounded-l-none flex flex-col justify-center items-center `}>
         <div className='w-full' style={{color:"white",backgroundColor:"#e53935"}}>
-            <h5>Preview Invoice </h5>
+            <h5><TranslatedText TranslationPath="UCP.Invoice.Title2"/></h5>
             </div>
             <div className='w-full h-full flex flex-col justify-start items-center '>  
 
 
         <div className='w-full flex flex-row  justify-evenly items-center'>
 
-        <Tooltip content="Toggle Preview" placement="top">
+        <Tooltip content={<TranslatedText TranslationPath="UCP.Invoice.TabActions.TogglePreview"/>} placement="top">
         <IconButton onClick={()=>{SetPreviewInvoice(!PreviewInvoice)}} variant='text' className="rounded-full">
         {PreviewInvoice?<i class="fa-solid fa-eye-slash"></i>:<i class="fa-solid fa-eye"></i>}
         </IconButton>
         </Tooltip>
          
 
-        <Tooltip content="Refresh Invoice/Estimate" placement="top">
+        <Tooltip content={<TranslatedText TranslationPath="UCP.Invoice.TabActions.Refresh"/>} placement="top">
         <IconButton onClick={()=>{GenerateNewPDF()}} variant='text' className="rounded-full">
         <i class="fa-solid fa-arrows-rotate"></i>
         </IconButton> 
@@ -426,7 +464,7 @@ Generate Invoice
             {GeneratedPDF}
           </PDFViewer>
          :
-          <p>Preview is disabled.</p>
+          <p>{<TranslatedText TranslationPath="UCP.Invoice.TabActions.PreviewDisabledMsg"/>}</p>
        
         }
         </div>    

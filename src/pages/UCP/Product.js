@@ -41,7 +41,7 @@ import Product from "../../components/Product"
 
       <main className="w-full min-h-screen flex flex-col justify-start items-center ">  
         <section className=" flex flex-col justify-center items-stretch w-full text-center h-[17vh] p-4 shadow-xl shadow-blue-gray-900/ bg-cover" style={{backgroundImage:`url(${Topbarbg})`}} >     
-        <TopBar SectionName="Product" Icon='<i class="fa-solid fa-box"></i>' />
+        <TopBar SectionName={<TranslatedText TranslationPath="UCP.TopNav.TabTitles.EditProduct"/>} Icon='<i class="fa-solid fa-box"></i>' />
         </section>
 
         <section className="w-[98vw] xl:w-[80vw] flex justify-center  text-center">      
