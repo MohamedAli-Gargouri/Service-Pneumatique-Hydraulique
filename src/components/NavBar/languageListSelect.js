@@ -13,6 +13,7 @@ import {
   MenuItem,
   Avatar,
   Typography,
+  IconButton
 } from "@material-tailwind/react";
 export default function LanguageList() {
   const LightModeState=useSelector(state=>state.lightMode)
@@ -24,16 +25,19 @@ export default function LanguageList() {
   i18n.changeLanguage(SelectedLanguage)
   }
   return (
-    <div>
+    <>
 
-      <Menu >
+      <Menu>
       <MenuHandler>
+
+      <IconButton variant="text"  className="rounded-full p-0">
       <img
               src={SelectedLanguage=="en"?enflag:SelectedLanguage=="fr"?frflag:tnflag}
               alt={"language"}
-              style={{padding:"1px"}}
-              className={` h-4 w-4 md:h-5 md:w-5 rounded-full  hover:bg-red-100 md:hover:opacity-70`}
+              className={`p-0`}
             />
+      </IconButton>
+
         
       </MenuHandler>
       <MenuList>
@@ -75,6 +79,6 @@ export default function LanguageList() {
         
       </MenuList>
     </Menu>
-    </div>
+    </>
   );
 }

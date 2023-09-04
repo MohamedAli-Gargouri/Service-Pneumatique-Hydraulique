@@ -134,11 +134,11 @@ import {
       }
     }
     return (
-      <Card className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T1":"tc-darkTheme_T1 bg-darkTheme_T1"}`}>
+      <Card className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T3":"tc-darkTheme_T1 bg-darkTheme_T1"}`}>
 <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
             <div className="w-full mt-2 ">
               <Input
-                label="Search"
+                label={<TranslatedText TranslationPath="Global.Actions.Search"/>}
                 onChange={(e)=>{SearchRow(TABLE_ROWS,AllData,SetAllData,e)}}
                 labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}
                 icon={<MagnifyingGlassIcon className="h-5 w-5" />}

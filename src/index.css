@@ -21,6 +21,7 @@ body {
 /*=========VARIABLES======================*/
 :root {
 
+
   /*=========SCREEN-SIZES============*/
   --screen-Width: calc(var(--vw, 1vw) * 100);
   --screen-height: calc(var(--vh, 1vh) * 100);
@@ -30,11 +31,15 @@ body {
 
   /*=============COLORS===============*/
 
+  
   --WHITE_THEME_COLOR_T1:rgba(236,	239,	241, 1);
-  --WHITE_THEME_COLOR_T2:rgba(255,	255,	255, 1);
-  --BLACK_THEME_COLOR_T1:rgba(51, 51, 51, 1);
+  --WHITE_THEME_COLOR_T2:white;
+  --BLACK_THEME_COLOR_T1:#2e2b2b;
   --RED_THEME_COLOR_T1:rgba(191,54,12, 1);
-  --BLACK_THEME_COLOR_T2:rgba(40,40,40, 1);
+  --BLACK_THEME_COLOR_T2:#3b3b3b;
+
+  --BLACK_THEME_BORDER_COLOR_T2:#555555;
+
   --LOADING_THEME_COLOR:#ffcdd2;
   --WHITE_TXT_COLOR:black;
   --BLACK_TXT_COLOR:white;
@@ -50,36 +55,51 @@ body {
   {
   background-color: var(--WHITE_THEME_COLOR_T1) !important;
   border-color: var(--WHITE_THEME_COLOR_T1)!important;
+  border: 0px solid;
   /*backdrop-filter: blur(1px);*/     
   }
+  
 
 .bg-whiteTheme_T2 
-  {       
-      background-color: var(--WHITE_THEME_COLOR_T2)!important;
-      border-color: var(--WHITE_THEME_COLOR_T2)!important;
-      backdrop-filter: blur(26px)!important;       
+  {
+           
+  background-color: var(--WHITE_THEME_COLOR_T2)!important;
+  border-color: var(--BLACK_THEME_BORDER_COLOR_T2)!important;
+  border: 0px solid;
+  opacity: 0.9;
+  backdrop-filter: blur(26px)!important;      
+  }
+
+  .bg-whiteTheme_T3 
+  {
+  background-color: white !important;
+  border-color: white!important;
+  opacity: 1;
+  border: 0px solid;
+  /*backdrop-filter: blur(1px);*/     
   }
 
 .bg-RedTheme_T1 
   {
   background-color: var(--RED_THEME_COLOR_T1)!important;
-  border-color: var(--RED_THEME_COLOR_T1)!important;
-  /*backdrop-filter: blur(1px);*/     
+  border-color: var(--RED_THEME_COLOR_T1)!important;     
   }
 .bg-darkTheme_T1 
   {
       
       background-color: var(--BLACK_THEME_COLOR_T1)!important;
       border-color: var(--BLACK_THEME_COLOR_T1)!important;
-      /*backdrop-filter: blur(1px);*/  
-       
+      border: 0px solid;         
   }
 .bg-darkTheme_T2 
   {
     
     background: linear-gradient(-45deg, var(--BLACK_THEME_COLOR_T2), var(--BLACK_THEME_COLOR_T1))!important;
-    border-color: var(--BLACK_THEME_COLOR_T2)!important;
-    backdrop-filter: blur(26px) !important;
+    border-color: var(--BLACK_THEME_BORDER_COLOR_T2)!important;
+    opacity: 0.9;
+    border: 1px solid;
+    backdrop-filter: blur(26px)!important;
+;
      
   }
 .bg-LoadingTheme_T1 
@@ -181,7 +201,7 @@ body {
 /* Customize the scrollbar thumb (the draggable part) */
 ::-webkit-scrollbar-thumb {
   background-color: #e53935; /* Color of the thumb */
-  border-radius: 20px; /* Rounded corners for the thumb */
+  border-radius: 0px; /* Rounded corners for the thumb */
 }
 
 /* Customize the scrollbar track when the thumb is being dragged */
@@ -211,15 +231,5 @@ body {
   color: inherit !important;
 }
 
-/*==============E-OVERRIDING THE DEFAULT TAILWIND COLORS FOR INPUTS & ICONS====================*/
 
-.highlightOption
-{
-  background-color: #e53935 !important;
-}
-.option:hover{
-  background-color: #e53935 !important;
-}
-
-/*==============E-OVERRIDING THE DEFAULT MULTISELECT====================*/
 

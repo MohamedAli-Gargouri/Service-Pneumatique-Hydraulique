@@ -742,13 +742,30 @@
         {
            "Contact_Us":"Contact us",
            "CheckProducts":"Check products.",
+           "Search":"Search",
            "Discover":"Discover",
-           "AddCart":"Add to cart"
+           "AddCart":"Add to cart",
+           "MinimumPriceRange":"Minimum price",
+           "MaxPriceRange":"Maximum price"
+           
         },
         "Labels":
         {
-            "Total":"Cart Total",
-            "Title":"My cart"
+
+
+        },
+        "Footer":
+        {
+            "Title1":"CONTACT: HEAD OFFICE",
+            "Title2":"CONTACT: POINT OF SALE",
+            "Phone":"Phone",
+            "Fax":"Fax",
+            "Email":"Email",
+            "Adress":"Address",
+            "Adress_Value1":"Road of Gabes KM 0.5 Building Elfrikha Sfax - Tunisia",
+            "Adress_Value2":"Avenue Med Jamoussi Building el HANA 3000 Sfax - Tunisa",
+            "Rights":"Hydraulic Pneumatic Service. All Rights Reserved.",
+            "Dev":"Developed By G-IT"
 
         }
 

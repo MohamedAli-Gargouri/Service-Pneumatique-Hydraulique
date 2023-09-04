@@ -16,7 +16,7 @@ export default function DeleteConfirm(props) {
       <Dialog
         open={props.Open}
         handler={props.HandleOpen}
-        className={`${LightModeState==LightMode().type?"bg-whiteTheme_T1 tc-whiteTheme_T1":"bg-darkTheme_T1 tc-darkTheme_T1"}`}
+        className={`${LightModeState==LightMode().type?"bg-whiteTheme_T3 tc-whiteTheme_T1":"bg-darkTheme_T1 tc-darkTheme_T1"}`}
         animate={{
           mount: { scale: 1, y: 0 },
           unmount: { scale: 0.9, y: -100 },

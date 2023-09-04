@@ -98,28 +98,26 @@ import Breadcrump from "../../components/Breadcrump"
                             </div>
                             <div>
                             <IconButton variant="text" className="md:hidden rounded-full " onClick={()=>{HandleDisplayVariantChange(0)}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z"/></svg>
+                            <i class="fa-solid fa-square"></i>
                             </IconButton>
                             </div>
+
                             <div>
                             <IconButton variant="text" className="rounded-full " onClick={()=>{HandleDisplayVariantChange(1)}}>
-                            <svg width="16" height="10"><rect x="0" y="0" width="4" height="4"></rect><rect x="6" y="0" width="10" height="4"></rect><rect x="0" y="6" width="4" height="4"></rect><rect x="6" y="6" width="10" height="4"></rect></svg>
+                            <i class="fa-solid fa-list"></i>
                             </IconButton>
                             </div>
-                            
-                            
-
 
                             <div className="hidden sm:block">
                             <IconButton variant="text" className="rounded-full "onClick={()=>{HandleDisplayVariantChange(2)}}>
-                            <svg width="10" height="10"><rect x="0" y="0" width="4" height="4"></rect><rect x="6" y="0" width="4" height="4"></rect><rect x="0" y="6" width="4" height="4"></rect><rect x="6" y="6" width="4" height="4"></rect></svg>
+                            <i class="fa-solid fa-grip-vertical"></i>
                             </IconButton>
                             </div>
 
 
                             <div className="hidden lg:block">
                             <IconButton variant="text" className=" rounded-full " onClick={()=>{HandleDisplayVariantChange(3)}}>
-                            <svg width="16" height="10"><rect x="0" y="0" width="4" height="4"></rect><rect x="6" y="0" width="4" height="4"></rect><rect x="12" y="0" width="4" height="4"></rect><rect x="0" y="6" width="4" height="4"></rect><rect x="6" y="6" width="4" height="4"></rect><rect x="12" y="6" width="4" height="4"></rect></svg>
+                            <i class="fa-solid fa-grip"></i>
                             </IconButton>
                             </div>
 

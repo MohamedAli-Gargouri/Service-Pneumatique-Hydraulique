@@ -244,11 +244,11 @@ export default function AccordionCustom() {
       </Accordion>
 <div className="mt-4 Price Range flex justify-start w-full flex-wrap">
     <div className="MinPrice my-4 w-full">
-    <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} variant="static" label="Minimum Price" placeholder="0TND" />
+    <Input  labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} type="number"  label="Minimum Price"  />
     </div>
 
     <div className="MaxPrice my-4 w-full">
-    <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} variant="static" label="Maxiumum Price" placeholder="5000TND" />
+    <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} type="number"  label="Maxiumum Price"  />
     </div>
 
     <div className="MaxPrice my-4 w-full flex justify-center">

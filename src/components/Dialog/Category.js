@@ -38,7 +38,7 @@ export default function Category({Icon,Open,HandleOpen,Title,Content}) {
         open={Open}
         handler={HandleOpen}
         size="xxl"
-        className={` ${LightModeState==LightMode().type?"bg-whiteTheme_T1 tc-whiteTheme_T1":"bg-darkTheme_T1 tc-darkTheme_T1"}`}
+        className={` ${LightModeState==LightMode().type?"bg-whiteTheme_T3 tc-whiteTheme_T1":"bg-darkTheme_T1 tc-darkTheme_T1"}`}
         animate={{
           mount: { scale: 1, y: 0 },
           unmount: { scale: 0.9, y: -100 },

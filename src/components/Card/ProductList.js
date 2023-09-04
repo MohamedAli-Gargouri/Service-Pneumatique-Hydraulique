@@ -11,7 +11,7 @@ import {
   export default  function ProductList({text, ProductImage, ProductName, ProductPrice}) {
     const LightModeState=useSelector(state=>state.lightMode)
     return (
-      <Card className={`h-[38rem] hover:scale-105 ${LightModeState==LightMode().type?"ContainerExtraWhiteMode":"ContainerExtraWhiteMode"}`}>
+      <Card className={`h-[38rem] hover:scale-105 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2  ":"tc-darkTheme_T1 bg-darkTheme_T2 "}`}>
         <CardHeader shadow={false} floated={false} className="h-96 bg-gray-300 rounded-md Selected shadow-lg img border mx-1 my-1  p-4 hover:cursor-pointer">
         <img
         className=" Imageshadow h-full w-full rounded-lg object-cover object-center shadow-x"
@@ -22,16 +22,16 @@ import {
         </CardHeader>
         <CardBody>
           <div className="mb-2 flex items-center justify-between">
-            <Typography color="blue-gray" className="font-medium">
+            <Typography color="inherit" className="font-medium">
               {ProductName}
             </Typography>
-            <Typography color="blue-gray" className="font-medium">
+            <Typography color="inherit" className="font-medium">
               {ProductPrice} TND
             </Typography>
           </div>
           <Typography
             variant="small"
-            color="gray"
+            color="inherit"
             className="font-normal opacity-75"
           >
             {text}

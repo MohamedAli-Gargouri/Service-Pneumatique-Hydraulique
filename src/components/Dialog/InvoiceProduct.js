@@ -71,19 +71,19 @@ export default function Invoice({SetAllData,Open,HandleOpen,Content,Icon,Title})
         open={Open}
         handler={HandleOpen}
         size={window.innerWidth<mdbreakpoint?"xxl":"xl"}
-        className={`${LightModeState==LightMode().type?" bg-whiteTheme_T2":" bg-darkTheme_T2"}`}
+        className={`${LightModeState==LightMode().type?" bg-whiteTheme_T3":" bg-darkTheme_T2"}`}
         animate={{
           mount: { scale: 1, y: 0 },
           unmount: { scale: 0.9, y: -100 },
         }}
       >
-        <DialogHeader className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`}>
+        <DialogHeader className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T3":"tc-darkTheme_T1 bg-darkTheme_T2"}`}>
             
         <Typography  variant="p"  className={`m-1 flex justify-center items-center gap-2 font-black  `}>
         <div dangerouslySetInnerHTML={{ __html:Icon }}></div> {Title}
         </Typography> 
             </DialogHeader>
-        <DialogBody divider className={`max-h-[70vh] overflow-scroll ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
+        <DialogBody divider className={`max-h-[70vh] overflow-scroll ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T3":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
            {Content}
 
            <InvboxProductTable P_Selected={P_Selected} P_Quantities={P_Quantities} P_Products={P_Products} />

@@ -62,7 +62,7 @@ export default function Cart() {
         placement="right"
         open={CartStatus}
         onClose={closeDrawerRight}
-        className={`p-2 rounded-l-md enable-scroll ${LightModeState==LightMode().type?"bg-whiteTheme_T1":"bg-darkTheme_T1"}`}
+        className={`p-2 rounded-l-md enable-scroll ${LightModeState==LightMode().type?"bg-whiteTheme_T3":"bg-darkTheme_T1"}`}
         size={window.innerWidth < smBreakpoint?"100vw":"30vw"}
       >
         {/*==========================S-Header========================== */}

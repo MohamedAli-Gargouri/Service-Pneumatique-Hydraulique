@@ -21,12 +21,12 @@ export default function Notification() {
   return (
     <div className="relative ">
     <Badge content="5"  className="">
-    <IconButton className="rounded-full" onClick={toggleOpen} >
+    <IconButton variant="text" className=" text-white rounded-full" onClick={toggleOpen} >
 <   i class="fa-solid fa-bell"></i>
     </IconButton>
     </Badge>
-      <Collapse open={open} className={` overflow-auto rounded-lg ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"} shadow-lg z-50 w-[90vw] md:w-[40vw] top-[3rem] right-[-3rem]    absolute md:right-[0.5rem]`}>
-        <div className=" w-full h-full overflow-hidden p-0  flex flex-col  justify-stretch items-end">
+      <Collapse open={open} className={`z-50  w-[90vw] md:w-[40vw] top-[3rem] right-[-3rem] absolute md:right-[0.5rem]`}>
+        <div className={`overflow-auto rounded-lg  shadow-lg ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T3":"tc-darkTheme_T1 bg-darkTheme_T2"} w-full h-full overflow-hidden p-0  flex flex-col  justify-stretch items-end`}>
 
         <div style={{ backgroundColor:"#e53935",color:"white"}} className={`text-center w-full  `}> 
         <p><TranslatedText TranslationPath="UCP.Notifications.Title"/></p></div>

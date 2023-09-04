@@ -32,45 +32,35 @@ import ProductImg3 from "../../assets/images/products/product_3.png"
   export default function Products() {
     const LightModeState=useSelector(state=>state.lightMode)
     return (
-        <React.Fragment>
+        <React.Fragment >
             <Navbar/>
-            <div className=" w-full pt-[20vh] md:pt-[15vh] ">
+            <div className="pt-[20vh] md:pt-[15vh] ">
     <Breadcrump List={false} Parent={{PageUrl:"/Products",PageName:"Shop"}} Child={{PageUrl:"/ProductDetails",PageName:"Product"}} />
     </div>
- <div class="h-full w-full mb-[1rem]  grid grid-cols-2 justify-center items-center ">
+ <div class="mb-[1rem]  grid grid-cols-2 justify-center items-center gap-1 ">
 
-<div className="h-full w-full ImageGallery col-span-2 md:col-span-1">
+<div className="col-span-2 md:col-span-1">
     <Gallery Images={[ProductImg1,ProductImg2,ProductImg3]}/>
 </div>
 
-<div className="h-full w-full Description col-span-2 md:col-span-1 flex flex-col items-center md:items-start  justify-center">
+<div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-start  justify-center">
+<Typography variant="h6" className="font-extralight">
+    Hertz
+    </Typography>  
 
-    <div className="Product Title">
-    <Typography variant="h6" className="font-extralight">
+    <Typography variant="h7" className="font-extralight">
     MX-15648679
     </Typography>   
-    </div>
-    <div className="Product Reviews">
         <Rating/>
-    </div>
-
-    <div className="Product Price">
     <Typography variant="h6" color="green" className="font-extralight">
      1500TND
     </Typography> 
-    </div>
-
-    <div className="Product Description ">
     <Typography variant="p"  className="font-extralight m-4 md:m-0">
     Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus.
     </Typography>
-    </div>
-
-    <div className="Product Quantity ">
      <QuantityInput/>
-    </div>
 
-    <div className="Product Actions md:ml-3" >
+    <div className="md:ml-3" >
 
     
     <Button fullWidth className="flex items-center gap-1 w-full hover:scale-110">
@@ -81,17 +71,15 @@ import ProductImg3 from "../../assets/images/products/product_3.png"
     
 
     </div>
-    <div className="w-full">
-    <hr className="m-6"/>
-    </div> 
-    <div className="Product Category w-full">
-    <Typography variant="p" className="font-extralight">
+
+
+    <Typography variant="p" className=" mt-4 font-extralight">
      Category: Compressors, Pneumatiques
     </Typography>
-    </div>
+
 </div>
 </div>
-<div className="w-full">
+
 <CustomTab 
 data={
   [
@@ -160,7 +148,7 @@ We hope you’ll love every purchase, but if you ever need to return an item you
 }
 DefaultSelectValue={"Description"}
 />
-</div>
+
 
 <Footer/>
 </React.Fragment>

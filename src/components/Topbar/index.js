@@ -63,7 +63,7 @@ export default function SidebarWithLogo( props) {
 </IconButton>
 
 </div>
-<div className="col-span-1 flex flex-row  w-full justify-end items-center">
+<div className="col-span-1 flex flex-row gap-1  w-full justify-end items-center">
 
 <div className="Cart mx-1">
 <Badge content="2"  className="">
@@ -84,20 +84,20 @@ export default function SidebarWithLogo( props) {
       </IconButton>
         </div>
 
-         <div className="mx-1">
+         <div>
          <LanguageSelect/>
          </div>
 
 
-<Notification/>
+      <Notification/>
 
- <Avatar
-variant="circular"
-size="sm"
-alt="User"
-className="border border-blue-500 ml-4 hover:scale-125"
-src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-/>
+      <Avatar
+      variant="circular"
+      size="sm"
+      alt="User"
+      className="border border-blue-500 ml-4 hover:scale-125"
+      src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+      />
 
 
     </div>

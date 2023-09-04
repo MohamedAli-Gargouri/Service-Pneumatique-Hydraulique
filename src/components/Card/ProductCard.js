@@ -21,10 +21,10 @@ import {
     {
         return (
             <Card className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2  ":"tc-darkTheme_T1 bg-darkTheme_T2 "} rounded-none shadow-lg p-1 pr-4 m-1  `}>
-              <div className="grid grid-cols-5 gap-0">
+              <div className="grid grid-cols-5  gap-0">
       
-                  <div className="ProductImage bg-gray-300  col-span-2 sm:col-span-1 flex   justify-center items-center " onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>        
-                   <img src={isHovered?productSample1:productSample2} className=" bg-cover Imageshadow" />
+                  <div className="w-full shadow-lg ProductImage bg-gray-300  col-span-2 sm:col-span-1 flex   justify-center items-center " onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>        
+                   <img src={isHovered?productSample1:productSample2} className="aspect-square  bg-cover Imageshadow" />
                   </div>
       
                   <div className="ProductDescription col-span-2 sm:col-span-3 ml-1">
@@ -92,14 +92,14 @@ import {
     if(variant==2 ||variant==3 || variant==0)
     {
         return (
-            <Card className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2  ":"tc-darkTheme_T1 bg-darkTheme_T2 "}  rounded-none shadow-lg p-1  m-1 flex flex-col flex-wrap items-stretch justify-center `}>
+            <Card className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2  ":"tc-darkTheme_T1 bg-darkTheme_T2 "}  rounded-none shadow-lg p-1  m-1 flex flex-col flex-wrap items-center justify-center `}>
               
-              <div className="image-container  bg-gray-300 col-span-1 flex flex-col  justify-center items-center" 
+              <div className=" w-full shadow-lg  max-h-64 image-container  bg-gray-300 col-span-1 flex flex-col  justify-center items-center" 
               onMouseEnter={() =>{
              setIsHovered(true); 
             }}
               onMouseLeave={() => setIsHovered(false)}>
-              <img id="ProductImg" src={isHovered?productSample1:productSample2} className=" bg-cover h-[45vh] w-[100%] Imageshadow animate-fade" />
+              <img id="ProductImg" src={isHovered?productSample1:productSample2} className="aspect-square max-h-64 bg-cover Imageshadow animate-fade" />
 
                 <div class="hover-content p-4 w-full">
                     

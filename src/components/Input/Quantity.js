@@ -78,8 +78,8 @@ export default function InputWithButton({Id,IdLabel, Quantities,QuantityLabel, s
   return (
     <div className="flex flex-row  justify-center items-center  w-full m-2">
              
-<Button   onClick={decrement} variant="text" size="sm" className="rounded-full hover:scale-110 flex items-center m-1">
-<i class="fa-solid fa-minus"></i>
+<Button   onClick={decrement} variant="text" size="sm" className=" rounded hover:scale-110 flex items-center m-1">
+<i class="fa-solid fa-minus aspect-square"></i>
 </Button>
 
 
@@ -87,12 +87,13 @@ export default function InputWithButton({Id,IdLabel, Quantities,QuantityLabel, s
 
   type="number"       
   label="Quantity"
-  variant="standard"
+  variant="outlined"
   size="md"
   value={InputQuantity}
   onChange={onChange}
   className={``}
   containerProps={{style: {
+    maxWidth:"400px",
     minWidth: '10px', 
   },}}
   labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}
@@ -101,8 +102,8 @@ export default function InputWithButton({Id,IdLabel, Quantities,QuantityLabel, s
 
 
 
-<Button  onClick={increment} size="sm" variant="text" className="rounded-full hover:scale-110 flex items-center m-1">
-<i class="fa-solid fa-plus"></i>
+<Button  onClick={increment} size="sm" variant="text" className="rounded hover:scale-110 flex items-center m-1">
+<i class="fa-solid fa-plus aspect-square"></i>
 </Button>
 
     </div>

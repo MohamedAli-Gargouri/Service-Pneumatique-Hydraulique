@@ -32,10 +32,10 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
 import AddProduct from "../../components/Product/Add"
   export default function User_Control_Panel() {
     const LightModeState=useSelector(state=>state.lightMode)
-    return (
+    return (<>
       <div className="flex flex-row items-stretch flex-nowrap">
 
-<aside className={`rounded-none p-4 shadow-xl shadow-blue-gray-900/5 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
+<aside className={`mb-2 rounded-b-xl p-4 shadow-lg ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
 <SideBar/>
 </aside>
 
@@ -44,17 +44,18 @@ import AddProduct from "../../components/Product/Add"
         <TopBar SectionName={<TranslatedText TranslationPath="UCP.TopNav.TabTitles.AddProduct"/>} Icon='<i class="fa-solid fa-plus"></i>' />
         </section>
 
-        <section className="w-[98vw] xl:w-[80vw] flex justify-center  text-center">      
-        <Card  className={`p-2 w-full  min-h-[72vh] m-1 mt-4 z-0   ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
+        <section className="w-full flex justify-center  text-center">      
+        <Card  className={`p-2 w-full  min-h-[72vh] m-2 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
 
           <AddProduct/>
 
         </Card>
         </section>
-        <Footer/>
       </main>
 
       
       </div>
+      <Footer />
+      </>
     );
   }

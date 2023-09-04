@@ -31,10 +31,10 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
 import Invoice from "../../components/Invoice"
   export default function Accounts() {
     const LightModeState=useSelector(state=>state.lightMode)
-    return (
-      <div className="flex flex-row items-stretch flex-nowrap">
+    return (<>
+      <div className="flex flex-row items-stretch">
 
-<aside className={`rounded-none p-4 shadow-xl shadow-blue-gray-900/5 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
+<aside className={`mb-2 rounded-b-xl p-4 shadow-lg ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
 <SideBar/>
 </aside>
 
@@ -43,7 +43,7 @@ import Invoice from "../../components/Invoice"
         <TopBar SectionName={<TranslatedText TranslationPath="UCP.TopNav.TabTitles.InvoiceEstimate"/>} Icon='<i class="fa-solid fa-file-invoice"></i>'/>
         </section>
 
-        <section className="w-[100vw] md:w-[95vw] xl:w-[80vw] flex justify-center  text-center">      
+        <section className="w-full flex justify-center  text-center">      
           <Invoice/>
         </section>
         <Footer/>
@@ -51,5 +51,6 @@ import Invoice from "../../components/Invoice"
 
       
       </div>
+      </>
     );
   }

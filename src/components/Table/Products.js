@@ -248,7 +248,7 @@ import React from "react";
             </Tabs>
             <div className="w-full md:w-72">
             <Input
-                label="Search"
+                label={<TranslatedText TranslationPath="Global.Actions.Search"/>}
                 onChange={(e)=>{SearchRow(TABLE_ROWS,AllData,SetAllData,e)}}
                 labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}}
                 icon={<MagnifyingGlassIcon className="h-5 w-5" />}

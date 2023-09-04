@@ -745,17 +745,32 @@
     {
         "Actions":
         {
-           "Contact_Us":"Contact us",
-           "CheckProducts":"Check products.",
-           "Discover":"Discover",
-           "AddCart":"Add to cart",
-           "MinimumPriceRange":"Minimum price",
-           "MaxPriceRange":"Maximum price"
+           "Contact_Us":"اتصل بنا",
+           "CheckProducts":"تحقق من المنتجات.",
+           "Search":"بحث",
+           "Discover":"يكتشف",
+           "AddCart":"أضف إلى السلة",
+           "MinimumPriceRange":"سعر الحد الأدنى",
+           "MaxPriceRange":"الحد الأقصى للسعر"
            
         },
         "Labels":
         {
 
+
+        },
+        "Footer":
+        {
+            "Title1":"الاتصال: المكتب الرئيسي",
+            "Title2":"الاتصال: نقطة البيع",
+            "Phone":"هاتف",
+            "Fax":"فاكس",
+            "Email":"بريد إلكتروني",
+            "Adress":"العنوان",
+            "Adress_Value1":"طريق قابس كم 0.5 عمارة الفريكة صفاقس - تونس",
+            "Adress_Value2":"شارع المتوسط ​​الجاموسي عمارة الهنا 3000 صفاقس - تونس",
+            "Rights":"الخدمة الهيدروليكية الهوائية. كل الحقوق محفوظة.",
+            "Dev":"تم تطويره بواسطة جي آي تي"
 
         }
 

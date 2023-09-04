@@ -63,10 +63,10 @@ import ReactDOMServer from 'react-dom/server';
 
     }
   }
-    return (
-      <div className="flex flex-row items-stretch flex-nowrap">
+    return (<>
+      <div className="flex flex-row items-stretch">
 
-<aside className={`rounded-none p-4 shadow-xl shadow-blue-gray-900/5 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
+<aside className={`mb-2 rounded-b-xl p-4 shadow-lg ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
 <SideBar/>
 </aside>
 
@@ -76,8 +76,8 @@ import ReactDOMServer from 'react-dom/server';
 
         </section>
 
-        <section className="w-[98vw] xl:w-[80vw] flex justify-center  text-center">      
-        <Card  className={`p-2 w-full  min-h-[72vh] mt-4 mx-1 z-0 grid grid-cols-1 gap-3 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
+        <section className="w-full flex justify-center  text-center">      
+        <Card  className={`p-2 w-full  min-h-[72vh] m-2 grid grid-cols-1 gap-3 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
 
           <div className=" flex flex-col justify-center items-center col-span-1" >
           <img
@@ -125,10 +125,12 @@ import ReactDOMServer from 'react-dom/server';
 
     </Card>
         </section>
-        <Footer/>
+        
       </main>
 
       
       </div>
+      <Footer />
+      </>
     );
   }

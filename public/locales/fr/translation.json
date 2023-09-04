@@ -737,22 +737,36 @@
 
 
 }
-
 ,"Global":
 {
     "Actions":
     {
        "Contact_Us":"Contactez-nous",
-       "CheckProducts":"Check products.",
-       "Discover":"Discover",
-       "AddCart":"Add to cart",
-       "MinimumPriceRange":"Minimum price",
-       "MaxPriceRange":"Maximum price"
+       "CheckProducts":"Vérifiez les produits.",
+       "Search":"Recherche",
+       "Discover":"Découvrir",
+       "AddCart":"Ajouter au panier",
+       "MinimumPriceRange":"Prix ​​minimum",
+       "MaxPriceRange":"Prix maximum"
        
     },
     "Labels":
     {
 
+
+    },
+    "Footer":
+    {
+        "Title1":"CONTACT : SIÈGE SOCIAL",
+        "Title2":"CONTACT : POINT DE VENTE",
+        "Phone":"Téléphone",
+        "Fax":"Fax",
+        "Email":"E-mail",
+        "Adress":"Adresse",
+        "Adress_Value1":"Route de Gabes KM 0.5 bâtiment Elfrikha Sfax - Tunisie",
+        "Adress_Value2":"Avenue Med Jamoussi Immeuble el HANA 3000 Sfax - Tunise",
+        "Rights":"Service pneumatique hydraulique. Tous droits réservés.",
+        "Dev":"Développé par G-IT"
 
     }
 

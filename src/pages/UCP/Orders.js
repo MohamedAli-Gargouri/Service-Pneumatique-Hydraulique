@@ -17,7 +17,7 @@ import {
   PopoverContent,
   } from "@material-tailwind/react";
   import { Textarea } from "@material-tailwind/react";
-  import TransactionsTable from "../../components/Table/Orders";
+  import Orders from "../../components/Table/Orders";
  import Navbar from "../../components/NavBar"
  import TranslatedText from "../../utils/Translation"
  import { useSelector } from "react-redux/es/hooks/useSelector";
@@ -31,10 +31,10 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
 
   export default function User_Control_Panel() {
     const LightModeState=useSelector(state=>state.lightMode)
-    return (
-      <div className="flex flex-row items-stretch flex-nowrap">
+    return (<>
+      <div className="flex flex-row items-stretch">
 
-<aside className={`rounded-none p-4 shadow-xl shadow-blue-gray-900/5 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
+<aside className={`mb-2 rounded-b-xl p-4 shadow-lg ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
 <SideBar/>
 </aside>
 
@@ -43,17 +43,18 @@ import Topbarbg from "../../assets/images/Topbarbg.jpg"
         <TopBar SectionName={<TranslatedText TranslationPath="UCP.TopNav.TabTitles.Orders"/>} Icon='<i class="fa-solid fa-clipboard-list"></i>'/>
         </section>
 
-        <section className="w-[98vw] xl:w-[80vw] flex justify-center  text-center">      
-        <Card  className={`p-2 w-full  min-h-[72vh] mt-4 mx-2 z-0   ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
+        <section className="w-full flex justify-center  text-center">      
+        <Card  className={`p-2 w-full  min-h-[72vh] m-2 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
 
-          <TransactionsTable/>
+          <Orders/>
 
     </Card>
         </section>
-        <Footer/>
       </main>
 
       
       </div>
+      <Footer />
+      </>
     );
   }
