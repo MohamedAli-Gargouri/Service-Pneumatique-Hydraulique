@@ -112,8 +112,8 @@ export default function ComplexNavbar() {
  //=========Setting Dark and light mode states-end========//
   return (
     <header id="navbar"  className="fixed flex justify-center items-center top-0 left-0 w-screen z-50 mt-4 animate-NavSlideDown">
-    <Navbar className={`lg:rounded-full mx-4 ${LightModeState==LightMode().type?"bg-whiteTheme_T2 tc-whiteTheme_T1":"bg-darkTheme_T2 tc-darkTheme_T1"}`}>
-      <div className=" flex items-center justify-center ">
+    <Navbar className={` backdrop-blur-md  lg:rounded-full mx-4 ${LightModeState==LightMode().type?"bg-whiteTheme_T2 tc-whiteTheme_T1":"bg-darkTheme_T2 tc-darkTheme_T1"}`}>
+      <div className=" flex items-center justify-center gap-1 ">
       
       <img src={SPHlogo} alt="avatar" className="w-15 h-10 animate-LogoRotate"  />
       <Typography
@@ -124,13 +124,10 @@ export default function ComplexNavbar() {
         </Typography>
         
        
-        <div className="hidden lg:block mx-1">
+        <div className="hidden lg:block">
           <NavList />
         </div>
 
-        
-        
-         <div className="MobileNavButton mx-1">
         <IconButton
           size="sm"
           color="inherit"
@@ -140,9 +137,8 @@ export default function ComplexNavbar() {
         >
           <Bars2Icon className="h-6 w-6" />
         </IconButton>
-         </div>
+
          
-         <div className="LightMode mx-1">
         <IconButton
         size="sm"
         color="inherit"
@@ -152,31 +148,29 @@ export default function ComplexNavbar() {
       >
         {(LightModeState==LightMode().type)?<MoonIcon className="h-4 w-4 md:h-6 md:w-6" />:<SunIcon className="h-6 w-6" />}
       </IconButton>
-        </div>
 
-         <div className="mx-1">
+
          <LanguageSelect/>
-         </div>
-         
 
-         <div className="Cart mx-1">
          <Badge content="2"  className="">
           <IconButton variant="text" size="sm" color="inherit" className="rounded-full" onClick={()=>toggleCart()}>
           <i class="fa-solid fa-bag-shopping"></i>
           </IconButton>
           </Badge>
-        </div>
 
-        <div className="Profile mx-1" color="inherit">
-        <ProfileMenu />
-        </div>
+
+<div>
+<ProfileMenu />
+</div>
+        
+
 
         
 
         
 
       </div>
-      <Collapse open={isNavOpen} className="h-[80vh] w-[80vw] overflow-scroll">
+      <Collapse open={isNavOpen} className={`h-[80vh] w-[80vw] overflow-scroll`}>
         <NavList />
       </Collapse>
     </Navbar>

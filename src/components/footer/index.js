@@ -2,6 +2,7 @@ import { Typography } from "@material-tailwind/react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import logo from "../../assets/images/SPH Logo.png"
 import TranslatedText from "../../utils/Translation";
+import {LightMode,DarkMode} from "../../redux/actions/LightActions"
 const List = [
   {
     title: <TranslatedText TranslationPath="Global.Footer.Title1"/>,
@@ -31,7 +32,7 @@ const currentYear = new Date().getFullYear();
 export default function FooterWithSocialLinks() {
   const LightModeState=useSelector(state=>state.lightMode)
   return (
-    <footer className={`footer relative w-full p-4`}>
+    <footer className={`footer relative w-full p-4 ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"}`}>
 
          <hr className="border-red-600 rounded-lg  h-[0.35rem] bg-red-600 "/>
 

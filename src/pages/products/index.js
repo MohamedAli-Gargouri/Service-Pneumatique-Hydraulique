@@ -40,7 +40,7 @@ import Breadcrump from "../../components/Breadcrump"
     return (
         <div className={`Products w-full h-full`}> 
             
-      <Drawer open={MobileDraweropen} onClose={closeMobileDrawer} className={`md:hidden p-4 bg ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"}`}>
+      <Drawer open={MobileDraweropen} onClose={closeMobileDrawer} className={`md:hidden p-4 bg ${LightModeState==LightMode().type?"bg-whiteTheme_T3":"bg-darkTheme_T1"}`}>
       <FilterMenu/>
       </Drawer>
      

@@ -12,7 +12,7 @@ export default function CarouselCustomNavigation() {
       autoplay={true}
       autoplayDelay={5000} 
       loop={true}
-      className=" shadow-2xl w-full h-full rounded-md"
+      className=" w-full h-full rounded-md "
       navigation={({ setActiveIndex, activeIndex, length }) => (
         <div className=" relative bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
           {new Array(length).fill("").map((_, i) => (
@@ -30,32 +30,32 @@ export default function CarouselCustomNavigation() {
       <img
         src={slider1}
         alt="image 1"
-        className="h-full w-full rounded-md mx-2"
+        className="h-full w-full aspect-video rounded-md mx-2"
       />
       <img
         src={slider2}
         alt="image 2"
-        className="h-full w-full rounded-md"
+        className="h-full w-full aspect-video rounded-md"
       />
       <img
         src={slider3}
         alt="image 3"
-        className="h-full w-full rounded-md"
+        className="h-full w-full aspect-video rounded-md"
       />
       <img
         src={slider4}
         alt="image 3"
-        className="h-full w-full rounded-md"
+        className="h-full w-full aspect-video rounded-md"
       />
       <img
         src={slider5}
         alt="image 3"
-        className="h-full w-full rounded-md"
+        className="h-full w-full aspect-video rounded-md"
       />
       <img
         src={slider6}
         alt="image 3"
-        className="h-full w-full rounded-md"
+        className="h-full w-full aspect-video rounded-md"
       />
     </Carousel>
   );

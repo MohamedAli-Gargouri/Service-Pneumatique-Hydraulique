@@ -103,7 +103,7 @@ export default function SidebarWithLogo( props) {
     </div>
 
     <Collapse style={{position:"absolute",top:"10vh", left:"0"}} className="z-50" open={open}>
-        <Card className={ `${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"} mx-auto w-[95%] h-full`}>
+        <Card className={ `${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T3":"tc-darkTheme_T1 bg-darkTheme_T1"} w-[95M] p-1 h-full`}>
           <Sidebar/>          
         </Card>
       </Collapse>

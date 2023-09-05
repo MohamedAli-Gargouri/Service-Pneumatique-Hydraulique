@@ -44,7 +44,7 @@ import MyOrders from "../../components/Table/MyOrders"
         </section>
 
         <section className="w-full flex justify-center  text-center">      
-        <Card  className={`p-2 w-full  min-h-[72vh] m-2   ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
+        <Card  className={`p-2 w-full  min-h-[82vh] m-2   ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
 
           <MyOrders/>
 

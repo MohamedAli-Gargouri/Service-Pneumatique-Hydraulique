@@ -48,6 +48,13 @@ export default function SidebarWithCta() {
       </div>
       <List className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
 
+      <ListItem onClick={()=>{window.location.href="/UCP/Home"}}>
+          <ListItemPrefix>
+          <i class="fa-solid fa-house"></i>
+          </ListItemPrefix>
+          Home
+        </ListItem>
+
         <ListItem onClick={()=>{window.location.href="/UCP/MyOrders"}}>
           <ListItemPrefix>
           <i class="fa-solid fa-cart-shopping h-5 w-5"></i>
@@ -126,14 +133,17 @@ export default function SidebarWithCta() {
           <TranslatedText TranslationPath="UCP.SideBar.Logout"/>
         </ListItem>
       </List>
-      {/*<Alert open={openAlert} className="mt-auto" onClose={() => setOpenAlert(false)}>
-        <CubeTransparentIcon className="mb-4 h-12 w-12" />
+      <Alert open={openAlert} className="mt-auto" onClose={() => setOpenAlert(false)}>
+        <div className=" flex justify-evenly items-center">
+        <i class="fa-solid fa-arrows-rotate  h-6 w-6"></i>
         <Typography variant="h6" className="mb-1">
-          Upgrade to PRO
+          Available Update
         </Typography>
+        </div>
+      
+
         <Typography variant="small" className="font-normal opacity-80">
-          Upgrade to Material Tailwind PRO and get even more components, plugins, advanced features
-          and premium.
+         Version 0.0.0.2 is available.
         </Typography>
         <div className="mt-4 flex gap-3">
           <Typography
@@ -145,11 +155,11 @@ export default function SidebarWithCta() {
           >
             Dismiss
           </Typography>
-          <Typography as="a" href="#" variant="small" className="font-medium">
-            Upgrade Now
+          <Typography as="a"  variant="small" className="font-medium">
+            Update now.
           </Typography>
         </div>
-        </Alert>*/}
+        </Alert>
     </React.Fragment>
   );
 }

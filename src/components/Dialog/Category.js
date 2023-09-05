@@ -50,12 +50,12 @@ export default function Category({Icon,Open,HandleOpen,Title,Content}) {
         <div dangerouslySetInnerHTML={{ __html: Icon }}></div> {Title}
         </Typography> 
             </DialogHeader>
-        <DialogBody divider className=" h-full w-full overflow-scroll">
+        <DialogBody divider className="p-0 m-0 h-full w-full overflow-scroll">
            {Content}
 
            <Tabs value="Manage"  >
       <TabsHeader
-        className=""
+        className="p-0!"
         indicatorProps={{
           className: ` ${LightModeState==LightMode().type?" tc-whiteTheme_T1":" tc-darkTheme_T1"}`
         }}

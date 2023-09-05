@@ -21,8 +21,11 @@ import UCP_MyOrders from "./pages/UCP/MyOrders"
 import UCP_Accounts from "./pages/UCP/Accounts"
 import UCP_Inbox from "./pages/UCP/Inbox"
 import UCP_Invoice from "./pages/UCP/Invoice"
+import UCP_Home from "./pages/UCP/Home"
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+
+
 export default function App() {
   const LightModeState=useSelector(state=>state.lightMode)
   const root = document.getElementById("root");
@@ -71,6 +74,8 @@ export default function App() {
             <Route path="/UCP/Accounts" element={<UCP_Accounts/>}/>
             <Route path="/UCP/Inbox" element={<UCP_Inbox/>}/>
             <Route path="/UCP/Invoice" element={<UCP_Invoice/>}/>
+            <Route path="/UCP/Home" element={<UCP_Home/>}/>
+            
             <Route path="/Dev" element={<Dev/>}/>
             <Route path="/Loading" element={<Loading/>}/>
             </Routes>

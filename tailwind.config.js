@@ -26,10 +26,10 @@ module.exports = withMT({
         yellow:{500:"#fbc02d"}
       },
       animation: {
-        'RightToLeft': 'RightToLeft  3s linear',
+        'RightToLeft': 'RightToLeft  1s ease-in-out',
         'PulseSlow': 'pulse 6s linear infinite',
-        'rotate': 'rotateAndFade 6s linear infinite',
-        'LeftToRight': 'LeftToRight  3s linear',
+        'rotate': 'rotateAndFade 10s ease-in-out infinite',
+        'LeftToRight': 'LeftToRight  1s ease-in-out',
         'QuickLeftToRight': 'LeftToRight  0.3s ease-in-out',
         'LogoRotate': 'LogoRotate  10s ease-out infinite',
         'bg': 'animateBg 1s linear infinite',
@@ -51,11 +51,11 @@ module.exports = withMT({
           '100%': { transform: 'translateY(-130%)' },
         },
         RightToLeft: {
-          '0%': { transform: 'translateX(5%)' },
+          '0%': { transform: 'translateX(+100%)' },
           '100%': { transform: 'translateX(0%)' },
         },
         LeftToRight: {
-          '0%': { transform: 'translateX(-5%)' },
+          '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0%)' },
         },
         rotateAndFade: {

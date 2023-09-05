@@ -144,9 +144,9 @@ const navListMenuItems = [
       ({ icon, title, description, color }, key) => (
         <a href="products" key={key}>
           <MenuItem className="flex items-center gap-3 rounded-lg">
-            <div className={`rounded-lg p-3 ${colors[color]}`}>
+            <div className={` aspect-square h-20 w-20 rounded-lg p-3  bg-gray-500`}>
 
-              <img  strokeWidth="2" className="h-10 w-20"src={icon}/>
+              <img className="Imageshadow w-full h-full" src={icon}/>
               
             </div>
             <div>
@@ -177,7 +177,7 @@ const navListMenuItems = [
           allowHover={true}
         >
           <MenuHandler>
-            <Typography as="a" variant="small"  className={`font-normal`}>
+            <div  className={`font-normal`}>
               <ListItem
                 className={`flex items-center gap-2 py-2 pr-4 `}
                 selected={isMenuOpen || isMobileMenuOpen}
@@ -198,14 +198,14 @@ const navListMenuItems = [
                   } ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}
                 />
               </ListItem>
-            </Typography>
+            </div>
           </MenuHandler>
-          <MenuList className={`hidden max-w-screen-xl rounded-xl lg:block ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2 "}`}>
-            <ul className="grid grid-cols-4 gap-y-2">{renderItems}</ul>
+          <MenuList className={`hidden max-w-screen-xl rounded-lg lg:block  ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2 "}`}>
+            <div className="grid grid-cols-4 gap-y-2">{renderItems}</div>
           </MenuList>
         </Menu>
-        <div className={`block lg:hidden  ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2 "}`}>
-          <Collapse open={isMobileMenuOpen}>
+        <div className={`block lg:hidden bg-transparent`}>
+          <Collapse open={isMobileMenuOpen}  className=" bg-inherit">
           <div style={{ maxHeight: '34vh', overflow: 'auto' }}>{renderItems}</div></Collapse>
         </div>
       </React.Fragment>

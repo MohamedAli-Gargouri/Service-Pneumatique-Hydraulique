@@ -61,9 +61,9 @@
     "Services":
     {
         "Service_Title":"Our Services",
-        "Service1":"(1) Sale",
-        "Service2":"(2) Advice",
-        "Service3":"(3) technical assistance",
+        "Service1":"Sale",
+        "Service2":"Advice",
+        "Service3":"Technical assistance",
         "Service_Description":"With us you will find a complete service from experts in the hydraulics and pneumatics business."
     },
     "Partners":
