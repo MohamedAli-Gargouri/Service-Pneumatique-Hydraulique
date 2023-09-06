@@ -1,5 +1,5 @@
-import React from "react";
-import { useCountries } from "use-react-countries";
+import React from 'react';
+import { useCountries } from 'use-react-countries';
 import {
   Input,
   Menu,
@@ -7,23 +7,25 @@ import {
   MenuList,
   MenuItem,
   Button,
-} from "@material-tailwind/react";
-import PropTypes from "prop-types";
-import { useSelector } from "react-redux/es/hooks/useSelector";
-import {LightMode,DarkMode} from "../../redux/actions/LightActions"
-import TranslatedText from "../../utils/Translation";
-export default function InputWithDropdown({InputLabel}) {
-    const LightModeState=useSelector(state=>state.lightMode)
-    const { countries } = useCountries();
-  
-    // Find the index of Tunisia in the countries array
-    const tunisiaIndex = countries.findIndex(country => country.name === "Tunisia");
-    
-    // Initialize the country state with the index of Tunisia
-    const [country, setCountry] = React.useState(tunisiaIndex);
-    
-    const { name, flags, countryCallingCode } = countries[country];
- 
+} from '@material-tailwind/react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import TranslatedText from '../../utils/Translation';
+export default function InputWithDropdown({ InputLabel }) {
+  const LightModeState = useSelector((state) => state.lightMode);
+  const { countries } = useCountries();
+
+  // Find the index of Tunisia in the countries array
+  const tunisiaIndex = countries.findIndex(
+    (country) => country.name === 'Tunisia',
+  );
+
+  // Initialize the country state with the index of Tunisia
+  const [country, setCountry] = React.useState(tunisiaIndex);
+
+  const { name, flags, countryCallingCode } = countries[country];
+
   return (
     <div className="relative flex w-full">
       <Menu placement="bottom-start">
@@ -42,11 +44,17 @@ export default function InputWithDropdown({InputLabel}) {
             {countryCallingCode}
           </Button>
         </MenuHandler>
-        <MenuList className={`${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"} max-h-[20rem] max-w-[18rem]`}>
+        <MenuList
+          className={`${
+            LightModeState == LightMode().type
+              ? 'bg-whiteTheme_T2'
+              : 'bg-darkTheme_T2'
+          } max-h-[20rem] max-w-[18rem]`}
+        >
           {countries.map(({ name, flags, countryCallingCode }, index) => {
             return (
               <MenuItem
-              Z
+                Z
                 key={name}
                 value={name}
                 className="flex items-center gap-2"
@@ -71,12 +79,12 @@ export default function InputWithDropdown({InputLabel}) {
           className: `before:content-none after:content-none`,
         }}
         containerProps={{
-          className: "min-w-0",
+          className: 'min-w-0',
         }}
       />
     </div>
   );
 }
 InputWithDropdown.propTypes = {
-    InputLabel: PropTypes.string.isRequired,
-  };
+  InputLabel: PropTypes.string.isRequired,
+};

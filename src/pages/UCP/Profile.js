@@ -1,38 +1,38 @@
 import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Typography,
-    Input,
-    Button,
-    List,
-    ListItem,
-    ListItemPrefix,
-    ListItemSuffix,
-    Chip,
-    IconButton,
-    Popover,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Input,
+  Button,
+  List,
+  ListItem,
+  ListItemPrefix,
+  ListItemSuffix,
+  Chip,
+  IconButton,
+  Popover,
   PopoverHandler,
   PopoverContent,
-  } from "@material-tailwind/react";
-import { useSelector } from "react-redux/es/hooks/useSelector";
-import {LightMode,DarkMode} from "../../redux/actions/LightActions"
+} from '@material-tailwind/react';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 
-import Footer from "../../components/footer"
-import SideBar from "../../components/SideBar"
-import React from "react";
-import TopBar from "../../components/Topbar"
-import Topbarbg from "../../assets/images/Topbarbg.jpg"
-import TranslatedText from "../../utils/Translation"
-import {CreateToast}  from "../../utils/Toast"
+import Footer from '../../components/footer';
+import SideBar from '../../components/SideBar';
+import React from 'react';
+import TopBar from '../../components/Topbar';
+import Topbarbg from '../../assets/images/Topbarbg.jpg';
+import TranslatedText from '../../utils/Translation';
+import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
 
-  export default function User_Control_Panel() {
-    const LightModeState=useSelector(state=>state.lightMode)
-    const [imageSrc, setImageSrc] = React.useState('');
+export default function User_Control_Panel() {
+  const LightModeState = useSelector((state) => state.lightMode);
+  const [imageSrc, setImageSrc] = React.useState('');
 
-    const handleImageUpload = (e) => {
+  const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
@@ -40,61 +40,145 @@ import ReactDOMServer from 'react-dom/server';
     }
   };
 
+  const HandleProfilEdit = () => {
+    try {
+      const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('API Fetch is done!');
+        }, 3000);
+      });
 
-  const HandleProfilEdit=()=>
-  {
- try{
-   const promise =new Promise((resolve,reject)=>{setTimeout(()=>{
-        resolve("API Fetch is done!")
-    },3000)})
-
-
-    CreateToast(
-      promise,
-      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Profile.SaveProfile_Success"/>),
-      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Profile.SaveProfile_Success"/>),
-      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending"/>),
-      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Profile.SaveProfile_Error"/>),
-      "promise",
-      LightModeState==LightMode().type)
-    }
-    catch(e)
-    {
-
-    }
-  }
-    return (<>
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="UCP.DialogMessages.Profile.SaveProfile_Success" />,
+        ),
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="UCP.DialogMessages.Profile.SaveProfile_Success" />,
+        ),
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+        ),
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="UCP.DialogMessages.Profile.SaveProfile_Error" />,
+        ),
+        'promise',
+        LightModeState == LightMode().type,
+      );
+    } catch (e) {}
+  };
+  return (
+    <>
       <div className="flex flex-row items-stretch">
+        <aside
+          className={`mb-2 rounded-b-xl p-4 shadow-lg ${
+            LightModeState == LightMode().type
+              ? 'tc-whiteTheme_T1 bg-whiteTheme_T2'
+              : 'tc-darkTheme_T1 bg-darkTheme_T2'
+          }   hidden xl:block w-[20vw] animate-fade`}
+        >
+          <SideBar />
+        </aside>
 
-<aside className={`mb-2 rounded-b-xl p-4 shadow-lg ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}   hidden xl:block w-[20vw] animate-fade`}>
-<SideBar/>
-</aside>
+        <main className="w-full min-h-screen flex flex-col justify-start items-center ">
+          <section
+            className=" flex flex-col justify-center items-stretch w-full text-center h-[17vh] p-4 shadow-xl shadow-blue-gray-900/ bg-cover"
+            style={{ backgroundImage: `url(${Topbarbg})` }}
+          >
+            <TopBar
+              SectionName={
+                <TranslatedText TranslationPath="UCP.TopNav.TabTitles.Profil" />
+              }
+              Icon='<i class="fa-solid fa-user-gear"></i>'
+            />
+          </section>
 
-      <main className="w-full min-h-screen flex flex-col justify-start items-center ">  
-        <section className=" flex flex-col justify-center items-stretch w-full text-center h-[17vh] p-4 shadow-xl shadow-blue-gray-900/ bg-cover" style={{backgroundImage:`url(${Topbarbg})`}} >     
-        <TopBar SectionName={<TranslatedText TranslationPath="UCP.TopNav.TabTitles.Profil"/>} Icon='<i class="fa-solid fa-user-gear"></i>'  />
-
-        </section>
-
-        <section className="w-full flex justify-center  text-center">      
-        <Card  className={`p-2 w-full  min-h-[82vh] m-2 grid grid-cols-1 gap-3 ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2":"tc-darkTheme_T1 bg-darkTheme_T2"}`} >
-
-          <div className=" flex flex-col justify-center items-center col-span-1" >
-          <img
-          className="h-[30vh] w-[30vh] rounded-full object-cover object-center mb-4 "
-          src={imageSrc==''?'https://via.placeholder.com/300x200.png?text=Placeholder+Image':imageSrc}
-          alt="nature image"
-          />
-          <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="UCP.Profil.TabInputs.ProfilImage"/>} type="file" accept="image/*" onChange={handleImageUpload} icon={<i class="fa-solid fa-image"></i>} />
-
-          </div>
-          <div className="col-span-1 flex flex-col justify-center items-center gap-2" >
-
-                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="UCP.Profil.TabInputs.FName"/>}   icon={<i class="fa-solid fa-circle-info"></i>} />
-                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="UCP.Profil.TabInputs.LName"/>}   icon={<i class="fa-solid fa-circle-info"></i>} />
-                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="UCP.Profil.TabInputs.NewPassword"/>}   icon={<i class="fa-solid fa-key"></i>} />
-                 <Input labelProps={{style:{color:LightModeState==LightMode().type?"black":"white"}}} label={<TranslatedText TranslationPath="UCP.Profil.TabInputs.VerifyPassword"/>}   icon={<i class="fa-solid fa-lock"></i>} required type="password"  />
-                  <Typography
+          <section className="w-full flex justify-center  text-center">
+            <Card
+              className={`p-2 w-full  min-h-[82vh] m-2 grid grid-cols-1 gap-3 ${
+                LightModeState == LightMode().type
+                  ? 'tc-whiteTheme_T1 bg-whiteTheme_T2'
+                  : 'tc-darkTheme_T1 bg-darkTheme_T2'
+              }`}
+            >
+              <div className=" flex flex-col justify-center items-center col-span-1">
+                <img
+                  className="h-[30vh] w-[30vh] rounded-full object-cover object-center mb-4 "
+                  src={
+                    imageSrc == ''
+                      ? 'https://via.placeholder.com/300x200.png?text=Placeholder+Image'
+                      : imageSrc
+                  }
+                  alt="nature image"
+                />
+                <Input
+                  labelProps={{
+                    style: {
+                      color:
+                        LightModeState == LightMode().type ? 'black' : 'white',
+                    },
+                  }}
+                  label={
+                    <TranslatedText TranslationPath="UCP.Profil.TabInputs.ProfilImage" />
+                  }
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  icon={<i class="fa-solid fa-image"></i>}
+                />
+              </div>
+              <div className="col-span-1 flex flex-col justify-center items-center gap-2">
+                <Input
+                  labelProps={{
+                    style: {
+                      color:
+                        LightModeState == LightMode().type ? 'black' : 'white',
+                    },
+                  }}
+                  label={
+                    <TranslatedText TranslationPath="UCP.Profil.TabInputs.FName" />
+                  }
+                  icon={<i class="fa-solid fa-circle-info"></i>}
+                />
+                <Input
+                  labelProps={{
+                    style: {
+                      color:
+                        LightModeState == LightMode().type ? 'black' : 'white',
+                    },
+                  }}
+                  label={
+                    <TranslatedText TranslationPath="UCP.Profil.TabInputs.LName" />
+                  }
+                  icon={<i class="fa-solid fa-circle-info"></i>}
+                />
+                <Input
+                  labelProps={{
+                    style: {
+                      color:
+                        LightModeState == LightMode().type ? 'black' : 'white',
+                    },
+                  }}
+                  label={
+                    <TranslatedText TranslationPath="UCP.Profil.TabInputs.NewPassword" />
+                  }
+                  icon={<i class="fa-solid fa-key"></i>}
+                />
+                <Input
+                  labelProps={{
+                    style: {
+                      color:
+                        LightModeState == LightMode().type ? 'black' : 'white',
+                    },
+                  }}
+                  label={
+                    <TranslatedText TranslationPath="UCP.Profil.TabInputs.VerifyPassword" />
+                  }
+                  icon={<i class="fa-solid fa-lock"></i>}
+                  required
+                  type="password"
+                />
+                <Typography
                   variant="small"
                   className="mt-2 flex items-center gap-1 font-normal"
                 >
@@ -110,27 +194,38 @@ import ReactDOMServer from 'react-dom/server';
                       clipRule="evenodd"
                     />
                   </svg>
-                  {<TranslatedText TranslationPath="UCP.Profil.TabHeader.PasswordInfo"/>}
+                  {
+                    <TranslatedText TranslationPath="UCP.Profil.TabHeader.PasswordInfo" />
+                  }
                 </Typography>
-                 <Button onClick={HandleProfilEdit}  className="flex items-center gap-3 mt-4">
-        <svg
-          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-5 w-5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"/>
-        </svg>
-        {<TranslatedText TranslationPath="UCP.Profil.TabActions.SaveInformation"/>}
-      </Button>
-
-          </div>
- 
-
-    </Card>
-        </section>
-        
-      </main>
-
-      
+                <Button
+                  onClick={HandleProfilEdit}
+                  className="flex items-center gap-3 mt-4"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="h-5 w-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                    />
+                  </svg>
+                  {
+                    <TranslatedText TranslationPath="UCP.Profil.TabActions.SaveInformation" />
+                  }
+                </Button>
+              </div>
+            </Card>
+          </section>
+        </main>
       </div>
       <Footer />
-      </>
-    );
-  }
+    </>
+  );
+}

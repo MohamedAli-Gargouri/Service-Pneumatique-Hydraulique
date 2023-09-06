@@ -8,12 +8,11 @@
   /* Add other font properties (e.g., font-weight, font-style) here */
 }
 
-html
-{
+html {
   height: -webkit-fill-available;
 }
 body {
-   scroll-behavior: smooth;
+  scroll-behavior: smooth;
   font-family: 'Roboto', sans-serif;
   height: 100%;
   height: -webkit-fill-available;
@@ -21,8 +20,6 @@ body {
 
 /*=========VARIABLES======================*/
 :root {
-
-
   /*=========SCREEN-SIZES============*/
   --screen-Width: calc(var(--vw, 1vw) * 100);
   --screen-height: calc(var(--vh, 1vh) * 100);
@@ -32,133 +29,110 @@ body {
 
   /*=============COLORS===============*/
 
-  
-  --WHITE_THEME_COLOR_T1:rgba(236,	239,	241, 1);
-  --WHITE_THEME_COLOR_T2:rgba(255,	255,	255, 0.8);
-  --BLACK_THEME_COLOR_T1:#2e2b2b;
-  --RED_THEME_COLOR_T1:rgba(191,54,12, 1);
-  --BLACK_THEME_COLOR_T2:#3b3b3b;
+  --WHITE_THEME_COLOR_T1: rgba(236, 239, 241, 1);
+  --WHITE_THEME_COLOR_T2: rgba(255, 255, 255, 0.8);
+  --BLACK_THEME_COLOR_T1: #2e2b2b;
+  --RED_THEME_COLOR_T1: rgba(191, 54, 12, 1);
+  --BLACK_THEME_COLOR_T2: #3b3b3b;
 
-  --BLACK_THEME_BORDER_COLOR_T2:#555555;
+  --BLACK_THEME_BORDER_COLOR_T2: #555555;
 
-  --LOADING_THEME_COLOR:#ffcdd2;
-  --WHITE_TXT_COLOR:black;
-  --BLACK_TXT_COLOR:white;
+  --LOADING_THEME_COLOR: #ffcdd2;
+  --WHITE_TXT_COLOR: black;
+  --BLACK_TXT_COLOR: white;
 }
-
 
 /*=============CLASSES=====================*/
 
 /*================LIGHTING CLASSES==============*/
 
-
-.bg-whiteTheme_T1 
-  {
+.bg-whiteTheme_T1 {
   background-color: var(--WHITE_THEME_COLOR_T1) !important;
-  border-color: var(--WHITE_THEME_COLOR_T1)!important;
+  border-color: var(--WHITE_THEME_COLOR_T1) !important;
   border: 0px solid;
-  /*backdrop-filter: blur(1px);*/     
-  }
-  
-
-.bg-whiteTheme_T2 
-  {
-     
-  background-color: var(--WHITE_THEME_COLOR_T2)!important;
-  border-color: var(--WHITE_THEME_COLOR_T2)!important;
-  border: 0px solid;
-  opacity: 1;
-     
-  }
-
-  .bg-whiteTheme_T3 
-  {
-  background-color: white !important;
-  border-color: white!important;
-  opacity: 1;
-  border: 0px solid;
-  /*backdrop-filter: blur(1px);*/     
-  }
-
-.bg-RedTheme_T1 
-  {
-  background-color: var(--RED_THEME_COLOR_T1)!important;
-  border-color: var(--RED_THEME_COLOR_T1)!important;     
-  }
-.bg-darkTheme_T1 
-  {
-      
-      background-color: var(--BLACK_THEME_COLOR_T1)!important;
-      border-color: var(--BLACK_THEME_COLOR_T1)!important;
-      border: 0px solid;         
-  }
-.bg-darkTheme_T2 
-  {
-    
-    background: linear-gradient(-45deg, var(--BLACK_THEME_COLOR_T2), var(--BLACK_THEME_COLOR_T1))!important;
-    border-color: var(--BLACK_THEME_BORDER_COLOR_T2)!important;
-    opacity: 0.9;
-    border: 1px solid;
-    backdrop-filter: blur(26px)!important;
-;
-     
-  }
-.bg-LoadingTheme_T1 
-  {
-    
-    background-color: var(--LOADING_THEME_COLOR)!important;
-    border-color: var(--LOADING_THEME_COLOR)!important;
-    /*backdrop-filter: blur(1px);*/  
-     
-  }
-.tc-darkTheme_T1 
-  {
-      color: var(--BLACK_TXT_COLOR)!important;     
-  }
-
- .tc-whiteTheme_T1 
-  {
-      color: var(--WHITE_TXT_COLOR)!important;     
-  }
-
-  
-
-
-
-/*==============NORMAL CLASSES=============*/
-  .custom-text-shadow {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  }
-
-  .shadowed-text {
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-  }
-  .shadowed-div {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  .ExtraShadowed-div {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
-  }
-
-  .BackgroundImage {
-    background-image: url("./assets//images/background1.png");
-  }
-  .BackgroundImage2 {
-    background-image: url("./assets//images/background2.png");
-  }
-
-
-  .Imageshadow {
-    filter: drop-shadow(0px 7px 4px rgba(0, 0, 0, 0.25));
+  /*backdrop-filter: blur(1px);*/
 }
 
+.bg-whiteTheme_T2 {
+  background-color: var(--WHITE_THEME_COLOR_T2) !important;
+  border-color: var(--WHITE_THEME_COLOR_T2) !important;
+  border: 0px solid;
+  opacity: 1;
+}
+
+.bg-whiteTheme_T3 {
+  background-color: white !important;
+  border-color: white !important;
+  opacity: 1;
+  border: 0px solid;
+  /*backdrop-filter: blur(1px);*/
+}
+
+.bg-RedTheme_T1 {
+  background-color: var(--RED_THEME_COLOR_T1) !important;
+  border-color: var(--RED_THEME_COLOR_T1) !important;
+}
+.bg-darkTheme_T1 {
+  background-color: var(--BLACK_THEME_COLOR_T1) !important;
+  border-color: var(--BLACK_THEME_COLOR_T1) !important;
+  border: 0px solid;
+}
+.bg-darkTheme_T2 {
+  background: linear-gradient(
+    -45deg,
+    var(--BLACK_THEME_COLOR_T2),
+    var(--BLACK_THEME_COLOR_T1)
+  ) !important;
+  border-color: var(--BLACK_THEME_BORDER_COLOR_T2) !important;
+  opacity: 0.9;
+  border: 1px solid;
+  backdrop-filter: blur(26px) !important;
+}
+.bg-LoadingTheme_T1 {
+  background-color: var(--LOADING_THEME_COLOR) !important;
+  border-color: var(--LOADING_THEME_COLOR) !important;
+  /*backdrop-filter: blur(1px);*/
+}
+.tc-darkTheme_T1 {
+  color: var(--BLACK_TXT_COLOR) !important;
+}
+
+.tc-whiteTheme_T1 {
+  color: var(--WHITE_TXT_COLOR) !important;
+}
+
+/*==============NORMAL CLASSES=============*/
+.custom-text-shadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.shadowed-text {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+}
+.shadowed-div {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.ExtraShadowed-div {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.BackgroundImage {
+  background-image: url('./assets//images/background1.png');
+}
+.BackgroundImage2 {
+  background-image: url('./assets//images/background2.png');
+}
+
+.Imageshadow {
+  filter: drop-shadow(0px 7px 4px rgba(0, 0, 0, 0.25));
+}
 
 .VerticalLine {
   opacity: 50%;
-  width: 2px; 
-  height: 100%; 
+  width: 2px;
+  height: 100%;
   border-radius: 50px;
-  background-color: #eceff1; 
+  background-color: #eceff1;
 }
 
 /*div {
@@ -191,7 +165,6 @@ body {
   overflow: scroll !important;
 }
 
-
 /*=========================SCROLL BAR CUSTOMIZATION===========================*/
 /* Customize the scrollbar track */
 ::-webkit-scrollbar {
@@ -212,7 +185,6 @@ body {
 
 /* Customize the scrollbar track when it's not visible */
 ::-webkit-scrollbar-track {
-
   background-color: transparent; /* Color of the track */
   border-radius: 0px;
   /* Rounded corners for the track */
@@ -227,10 +199,6 @@ body {
 .text-blue-gray-700 {
   color: inherit !important; /* Use 'inherit' to remove the color */
 }
-.text-blue-gray-400
-{
+.text-blue-gray-400 {
   color: inherit !important;
 }
-
-
-

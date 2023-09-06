@@ -1,5 +1,5 @@
-import { Tooltip, Typography } from "@material-tailwind/react";
- 
+import { Tooltip, Typography } from '@material-tailwind/react';
+
 export default function TooltipCustomStyles(props) {
   return (
     <Tooltip
@@ -15,7 +15,7 @@ export default function TooltipCustomStyles(props) {
             color="blue-gray"
             className="font-normal opacity-80"
           >
-           {props.Content}
+            {props.Content}
           </Typography>
         </div>
       }

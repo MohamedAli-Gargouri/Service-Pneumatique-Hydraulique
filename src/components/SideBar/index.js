@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Card,
   Typography,
@@ -11,7 +11,7 @@ import {
   AccordionHeader,
   AccordionBody,
   Alert,
-} from "@material-tailwind/react";
+} from '@material-tailwind/react';
 import {
   PresentationChartBarIcon,
   ShoppingBagIcon,
@@ -19,131 +19,208 @@ import {
   Cog6ToothIcon,
   InboxIcon,
   PowerIcon,
-} from "@heroicons/react/24/solid";
+} from '@heroicons/react/24/solid';
 import {
   ChevronRightIcon,
   ChevronDownIcon,
   CubeTransparentIcon,
-} from "@heroicons/react/24/outline";
-import TranslatedText from "../../utils/Translation"
-import { useSelector } from "react-redux/es/hooks/useSelector";
-import {LightMode,DarkMode} from "../../redux/actions/LightActions"
- import SPHLOGO from "../../assets/images/SPH Logo.png"
+} from '@heroicons/react/24/outline';
+import TranslatedText from '../../utils/Translation';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import SPHLOGO from '../../assets/images/SPH Logo.png';
 export default function SidebarWithCta() {
   const [open, setOpen] = React.useState(0);
   const [openAlert, setOpenAlert] = React.useState(true);
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
- 
-  const LightModeState=useSelector(state=>state.lightMode)
+
+  const LightModeState = useSelector((state) => state.lightMode);
 
   return (
     <React.Fragment>
       <div className="my-4 flex flex-col justify-center items-center">
-        <img src={SPHLOGO} className="Imageshadow w-22 h-12 m-1"/>
-        <Typography variant="h5" >
-        <TranslatedText TranslationPath="UCP.SideBar.Title"/>
+        <img src={SPHLOGO} className="Imageshadow w-22 h-12 m-1" />
+        <Typography variant="h5">
+          <TranslatedText TranslationPath="UCP.SideBar.Title" />
         </Typography>
       </div>
-      <List className={`${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`}>
-
-      <ListItem onClick={()=>{window.location.href="/UCP/Home"}}>
+      <List
+        className={`${
+          LightModeState == LightMode().type
+            ? 'tc-whiteTheme_T1 '
+            : 'tc-darkTheme_T1 '
+        }`}
+      >
+        <ListItem
+          onClick={() => {
+            window.location.href = '/UCP/Home';
+          }}
+        >
           <ListItemPrefix>
-          <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-house"></i>
           </ListItemPrefix>
           Home
         </ListItem>
 
-        <ListItem onClick={()=>{window.location.href="/UCP/MyOrders"}}>
+        <ListItem
+          onClick={() => {
+            window.location.href = '/UCP/MyOrders';
+          }}
+        >
           <ListItemPrefix>
-          <i class="fa-solid fa-cart-shopping h-5 w-5"></i>
+            <i class="fa-solid fa-cart-shopping h-5 w-5"></i>
           </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.MyOrders"/>
+          <TranslatedText TranslationPath="UCP.SideBar.MyOrders" />
           <ListItemSuffix>
-            <Chip value="5" size="sm" color="green" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
+            <Chip
+              value="5"
+              size="sm"
+              color="green"
+              variant="ghost"
+              className={`rounded-full ${
+                LightModeState == LightMode().type
+                  ? 'tc-whiteTheme_T1 '
+                  : 'tc-darkTheme_T1 '
+              }`}
+            />
           </ListItemSuffix>
         </ListItem>
 
-        <ListItem onClick={()=>{window.location.href="/UCP/Orders"}}>
+        <ListItem
+          onClick={() => {
+            window.location.href = '/UCP/Orders';
+          }}
+        >
           <ListItemPrefix>
-          <i class="fa-solid fa-file-invoice h-5 w-5"></i>
+            <i class="fa-solid fa-file-invoice h-5 w-5"></i>
           </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Orders"/>
+          <TranslatedText TranslationPath="UCP.SideBar.Orders" />
           <ListItemSuffix>
-            <Chip value="14" size="sm" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
+            <Chip
+              value="14"
+              size="sm"
+              variant="ghost"
+              className={`rounded-full ${
+                LightModeState == LightMode().type
+                  ? 'tc-whiteTheme_T1 '
+                  : 'tc-darkTheme_T1 '
+              }`}
+            />
           </ListItemSuffix>
         </ListItem>
 
-        <ListItem onClick={()=>{window.location.href="/UCP/Products"}}>
+        <ListItem
+          onClick={() => {
+            window.location.href = '/UCP/Products';
+          }}
+        >
           <ListItemPrefix>
-          <i class="fa-solid fa-boxes-stacked h-5 w-5"></i>
+            <i class="fa-solid fa-boxes-stacked h-5 w-5"></i>
           </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Products"/>
+          <TranslatedText TranslationPath="UCP.SideBar.Products" />
           <ListItemSuffix>
-            <Chip value="50" size="sm" color="green" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
+            <Chip
+              value="50"
+              size="sm"
+              color="green"
+              variant="ghost"
+              className={`rounded-full ${
+                LightModeState == LightMode().type
+                  ? 'tc-whiteTheme_T1 '
+                  : 'tc-darkTheme_T1 '
+              }`}
+            />
           </ListItemSuffix>
         </ListItem>
-        <ListItem onClick={()=>{window.location.href="/UCP/Inbox"}}>
+        <ListItem
+          onClick={() => {
+            window.location.href = '/UCP/Inbox';
+          }}
+        >
           <ListItemPrefix>
             <InboxIcon className="h-5 w-5" />
           </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Inbox"/>
+          <TranslatedText TranslationPath="UCP.SideBar.Inbox" />
           <ListItemSuffix>
-            <Chip value="14" size="sm" variant="ghost"  className={`rounded-full ${LightModeState==LightMode().type?"tc-whiteTheme_T1 ":"tc-darkTheme_T1 "}`} />
+            <Chip
+              value="14"
+              size="sm"
+              variant="ghost"
+              className={`rounded-full ${
+                LightModeState == LightMode().type
+                  ? 'tc-whiteTheme_T1 '
+                  : 'tc-darkTheme_T1 '
+              }`}
+            />
           </ListItemSuffix>
         </ListItem>
 
-        <ListItem onClick={()=>{window.location.href="/UCP/Accounts"}}>
+        <ListItem
+          onClick={() => {
+            window.location.href = '/UCP/Accounts';
+          }}
+        >
           <ListItemPrefix>
-          <i class="fa-solid fa-users h-5 w-5"></i>
+            <i class="fa-solid fa-users h-5 w-5"></i>
           </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.ManageAccounts"/>
+          <TranslatedText TranslationPath="UCP.SideBar.ManageAccounts" />
         </ListItem>
 
-
-        <ListItem onClick={()=>{window.location.href="/UCP/Invoice"}}>
+        <ListItem
+          onClick={() => {
+            window.location.href = '/UCP/Invoice';
+          }}
+        >
           <ListItemPrefix>
-          <i class="fa-solid fa-file-invoice"></i>
+            <i class="fa-solid fa-file-invoice"></i>
           </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.InvoiceEstimate"/>
-          <ListItemSuffix>
-            
-          </ListItemSuffix>
+          <TranslatedText TranslationPath="UCP.SideBar.InvoiceEstimate" />
+          <ListItemSuffix></ListItemSuffix>
         </ListItem>
 
-        
-
-        <ListItem onClick={()=>{window.location.href="/UCP/Profil"}}>
+        <ListItem
+          onClick={() => {
+            window.location.href = '/UCP/Profil';
+          }}
+        >
           <ListItemPrefix>
             <UserCircleIcon className="h-5 w-5" />
           </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Profil"/>
+          <TranslatedText TranslationPath="UCP.SideBar.Profil" />
         </ListItem>
-        <ListItem onClick={()=>{window.location.href="/"}}>
+        <ListItem
+          onClick={() => {
+            window.location.href = '/';
+          }}
+        >
           <ListItemPrefix>
-          <i class="fa-solid fa-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left"></i>
           </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Back"/>
+          <TranslatedText TranslationPath="UCP.SideBar.Back" />
         </ListItem>
         <ListItem>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Logout"/>
+          <TranslatedText TranslationPath="UCP.SideBar.Logout" />
         </ListItem>
       </List>
-      <Alert open={openAlert} className="mt-auto" onClose={() => setOpenAlert(false)}>
+      <Alert
+        open={openAlert}
+        className="mt-auto"
+        onClose={() => setOpenAlert(false)}
+      >
         <div className=" flex justify-evenly items-center">
-        <i class="fa-solid fa-arrows-rotate  h-6 w-6"></i>
-        <Typography variant="h6" className="mb-1">
-          Available Update
-        </Typography>
+          <i class="fa-solid fa-arrows-rotate  h-6 w-6"></i>
+          <Typography variant="h6" className="mb-1">
+            Available Update
+          </Typography>
         </div>
-      
 
         <Typography variant="small" className="font-normal opacity-80">
-         Version 0.0.0.2 is available.
+          Version 0.0.0.2 is available.
         </Typography>
         <div className="mt-4 flex gap-3">
           <Typography
@@ -155,11 +232,11 @@ export default function SidebarWithCta() {
           >
             Dismiss
           </Typography>
-          <Typography as="a"  variant="small" className="font-medium">
+          <Typography as="a" variant="small" className="font-medium">
             Update now.
           </Typography>
         </div>
-        </Alert>
+      </Alert>
     </React.Fragment>
   );
 }
