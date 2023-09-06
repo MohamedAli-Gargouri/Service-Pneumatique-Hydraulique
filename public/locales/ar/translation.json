@@ -71,6 +71,43 @@
       "Team_title": "التق بفريقنا"
     }
   },
+  "Product":
+  {
+
+    "Shop":"محل",
+    "Product":"منتج",
+    "Description":"وصف",
+    "AddInfo":"معلومات إضافية",
+    "Shipping":"الشحن والاسترجاع",
+    "Actions":{
+     "AddCart":"أضف إلى السلة"
+    }
+  },
+  "Products": {
+    "ApplyProductFilter_Info": "تم تطبيق التصفية!",
+    "List": "قائمة",
+    "Shop": "محلنا",
+    "Filter": {
+        "Rate":"التقييمات",
+        "Date":"تاريخ",
+        "Default":"تخلف بالدفع"
+    },
+    "Category":"فئة",
+    "Brand":"ماركة",
+    "SubCategory":"تصنيف فرعي",
+    "MinPrice":"سعر الحد الأدنى",
+    "MaxPrice":"الحد الأقصى للسعر",
+    "Actions":
+    {
+      "ApplyFilter":"تطبيق الفلتر"
+    },
+    "Label":
+    {
+        "Sortby": "ترتيب حسب"
+    }
+    
+
+  },
   "Login": {
     "Login_Title": "تسجيل الدخول",
     "Email_Label": "بريد إلكتروني",

@@ -175,16 +175,16 @@ export default function Products() {
       CreateToast(
         promise,
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Error" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Error" />
         ),
         'promise',
         LightModeState == LightMode().type,
@@ -409,7 +409,7 @@ export default function Products() {
                                 SetOpenDeleteDialog(true);
                               }}
                             >
-                              <i class="fa-solid fa-trash"></i>
+                              <i className="fa-solid fa-trash"></i>
                             </IconButton>
                           </Tooltip>
                         </td>
@@ -499,7 +499,7 @@ export default function Products() {
                                 SetOpenDeleteDialog(true);
                               }}
                             >
-                              <i class="fa-solid fa-trash"></i>
+                              <i className="fa-solid fa-trash"></i>
                             </IconButton>
                           </Tooltip>
                         </td>
@@ -526,7 +526,7 @@ export default function Products() {
           HandleOpen={() => {
             SetOpenDeleteDialog(!OpenDeleteDialog);
           }}
-          Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
+          Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
           Title={
             <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Title" />
           }
@@ -541,7 +541,7 @@ export default function Products() {
           HandleOpen={() => {
             SetOpenDeleteDialog(!OpenDeleteDialog);
           }}
-          Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
+          Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
           Title={
             <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Title" />
           }

@@ -117,7 +117,7 @@ export default function Invoice_SelectedProducts({
               SetOpenInvoiceAddProduct(true);
             }}
           >
-            <i class="fa-solid fa-plus"></i>{' '}
+            <i className="fa-solid fa-plus"></i>{' '}
             <TranslatedText TranslationPath="UCP.InvoiceSelectedProductsTable.TabActions.Add" />
           </Button>
         </div>
@@ -221,7 +221,7 @@ export default function Invoice_SelectedProducts({
                             SetOpenDeleteDialog(true);
                           }}
                         >
-                          <i class="fa-solid fa-trash"></i>
+                          <i className="fa-solid fa-trash"></i>
                         </IconButton>
                       </Tooltip>
                     </td>
@@ -249,7 +249,7 @@ export default function Invoice_SelectedProducts({
         HandleOpen={() => {
           SetOpenDeleteDialog(!OpenDeleteDialog);
         }}
-        Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
         Title={'Delete Product'}
         Content="Are you sure you want to delete this product?"
       />
@@ -260,7 +260,7 @@ export default function Invoice_SelectedProducts({
         HandleOpen={() => {
           SetOpenInvoiceAddProduct(!OpenInvoiceAddProduct);
         }}
-        Icon={'<i class="fa-solid fa-gear"></i>'}
+        Icon={'<i className="fa-solid fa-gear"></i>'}
         Title={'Add Product to Invoice'}
         Content=""
       />

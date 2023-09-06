@@ -71,11 +71,11 @@ export default function FooterWithSocialLinks() {
             <h5>Service Pneumatique Hydraulique</h5>
           </div>
 
-          <div className=" col-span-6 md:col-span-5 grid md:grid-cols-2 items-center justify-between gap-1">
+          <div className=" col-span-6 md:col-span-5 grid md:grid-cols-2 items-center justify-center gap-1">
             {List.map(({ title, items },index) => (
               <ul key={"FOOTER"+index}>
                 <Typography
-                  color="inherit"
+                  
                   variant="small"
                   className={` underline underline-offset-2 mt-4 mb-3 font-medium opacity-40`}
                 >
@@ -86,7 +86,7 @@ export default function FooterWithSocialLinks() {
                     <div className=" flex flex-col md:flex-row justify-center items-center gap-1">
                       <Typography
                         as="h6"
-                        color="inherit"
+                        
                         className={` font-thin opacity-60 mr-1 py-1.5  transition-colors hover:opacity-75 `}
                       >
                         {link.label}:
@@ -95,7 +95,7 @@ export default function FooterWithSocialLinks() {
                       <Typography
                         as="small"
                         href="#"
-                        color="inherit"
+                        
                         className={` leading-4 font-normal transition-colors hover:opacity-75 `}
                       >
                         {link.value}
@@ -112,7 +112,7 @@ export default function FooterWithSocialLinks() {
         >
           <Typography
             variant="small"
-            color="inherit"
+            
             className={`mb-4 text-center font-normal  md:mb-0 `}
           >
             &copy; {currentYear}{' '}
@@ -122,7 +122,7 @@ export default function FooterWithSocialLinks() {
           </Typography>
           <Typography
             as="small"
-            color="inherit"
+            
             className={' underline underline-offset-4'}
           >
             <TranslatedText TranslationPath="Global.Footer.Dev" />

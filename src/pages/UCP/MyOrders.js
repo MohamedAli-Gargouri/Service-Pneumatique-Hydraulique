@@ -53,7 +53,7 @@ export default function User_Control_Panel() {
               SectionName={
                 <TranslatedText TranslationPath="UCP.TopNav.TabTitles.MyOrders" />
               }
-              Icon='<i class="fa-brands fa-shopify"></i>'
+              Icon='<i className="fa-brands fa-shopify"></i>'
             />
           </section>
 

@@ -1,8 +1,8 @@
 import Navbar from '../../components/NavBar';
 import Footer from '../../components/footer';
 import React from 'react';
-import PresentationSection from './PresentationSection';
-import ServicesSection from './ServicesSection';
+import Presentation from './Presentation';
+import Services from './Services';
 import HeroImage from '../../assets/images/background1.png';
 import HeroCompressor from '../../assets/images/HeroBannerCompressor.png';
 import Partners from './Partners';
@@ -18,16 +18,16 @@ const Home = () => {
       <Navbar />
       <div
         style={{ backgroundImage: `url(${HeroImage})` }}
-        className=" flex justify-center items-center flex-wrap gap-1 bg-cover aspect-video  h-[170vh] md:h-[100vh] w-full  "
+        className=" grid grid-cols-2 justify-center items-center flex-wrap md:flex-nowrap gap-0 bg-cover aspect-video  h-[170vh] md:h-[100vh] w-full  "
       >
-        <div className=" order-2 mt-0 md:order-1 w-full animate-LeftToRight md:w-fit md:h-[70%] aspect-square">
+        <div className=" col-span-2 md:col-span-1 p-1 flex justify-center items-center order-2 mt-0 md:order-1 w-full animate-LeftToRight aspect-square">
           <img
-            className="m-0  animate-rotate   Imageshadow"
+            className="m-0 w-[70%] h-[70%] lg:w-[55%] lg:h-[55%]  animate-rotate   Imageshadow"
             src={HeroCompressor}
           />
         </div>
 
-        <div className=" order-1 mt-28 h-[50%] md:mt-0  w-full md:h-full md:w-[50%] flex justify-center  items-start md:items-center p-4">
+        <div className=" col-span-2 md:col-span-1 w-full order-1 mt-28 md:mt-0  md:h-full  flex justify-center  items-start md:items-center p-4">
           <div
             style={{
               background:
@@ -39,7 +39,7 @@ const Home = () => {
               <TranslatedText TranslationPath="Home.HeroTitle" />
             </Typography>
 
-            <Typography variant="h7" className=" italic">
+            <Typography variant="h6" className=" italic">
               <TranslatedText TranslationPath="Home.HeroDescription" />
             </Typography>
 
@@ -50,7 +50,7 @@ const Home = () => {
                 variant="outlined"
                 className=" italic shadowed-div flex items-center gap-3 m-4 hover:scale-x-105 hover:scale-y-105"
               >
-                <i class="fa-solid fa-phone"></i>
+                <i className="fa-solid fa-phone"></i>
 
                 <TranslatedText TranslationPath="Home.ContactusBtn" />
               </Button>
@@ -61,15 +61,15 @@ const Home = () => {
                 variant="outlined"
                 className=" italic shadowed-div flex items-center gap-3 m-4 hover:scale-x-105 hover:scale-y-105"
               >
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i className="fa-solid fa-cart-shopping"></i>
                 <TranslatedText TranslationPath="Home.CheckProducts" />
               </Button>
             </div>
           </div>
         </div>
       </div>
-      <PresentationSection />
-      <ServicesSection />
+      <Presentation />
+      <Services />
       <Partners />
       <Footer />
     </React.Fragment>

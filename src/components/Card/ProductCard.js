@@ -41,46 +41,39 @@ export default function ProductCard({
             onMouseLeave={() => setIsHovered(false)}
           >
             <img
+              key={isHovered ? "Image2" : "Image1"}
               src={isHovered ? ProductImages[0] : ProductImages[1]}
-              className="aspect-square  bg-cover Imageshadow"
+              className="aspect-square  bg-cover Imageshadow animate-fade"
             />
           </div>
 
-          <div className="ProductDescription col-span-2 sm:col-span-3 ml-1">
-            <div className="flex flex-col justify-center items-start">
-              <div className="Product Catalog ">
-                <Typography variant="h6" className={`font-light`}>
+          <div className="col-span-2 sm:col-span-3 mx-2 flex flex-col justify-center items-start text-center ">
+ 
+                <Typography variant="h6" className={` font-semibold`}>
                   {ProductCategory}
                 </Typography>
-              </div>
-              <div className="Product Title  ">
-                <Typography variant="h5" className={`font-body`}>
+                <Typography variant="h6" className={` font-thin`}>
                   {ProductBrand}
                 </Typography>
-                <Typography variant="h5" className={`font-body`}>
+                <Typography variant="h6" className={` font-thin`}>
                   {ProductName}
                 </Typography>
-              </div>
 
-              <div className="Price">
                 <Typography
-                  variant="paragraph"
+                  variant="h6"
                   color="green"
-                  className={`font-bold`}
+                  className={` font-serif`}
                 >
                   {ProductPrice} TND
                 </Typography>
-              </div>
 
-              <div className="Product Content  ">
-                <Typography variant="paragraph" className={` font-light`}>
+                <Typography variant="small" className={`font-thin`}>
                   {ProductShortDescription}
                 </Typography>
-              </div>
-            </div>
+
           </div>
 
-          <div className=" Product Actions col-span-1 flex-col flex gap-2 items-center justify-center w-full">
+          <div className="col-span-1 flex-col flex gap-2 items-center justify-center w-full text-center">
             <Rating
               className={'flex-wrap justify-center items-center'}
               unratedColor="red"
@@ -94,18 +87,17 @@ export default function ProductCard({
               variant="text"
               className=" rounded-full hover:scale-150"
             >
-              <i class="fa-regular fa-eye fa-lg"></i>
+              <i className="fa-regular fa-eye fa-lg"></i>
             </IconButton>
 
             <Button
               size="sm"
-              variant="filled"
-              className="focus:ring-0 flex items-center gap-3 p-4 hover:scale-105"
+              variant="outlined"
+              className="focus:ring-0 flex items-center rounded-sm justify-center gap-1 p-2 hover:scale-105"
             >
-              <i class="fa-solid fa-cart-shopping fa-sm"></i>
-              <span class="hidden md:inline">
+              <i className="fa-solid fa-cart-shopping fa-sm"></i>
                 <TranslatedText TranslationPath="Cart.Actions.AddCart" />
-              </span>
+
             </Button>
           </div>
         </div>
@@ -129,70 +121,66 @@ export default function ProductCard({
           onMouseLeave={() => setIsHovered(false)}
         >
           <img
-            id="ProductImg"
+           key={isHovered ? "Image2" : "Image1"}
             src={isHovered ? ProductImages[0] : ProductImages[1]}
-            className="aspect-square max-h-64 bg-cover Imageshadow animate-fade"
+            className={`aspect-square max-h-64 bg-cover Imageshadow animate-fade`}
           />
 
-          <div class="hover-content p-4 w-full">
-            <div className="Actions flex flex-wrap justify-center items-center">
-              <div className="Preview mr-2">
+          <div className="hover-content p-4 w-full">
+            <div className="flex flex-wrap justify-center items-center">
+
                 <IconButton
                   onClick={() => {
                     window.location.href = '/ProductDetails';
                   }}
                   size="sm"
                   variant="text"
-                  className="rounded-full hover:scale-150"
+                  className="rounded-full hover:scale-150 mr-2"
                 >
-                  <i class="fa-regular fa-eye fa-lg"></i>
+                  <i className="fa-regular fa-eye fa-lg"></i>
                 </IconButton>
-              </div>
 
-              <div className="AddCart ml-2">
+
                 <Button
                   size="sm"
-                  variant="filled"
-                  className="focus:ring-0 flex items-center gap-3 p-4 hover:scale-105"
+                  variant="outlined"
+                  className="focus:ring-0 flex items-center gap-3 p-2 rounded-sm hover:scale-105 mr-2"
                 >
-                  <i class="fa-solid fa-cart-shopping fa-sm"></i>
-                  <span class="hidden md:inline">
+                  <i className="fa-solid fa-cart-shopping fa-sm"></i>
                     <TranslatedText TranslationPath="Cart.Actions.AddCart" />
-                  </span>
                 </Button>
-              </div>
+
             </div>
           </div>
         </div>
 
-        <div className="Description">
-          <Typography variant="h6" className={`font-light text-center`}>
+        <div className=' text-center'>
+          <Typography variant="h6" className={`font-semibold `}>
             {ProductCategory}
           </Typography>
 
-          <Typography variant="h6" className={`font-body text-center`}>
+          <Typography variant="h6" className={` font-thin `}>
             {ProductBrand}
           </Typography>
-          <Typography variant="h6" className={`font-body text-center`}>
+          <Typography variant="h6" className={`font-thin `}>
             {ProductName}
           </Typography>
 
-          <div className="Price text-center">
-            <Typography variant="h6" color={'green'} className={` font-body`}>
+            <Typography variant="h6" color={'green'} className={`font-serif`}>
               {ProductPrice} TND
             </Typography>
-          </div>
-          <Typography variant="paragraph" className={` font-light text-center`}>
+
+          <Typography variant="paragraph" className={`font-thin`}>
             {ProductShortDescription}
           </Typography>
         </div>
 
-        <div className="Review text-center">
+
           <Rating
             className={'flex-wrap justify-center items-center'}
             unratedColor="red"
           />
-        </div>
+
       </Card>
     );
   }

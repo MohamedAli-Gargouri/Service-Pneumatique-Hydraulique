@@ -35,29 +35,29 @@ const Employees = () => {
             value: 'All',
 
             desc: (
-              <div class="table-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-                <div class="table-cell aspect-w-1 aspect-h-1 m-3 ">
+              <div className="table-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+                <div className="table-cell aspect-w-1 aspect-h-1 m-3 ">
                   <ProfileCard
                     name="Kamel Hachicha"
                     position="CEO"
                     image={CEOPFP}
                   />
                 </div>
-                <div class="table-cell aspect-w-1 aspect-h-1 m-3">
+                <div className="table-cell aspect-w-1 aspect-h-1 m-3">
                   <ProfileCard
                     name="Melek Hachicha"
                     position="Co-Founder"
                     image={COCEOPFP}
                   />
                 </div>
-                <div class="table-cell aspect-w-1 aspect-h-1 m-3">
+                <div className="table-cell aspect-w-1 aspect-h-1 m-3">
                   <ProfileCard
                     name="Hassen Jeribi"
                     position="Chef Service"
                     image={Hassen}
                   />
                 </div>
-                <div class="table-cell aspect-w-1 aspect-h-1 m-3">
+                <div className="table-cell aspect-w-1 aspect-h-1 m-3">
                   <ProfileCard
                     name="Hassen Jeribi"
                     position="Chef Service"
@@ -71,15 +71,15 @@ const Employees = () => {
             label: 'Management Team',
             value: 'Management Team',
             desc: (
-              <div class="table-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-                <div class="table-cell aspect-w-1 aspect-h-1 m-3 ">
+              <div className="table-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+                <div className="table-cell aspect-w-1 aspect-h-1 m-3 ">
                   <ProfileCard
                     name="Kamel Hachicha"
                     position="CEO"
                     image={CEOPFP}
                   />
                 </div>
-                <div class="table-cell aspect-w-1 aspect-h-1 m-3">
+                <div className="table-cell aspect-w-1 aspect-h-1 m-3">
                   <ProfileCard
                     name="Melek Hachicha"
                     position="Co-Founder"
@@ -93,8 +93,8 @@ const Employees = () => {
             label: 'Staff Team',
             value: 'Staff Team',
             desc: (
-              <div class="table-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-                <div class="table-cell aspect-w-1 aspect-h-1 m-3">
+              <div className="table-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+                <div className="table-cell aspect-w-1 aspect-h-1 m-3">
                   <ProfileCard
                     name="Hassen Jeribi"
                     position="Chef Service"

@@ -90,6 +90,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
             {ProductImages.map((imageurl, index) => {
               return (
                 <div
+                  key={"UnSelectedIMG"+index}
                   onClick={() => {
                     SetSelectedImgIndex(index);
                   }}
@@ -98,7 +99,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
                   } Unselected bg-gray-300 rounded-md img  shadow-lg mx-1  my-1 hover:scale-110 hover:border-red-200 transition duration-300 ease-in-out cursor-pointer`}
                 >
                   <img
-                    className=" aspect-square rounded-sm w-full h-full  shadow-x"
+                    className=" animate-fade aspect-square rounded-sm w-full h-full  shadow-x"
                     src={imageurl}
                   />
                 </div>
@@ -112,9 +113,9 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
           {ProductImages.map((imageurl, index) => {
             if (index == SelectedImgIndex) {
               return (
-                <div className="relative h-full w-full max-h-60 max-w-xs   md:max-h-96 md:max-w-lg   bg-gray-300 rounded-md Selected shadow-lg hover:cursor-pointer">
+                <div key={"SelectedIMG"+index} className="relative h-full w-full max-h-60 max-w-xs   md:max-h-96 md:max-w-lg   bg-gray-300 rounded-md Selected shadow-lg hover:cursor-pointer">
                   <img
-                    className=" aspect-square w-full h-full shadow-x"
+                    className=" animate-fade aspect-square w-full h-full shadow-x"
                     src={imageurl}
                   />
 
@@ -141,7 +142,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
                           document.getElementById('ProductImgInput').click();
                         }}
                       >
-                        <i class="fa-solid fa-plus"></i>
+                        <i className="fa-solid fa-plus"></i>
                       </IconButton>
                     ) : null}
                     {Deletable != undefined && Deletable == true ? (
@@ -151,7 +152,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
                           SetOpenDeleteDialog(!OpenDeleteDialog);
                         }}
                       >
-                        <i class="fa-solid fa-circle-xmark"></i>
+                        <i className="fa-solid fa-circle-xmark"></i>
                       </IconButton>
                     ) : null}
                   </div>
@@ -169,7 +170,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
           HandleOpen={() => {
             SetOpenDeleteDialog(!OpenDeleteDialog);
           }}
-          Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
+          Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
           Title={'Delete Product Image'}
           Content="Are you sure you want to delete this product's image ?"
         />

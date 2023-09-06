@@ -20,7 +20,7 @@ export default function TooltipCustomStyles(props) {
         </div>
       }
     >
-      <i class="fa-solid fa-align-left"></i>
+      <i className="fa-solid fa-align-left"></i>
     </Tooltip>
   );
 }

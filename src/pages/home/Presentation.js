@@ -38,7 +38,7 @@ const Presentation = () => {
                     <div className="flex items-center justify-center">
                       <Typography
                         variant="h1"
-                        color="inherit"
+                        
                         className={` text-center m-4 `}
                       >
                         <TranslatedText TranslationPath="Home.Services.Service_SubTitle" />
@@ -51,7 +51,7 @@ const Presentation = () => {
           </div>
           <div className="col-span-12">
             <div className="flex items-center justify-center h-full">
-              <Typography variant="p" color="inherit" className={`m-4 `}>
+              <Typography variant="paragraph"  className={`m-4 `}>
                 <TranslatedText TranslationPath="Home.Presentation" />{' '}
               </Typography>
             </div>

@@ -218,16 +218,16 @@ export default function Products() {
       CreateToast(
         promise,
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Error" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Error" />
         ),
         'promise',
         LightModeState == LightMode().type,
@@ -434,7 +434,7 @@ export default function Products() {
                             SetOpenConfirmAdminDialog(true);
                           }}
                         >
-                          <i class="fa-solid fa-shield"></i>
+                          <i className="fa-solid fa-shield"></i>
                         </IconButton>
                       </Tooltip>
                       <Tooltip content="Set Employee">
@@ -444,7 +444,7 @@ export default function Products() {
                             SetOpenConfirmEmployeeDialog(true);
                           }}
                         >
-                          <i class="fa-solid fa-shield-halved"></i>
+                          <i className="fa-solid fa-shield-halved"></i>
                         </IconButton>
                       </Tooltip>
                       <Tooltip content="Remove Permissions">
@@ -454,7 +454,7 @@ export default function Products() {
                             SetOpenConfirmRemovePermissionDialog(true);
                           }}
                         >
-                          <i class="fa-solid fa-handshake-slash w-5 h-5 mx-1"></i>
+                          <i className="fa-solid fa-handshake-slash w-5 h-5 mx-1"></i>
                         </IconButton>
                       </Tooltip>
                       <Tooltip content="Delete Account">
@@ -464,7 +464,7 @@ export default function Products() {
                             SetOpenDeleteDialog(true);
                           }}
                         >
-                          <i class="fa-solid fa-trash"></i>
+                          <i className="fa-solid fa-trash"></i>
                         </IconButton>
                       </Tooltip>
                     </td>
@@ -490,7 +490,7 @@ export default function Products() {
         HandleOpen={() => {
           SetOpenDeleteDialog(!OpenDeleteDialog);
         }}
-        Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetDeleteUser_Title" />
         }
@@ -504,7 +504,7 @@ export default function Products() {
         HandleOpen={() => {
           SetOpenConfirmAdminDialog(!OpenConfirmAdminDialog);
         }}
-        Icon={'<i class="fa-solid fa-shield h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-shield h-5 w-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetAdmin_Title" />
         }
@@ -518,7 +518,7 @@ export default function Products() {
         HandleOpen={() => {
           SetOpenConfirmEmployeeDialog(!OpenConfirmEmployeeDialog);
         }}
-        Icon={'<i class="fa-solid fa-shield-halved h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-shield-halved h-5 w-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetEmployee_Title" />
         }
@@ -534,7 +534,7 @@ export default function Products() {
             !OpenConfirmRemovePermissionDialog,
           );
         }}
-        Icon={'<i class="fa-solid fa-handshake-slash w-5 h-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-handshake-slash w-5 h-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Title" />
         }

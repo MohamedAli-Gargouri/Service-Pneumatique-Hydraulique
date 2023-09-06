@@ -12,10 +12,15 @@ import Navbar from '../../components/NavBar';
 import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import PropTypes from 'prop-types';
+Input.propTypes=
+{
+  label:PropTypes.any
+}
 export default function LoginCard() {
   const LightModeState = useSelector((state) => state.lightMode);
   return (
-    <div class="BackgroundImage2 bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
+    <div className="BackgroundImage2 bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
       <Navbar />
       <div className="mt-[10rem]">
         <Card
@@ -30,7 +35,7 @@ export default function LoginCard() {
             color="red"
             className="mb-4 grid h-28 place-items-center"
           >
-            <i class="fa-solid fa-right-to-bracket fa-2x"></i>
+            <i className="fa-solid fa-right-to-bracket fa-2x"></i>
             <Typography variant="h3" color="white">
               <TranslatedText
                 TranslationPath="Login.Login_Title"

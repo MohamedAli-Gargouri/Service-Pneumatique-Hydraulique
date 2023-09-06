@@ -36,28 +36,28 @@ export default function User_Control_Panel() {
     {
       Name: 'Products',
       Count: 500,
-      logo: <i class="fa-solid fa-boxes-stacked  fa-2x"></i>,
+      logo: <i className="fa-solid fa-boxes-stacked  fa-2x"></i>,
       msg: '',
       col: 'red',
     },
     {
       Name: 'Clients',
       Count: 10,
-      logo: <i class="fa-solid fa-users fa-2x"></i>,
+      logo: <i className="fa-solid fa-users fa-2x"></i>,
       msg: '',
       col: 'blue',
     },
     {
       Name: 'Employee',
       Count: 3,
-      logo: <i class="fa-solid fa-user-gear fa-2x"></i>,
+      logo: <i className="fa-solid fa-user-gear fa-2x"></i>,
       msg: '',
       col: 'green',
     },
     {
       Name: 'Orders',
       Count: 50,
-      logo: <i class="fa-solid fa-clipboard-check fa-2x"></i>,
+      logo: <i className="fa-solid fa-clipboard-check fa-2x"></i>,
       msg: '',
       col: 'yellow',
     },
@@ -82,7 +82,7 @@ export default function User_Control_Panel() {
           >
             <TopBar
               SectionName={'Home'}
-              Icon='<i class="fa-solid fa-house"></i>'
+              Icon='<i className="fa-solid fa-house"></i>'
             />
           </section>
 

@@ -104,7 +104,7 @@ export default function Invoice({
           }`}
         >
           <Typography
-            variant="p"
+            variant="paragraph"
             className={`m-1 flex justify-center items-center gap-2 font-black  `}
           >
             <div dangerouslySetInnerHTML={{ __html: Icon }}></div> {Title}
@@ -128,7 +128,7 @@ export default function Invoice({
         </DialogBody>
         <DialogFooter>
           <Button variant="text" onClick={HandleOpen} className="mr-1">
-            <i class="fa-solid fa-arrow-left mx-1"></i>
+            <i className="fa-solid fa-arrow-left mx-1"></i>
             <span>
               <TranslatedText TranslationPath="UCP.InvoiceProductList.TabActions.Back" />
             </span>
@@ -138,7 +138,7 @@ export default function Invoice({
             onClick={HandleAddProductToInvoice}
             className="mr-1"
           >
-            <i class="fa-solid fa-plus mx-1"></i>
+            <i className="fa-solid fa-plus mx-1"></i>
             <span>
               <TranslatedText TranslationPath="UCP.InvoiceProductList.TabActions.Add" />
             </span>

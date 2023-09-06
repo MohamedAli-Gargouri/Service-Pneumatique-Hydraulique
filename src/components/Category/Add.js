@@ -83,7 +83,7 @@ export default function Product({ HandleOpen }) {
     >
       <div className="w-full flex flex-col justify-center items-center">
         <Typography variant="h6" className="text-center">
-          <i class="fa-solid fa-arrow-up-wide-short h-5 w-5 mx-2"></i>
+          <i className="fa-solid fa-arrow-up-wide-short h-5 w-5 mx-2"></i>
           Create Main Category
         </Typography>
         <Input
@@ -100,7 +100,7 @@ export default function Product({ HandleOpen }) {
           className="flex items-center mt-5 gap-3"
           onClick={HandleAddCategory}
         >
-          <i class="fa-solid fa-plus "></i>
+          <i className="fa-solid fa-plus "></i>
           {
             <TranslatedText TranslationPath="UCP.CategoryTable.TabActions.Add" />
           }
@@ -109,7 +109,7 @@ export default function Product({ HandleOpen }) {
 
       <div className="w-full flex flex-col gap-4 justify-center items-center">
         <Typography variant="h6" className="text-center">
-          <i class="fa-solid fa-arrow-down-wide-short h-5 w-5 mx-2"></i>
+          <i className="fa-solid fa-arrow-down-wide-short h-5 w-5 mx-2"></i>
           Create Sub Category
         </Typography>
 
@@ -155,14 +155,14 @@ export default function Product({ HandleOpen }) {
                       onClick={addInputField}
                       className="rounded-full"
                     >
-                      <i class="fa-solid fa-plus"></i>
+                      <i className="fa-solid fa-plus"></i>
                     </IconButton>
                     <IconButton
                       variant="text"
                       onClick={RemoveInputField}
                       className="rounded-full"
                     >
-                      <i class="fa-solid fa-minus"></i>
+                      <i className="fa-solid fa-minus"></i>
                     </IconButton>
                   </>
                 )}
@@ -175,7 +175,7 @@ export default function Product({ HandleOpen }) {
           className="flex items-center mt-5 gap-3"
           onClick={HandleAddCategory}
         >
-          <i class="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus"></i>
           {
             <TranslatedText TranslationPath="UCP.CategoryTable.TabActions.Add" />
           }

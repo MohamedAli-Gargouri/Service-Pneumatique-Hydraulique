@@ -54,7 +54,7 @@ export default function User_Control_Panel() {
               SectionName={
                 <TranslatedText TranslationPath="UCP.TopNav.TabTitles.Products" />
               }
-              Icon='<i class="fa-solid fa-boxes-stacked"></i>'
+              Icon='<i className="fa-solid fa-boxes-stacked"></i>'
             />
           </section>
 

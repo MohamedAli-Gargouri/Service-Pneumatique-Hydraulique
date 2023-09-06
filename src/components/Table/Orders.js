@@ -208,16 +208,16 @@ export default function OrdersTable() {
       CreateToast(
         promise,
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Error" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Error" />
         ),
         'promise',
         LightModeState == LightMode().type,
@@ -535,7 +535,7 @@ export default function OrdersTable() {
                             SetOpenConfirmDialog_Ready(true);
                           }}
                         >
-                          <i class="fa-solid fa-clipboard-check"></i>
+                          <i className="fa-solid fa-clipboard-check"></i>
                         </IconButton>
                       </Tooltip>
 
@@ -546,7 +546,7 @@ export default function OrdersTable() {
                             SetOpenConfirmDialog_Resume(true);
                           }}
                         >
-                          <i class="fa-solid fa-play"></i>
+                          <i className="fa-solid fa-play"></i>
                         </IconButton>
                       </Tooltip>
                       <Tooltip content="Pause Order">
@@ -592,7 +592,7 @@ export default function OrdersTable() {
         HandleOpen={() => {
           SetOpenConfirmDialog_Cancel(!OpenConfirmDialog_Cancel);
         }}
-        Icon={'<i class="fa-solid fa-ban h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-ban h-5 w-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Title" />
         }
@@ -607,7 +607,7 @@ export default function OrdersTable() {
         HandleOpen={() => {
           SetOpenConfirmDialog_Pause(!OpenConfirmDialog_Pause);
         }}
-        Icon={'<i class="fa-solid fa-circle-pause h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-circle-pause h-5 w-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Title" />
         }
@@ -622,7 +622,7 @@ export default function OrdersTable() {
         HandleOpen={() => {
           SetOpenConfirmDialog_Resume(!OpenConfirmDialog_Resume);
         }}
-        Icon={'<i class="fa-solid fa-play h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-play h-5 w-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Title" />
         }
@@ -637,7 +637,7 @@ export default function OrdersTable() {
         HandleOpen={() => {
           SetOpenConfirmDialog_Ready(!OpenConfirmDialog_Ready);
         }}
-        Icon={'<i class="fa-solid fa-clipboard-check h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-clipboard-check h-5 w-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Title" />
         }
@@ -652,7 +652,7 @@ export default function OrdersTable() {
         HandleOpen={() => {
           SetOpenConfirmDialog_Pay(!OpenConfirmDialog_Pay);
         }}
-        Icon={'<i class="fa-solid fa-money-bill-1-wave w-5 h-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-money-bill-1-wave w-5 h-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Title" />
         }

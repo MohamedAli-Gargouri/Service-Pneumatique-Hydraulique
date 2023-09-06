@@ -77,7 +77,7 @@ export default function MultiSelect({ Data, DataLabelName, SelectData }) {
         displayValue={DataLabelName} // Property name to display in the dropdown options
       />
 
-      <i class=" absolute top-4 right-3  text-blue-gray-500 fa-solid fa-arrow-down-short-wide"></i>
+      <i className=" absolute top-4 right-3  text-blue-gray-500 fa-solid fa-arrow-down-short-wide"></i>
     </div>
   );
 }

@@ -34,14 +34,14 @@ const Services = () => {
           <div className=" text-center flex flex-col items-center justify-center md:items-start flex-wrap animate-RightToLeft ">
             <Typography
               variant="h1"
-              color="inherit"
+              
               className={`m-1 font-extrabold  `}
             >
               <TranslatedText TranslationPath="Home.Services.Service1" />
             </Typography>
             <Typography
               variant="h1"
-              color="inherit"
+              
               className={`m-1 font-extrabold `}
             >
               <TranslatedText TranslationPath="Home.Services.Service2" />
@@ -49,14 +49,14 @@ const Services = () => {
 
             <Typography
               variant="h1"
-              color="inherit"
+              
               className={`m-1 font-extrabold `}
             >
               <TranslatedText TranslationPath="Home.Services.Service3" />
             </Typography>
             <Typography
-              variant="p"
-              color="inherit"
+              variant="paragraph"
+              
               className={`m-1 font-black p-4 `}
             >
               <TranslatedText TranslationPath="Home.Services.Service_Description" />

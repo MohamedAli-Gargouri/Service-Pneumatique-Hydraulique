@@ -72,6 +72,45 @@
       "Team_title": "Meet Our Team"
     }
   },
+
+  "Product":
+  {
+
+    "Shop":"Shop",
+    "Product":"Product",
+    "Description":"Description",
+    "AddInfo":"Additional Information",
+    "Shipping":"Shipping, returns",
+    "Actions":{
+     "AddCart":"Add to cart"
+    }
+  },
+  "Products": {
+    
+    "ApplyProductFilter_Info": "Filter Applied !",
+    "List": "List",
+    "Shop": "Our Shop",
+    "Filter": {
+        "Rate":"Rate",
+        "Date":"Date",
+        "Default":"Default"
+    },
+    "Category":"Categoy",
+    "Brand":"Brand",
+    "SubCategory":"Sub Category",
+    "MinPrice":"Minimum Price",
+    "MaxPrice":"Maximum Price",
+    "Actions":
+    {
+      "ApplyFilter":"Apply Filter"
+    },
+    "Label":
+    {
+        "Sortby": "Sort by"
+    }
+    
+
+  },
   "Login": {
     "Login_Title": "Sign In",
     "Email_Label": "Email",
@@ -80,6 +119,7 @@
     "SignInButtonLabel": "SIGN IN",
     "SignUpRecommandationLabel": "Don't have an account?"
   },
+  
   "Register": {
     "Register_Title": "Sign Up",
     "Email_Label": "Email",

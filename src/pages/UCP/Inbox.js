@@ -51,7 +51,7 @@ export default function User_Control_Panel() {
               SectionName={
                 <TranslatedText TranslationPath="UCP.TopNav.TabTitles.Inbox" />
               }
-              Icon='<i class="fa-solid fa-inbox"></i>'
+              Icon='<i className="fa-solid fa-inbox"></i>'
             />
           </section>
 

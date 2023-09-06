@@ -26,7 +26,7 @@ export default function Notification() {
           className=" text-white rounded-full"
           onClick={toggleOpen}
         >
-          <i class="fa-solid fa-bell"></i>
+          <i className="fa-solid fa-bell"></i>
         </IconButton>
       </Badge>
       <Collapse

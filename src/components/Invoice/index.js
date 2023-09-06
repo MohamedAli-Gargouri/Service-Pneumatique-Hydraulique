@@ -253,7 +253,7 @@ const Invoice = () => {
                         onClick={ShowDownloadInvoice}
                         className=" justify-items-stretch flex items-center gap-3 col-span-2 m-2"
                       >
-                        <i class="fa-solid fa-file-invoice"></i>
+                        <i className="fa-solid fa-file-invoice"></i>
                         {
                           <TranslatedText TranslationPath="UCP.Invoice.TabActions.DownloadInvoice_Estimate" />
                         }
@@ -268,7 +268,7 @@ const Invoice = () => {
                   }}
                   className=" justify-items-stretch flex items-center gap-3 col-span-2 m-2"
                 >
-                  <i class="fa-solid fa-gears"></i>
+                  <i className="fa-solid fa-gears"></i>
                   {
                     <TranslatedText TranslationPath="UCP.Invoice.TabActions.GenerateINvoice_Estimate" />
                   }
@@ -276,7 +276,7 @@ const Invoice = () => {
               </div>
 
               <h4 className="mt-2">
-                <i class="fa-solid fa-file-invoice mr-2"></i>{' '}
+                <i className="fa-solid fa-file-invoice mr-2"></i>{' '}
                 {
                   <TranslatedText TranslationPath="UCP.Invoice.TabHeader.DocumentType" />
                 }
@@ -327,7 +327,7 @@ const Invoice = () => {
               ) : null}
 
               <h4 className="mt-2">
-                <i class="fa-solid fa-user-tag mr-2"></i>{' '}
+                <i className="fa-solid fa-user-tag mr-2"></i>{' '}
                 {
                   <TranslatedText TranslationPath="UCP.Invoice.TabHeader.DemanderInformations" />
                 }
@@ -426,7 +426,7 @@ const Invoice = () => {
               </div>
 
               <h4 className="mt-2">
-                <i class="fa-solid fa-calendar-days mr-2"></i>{' '}
+                <i className="fa-solid fa-calendar-days mr-2"></i>{' '}
                 {
                   <TranslatedText TranslationPath="UCP.Invoice.TabHeader.Invoice_EstimateLimits" />
                 }{' '}
@@ -459,7 +459,7 @@ const Invoice = () => {
                 />
               </div>
               <h4 className="mt-2">
-                <i class="fa-solid fa-hand-holding-dollar mr-2"></i>{' '}
+                <i className="fa-solid fa-hand-holding-dollar mr-2"></i>{' '}
                 {
                   <TranslatedText TranslationPath="UCP.Invoice.TabHeader.TaxDiscount" />
                 }{' '}
@@ -494,7 +494,7 @@ const Invoice = () => {
               </div>
 
               <h4 className="mt-2">
-                <i class="fa-solid fa-building mr-2"></i>{' '}
+                <i className="fa-solid fa-building mr-2"></i>{' '}
                 {
                   <TranslatedText TranslationPath="UCP.Invoice.TabHeader.HostInformations" />
                 }
@@ -638,9 +638,9 @@ const Invoice = () => {
                     className="rounded-full"
                   >
                     {PreviewInvoice ? (
-                      <i class="fa-solid fa-eye-slash"></i>
+                      <i className="fa-solid fa-eye-slash"></i>
                     ) : (
-                      <i class="fa-solid fa-eye"></i>
+                      <i className="fa-solid fa-eye"></i>
                     )}
                   </IconButton>
                 </Tooltip>
@@ -658,7 +658,7 @@ const Invoice = () => {
                     variant="text"
                     className="rounded-full"
                   >
-                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <i className="fa-solid fa-arrows-rotate"></i>
                   </IconButton>
                 </Tooltip>
               </div>
@@ -720,7 +720,7 @@ const Invoice = () => {
                       onClick={ShowDownloadInvoice}
                       className=" justify-items-stretch flex items-center gap-3 col-span-2 m-2"
                     >
-                      <i class="fa-solid fa-file-invoice"></i>
+                      <i className="fa-solid fa-file-invoice"></i>
                       {
                         <TranslatedText TranslationPath="UCP.Invoice.TabActions.DownloadInvoice_Estimate" />
                       }
@@ -735,7 +735,7 @@ const Invoice = () => {
                 }}
                 className=" justify-items-stretch flex items-center gap-3 col-span-2 m-2"
               >
-                <i class="fa-solid fa-gears"></i>
+                <i className="fa-solid fa-gears"></i>
                 {
                   <TranslatedText TranslationPath="UCP.Invoice.TabActions.GenerateINvoice_Estimate" />
                 }
@@ -743,7 +743,7 @@ const Invoice = () => {
             </div>
 
             <h4 className="mt-2">
-              <i class="fa-solid fa-file-invoice mr-2"></i>{' '}
+              <i className="fa-solid fa-file-invoice mr-2"></i>{' '}
               {
                 <TranslatedText TranslationPath="UCP.Invoice.TabHeader.DocumentType" />
               }
@@ -794,7 +794,7 @@ const Invoice = () => {
             ) : null}
 
             <h4 className="mt-2">
-              <i class="fa-solid fa-user-tag mr-2"></i>{' '}
+              <i className="fa-solid fa-user-tag mr-2"></i>{' '}
               {
                 <TranslatedText TranslationPath="UCP.Invoice.TabHeader.DemanderInformations" />
               }
@@ -893,7 +893,7 @@ const Invoice = () => {
             </div>
 
             <h4 className="mt-2">
-              <i class="fa-solid fa-calendar-days mr-2"></i>{' '}
+              <i className="fa-solid fa-calendar-days mr-2"></i>{' '}
               {
                 <TranslatedText TranslationPath="UCP.Invoice.TabHeader.Invoice_EstimateLimits" />
               }
@@ -926,7 +926,7 @@ const Invoice = () => {
               />
             </div>
             <h4 className="mt-2">
-              <i class="fa-solid fa-hand-holding-dollar mr-2"></i>{' '}
+              <i className="fa-solid fa-hand-holding-dollar mr-2"></i>{' '}
               {
                 <TranslatedText TranslationPath="UCP.Invoice.TabHeader.TaxDiscount" />
               }{' '}
@@ -961,7 +961,7 @@ const Invoice = () => {
             </div>
 
             <h4 className="mt-2">
-              <i class="fa-solid fa-building mr-2"></i>{' '}
+              <i className="fa-solid fa-building mr-2"></i>{' '}
               {
                 <TranslatedText TranslationPath="UCP.Invoice.TabHeader.HostInformations" />
               }
@@ -1104,9 +1104,9 @@ const Invoice = () => {
                   className="rounded-full"
                 >
                   {PreviewInvoice ? (
-                    <i class="fa-solid fa-eye-slash"></i>
+                    <i className="fa-solid fa-eye-slash"></i>
                   ) : (
-                    <i class="fa-solid fa-eye"></i>
+                    <i className="fa-solid fa-eye"></i>
                   )}
                 </IconButton>
               </Tooltip>
@@ -1124,7 +1124,7 @@ const Invoice = () => {
                   variant="text"
                   className="rounded-full"
                 >
-                  <i class="fa-solid fa-arrows-rotate"></i>
+                  <i className="fa-solid fa-arrows-rotate"></i>
                 </IconButton>
               </Tooltip>
             </div>

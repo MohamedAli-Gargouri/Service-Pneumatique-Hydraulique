@@ -53,7 +53,7 @@ export default function User_Control_Panel() {
               SectionName={
                 <TranslatedText TranslationPath="UCP.TopNav.TabTitles.Orders" />
               }
-              Icon='<i class="fa-solid fa-clipboard-list"></i>'
+              Icon='<i className="fa-solid fa-clipboard-list"></i>'
             />
           </section>
 

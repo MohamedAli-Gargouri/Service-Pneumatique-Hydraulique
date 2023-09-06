@@ -139,16 +139,16 @@ export default function CategoriesTable({ HandleOpen }) {
       CreateToast(
         promise,
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Error" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Error" />
         ),
         'promise',
         LightModeState == LightMode().type,
@@ -266,7 +266,7 @@ export default function CategoriesTable({ HandleOpen }) {
                   <td className={classes}>
                     <Tooltip content="Save Category">
                       <IconButton variant="text" onClick={HandleEditCategory}>
-                        <i class="fa-solid fa-floppy-disk h-4 w-4"></i>
+                        <i className="fa-solid fa-floppy-disk h-4 w-4"></i>
                       </IconButton>
                     </Tooltip>
                     <Tooltip content="Delete Category">
@@ -276,7 +276,7 @@ export default function CategoriesTable({ HandleOpen }) {
                           SetOpenDeleteDialog(true);
                         }}
                       >
-                        <i class="fa-solid fa-trash h-4 w-4"></i>
+                        <i className="fa-solid fa-trash h-4 w-4"></i>
                       </IconButton>
                     </Tooltip>
                   </td>
@@ -301,7 +301,7 @@ export default function CategoriesTable({ HandleOpen }) {
         HandleOpen={() => {
           SetOpenDeleteDialog(!OpenDeleteDialog);
         }}
-        Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Category.DeleteCategory_Title" />
         }

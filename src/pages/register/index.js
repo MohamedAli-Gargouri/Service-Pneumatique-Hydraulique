@@ -18,7 +18,7 @@ export default function RegisterCard() {
   const LightModeState = useSelector((state) => state.lightMode);
 
   return (
-    <div class="BackgroundImage2 bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
+    <div className="BackgroundImage2 bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
       <Navbar />
 
       <div className="mt-[10rem]">
@@ -34,7 +34,7 @@ export default function RegisterCard() {
             color="red"
             className="mb-4 grid h-28 place-items-center"
           >
-            <i class="fa-solid fa-right-to-bracket"></i>
+            <i className="fa-solid fa-right-to-bracket"></i>
             <Typography variant="h3" color="white">
               <TranslatedText
                 TranslationPath="Register.Register_Title"

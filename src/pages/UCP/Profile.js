@@ -89,7 +89,7 @@ export default function User_Control_Panel() {
               SectionName={
                 <TranslatedText TranslationPath="UCP.TopNav.TabTitles.Profil" />
               }
-              Icon='<i class="fa-solid fa-user-gear"></i>'
+              Icon='<i className="fa-solid fa-user-gear"></i>'
             />
           </section>
 
@@ -124,7 +124,7 @@ export default function User_Control_Panel() {
                   type="file"
                   accept="image/*"
                   onChange={handleImageUpload}
-                  icon={<i class="fa-solid fa-image"></i>}
+                  icon={<i className="fa-solid fa-image"></i>}
                 />
               </div>
               <div className="col-span-1 flex flex-col justify-center items-center gap-2">
@@ -138,7 +138,7 @@ export default function User_Control_Panel() {
                   label={
                     <TranslatedText TranslationPath="UCP.Profil.TabInputs.FName" />
                   }
-                  icon={<i class="fa-solid fa-circle-info"></i>}
+                  icon={<i className="fa-solid fa-circle-info"></i>}
                 />
                 <Input
                   labelProps={{
@@ -150,7 +150,7 @@ export default function User_Control_Panel() {
                   label={
                     <TranslatedText TranslationPath="UCP.Profil.TabInputs.LName" />
                   }
-                  icon={<i class="fa-solid fa-circle-info"></i>}
+                  icon={<i className="fa-solid fa-circle-info"></i>}
                 />
                 <Input
                   labelProps={{
@@ -162,7 +162,7 @@ export default function User_Control_Panel() {
                   label={
                     <TranslatedText TranslationPath="UCP.Profil.TabInputs.NewPassword" />
                   }
-                  icon={<i class="fa-solid fa-key"></i>}
+                  icon={<i className="fa-solid fa-key"></i>}
                 />
                 <Input
                   labelProps={{
@@ -174,7 +174,7 @@ export default function User_Control_Panel() {
                   label={
                     <TranslatedText TranslationPath="UCP.Profil.TabInputs.VerifyPassword" />
                   }
-                  icon={<i class="fa-solid fa-lock"></i>}
+                  icon={<i className="fa-solid fa-lock"></i>}
                   required
                   type="password"
                 />

@@ -27,7 +27,12 @@ import ProductImage1 from "./../../assets/images/products/product_1.png"
 import ProductImage2 from "./../../assets/images/products/product_2.png"
 import ProductImage3 from "./../../assets/images/products/product_3.png"
 import Pagination from "../../utils/Table/Pagination"
-
+import TranslatedText from '../../utils/Translation';
+import PropTypes from 'prop-types';     
+  Select.propTypes=
+  {
+    label:PropTypes.any
+  }
 const AllData=[
   {
   ProductID:1,  
@@ -100,7 +105,7 @@ const AllData=[
   ProductPrice:3500,
   },
   {
-  ProductID:6,
+  ProductID:8,
   ProductShortDesc:"Shit compressor with 600ML Capacity",
   ProductImages:[ProductImage1,ProductImage2,ProductImage3],
   ProductCategory:"Tubes",
@@ -110,7 +115,7 @@ const AllData=[
   ProductPrice:3500,
   },
   ]
-  
+
 export default function Products() {
   const [VisibleData,SetVisibleData]=React.useState([])
   const [CurrentPage,setCurrentPage]=React.useState(1)
@@ -146,13 +151,13 @@ export default function Products() {
           List={true}
           /*Parent={{PageUrl:"/Home",PageName:"Home"}}*/ Child={{
             PageUrl: '/Products',
-            PageName: 'Shop',
+            PageName: <TranslatedText TranslationPath="Products.Shop" />,
           }}
         />
       </div>
-      <div class="mb-[1rem] pt-1 w-full grid grid-cols-8 sm:grid-cols-8 md:grid-cols-8 lg:grid-cols-8  ">
+      <div className="mb-[1rem] pt-1 w-full grid grid-cols-8 sm:grid-cols-8 md:grid-cols-8 lg:grid-cols-8  ">
         <div
-          class={`hidden md:block pl-3 col-span-2 ml-4   rounded-lg shadow-lg ${
+          className={`hidden md:block pl-3 col-span-2 ml-4   rounded-lg shadow-lg ${
             LightModeState == LightMode().type
               ? 'bg-whiteTheme_T2'
               : 'bg-darkTheme_T2'
@@ -171,20 +176,13 @@ export default function Products() {
             size="lg"
             className=" rounded-none rounded-r-full  hover:scale-105"
           >
-            <i class="fa-solid fa-filter"></i>
+            <i className="fa-solid fa-filter"></i>
           </IconButton>
         </div>
 
-        <div class="col-span-8  md:col-span-6 mt-4 w-full pr-1">
+        <div className="col-span-8  md:col-span-6 mt-4 w-full pr-1">
           <div className="flex flex-col justify-center items-stretch ">
-            <div className="filters grid grid-cols-1 md:grid-cols-2">
-              <div className=" col-span-1  flex justify-center items-center">
-                <p>
-                  Showing <b>5 of 5</b> Products{' '}
-                </p>
-              </div>
-
-              <div className="col-span-1 flex justify-stretch flex-wrap p-3">
+            <div className=" flex justify-center items-center gap-1 m-2">
                 <div className="Order">
                   <Select
                     labelProps={{
@@ -195,14 +193,14 @@ export default function Products() {
                             : 'white',
                       },
                     }}
-                    variant="static"
+                    variant="outlined"
                     size="md"
-                    label="Sort by"
+                    defaultValue={0}
+                    label={<TranslatedText TranslationPath="Products.Label.Sortby" />}
                   >
-                    <Option>Default</Option>
-                    <Option>Most Popular</Option>
-                    <Option>Most Rated</Option>
-                    <Option>Date</Option>
+                    <Option  index={0}>{<TranslatedText TranslationPath="Products.Filter.Default" />}</Option>
+                    <Option index={1}>{<TranslatedText TranslationPath="Products.Filter.Date" />}</Option>
+                    <Option index={2}>{<TranslatedText TranslationPath="Products.Filter.Rate" />}</Option>
                   </Select>
                 </div>
                 <div>
@@ -213,7 +211,7 @@ export default function Products() {
                       HandleDisplayVariantChange(0);
                     }}
                   >
-                    <i class="fa-solid fa-square"></i>
+                    <i className="fa-solid fa-square"></i>
                   </IconButton>
                 </div>
 
@@ -225,7 +223,7 @@ export default function Products() {
                       HandleDisplayVariantChange(1);
                     }}
                   >
-                    <i class="fa-solid fa-list"></i>
+                    <i className="fa-solid fa-list"></i>
                   </IconButton>
                 </div>
 
@@ -237,7 +235,7 @@ export default function Products() {
                       HandleDisplayVariantChange(2);
                     }}
                   >
-                    <i class="fa-solid fa-grip-vertical"></i>
+                    <i className="fa-solid fa-grip-vertical"></i>
                   </IconButton>
                 </div>
 
@@ -249,10 +247,10 @@ export default function Products() {
                       HandleDisplayVariantChange(3);
                     }}
                   >
-                    <i class="fa-solid fa-grip"></i>
+                    <i className="fa-solid fa-grip"></i>
                   </IconButton>
                 </div>
-              </div>
+              
             </div>
 
             <div

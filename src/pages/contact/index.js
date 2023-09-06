@@ -23,12 +23,21 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import PhoneInput from '../../components/Input/Phone';
 import Footer from '../../components/footer';
-export default function LoginCard() {
+import PropTypes from 'prop-types';  
+export default function ContactCard() {
+  Input.propTypes=
+  {
+    label:PropTypes.any
+  }
+  Textarea.propTypes=
+  {
+    label:PropTypes.any
+  }
   const LightModeState = useSelector((state) => state.lightMode);
   return (
     <>
       <Navbar />
-      <div class="BackgroundImage py-4 px-2  bg-cover bg-center min-h-screen flex flex-row flex-wrap  justify-center items-center gap-4">
+      <div className="BackgroundImage py-4 px-2  bg-cover bg-center min-h-screen flex flex-row flex-wrap  justify-center items-center gap-4">
         <div className=" mt-[20vh]">
           <Card
             className={` backdrop-blur-lg ${
@@ -43,7 +52,7 @@ export default function LoginCard() {
               className="mb-4 grid h-28 place-items-center"
             >
               <Typography variant="h3">
-                <i class="fa-solid fa-circle-info "></i>
+                <i className="fa-solid fa-circle-info "></i>
                 <TranslatedText TranslationPath="Contact.Title1" />
               </Typography>
             </CardHeader>
@@ -73,10 +82,10 @@ export default function LoginCard() {
                   } group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}
                 >
                   <ListItemPrefix>
-                    <i class="fa-solid fa-location-dot"></i>
+                    <i className="fa-solid fa-location-dot"></i>
                   </ListItemPrefix>
                   <TranslatedText TranslationPath="Contact.Address" />
-                  <ListItemSuffix color="inherit" className="text-current">
+                  <ListItemSuffix  className="text-current">
                     Rte de Gabes KM 0.5 Immeuble Elfrikha Sfax - Tunisie
                   </ListItemSuffix>
                 </ListItem>
@@ -88,7 +97,7 @@ export default function LoginCard() {
                   } group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}
                 >
                   <ListItemPrefix>
-                    <i class="fa-solid fa-phone"></i>
+                    <i className="fa-solid fa-phone"></i>
                   </ListItemPrefix>
                   <TranslatedText TranslationPath="Contact.Phone" />:
                   <ListItemSuffix className="text-current">
@@ -104,7 +113,7 @@ export default function LoginCard() {
                   } group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}
                 >
                   <ListItemPrefix>
-                    <i class="fa-solid fa-fax"></i>
+                    <i className="fa-solid fa-fax"></i>
                   </ListItemPrefix>
                   <TranslatedText TranslationPath="Contact.Fax" />
                   <ListItemSuffix className="text-current">
@@ -120,7 +129,7 @@ export default function LoginCard() {
                   } group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}
                 >
                   <ListItemPrefix>
-                    <i class="fa-solid fa-at"></i>
+                    <i className="fa-solid fa-at"></i>
                   </ListItemPrefix>
                   <TranslatedText TranslationPath="Contact.Email" />
                   <ListItemSuffix className="text-current">
@@ -147,7 +156,7 @@ export default function LoginCard() {
                   } group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}
                 >
                   <ListItemPrefix>
-                    <i class="fa-solid fa-location-dot"></i>
+                    <i className="fa-solid fa-location-dot"></i>
                   </ListItemPrefix>
                   <TranslatedText TranslationPath="Contact.Address" />
                   <ListItemSuffix className="text-current">
@@ -163,7 +172,7 @@ export default function LoginCard() {
                   } group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}
                 >
                   <ListItemPrefix>
-                    <i class="fa-solid fa-phone"></i>
+                    <i className="fa-solid fa-phone"></i>
                   </ListItemPrefix>
                   <TranslatedText TranslationPath="Contact.Phone" />
                   <ListItemSuffix className="text-current">
@@ -179,7 +188,7 @@ export default function LoginCard() {
                   } group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}
                 >
                   <ListItemPrefix>
-                    <i class="fa-solid fa-fax"></i>
+                    <i className="fa-solid fa-fax"></i>
                   </ListItemPrefix>
                   <TranslatedText TranslationPath="Contact.Fax" />
                   <ListItemSuffix className="text-current">
@@ -195,7 +204,7 @@ export default function LoginCard() {
                   } group hover:bg-opacity-80 rounded-xl py-1.5 px-3 text-sm font-normal hover:scale-105`}
                 >
                   <ListItemPrefix>
-                    <i class="fa-solid fa-at"></i>
+                    <i className="fa-solid fa-at"></i>
                   </ListItemPrefix>
                   <TranslatedText TranslationPath="Contact.Email" />
                   <ListItemSuffix className="text-current">
@@ -204,8 +213,8 @@ export default function LoginCard() {
                 </ListItem>
               </List>
 
-              <div class=" flex flex-row justify-around items-center">
-                <div class="hover:scale-125">
+              <div className=" flex flex-row justify-around items-center">
+                <div className="hover:scale-125">
                   <Popover
                     animate={{
                       mount: { scale: 1, y: 0 },
@@ -214,7 +223,7 @@ export default function LoginCard() {
                   >
                     <PopoverHandler>
                       <IconButton variant="filled" color="red" className=" ">
-                        <i class="fa-regular fa-copy"></i>
+                        <i className="fa-regular fa-copy"></i>
                       </IconButton>
                     </PopoverHandler>
                     <PopoverContent
@@ -230,7 +239,6 @@ export default function LoginCard() {
                 </div>
               </div>
             </CardBody>
-            <CardFooter className="pt-0"></CardFooter>
           </Card>
         </div>
         <div className=" mt-6 md:mt-[20vh]">
@@ -247,7 +255,7 @@ export default function LoginCard() {
               className="mb-4 grid h-28 place-items-center"
             >
               <Typography variant="h3" color="white">
-                <i class="fa-solid fa-envelope "></i>
+                <i className="fa-solid fa-envelope "></i>
                 <TranslatedText TranslationPath="Contact.Title2" />
               </Typography>
             </CardHeader>
@@ -267,7 +275,7 @@ export default function LoginCard() {
                 }}
                 label={<TranslatedText TranslationPath="Contact.Email" />}
                 size="lg"
-                color="inherit"
+                
                 required
               />
               <Input
@@ -278,7 +286,7 @@ export default function LoginCard() {
                   },
                 }}
                 label={<TranslatedText TranslationPath="Contact.FName" />}
-                color="inherit"
+                
                 size="lg"
                 required
               />
@@ -290,7 +298,7 @@ export default function LoginCard() {
                   },
                 }}
                 label={<TranslatedText TranslationPath="Contact.LName" />}
-                color="inherit"
+                
                 size="lg"
                 required
               />
@@ -303,7 +311,7 @@ export default function LoginCard() {
                   },
                 }}
                 label={<TranslatedText TranslationPath="Contact.Message" />}
-                color="inherit"
+                
                 required
               />
             </CardBody>

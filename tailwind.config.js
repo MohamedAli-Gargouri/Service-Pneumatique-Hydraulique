@@ -30,12 +30,13 @@ module.exports = withMT({
         PulseSlow: "pulse 6s linear infinite",
         rotate: "rotateAndFade 10s ease-in-out infinite",
         LeftToRight: "LeftToRight  1s ease-in-out",
-        QuickLeftToRight: "LeftToRight  0.3s ease-in-out",
+        QuickLeftToRight: "LeftToRight  0.5s linear",
+        QuickRightToLeft: "RightToLeft  0.5s linear",
         LogoRotate: "LogoRotate  10s ease-out infinite",
         bg: "animateBg 1s linear infinite",
         NavSlideUp: "SlideUp 0.3s ease-in-out",
         NavSlideDown: "SlideDown 0.3s ease-in-out",
-        fade: "fade 0.3s ease-in-out",
+        fade: "fade 1s ease-in-out",
       },
       keyframes: {
         fade: {

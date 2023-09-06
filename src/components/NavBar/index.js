@@ -124,8 +124,8 @@ export default function ComplexNavbar() {
             className="w-15 h-10 animate-LogoRotate"
           />
           <Typography
-            color="inherit"
-            className={`hidden md:block mr-4 ml-4 cursor-pointer py-1.5 lg:ml-2`}
+            
+            className={`hidden xl:block mr-4 ml-4 cursor-pointer py-1.5 lg:ml-2`}
           >
             <TranslatedText TranslationPath="navbar.companyname" />
           </Typography>
@@ -165,7 +165,7 @@ export default function ComplexNavbar() {
               className="rounded-full"
               onClick={() => toggleCart()}
             >
-              <i class="fa-solid fa-bag-shopping"></i>
+              <i className="fa-solid fa-bag-shopping"></i>
             </IconButton>
           </Badge>
 

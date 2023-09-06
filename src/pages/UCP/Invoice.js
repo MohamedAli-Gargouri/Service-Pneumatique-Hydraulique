@@ -53,7 +53,7 @@ export default function Accounts() {
               SectionName={
                 <TranslatedText TranslationPath="UCP.TopNav.TabTitles.InvoiceEstimate" />
               }
-              Icon='<i class="fa-solid fa-file-invoice"></i>'
+              Icon='<i className="fa-solid fa-file-invoice"></i>'
             />
           </section>
 

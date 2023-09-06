@@ -66,11 +66,11 @@ export default function Products() {
                   <Alert
                     icon={
                       NotificationType === 'Good' ? (
-                        <i class="fa-solid fa-circle-check"></i>
+                        <i className="fa-solid fa-circle-check"></i>
                       ) : NotificationType === 'Normal' ? (
-                        <i class="fa-solid fa-exclamation"></i>
+                        <i className="fa-solid fa-exclamation"></i>
                       ) : (
-                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <i className="fa-solid fa-triangle-exclamation"></i>
                       )
                     }
                     color={
@@ -88,7 +88,7 @@ export default function Products() {
                       size="sm"
                       className=" mx-2 rounded-full"
                     >
-                      <i class="fa-solid fa-xmark  "></i>
+                      <i className="fa-solid fa-xmark  "></i>
                     </IconButton>
                   </Alert>
                 </div>

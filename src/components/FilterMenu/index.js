@@ -12,271 +12,187 @@ import {
   Input,
   Button,
 } from '@material-tailwind/react';
+import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-function Icon({ id, open }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-      className={`${
-        id === open ? 'rotate-180' : ''
-      } h-5 w-5 transition-transform`}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-      />
-    </svg>
-  );
-}
-
+import ReactDOMServer from 'react-dom/server';
+import { CreateToast } from '../../utils/Toast';
 export default function AccordionCustom() {
-  const [open, setOpen] = React.useState(0);
+  const Menus=[
+    {
+    MenuID:1,
+    MenuName:<TranslatedText TranslationPath="Products.Category" />,
+    icon:<i className="fa-solid fa-arrow-up-wide-short fa-2xs"></i>,
+    MenuItems:[
+      {
+        MenuItemID:1,
+        MenuItemName:"Compressors",
+      },
+      {
+        MenuItemID:2,
+        MenuItemName:"Secheur",
+      },
+      {
+        MenuItemID:3,
+        MenuItemName:"Tube",
+      },
+      {
+        MenuItemID:4,
+        MenuItemName:"Cylinder",
+      }
+    ]
+    },
+    {
+      MenuID:2,
+      MenuName:<TranslatedText TranslationPath="Products.Brand" />,
+      icon:<i className="fa-solid fa-star fa-2xs"></i>,
+      MenuItems:[
+        {
+          MenuItemID:1,
+          MenuItemName:"Hertz",
+        },
+        {
+          MenuItemID:2,
+          MenuItemName:"OMI",
+        },
+        {
+          MenuItemID:3,
+          MenuItemName:"MM",
+        },
+        {
+          MenuItemID:4,
+          MenuItemName:"BOSCH",
+        }
+      ]
+      },
+      {
+        MenuID:3,
+        MenuName:<TranslatedText TranslationPath="Products.SubCategory" />,
+        icon:<i className="fa-solid fa-arrow-down-short-wide fa-2xs"></i>,
+        MenuItems:[
+          {
+            MenuItemID:1,
+            MenuItemName:"Compressors,100ML",
+          },
+          {
+            MenuItemID:2,
+            MenuItemName:"Compressors,200ML",
+          },
+          {
+            MenuItemID:3,
+            MenuItemName:"Compressors,10cv",
+          },
+          {
+            MenuItemID:4,
+            MenuItemName:"Compressors,50cv",
+          }
+        ]
+        }
+  ]
+  const [OpenAccordions, SetAccordions] = React.useState(() => {
+    const initialState = Array(Menus.length).fill(false);
+    initialState[0] = true;
+    initialState[1] = true;
+    return initialState;
+  });
   const LightModeState = useSelector((state) => state.lightMode);
-  const handleOpen = (value) => setOpen(open === value ? 0 : value);
+
+  const handleOpen = (index) =>
+  {
+    const OpenAccordionsCopy=[...OpenAccordions]
+    OpenAccordionsCopy[index]=!OpenAccordionsCopy[index]
+    SetAccordions(OpenAccordionsCopy);
+  } 
+
+  const HandleApplyFilter = () => {
+
+      CreateToast(
+        null,
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="Products.ApplyProductFilter_Info" />
+        ),
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="Products.ApplyProductFilter_Info" />
+        ),
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="Products.ApplyProductFilter_Info" />
+        ),
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Error" />
+        ),
+        'info',
+        LightModeState == LightMode().type,
+      );
+
+  };
 
   return (
     <>
-      <Accordion
+
+    {Menus.map((Menu,index)=>{
+return(
+<Accordion
+key={"MENU"+Menu.MenuID}
+className={`${
+  LightModeState == LightMode().type
+    ? 'tc-whiteTheme_T1'
+    : 'tc-darkTheme_T1'
+}`}
+open={OpenAccordions[index]}
+icon={Menu.icon}
+>
+<AccordionHeader
+  className={` font-thin ${
+    LightModeState == LightMode().type
+      ? 'tc-whiteTheme_T1'
+      : 'tc-darkTheme_T1'
+  }`}
+  onClick={() => handleOpen(index)}
+>
+ {Menu.MenuName}
+</AccordionHeader>
+<AccordionBody>
+  <List
+    className={`${
+      LightModeState == LightMode().type
+        ? 'tc-whiteTheme_T1'
+        : 'tc-darkTheme_T1'
+    }`}
+  >
+
+    {Menu.MenuItems.map((MenuItem)=>{
+
+      return(
+        <ListItem 
+        key={"MENUITEM"+MenuItem.MenuItemID}
         className={`${
           LightModeState == LightMode().type
             ? 'tc-whiteTheme_T1'
             : 'tc-darkTheme_T1'
-        }`}
-        open={open === 1}
-        icon={<Icon id={1} open={open} />}
-      >
-        <AccordionHeader
-          className={`${
-            LightModeState == LightMode().type
-              ? 'tc-whiteTheme_T1'
-              : 'tc-darkTheme_T1'
-          }`}
-          onClick={() => handleOpen(1)}
-        >
-          <i className="fa-solid fa-bars"></i> Category
-        </AccordionHeader>
-        <AccordionBody>
-          <List
-            className={`${
-              LightModeState == LightMode().type
-                ? 'tc-whiteTheme_T1'
-                : 'tc-darkTheme_T1'
-            }`}
-          >
-            <ListItem className="p-0">
-              <label
-                htmlFor="vertical-list-react"
-                className="flex w-full cursor-pointer items-center px-3 py-2"
-              >
-                <ListItemPrefix className="mr-3">
-                  <Checkbox
-                    id="vertical-list-react"
-                    ripple={false}
-                    className="hover:before:opacity-0"
-                    containerProps={{
-                      className: 'p-0',
-                    }}
-                  />
-                </ListItemPrefix>
-                <Typography className="font-medium">Compressor</Typography>
-              </label>
-            </ListItem>
-            <ListItem className="p-0">
-              <label
-                htmlFor="vertical-list-vue"
-                className="flex w-full cursor-pointer items-center px-3 py-2"
-              >
-                <ListItemPrefix className="mr-3">
-                  <Checkbox
-                    id="vertical-list-vue"
-                    ripple={false}
-                    className="hover:before:opacity-0"
-                    containerProps={{
-                      className: 'p-0',
-                    }}
-                  />
-                </ListItemPrefix>
-                <Typography className="font-medium">Tubes</Typography>
-              </label>
-            </ListItem>
-            <ListItem className="p-0">
-              <label
-                htmlFor="vertical-list-svelte"
-                className="flex w-full cursor-pointer items-center px-3 py-2"
-              >
-                <ListItemPrefix className="mr-3">
-                  <Checkbox
-                    id="vertical-list-svelte"
-                    ripple={false}
-                    className="hover:before:opacity-0"
-                    containerProps={{
-                      className: 'p-0',
-                    }}
-                  />
-                </ListItemPrefix>
-                <Typography className="font-medium">Secheur</Typography>
-              </label>
-            </ListItem>
-          </List>
-        </AccordionBody>
-      </Accordion>
-      <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
-        <AccordionHeader
-          className={`${
-            LightModeState == LightMode().type
-              ? 'tc-whiteTheme_T1'
-              : 'tc-darkTheme_T1'
-          }`}
-          onClick={() => handleOpen(2)}
-        >
-          <i className="fa-solid fa-list"></i> Brand
-        </AccordionHeader>
-        <AccordionBody>
-          <List
-            className={`${
-              LightModeState == LightMode().type
-                ? 'tc-whiteTheme_T1'
-                : 'tc-darkTheme_T1'
-            }`}
-          >
-            <ListItem className="p-0">
-              <label
-                htmlFor="vertical-list-react"
-                className="flex w-full cursor-pointer items-center px-3 py-2"
-              >
-                <ListItemPrefix className="mr-3">
-                  <Checkbox
-                    id="vertical-list-react"
-                    ripple={false}
-                    className="hover:before:opacity-0"
-                    containerProps={{
-                      className: 'p-0',
-                    }}
-                  />
-                </ListItemPrefix>
-                <Typography className="font-medium">Hertz</Typography>
-              </label>
-            </ListItem>
-            <ListItem className="p-0">
-              <label
-                htmlFor="vertical-list-vue"
-                className="flex w-full cursor-pointer items-center px-3 py-2"
-              >
-                <ListItemPrefix className="mr-3">
-                  <Checkbox
-                    id="vertical-list-vue"
-                    ripple={false}
-                    className="hover:before:opacity-0"
-                    containerProps={{
-                      className: 'p-0',
-                    }}
-                  />
-                </ListItemPrefix>
-                <Typography className="font-medium">AMI</Typography>
-              </label>
-            </ListItem>
-            <ListItem className="p-0">
-              <label
-                htmlFor="vertical-list-svelte"
-                className="flex w-full cursor-pointer items-center px-3 py-2"
-              >
-                <ListItemPrefix className="mr-3">
-                  <Checkbox
-                    id="vertical-list-svelte"
-                    ripple={false}
-                    className="hover:before:opacity-0"
-                    containerProps={{
-                      className: 'p-0',
-                    }}
-                  />
-                </ListItemPrefix>
-                <Typography className="font-medium">SOMCEF</Typography>
-              </label>
-            </ListItem>
-          </List>
-        </AccordionBody>
-      </Accordion>
-      <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-        <AccordionHeader
-          className={`${
-            LightModeState == LightMode().type
-              ? 'tc-whiteTheme_T1'
-              : 'tc-darkTheme_T1'
-          }`}
-          onClick={() => handleOpen(3)}
-        >
-          <i className="fa-solid fa-up-right-and-down-left-from-center"></i> size
-        </AccordionHeader>
-        <AccordionBody>
-          <List
-            className={`${
-              LightModeState == LightMode().type
-                ? 'tc-whiteTheme_T1'
-                : 'tc-darkTheme_T1'
-            }`}
-          >
-            <ListItem className="p-0">
-              <label
-                htmlFor="vertical-list-react"
-                className="flex w-full cursor-pointer items-center px-3 py-2"
-              >
-                <ListItemPrefix className="mr-3">
-                  <Checkbox
-                    id="vertical-list-react"
-                    ripple={false}
-                    className="hover:before:opacity-0"
-                    containerProps={{
-                      className: 'p-0',
-                    }}
-                  />
-                </ListItemPrefix>
-                <Typography className="font-medium">50ML</Typography>
-              </label>
-            </ListItem>
-            <ListItem className="p-0">
-              <label
-                htmlFor="vertical-list-vue"
-                className="flex w-full cursor-pointer items-center px-3 py-2"
-              >
-                <ListItemPrefix className="mr-3">
-                  <Checkbox
-                    id="vertical-list-vue"
-                    ripple={false}
-                    className="hover:before:opacity-0"
-                    containerProps={{
-                      className: 'p-0',
-                    }}
-                  />
-                </ListItemPrefix>
-                <Typography className="font-medium">100ML</Typography>
-              </label>
-            </ListItem>
-            <ListItem className="p-0">
-              <label
-                htmlFor="vertical-list-svelte"
-                className="flex w-full cursor-pointer items-center px-3 py-2"
-              >
-                <ListItemPrefix className="mr-3">
-                  <Checkbox
-                    id="vertical-list-svelte"
-                    ripple={false}
-                    className="hover:before:opacity-0"
-                    containerProps={{
-                      className: 'p-0',
-                    }}
-                  />
-                </ListItemPrefix>
-                <Typography className="font-medium">200ML</Typography>
-              </label>
-            </ListItem>
-          </List>
-        </AccordionBody>
-      </Accordion>
+        }` }>
+            <ListItemPrefix  className='mr-3 p-0'>
+              <Checkbox
+                key={"MENUITEM_CB"+MenuItem.MenuItemID}
+                ripple={false}
+                className="hover:before:opacity-0"
+                containerProps={{
+                  className: 'p-0',
+                }}
+              />
+            </ListItemPrefix>
+            <Typography className="font-medium">{MenuItem.MenuItemName}</Typography>
+
+        </ListItem>
+      )
+
+    })}
+  </List>
+</AccordionBody>
+</Accordion>
+)
+
+    })}
+
+
       <div className="mt-4 Price Range flex justify-start w-full flex-wrap">
         <div className="MinPrice my-4 w-full">
           <Input
@@ -286,7 +202,7 @@ export default function AccordionCustom() {
               },
             }}
             type="number"
-            label="Minimum Price"
+            label={<TranslatedText TranslationPath="Products.MinPrice" />}
             containerProps={{
               style: {
                 maxWidth: '400px',
@@ -295,6 +211,7 @@ export default function AccordionCustom() {
             }}
           />
         </div>
+
 
         <div className="MaxPrice my-4 w-full">
           <Input
@@ -310,14 +227,14 @@ export default function AccordionCustom() {
               },
             }}
             type="number"
-            label="Maxiumum Price"
+            label={<TranslatedText TranslationPath="Products.MaxPrice" />}
           />
         </div>
 
         <div className="MaxPrice my-4 w-full flex justify-center">
-          <Button className="flex items-center gap-3">
+          <Button onClick={HandleApplyFilter} className="flex items-center gap-3">
             <i className="fa-solid fa-filter"></i>
-            Apply Filters
+            <TranslatedText TranslationPath="Products.Actions.ApplyFilter" />
           </Button>
         </div>
       </div>

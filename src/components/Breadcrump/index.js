@@ -1,7 +1,6 @@
 import { Breadcrumbs } from '@material-tailwind/react';
 
-import Breadcrumbsbg from '../../assets/images/BreadCrumpbg.jpg';
-import Breadcrumbsbgdark from '../../assets/images/BreadCrumpbg_dark.jpg';
+import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
@@ -20,7 +19,7 @@ export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
             className=" text-center"
             style={{ fontFamily: 'Roboto, sans-serif', fontSize: '35px' }}
           >
-            List
+          <TranslatedText TranslationPath="Products.List" />
           </p>
           <p
             className=" text-center"
@@ -63,7 +62,7 @@ export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
               : 'tc-darkTheme_T1'
           }`}
         >
-          <i class="fa-solid fa-house"></i>
+          <i className="fa-solid fa-house"></i>
         </a>
         {Parent == undefined ? null : (
           <a

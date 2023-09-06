@@ -250,16 +250,16 @@ export default function Products() {
       CreateToast(
         promise,
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Error" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Error" />
         ),
         'promise',
         LightModeState == LightMode().type,
@@ -294,7 +294,7 @@ export default function Products() {
                 window.location.href = '/UCP/AddProduct';
               }}
             >
-              <i class="fa-solid fa-plus"></i>{' '}
+              <i className="fa-solid fa-plus"></i>{' '}
               <TranslatedText TranslationPath="UCP.Products.TabActions.AddProduct" />
             </Button>
             <Button
@@ -304,7 +304,7 @@ export default function Products() {
                 SetOpenCategoryDialog(true);
               }}
             >
-              <i class="fa-solid fa-gear"></i>
+              <i className="fa-solid fa-gear"></i>
               <TranslatedText TranslationPath="UCP.Products.TabActions.ManageCategory" />
             </Button>
           </div>
@@ -515,7 +515,7 @@ export default function Products() {
                             window.location.href = '/UCP/Product';
                           }}
                         >
-                          <i class="fa-solid fa-pen-to-square"></i>
+                          <i className="fa-solid fa-pen-to-square"></i>
                         </IconButton>
                       </Tooltip>
 
@@ -526,7 +526,7 @@ export default function Products() {
                             SetOpenDeleteDialog(true);
                           }}
                         >
-                          <i class="fa-solid fa-trash"></i>
+                          <i className="fa-solid fa-trash"></i>
                         </IconButton>
                       </Tooltip>
                     </td>
@@ -552,7 +552,7 @@ export default function Products() {
         HandleOpen={() => {
           SetOpenDeleteDialog(!OpenDeleteDialog);
         }}
-        Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Title" />
         }
@@ -568,7 +568,7 @@ export default function Products() {
         HandleOpen={() => {
           SetOpenCategoryDialog(!OpenCategoryDialog);
         }}
-        Icon={'<i class="fa-solid fa-gear"></i>'}
+        Icon={'<i className="fa-solid fa-gear"></i>'}
         Title={
           <TranslatedText TranslationPath="UCP.DialogMessages.Category.Category_Title" />
         }

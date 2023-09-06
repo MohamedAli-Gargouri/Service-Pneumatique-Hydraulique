@@ -203,16 +203,16 @@ export default function MyOrdersTable() {
       CreateToast(
         promise,
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Success" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Success" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
         ),
         ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Error" />,
+          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Error" />
         ),
         'promise',
         LightModeState == LightMode().type,
@@ -247,7 +247,7 @@ export default function MyOrdersTable() {
               className="flex items-center gap-3"
               size="sm"
             >
-              <i class="fa-solid fa-cart-shopping"></i>{' '}
+              <i className="fa-solid fa-cart-shopping"></i>{' '}
               <TranslatedText TranslationPath="UCP.MyOrdersTable.TabActions.AddOrder" />
             </Button>
           </div>
@@ -402,7 +402,7 @@ export default function MyOrdersTable() {
                             SetConfirmCancelDialog(true);
                           }}
                         >
-                          <i class="fa-solid fa-xmark h-4 w-4"></i>
+                          <i className="fa-solid fa-xmark h-4 w-4"></i>
                         </IconButton>
                       </Tooltip>
                     </td>
@@ -428,7 +428,7 @@ export default function MyOrdersTable() {
         HandleOpen={() => {
           SetConfirmCancelDialog(!ConfirmCancelDialog);
         }}
-        Icon={'<i class="fa-solid fa-store-slash h-4 w-4 m-1"></i>'}
+        Icon={'<i className="fa-solid fa-store-slash h-4 w-4 m-1"></i>'}
         Title={'Cancel Order'}
         Content={
           <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Confirm" />

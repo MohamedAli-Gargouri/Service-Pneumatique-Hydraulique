@@ -403,7 +403,7 @@ export default function Invoice_ProductsList({
         HandleOpen={() => {
           SetOpenDeleteDialog(!OpenDeleteDialog);
         }}
-        Icon={'<i class="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
+        Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
         Title={'Delete Product'}
         Content="Are you sure you want to delete this product?"
       />
@@ -415,7 +415,7 @@ export default function Invoice_ProductsList({
         HandleOpen={() => {
           SetOpenCategoryDialog(!OpenCategoryDialog);
         }}
-        Icon={'<i class="fa-solid fa-gear"></i>'}
+        Icon={'<i className="fa-solid fa-gear"></i>'}
         Title={'Category Management'}
         Content=""
       />

@@ -53,7 +53,7 @@ export default function Accounts() {
               SectionName={
                 <TranslatedText TranslationPath="UCP.TopNav.TabTitles.Accounts" />
               }
-              Icon='<i class="fa-solid fa-users"></i>'
+              Icon='<i className="fa-solid fa-users"></i>'
             />
           </section>
 

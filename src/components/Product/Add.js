@@ -70,7 +70,7 @@ export default function Product() {
   };
   return (
     <React.Fragment>
-      <div class="h-full w-full mb-[1rem]  grid grid-cols-2 justify-center items-center ">
+      <div className="h-full w-full mb-[1rem]  grid grid-cols-2 justify-center items-center ">
         <div className="h-full w-full ImageGallery col-span-2 md:col-span-1">
           <Gallery
             Images={[]}
@@ -88,7 +88,7 @@ export default function Product() {
               },
             }}
             label={'Brand'}
-            icon={<i class="fa-solid fa-info"></i>}
+            icon={<i className="fa-solid fa-info"></i>}
           />
 
           <Input
@@ -100,7 +100,7 @@ export default function Product() {
             label={
               <TranslatedText TranslationPath="UCP.AddProduct.TabInputs.PName" />
             }
-            icon={<i class="fa-solid fa-info"></i>}
+            icon={<i className="fa-solid fa-info"></i>}
           />
 
           <Select
@@ -131,7 +131,7 @@ export default function Product() {
             label={
               <TranslatedText TranslationPath="UCP.AddProduct.TabInputs.PPrice" />
             }
-            icon={<i class="fa-solid fa-dollar-sign"></i>}
+            icon={<i className="fa-solid fa-dollar-sign"></i>}
           />
           <Input
             labelProps={{
@@ -142,7 +142,7 @@ export default function Product() {
             label={
               <TranslatedText TranslationPath="UCP.AddProduct.TabInputs.PCode" />
             }
-            icon={<i class="fa-solid fa-barcode"></i>}
+            icon={<i className="fa-solid fa-barcode"></i>}
           />
 
           <Input
@@ -154,7 +154,7 @@ export default function Product() {
             label={
               <TranslatedText TranslationPath="UCP.AddProduct.TabInputs.StoreQuantity" />
             }
-            icon={<i class="fa-solid fa-store"></i>}
+            icon={<i className="fa-solid fa-store"></i>}
           />
           <Input
             labelProps={{
@@ -165,7 +165,7 @@ export default function Product() {
             label={
               <TranslatedText TranslationPath="UCP.AddProduct.TabInputs.StockQuantity" />
             }
-            icon={<i class="fa-solid fa-warehouse"></i>}
+            icon={<i className="fa-solid fa-warehouse"></i>}
           />
           <Textarea
             labelProps={{
@@ -191,9 +191,9 @@ export default function Product() {
                 <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.LDescription" />
               ),
               value: 'Long Description',
-              icon: <i class="fa-solid fa-circle-info mx-4"></i>,
+              icon: <i className="fa-solid fa-circle-info mx-4"></i>,
               desc: (
-                <div class="">
+                <div className="">
                   <Typography variant="h6" className="font-bold m-4">
                     {
                       <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.LDescription" />
@@ -215,9 +215,9 @@ export default function Product() {
                 <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.Additonalinfo" />
               ),
               value: 'Additional Information',
-              icon: <i class="fa-solid fa-info mx-4"></i>,
+              icon: <i className="fa-solid fa-info mx-4"></i>,
               desc: (
-                <div class="">
+                <div className="">
                   <Typography variant="h6" className="font-bold m-4">
                     <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.Additonalinfo" />
                   </Typography>
@@ -236,9 +236,9 @@ export default function Product() {
                 <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.Shipping" />
               ),
               value: 'Shipping & returns',
-              icon: <i class="fa-solid fa-truck-fast mx-4"></i>,
+              icon: <i className="fa-solid fa-truck-fast mx-4"></i>,
               desc: (
-                <div class="">
+                <div className="">
                   <Typography variant="h5" className=" font-bold m-4">
                     <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.Shipping" />
                   </Typography>
@@ -260,7 +260,7 @@ export default function Product() {
 
       <div className=" flex justify-center">
         <Button className=" flex items-center gap-3" onClick={HandleAddProduct}>
-          <i class="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus"></i>
           <TranslatedText TranslationPath="UCP.AddProduct.TabActions.CreateProduct" />
         </Button>
       </div>

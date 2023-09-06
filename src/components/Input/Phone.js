@@ -73,7 +73,7 @@ export default function InputWithDropdown({ InputLabel }) {
       </Menu>
       <Input
         type="tel"
-        placeholder={InputLabel}
+        placeholder={""}
         className={`rounded-l-none !border-t-blue-gray-200 focus:!border-t-blue-500`}
         labelProps={{
           className: `before:content-none after:content-none`,
@@ -85,6 +85,4 @@ export default function InputWithDropdown({ InputLabel }) {
     </div>
   );
 }
-InputWithDropdown.propTypes = {
-  InputLabel: PropTypes.string.isRequired,
-};
+

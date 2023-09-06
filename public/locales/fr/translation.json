@@ -71,6 +71,43 @@
       "Team_title": "Rencontrez notre équipe."
     }
   },
+  "Product":
+  {
+
+    "Shop":"Boutique",
+    "Product":"Produit",
+    "Description":"Description",
+    "AddInfo":"Informations Complémentaires",
+    "Shipping":"Expédition & retours",
+    "Actions":{
+     "AddCart":"Ajouter au panier"
+    }
+  },
+  "Products": {
+    "ApplyProductFilter_Info": "Filtre appliqué !",
+    "List": "Liste",
+    "Shop": "Notre boutique",
+    "Filter": {
+        "Rate":"Notes",
+        "Date":"Date",
+        "Default":"Défaut"
+    },
+    "Category":"Catégorie",
+    "Brand":"Marque",
+    "SubCategory":"Sous-catégorie",
+    "MinPrice":"Prix ​​minimum",
+    "MaxPrice":"Prix ​​maximum",
+    "Actions":
+    {
+      "ApplyFilter":"Appliquer le filtre"
+    },
+    "Label":
+    {
+        "Sortby": "Trier par"
+    }
+    
+
+  },
   "Login": {
     "Login_Title": "S'identifier",
     "Email_Label": "E-mail",
@@ -483,7 +520,6 @@
 
         "AddProduct_Success": "Produit ajouté avec succès.",
         "AddProduct_Error": "Échec de l'ajout du produit",
-
         "ProductThreeImagesLimit_Error": "Vous ne pouvez pas ajouter plus de trois images par produit."
       },
       "Category": {

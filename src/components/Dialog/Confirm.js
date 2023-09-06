@@ -28,7 +28,7 @@ export default function DeleteConfirm(props) {
       >
         <DialogHeader>
           <Typography
-            variant="p"
+            variant="paragraph"
             color={
               props.color == undefined
                 ? LightModeState == LightMode().type
@@ -59,7 +59,7 @@ export default function DeleteConfirm(props) {
             onClick={props.HandleOpen}
             className="mr-1"
           >
-            <i class="fa-solid fa-xmark mx-2"></i>
+            <i className="fa-solid fa-xmark mx-2"></i>
             <span>Cancel</span>
           </Button>
           <Button

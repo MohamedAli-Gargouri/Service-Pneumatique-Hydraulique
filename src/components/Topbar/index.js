@@ -59,7 +59,7 @@ export default function SidebarWithLogo(props) {
             className="rounded-full xl:hidden"
             onClick={() => toggleOpen()}
           >
-            <i class="fa-solid fa-bars"></i>
+            <i className="fa-solid fa-bars"></i>
           </IconButton>
         </div>
         <div className="col-span-1 flex flex-row gap-1  w-full justify-end items-center">
@@ -74,7 +74,7 @@ export default function SidebarWithLogo(props) {
                   toggleCart();
                 }}
               >
-                <i class="fa-solid fa-bag-shopping"></i>
+                <i className="fa-solid fa-bag-shopping"></i>
               </IconButton>
             </Badge>
           </div>

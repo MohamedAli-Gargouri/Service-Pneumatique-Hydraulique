@@ -59,7 +59,7 @@ export default function SidebarWithCta() {
           }}
         >
           <ListItemPrefix>
-            <i class="fa-solid fa-house"></i>
+            <i className="fa-solid fa-house"></i>
           </ListItemPrefix>
           Home
         </ListItem>
@@ -70,7 +70,7 @@ export default function SidebarWithCta() {
           }}
         >
           <ListItemPrefix>
-            <i class="fa-solid fa-cart-shopping h-5 w-5"></i>
+            <i className="fa-solid fa-cart-shopping h-5 w-5"></i>
           </ListItemPrefix>
           <TranslatedText TranslationPath="UCP.SideBar.MyOrders" />
           <ListItemSuffix>
@@ -94,7 +94,7 @@ export default function SidebarWithCta() {
           }}
         >
           <ListItemPrefix>
-            <i class="fa-solid fa-file-invoice h-5 w-5"></i>
+            <i className="fa-solid fa-file-invoice h-5 w-5"></i>
           </ListItemPrefix>
           <TranslatedText TranslationPath="UCP.SideBar.Orders" />
           <ListItemSuffix>
@@ -117,7 +117,7 @@ export default function SidebarWithCta() {
           }}
         >
           <ListItemPrefix>
-            <i class="fa-solid fa-boxes-stacked h-5 w-5"></i>
+            <i className="fa-solid fa-boxes-stacked h-5 w-5"></i>
           </ListItemPrefix>
           <TranslatedText TranslationPath="UCP.SideBar.Products" />
           <ListItemSuffix>
@@ -163,7 +163,7 @@ export default function SidebarWithCta() {
           }}
         >
           <ListItemPrefix>
-            <i class="fa-solid fa-users h-5 w-5"></i>
+            <i className="fa-solid fa-users h-5 w-5"></i>
           </ListItemPrefix>
           <TranslatedText TranslationPath="UCP.SideBar.ManageAccounts" />
         </ListItem>
@@ -174,7 +174,7 @@ export default function SidebarWithCta() {
           }}
         >
           <ListItemPrefix>
-            <i class="fa-solid fa-file-invoice"></i>
+            <i className="fa-solid fa-file-invoice"></i>
           </ListItemPrefix>
           <TranslatedText TranslationPath="UCP.SideBar.InvoiceEstimate" />
           <ListItemSuffix></ListItemSuffix>
@@ -196,7 +196,7 @@ export default function SidebarWithCta() {
           }}
         >
           <ListItemPrefix>
-            <i class="fa-solid fa-arrow-left"></i>
+            <i className="fa-solid fa-arrow-left"></i>
           </ListItemPrefix>
           <TranslatedText TranslationPath="UCP.SideBar.Back" />
         </ListItem>
@@ -213,7 +213,7 @@ export default function SidebarWithCta() {
         onClose={() => setOpenAlert(false)}
       >
         <div className=" flex justify-evenly items-center">
-          <i class="fa-solid fa-arrows-rotate  h-6 w-6"></i>
+          <i className="fa-solid fa-arrows-rotate  h-6 w-6"></i>
           <Typography variant="h6" className="mb-1">
             Available Update
           </Typography>

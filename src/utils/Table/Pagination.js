@@ -59,13 +59,13 @@ function Pagination({
 
   return (
     <>
-      <Typography variant="small" className="font-normal">
+      <Typography variant="small" className=" text-center font-normal">
         <TranslatedText TranslationPath="Table.Labels.Page.Part1" />
         {currentPage}{' '}
         <TranslatedText TranslationPath="Table.Labels.Page.Part2" />{' '}
         {totalPages}
       </Typography>
-      <div className="flex gap-2">
+      <div className="mt-4 text-center flex gap-2">
         <Button
           variant="outlined"
           size="sm"
