@@ -13,7 +13,7 @@ import productSample1 from '../../assets/images/products/product_1.png';
 import productSample2 from '../../assets/images/products/product_2.png';
 import React from 'react';
 import QuantityInput from '../Input/Quantity';
-export default function ProductCard({
+export default function CartCard({
   text,
   ProductImage,
   ProductName,
@@ -30,7 +30,7 @@ export default function ProductCard({
             variant="text"
             className=" ml-4 rounded-full hover:scale-150"
           >
-            <i class="fa-solid fa-trash"></i>
+            <i className="fa-solid fa-trash"></i>
           </IconButton>
         </div>
 
@@ -39,10 +39,10 @@ export default function ProductCard({
             Compressor
           </Typography>
 
-          <Typography variant="p" className={`font-body`}>
+          <Typography variant="paragraph" className={`font-body`}>
             MX-74070
           </Typography>
-          <Typography variant="p" color="green" className={`font-bold`}>
+          <Typography variant="paragraph" color="green" className={`font-bold`}>
             2x 1000TND
           </Typography>
         </div>

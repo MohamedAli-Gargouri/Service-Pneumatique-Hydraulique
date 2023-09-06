@@ -77,7 +77,7 @@ export default function InputWithButton({
         size="sm"
         className=" rounded hover:scale-110 flex items-center m-1"
       >
-        <i class="fa-solid fa-minus aspect-square"></i>
+        <i className="fa-solid fa-minus aspect-square"></i>
       </Button>
 
       <Input
@@ -107,7 +107,7 @@ export default function InputWithButton({
         variant="text"
         className="rounded hover:scale-110 flex items-center m-1"
       >
-        <i class="fa-solid fa-plus aspect-square"></i>
+        <i className="fa-solid fa-plus aspect-square"></i>
       </Button>
     </div>
   );

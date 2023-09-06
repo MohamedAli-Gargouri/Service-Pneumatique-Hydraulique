@@ -25,6 +25,12 @@ import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import { OPENCART } from '../../redux/actions/cartActions';
+import PropTypes from 'prop-types';
+
+
+Badge.propTypes = {
+  placement: PropTypes.string.isRequired,
+};
 export default function ComplexNavbar() {
   //=======Setting Mobile View-start=================//
   const [isNavOpen, setIsNavOpen] = React.useState(false);
@@ -130,7 +136,6 @@ export default function ComplexNavbar() {
 
           <IconButton
             size="sm"
-            color="inherit"
             variant="text"
             onClick={() => toggleIsNavOpen()}
             className={`ml-auto mr-2 lg:hidden text-current`}
@@ -140,7 +145,6 @@ export default function ComplexNavbar() {
 
           <IconButton
             size="sm"
-            color="inherit"
             variant="text"
             className="rounded-full"
             onClick={() => HandleLightModeSwitch()}
@@ -154,11 +158,10 @@ export default function ComplexNavbar() {
 
           <LanguageSelect />
 
-          <Badge content="2" className="">
+          <Badge content="2" className="" placement="top-end">
             <IconButton
               variant="text"
               size="sm"
-              color="inherit"
               className="rounded-full"
               onClick={() => toggleCart()}
             >

@@ -17,15 +17,103 @@ import {
 } from '@material-tailwind/react';
 import React from 'react';
 import Navbar from '../../components/NavBar';
-import Pagination from '../../components/Pagination';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import Footer from '../../components/footer';
 import Productcard from '../../components/Card/ProductCard';
 import FilterMenu from '../../components/FilterMenu';
 import Breadcrump from '../../components/Breadcrump';
+import ProductImage1 from "./../../assets/images/products/product_1.png"
+import ProductImage2 from "./../../assets/images/products/product_2.png"
+import ProductImage3 from "./../../assets/images/products/product_3.png"
+import Pagination from "../../utils/Table/Pagination"
 
+const AllData=[
+  {
+  ProductID:1,  
+  ProductShortDesc:"Best compressor with 200ML Capacity",
+  ProductImages:[ProductImage1,ProductImage2,ProductImage3],
+  ProductCategory:"Compressors",
+  ProductSubCategory:[{id:51,SubCategoryName:"Size,200ML",ParentCategory:2},{id:52,SubCategoryName:"Power,10CV",ParentCategory:1}],
+  ProductBrand:"Hertz",
+  ProductName:"X1564",
+  ProductPrice:1500,
+  },
+  {
+  ProductID:2,
+  ProductShortDesc:"Shit compressor with 500ML Capacity",
+  ProductImages:[ProductImage1,ProductImage2,ProductImage3],
+  ProductCategory:"Compressors",
+  ProductSubCategory:[{id:51,SubCategoryName:"Size,200ML",ParentCategory:2},{id:52,SubCategoryName:"Power,15CV",ParentCategory:1}],
+  ProductBrand:"Maxo",
+  ProductName:"B9",
+  ProductPrice:2500,
+  },
+  {
+  ProductID:3,
+  ProductShortDesc:"Shit compressor with 600ML Capacity",
+  ProductImages:[ProductImage1,ProductImage2,ProductImage3],
+  ProductCategory:"Tubes",
+  ProductSubCategory:[{id:51,SubCategoryName:"Size,600ML",ParentCategory:2},{id:52,SubCategoryName:"Power,50CV",ParentCategory:1}],
+  ProductBrand:"MM",
+  ProductName:"Caddy",
+  ProductPrice:3500,
+  },
+  {
+  ProductID:4,
+  ProductShortDesc:"Shit compressor with 600ML Capacity",
+  ProductImages:[ProductImage1,ProductImage2,ProductImage3],
+  ProductCategory:"Tubes",
+  ProductSubCategory:[{id:51,SubCategoryName:"Size,600ML",ParentCategory:2},{id:52,SubCategoryName:"Power,50CV",ParentCategory:1}],
+  ProductBrand:"MM",
+  ProductName:"Caddy",
+  ProductPrice:3500,
+  },
+  {
+  ProductID:5,
+  ProductShortDesc:"Shit compressor with 600ML Capacity",
+  ProductImages:[ProductImage1,ProductImage2,ProductImage3],
+  ProductCategory:"Tubes",
+  ProductSubCategory:[{id:51,SubCategoryName:"Size,600ML",ParentCategory:2},{id:52,SubCategoryName:"Power,50CV",ParentCategory:1}],
+  ProductBrand:"MM",
+  ProductName:"Caddy",
+  ProductPrice:3500,
+  },
+  {
+  ProductID:6,
+  ProductShortDesc:"Shit compressor with 600ML Capacity",
+  ProductImages:[ProductImage1,ProductImage2,ProductImage3],
+  ProductCategory:"Tubes",
+  ProductSubCategory:[{id:51,SubCategoryName:"Size,600ML",ParentCategory:2},{id:52,SubCategoryName:"Power,50CV",ParentCategory:1}],
+  ProductBrand:"MM",
+  ProductName:"Caddy",
+  ProductPrice:3500,
+  },
+  {
+  ProductID:7,
+  ProductShortDesc:"Shit compressor with 600ML Capacity",
+  ProductImages:[ProductImage1,ProductImage2,ProductImage3],
+  ProductCategory:"Tubes",
+  ProductSubCategory:[{id:51,SubCategoryName:"Size,600ML",ParentCategory:2},{id:52,SubCategoryName:"Power,50CV",ParentCategory:1}],
+  ProductBrand:"MM",
+  ProductName:"Caddy",
+  ProductPrice:3500,
+  },
+  {
+  ProductID:6,
+  ProductShortDesc:"Shit compressor with 600ML Capacity",
+  ProductImages:[ProductImage1,ProductImage2,ProductImage3],
+  ProductCategory:"Tubes",
+  ProductSubCategory:[{id:51,SubCategoryName:"Size,600ML",ParentCategory:2},{id:52,SubCategoryName:"Power,50CV",ParentCategory:1}],
+  ProductBrand:"MM",
+  ProductName:"Caddy",
+  ProductPrice:3500,
+  },
+  ]
+  
 export default function Products() {
+  const [VisibleData,SetVisibleData]=React.useState([])
+  const [CurrentPage,setCurrentPage]=React.useState(1)
   const smBreakpoint = 540;
   const LightModeState = useSelector((state) => state.lightMode);
   const [DisplayVariant, setDisplayVariant] = React.useState(
@@ -176,23 +264,40 @@ export default function Products() {
                   : 'grid-cols-3'
               }`}
             >
-              <div className=" col-span-1">
-                <Productcard
-                  ProductShortDescription=""
-                  ProductImages=""
-                  ProductCategory=""
-                  ProductBrand=""
-                  ProductName=""
-                  ProductPrice=""
-                variant={DisplayVariant} />
-              </div>
+
+              {
+                VisibleData.map((Product)=>{
+
+                  return(
+                    <div key={Product.ProductID} className=" col-span-1">
+                    <Productcard
+                      ProductShortDescription={Product.ProductShortDesc}
+                      ProductImages={Product.ProductImages}
+                      ProductCategory={Product.ProductCategory}
+                      ProductBrand={Product.ProductBrand}
+                      ProductName={Product.ProductName}
+                      ProductPrice={Product.ProductPrice}
+                      ProductSubCategory={Product.ProductSubCategory}
+                    variant={DisplayVariant} />
+                  </div>
+                  )
+
+                })
+              }
+
             </div>
           </div>
         </div>
 
         <div className=" col-span-8 Pagination flex justify-center items-center mt-4">
           <div>
-            <Pagination />
+          <Pagination
+          AllData={AllData}
+          VisibleData={VisibleData}
+          SetVisibleData={SetVisibleData}
+          currentPage={CurrentPage}
+          setCurrentPage={setCurrentPage}
+        />
           </div>
         </div>
       </div>

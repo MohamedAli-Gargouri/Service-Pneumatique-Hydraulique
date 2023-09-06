@@ -58,7 +58,7 @@ export default function AccordionCustom() {
           }`}
           onClick={() => handleOpen(1)}
         >
-          <i class="fa-solid fa-bars"></i> Category
+          <i className="fa-solid fa-bars"></i> Category
         </AccordionHeader>
         <AccordionBody>
           <List
@@ -134,7 +134,7 @@ export default function AccordionCustom() {
           }`}
           onClick={() => handleOpen(2)}
         >
-          <i class="fa-solid fa-list"></i> Brand
+          <i className="fa-solid fa-list"></i> Brand
         </AccordionHeader>
         <AccordionBody>
           <List
@@ -210,7 +210,7 @@ export default function AccordionCustom() {
           }`}
           onClick={() => handleOpen(3)}
         >
-          <i class="fa-solid fa-up-right-and-down-left-from-center"></i> size
+          <i className="fa-solid fa-up-right-and-down-left-from-center"></i> size
         </AccordionHeader>
         <AccordionBody>
           <List
@@ -287,6 +287,12 @@ export default function AccordionCustom() {
             }}
             type="number"
             label="Minimum Price"
+            containerProps={{
+              style: {
+                maxWidth: '400px',
+                minWidth: '10px',
+              },
+            }}
           />
         </div>
 
@@ -297,6 +303,12 @@ export default function AccordionCustom() {
                 color: LightModeState == LightMode().type ? 'black' : 'white',
               },
             }}
+            containerProps={{
+              style: {
+                maxWidth: '400px',
+                minWidth: '10px',
+              },
+            }}
             type="number"
             label="Maxiumum Price"
           />
@@ -304,7 +316,7 @@ export default function AccordionCustom() {
 
         <div className="MaxPrice my-4 w-full flex justify-center">
           <Button className="flex items-center gap-3">
-            <i class="fa-solid fa-filter"></i>
+            <i className="fa-solid fa-filter"></i>
             Apply Filters
           </Button>
         </div>

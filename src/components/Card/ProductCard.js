@@ -20,6 +20,7 @@ export default function ProductCard({
   ProductBrand,
   ProductName,
   ProductPrice,
+  ProductSubCategory,
   variant,
 }) {
   const [isHovered, setIsHovered] = React.useState(false);
@@ -63,7 +64,7 @@ export default function ProductCard({
 
               <div className="Price">
                 <Typography
-                  variant="small"
+                  variant="paragraph"
                   color="green"
                   className={`font-bold`}
                 >
@@ -72,7 +73,7 @@ export default function ProductCard({
               </div>
 
               <div className="Product Content  ">
-                <Typography variant="p" className={` font-light`}>
+                <Typography variant="paragraph" className={` font-light`}>
                   {ProductShortDescription}
                 </Typography>
               </div>
@@ -181,7 +182,7 @@ export default function ProductCard({
               {ProductPrice} TND
             </Typography>
           </div>
-          <Typography variant="p" className={` font-light text-center`}>
+          <Typography variant="paragraph" className={` font-light text-center`}>
             {ProductShortDescription}
           </Typography>
         </div>

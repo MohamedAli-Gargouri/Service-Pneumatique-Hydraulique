@@ -48,7 +48,7 @@ export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
             /
           </p>
         }
-        fullWidt={true}
+        fullWidth={true}
         className={`bg-inherit   ml-4  col-span-1  ${
           LightModeState == LightMode().type
             ? 'tc-whiteTheme_T1'

@@ -69,12 +69,12 @@ export default function Cart() {
             ? 'bg-whiteTheme_T3'
             : 'bg-darkTheme_T1'
         }`}
-        size={window.innerWidth < smBreakpoint ? '100vw' : '30vw'}
+        size={window.innerWidth < smBreakpoint ? 600 : 500}
       >
         {/*==========================S-Header========================== */}
         <div className="mb-6 flex items-center justify-between">
           <Typography variant="h5" className="text-center" color={'blue'}>
-            <i class="fa-solid fa-bag-shopping m-4 "></i>
+            <i className="fa-solid fa-bag-shopping m-4 "></i>
             <TranslatedText TranslationPath="Cart.Labels.Title" />
           </Typography>
           <IconButton variant="text" onClick={closeDrawerRight}>
@@ -98,12 +98,12 @@ export default function Cart() {
 
         <div className="Total w-full flex justify-between items-center ">
           <Typography variant="h6" className="text-center">
-            <i class="fa-solid fa-dollar-sign m-2"></i>
+            <i className="fa-solid fa-dollar-sign m-2"></i>
             <TranslatedText TranslationPath="Cart.Labels.Total" /> :
           </Typography>
 
           <Typography
-            variant="p"
+            variant="paragraph"
             className="text-center  font-bold"
             color="green"
           >
@@ -113,7 +113,7 @@ export default function Cart() {
 
         <div className="Total  flex flex-col justify-stretch mx-4 my-4 items-stretch ">
           <Button className="flex items-center gap-3" onClick={HandleOrder}>
-            <i class="fa-solid fa-cart-shopping"></i>
+            <i className="fa-solid fa-cart-shopping"></i>
             <TranslatedText TranslationPath="Cart.Actions.Order" />
           </Button>
         </div>

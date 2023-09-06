@@ -72,8 +72,8 @@ export default function FooterWithSocialLinks() {
           </div>
 
           <div className=" col-span-6 md:col-span-5 grid md:grid-cols-2 items-center justify-between gap-1">
-            {List.map(({ title, items }) => (
-              <ul key={title}>
+            {List.map(({ title, items },index) => (
+              <ul key={"FOOTER"+index}>
                 <Typography
                   color="inherit"
                   variant="small"
@@ -81,13 +81,13 @@ export default function FooterWithSocialLinks() {
                 >
                   {title}
                 </Typography>
-                {items.map((link) => (
-                  <li key={link}>
+                {items.map((link,index) => (
+                  <li key={"LINK"+index}>
                     <div className=" flex flex-col md:flex-row justify-center items-center gap-1">
                       <Typography
-                        as="lead"
+                        as="h6"
                         color="inherit"
-                        className={` opacity-60 mr-1 py-1.5 font-normal transition-colors hover:opacity-75 `}
+                        className={` font-thin opacity-60 mr-1 py-1.5  transition-colors hover:opacity-75 `}
                       >
                         {link.label}:
                       </Typography>
