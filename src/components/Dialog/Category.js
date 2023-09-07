@@ -51,13 +51,7 @@ export default function Category({ Icon, Open, HandleOpen, Title, Content }) {
         }}
       >
         <DialogHeader>
-          <Typography
-            variant="paragraph"
-            color={LightModeState == LightMode().type ? 'black' : 'white'}
-            className={`m-1 flex justify-center items-center gap-2 font-black  `}
-          >
-            <div dangerouslySetInnerHTML={{ __html: Icon }}></div> {Title}
-          </Typography>
+            <div className={`m-1 flex justify-center items-center gap-2 font-black  `} dangerouslySetInnerHTML={{ __html: Icon }}></div> {Title}
         </DialogHeader>
         <DialogBody divider className="p-0 m-0 h-full w-full overflow-scroll">
           {Content}

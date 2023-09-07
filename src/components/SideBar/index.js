@@ -29,13 +29,8 @@ import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import SPHLOGO from '../../assets/images/SPH Logo.png';
-export default function SidebarWithCta() {
-  const [open, setOpen] = React.useState(0);
+export default function UCP_SideNavbar() {
   const [openAlert, setOpenAlert] = React.useState(true);
-  const handleOpen = (value) => {
-    setOpen(open === value ? 0 : value);
-  };
-
   const LightModeState = useSelector((state) => state.lightMode);
 
   return (
@@ -177,7 +172,6 @@ export default function SidebarWithCta() {
             <i className="fa-solid fa-file-invoice"></i>
           </ListItemPrefix>
           <TranslatedText TranslationPath="UCP.SideBar.InvoiceEstimate" />
-          <ListItemSuffix></ListItemSuffix>
         </ListItem>
 
         <ListItem

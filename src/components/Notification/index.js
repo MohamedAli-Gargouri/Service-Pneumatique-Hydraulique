@@ -20,7 +20,7 @@ export default function Notification() {
 
   return (
     <div className="relative ">
-      <Badge content="5" className="">
+      <Badge content="5" className="" placement="top-end">
         <IconButton
           variant="text"
           className=" text-white rounded-full"

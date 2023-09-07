@@ -26,7 +26,7 @@ import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.jpg';
 import Products from '../../components/Table/Products';
 import InboxTable from '../../components/Table/Inbox';
-export default function User_Control_Panel() {
+export default function UCP_Inbox() {
   const LightModeState = useSelector((state) => state.lightMode);
   const [MdSidebarOpen, setMdSidebarOpen] = React.useState(true);
   return (

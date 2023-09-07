@@ -103,12 +103,7 @@ export default function Invoice({
               : 'tc-darkTheme_T1 bg-darkTheme_T2'
           }`}
         >
-          <Typography
-            variant="paragraph"
-            className={`m-1 flex justify-center items-center gap-2 font-black  `}
-          >
-            <div dangerouslySetInnerHTML={{ __html: Icon }}></div> {Title}
-          </Typography>
+            <div className={`m-1 flex justify-center items-center gap-2 font-black  `} dangerouslySetInnerHTML={{ __html: Icon }}></div> {Title}
         </DialogHeader>
         <DialogBody
           divider

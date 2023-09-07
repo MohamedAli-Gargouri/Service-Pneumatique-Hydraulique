@@ -147,7 +147,7 @@ export default function PDFContent({
             </View>
           </View>
           {Data.map((product, index) => (
-            <View key={index} style={styles.tableRow}>
+            <View key={"PDFRow"+index} style={styles.tableRow}>
               <View style={styles.tableCell}>
                 <Text>{product.Brand}</Text>
                 <Text>{product.Model}</Text>

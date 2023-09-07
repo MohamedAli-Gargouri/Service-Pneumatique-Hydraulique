@@ -128,7 +128,7 @@ const TABLE_ROWS = [
   },
 ];
 
-export default function MyOrdersTable() {
+export default function MyOrders_Table() {
   const dispatch = useDispatch();
   const LightModeState = useSelector((state) => state.lightMode);
   const toggleCart = () => {
@@ -423,6 +423,7 @@ export default function MyOrdersTable() {
         />
       </CardFooter>
       <ConfirmDialog
+        color="red"
         Open={ConfirmCancelDialog}
         Action={HandleOrdercancel}
         HandleOpen={() => {

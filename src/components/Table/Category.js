@@ -62,36 +62,36 @@ const TABLE_ROWS = [
   {
     CategoryID: '1',
     name: 'Compressors',
-    type: 'Main Category',
+    type: 1,
   },
   {
     CategoryID: '4',
     name: 'Dryers',
-    type: 'Main Category',
+    type: 1,
   },
   {
     CategoryID: '3',
     name: 'Tubes',
-    type: 'Main Category',
+    type: 1,
   },
   {
     CategoryID: '2',
     name: 'Size',
-    type: 'Sub Category',
+    type: 2,
   },
   {
     CategoryID: '5',
     name: 'Power',
-    type: 'Sub Category',
+    type: 2,
   },
   {
     CategoryID: '6',
     name: 'V Rating',
-    type: 'Sub Category',
+    type: 2,
   },
 ];
 
-export default function CategoriesTable({ HandleOpen }) {
+export default function Categories_Table({ HandleOpen }) {
   const LightModeState = useSelector((state) => state.lightMode);
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
   const [AllData, SetAllData] = React.useState(TABLE_ROWS);
@@ -240,7 +240,7 @@ export default function CategoriesTable({ HandleOpen }) {
                   <td className={classes}>
                     <div className="flex flex-col">
                       <Input
-                        label="Name"
+                        label={<TranslatedText TranslationPath="UCP.CategoryTable.TabInputs.Name" />}
                         size="md"
                         defaultValue={name}
                         labelProps={{
@@ -258,7 +258,7 @@ export default function CategoriesTable({ HandleOpen }) {
                   <td className={classes}>
                     <div className="flex flex-col">
                       <Typography variant="small" className="font-normal">
-                        {type}
+                        {type==1?<TranslatedText TranslationPath="UCP.CategoryTable.TabHeader.CategoryTypeValue1" />:<TranslatedText TranslationPath="UCP.CategoryTable.TabHeader.CategoryTypeValue2" />}
                       </Typography>
                     </div>
                   </td>

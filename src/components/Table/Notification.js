@@ -35,7 +35,7 @@ const TABLE_ROWS_OrderNotifications = [
   },
 ];
 
-export default function Products() {
+export default function Notifications_Table() {
   const LightModeState = useSelector((state) => state.lightMode);
   const [VisibleData, SetVisibleData] = React.useState(
     TABLE_ROWS_OrderNotifications.slice(
@@ -58,7 +58,7 @@ export default function Products() {
             index,
           ) => {
             return (
-              <div className="row">
+              <div key={"Notification"+index} className="row">
                 <div
                   key={index}
                   className="flex flex-wrap  justify-center items-center"

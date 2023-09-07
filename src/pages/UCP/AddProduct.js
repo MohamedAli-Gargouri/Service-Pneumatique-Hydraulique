@@ -30,7 +30,7 @@ import React from 'react';
 import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.jpg';
 import AddProduct from '../../components/Product/Add';
-export default function User_Control_Panel() {
+export default function UCP_EditProduct() {
   const LightModeState = useSelector((state) => state.lightMode);
   return (
     <>

@@ -17,8 +17,8 @@ import {
   Textarea,
 } from '@material-tailwind/react';
 import React from 'react';
-import TranslatedText from '../../utils/Translation';
-import CustomTab from '../../components/Tab';
+import TranslatedText,{TranslateString} from '../../utils/Translation';
+import AnimatedTab from '../../components/Tab';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import Gallery from '../../components/Gallery';
 import { CreateToast } from '../../utils/Toast';
@@ -31,6 +31,13 @@ import MultiSelect from '../Input/MultiSelect';
 export default function Product() {
   const LightModeState = useSelector((state) => state.lightMode);
   const AddedImages = React.useRef([]);
+  const [SelectedCategory,SetSelectedCategory]=React.useState("Comp")
+  const Categories=[
+    {categoryID:1,CategoryName:"Compressors",CategoryValue:"Comp"},
+    {categoryID:2,CategoryName:"Tubes",CategoryValue:"Tub"},
+    {categoryID:3,CategoryName:"Secheurs",CategoryValue:"Secheur"}
+  ]
+
   const SubCategories = [
     { SubCategory: 'Size, 100ML', id: 1 },
     { SubCategory: 'Size, 400ML', id: 2 },
@@ -42,6 +49,28 @@ export default function Product() {
     { SubCategory: 'Power, 10cv', id: 4 },
   ]);
 
+
+  const Tabs=[
+    {
+      TabID:1,
+      TabName:TranslateString("Product.Description"),
+      TabLogo:<i className="fa-solid fa-circle-info mx-2"></i>,
+    },
+    {
+      TabID:2,
+      TabName:TranslateString("Product.AddInfo"),
+      TabLogo:<i className="fa-solid fa-info mx-2"></i>,
+    },
+    {
+      TabID:3,
+      TabName:TranslateString("Product.Shipping"),
+      TabLogo:<i className="fa-solid fa-truck-fast mx-2"></i>,
+    }
+  ]
+
+  const LongDescRef=React.useRef();
+  const InformationRef=React.useRef();
+  const ShippingRef=React.useRef()
   const HandleEditProduct = () => {
     try {
       const promise = new Promise((resolve, reject) => {
@@ -107,16 +136,22 @@ export default function Product() {
             icon={<i className="fa-solid fa-info"></i>}
           />
 
+
+
           <Select
-            label={
-              <TranslatedText TranslationPath="UCP.AddProduct.TabInputs.PCategory" />
-            }
-          >
-            <Option value={1}>Max Dryer</Option>
-            <Option value={2}>Tube</Option>
-            <Option value={3}>Another Option</Option>
-            <Option value={4}>Compressor</Option>
-          </Select>
+          label={TranslateString ("UCP.AddProduct.TabInputs.PCategory")}
+          value={SelectedCategory}
+          onChange={(e)=>SetSelectedCategory(e)}
+        >
+          {
+            Categories.map((Category)=>{
+              return(
+                <Option key={Category.categoryID} value={Category.CategoryValue}>{Category.CategoryName}</Option>
+              )
+
+            })
+          }
+        </Select>
 
           <div className=" w-full">
             <MultiSelect
@@ -184,7 +219,7 @@ export default function Product() {
             }}
             size="lg"
             label={
-              <TranslatedText TranslationPath="UCP.EditProduct.TabInputs.SDescription" />
+              TranslateString("UCP.EditProduct.TabInputs.SDescription")
             }
             defaultValue="Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus."
           />
@@ -193,85 +228,34 @@ export default function Product() {
         </div>
       </div>
       <div className="w-full">
-        <CustomTab
-          data={[
-            {
-              label: (
-                <TranslatedText TranslationPath="UCP.EditProduct.TabFilter.LDescription" />
-              ),
-              value: 'Long Description',
-              icon: <i className="fa-solid fa-circle-info mx-4"></i>,
-              desc: (
-                <div className="">
-                  <Typography variant="h6" className="font-bold m-4">
-                    <TranslatedText TranslationPath="UCP.EditProduct.TabFilter.LDescription" />
-                  </Typography>
 
-                  <Textarea
-                    size="lg"
-                    label={
-                      <TranslatedText TranslationPath="UCP.EditProduct.TabFilter.LDescription" />
-                    }
-                    defaultValue="    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus.
-Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit.
-Vivamus finibus vel mauris ut vehicula.
-Nullam a magna porttitor, dictum risus nec, faucibus sapien.
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus."
-                  />
-                </div>
-              ),
-            },
-            {
-              label: (
-                <TranslatedText TranslationPath="UCP.EditProduct.TabFilter.Additonalinfo" />
-              ),
-              value: 'Additional Information',
-              icon: <i className="fa-solid fa-info mx-4"></i>,
-              desc: (
-                <div className="">
-                  <Typography variant="h6" className="font-bold m-4">
-                    <TranslatedText TranslationPath="UCP.EditProduct.TabFilter.Additonalinfo" />
-                  </Typography>
-                  <Textarea
-                    size="lg"
-                    label={
-                      <TranslatedText TranslationPath="UCP.EditProduct.TabFilter.Additonalinfo" />
-                    }
-                    defaultValue="    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus.
-Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit.
-Vivamus finibus vel mauris ut vehicula.
-Nullam a magna porttitor, dictum risus nec, faucibus sapien.
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus."
-                  />
-                </div>
-              ),
-            },
-            {
-              label: (
-                <TranslatedText TranslationPath="UCP.EditProduct.TabFilter.Shipping" />
-              ),
-              value: 'Shipping & returns',
-              icon: <i className="fa-solid fa-truck-fast mx-4"></i>,
-              desc: (
-                <div className="">
-                  <Typography variant="h6" className=" font-bold m-4">
-                    <TranslatedText TranslationPath="UCP.EditProduct.TabFilter.Shipping" />
-                  </Typography>
+      <AnimatedTab
+        data={(() => {
+          const TempTabs = Tabs.map((tab, index) => ({
+            label: tab.TabName,
+            value: tab.TabName,
+            icon: tab.TabLogo,
+            desc: (
+            <Textarea
+            key={index === 0 ? "Tab0" : index === 1 ? "Tab1" : "Tab2"}
+            ref={index === 0 ? LongDescRef : index === 1 ? InformationRef : ShippingRef}
+            size="lg"
+            label={
+              index === 0 ? TranslateString("UCP.EditProduct.TabFilter.LDescription") : index === 1 ? TranslateString("UCP.EditProduct.TabFilter.Additonalinfo") : TranslateString("UCP.EditProduct.TabFilter.Shipping")
+              
+            }
+            defaultValue={index === 0 ? "Best Product Description" : index === 1 ? "Best Product Additional Information" : "Best Product Shipping policies"}
+            />
+            ),
+          }));
+          
+          return TempTabs;
+        })()
 
-                  <Textarea
-                    size="lg"
-                    label={
-                      <TranslatedText TranslationPath="UCP.EditProduct.TabFilter.Shipping" />
-                    }
-                    defaultValue="    We deliver to over 100 countries around the world. For full details of the delivery options we offer, please view our Delivery information
-We hope you’ll love every purchase, but if you ever need to return an item you can do so within a month of receipt. For full details of how to make a return, please view our"
-                  />
-                </div>
-              ),
-            },
-          ]}
-          DefaultSelectValue={'Long Description'}
-        />
+
+        }
+        DefaultSelectValue={'Description'}
+      />
       </div>
 
       <div className=" flex justify-center">

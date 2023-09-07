@@ -22,8 +22,8 @@ import {
 } from '@material-tailwind/react';
 import { ChevronDownIcon, RocketLaunchIcon } from '@heroicons/react/24/outline';
 import React from 'react';
-import TranslatedText from '../../utils/Translation';
-import CustomTab from '../../components/Tab';
+import TranslatedText,{TranslateString} from '../../utils/Translation';
+import AnimatedTab from '../../components/Tab';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import Gallery from '../../components/Gallery';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
@@ -40,7 +40,33 @@ export default function Product() {
     { SubCategory: 'Power, 7cv', id: 2 },
     { SubCategory: 'Power, 10cv', id: 2 },
   ];
+  const Tabs=[
+    {
+      TabID:1,
+      TabName:TranslateString("Product.Description"),
+      TabLogo:<i className="fa-solid fa-circle-info mx-2"></i>,
+    },
+    {
+      TabID:2,
+      TabName:TranslateString("Product.AddInfo"),
+      TabLogo:<i className="fa-solid fa-info mx-2"></i>,
+    },
+    {
+      TabID:3,
+      TabName:TranslateString("Product.Shipping"),
+      TabLogo:<i className="fa-solid fa-truck-fast mx-2"></i>,
+    }
+  ]
   const MultiSelect_SelectData = React.useRef([]);
+  const LongDescRef=React.useRef()
+  const InformationRef=React.useRef()
+  const ShippingRef=React.useRef()
+  const [SelectedCategory,SetSelectedCategory]=React.useState("")
+  const Categories=[
+    {categoryID:1,CategoryName:"Compressors",CategoryValue:"Comp"},
+    {categoryID:2,CategoryName:"Tubes",CategoryValue:"Tub"},
+    {categoryID:3,CategoryName:"Secheurs",CategoryValue:"Secheur"}
+  ]
   const HandleAddProduct = () => {
     try {
       const promise = new Promise((resolve, reject) => {
@@ -103,16 +129,25 @@ export default function Product() {
             icon={<i className="fa-solid fa-info"></i>}
           />
 
-          <Select
-            label={
-              <TranslatedText TranslationPath="UCP.AddProduct.TabInputs.PCategory" />
-            }
-          >
-            <Option value={1}>Max Dryer</Option>
-            <Option value={2}>Tube</Option>
-            <Option value={3}>Another Option</Option>
-            <Option value={4}>Compressor</Option>
-          </Select>
+
+<Select
+          label={
+            <TranslatedText TranslationPath="UCP.AddProduct.TabInputs.PCategory" />
+          }
+          value={SelectedCategory}
+          onChange={(e)=>SetSelectedCategory(e)}
+        >
+          {
+            Categories.map((Category)=>{
+              return(
+                <Option key={Category.categoryID} value={Category.CategoryValue}>{Category.CategoryName}</Option>
+              )
+
+            })
+          }
+        </Select>
+
+
 
           <div className=" w-full">
             <MultiSelect
@@ -174,9 +209,7 @@ export default function Product() {
               },
             }}
             size="lg"
-            label={
-              <TranslatedText TranslationPath="UCP.AddProduct.TabInputs.SDescription" />
-            }
+            label={TranslateString("UCP.AddProduct.TabInputs.SDescription")}
             defaultValue=""
           />
 
@@ -184,78 +217,36 @@ export default function Product() {
         </div>
       </div>
       <div className="w-full">
-        <CustomTab
-          data={[
-            {
-              label: (
-                <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.LDescription" />
-              ),
-              value: 'Long Description',
-              icon: <i className="fa-solid fa-circle-info mx-4"></i>,
-              desc: (
-                <div className="">
-                  <Typography variant="h6" className="font-bold m-4">
-                    {
-                      <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.LDescription" />
-                    }
-                  </Typography>
 
-                  <Textarea
-                    size="lg"
-                    label={
-                      <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.LDescription" />
-                    }
-                    defaultValue=""
-                  />
-                </div>
-              ),
-            },
-            {
-              label: (
-                <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.Additonalinfo" />
-              ),
-              value: 'Additional Information',
-              icon: <i className="fa-solid fa-info mx-4"></i>,
-              desc: (
-                <div className="">
-                  <Typography variant="h6" className="font-bold m-4">
-                    <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.Additonalinfo" />
-                  </Typography>
-                  <Textarea
-                    size="lg"
-                    label={
-                      <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.Additonalinfo" />
-                    }
-                    defaultValue=""
-                  />
-                </div>
-              ),
-            },
-            {
-              label: (
-                <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.Shipping" />
-              ),
-              value: 'Shipping & returns',
-              icon: <i className="fa-solid fa-truck-fast mx-4"></i>,
-              desc: (
-                <div className="">
-                  <Typography variant="h5" className=" font-bold m-4">
-                    <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.Shipping" />
-                  </Typography>
 
-                  <Textarea
-                    size="lg"
-                    label={
-                      <TranslatedText TranslationPath="UCP.AddProduct.TabFilter.Shipping" />
-                    }
-                    defaultValue=""
-                  />
-                </div>
-              ),
-            },
-          ]}
-          DefaultSelectValue={'Long Description'}
-        />
+      <AnimatedTab
+        data={(() => {
+          const TempTabs = Tabs.map((tab, index) => ({
+            label: tab.TabName,
+            value: tab.TabName,
+            icon: tab.TabLogo,
+            desc: (
+            <Textarea
+            key={index === 0 ? "Tab0" : index === 1 ? "Tab1" : "Tab2"}
+            ref={index === 0 ? LongDescRef : index === 1 ? InformationRef : ShippingRef}
+            size="lg"
+            label={
+              index === 0 ? TranslateString("UCP.AddProduct.TabFilter.LDescription") : index === 1 ? TranslateString("UCP.AddProduct.TabFilter.Additonalinfo"): TranslateString("UCP.AddProduct.TabFilter.Shipping")
+              
+            }
+            defaultValue=""
+            />
+            ),
+          }));
+          
+          return TempTabs;
+        })()
+
+
+        }
+        DefaultSelectValue={'Description'}
+      />
+
       </div>
 
       <div className=" flex justify-center">

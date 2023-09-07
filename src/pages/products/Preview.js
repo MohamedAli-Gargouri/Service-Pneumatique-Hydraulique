@@ -53,17 +53,17 @@ export default function Products() {
     {
       TabID:1,
       TabName:TranslateString("Product.Description"),
-      TabLogo:<i className="fa-solid fa-circle-info"></i>,
+      TabLogo:<i className="fa-solid fa-circle-info mx-2"></i>,
     },
     {
       TabID:2,
       TabName:TranslateString("Product.AddInfo"),
-      TabLogo:<i className="fa-solid fa-info"></i>,
+      TabLogo:<i className="fa-solid fa-info mx-2"></i>,
     },
     {
       TabID:3,
       TabName:TranslateString("Product.Shipping"),
-      TabLogo:<i className="fa-solid fa-truck-fast"></i>,
+      TabLogo:<i className="fa-solid fa-truck-fast mx-2"></i>,
     }
   ]
   const LightModeState = useSelector((state) => state.lightMode);

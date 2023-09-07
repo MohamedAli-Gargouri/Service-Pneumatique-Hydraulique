@@ -100,7 +100,7 @@ const TABLE_ROWS = [
   },
 ];
 
-export default function Products() {
+export default function Accounts_Table() {
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
   const [OpenConfirmAdminDialog, SetOpenConfirmAdminDialog] =
     React.useState(false);
@@ -485,6 +485,7 @@ export default function Products() {
         />
       </CardFooter>
       <ConfirmDialog
+        color="red"
         Open={OpenDeleteDialog}
         Action={HandleDeleteUser}
         HandleOpen={() => {
@@ -499,6 +500,7 @@ export default function Products() {
         }
       />
       <ConfirmDialog
+        color="red"
         Open={OpenConfirmAdminDialog}
         Action={HandleSetAdmin}
         HandleOpen={() => {
@@ -513,6 +515,7 @@ export default function Products() {
         }
       />
       <ConfirmDialog
+        color="red"
         Open={OpenConfirmEmployeeDialog}
         Action={HandleSetEmployee}
         HandleOpen={() => {
@@ -527,6 +530,7 @@ export default function Products() {
         }
       />
       <ConfirmDialog
+        color="red"
         Open={OpenConfirmRemovePermissionDialog}
         Action={HandleSetNormalUser}
         HandleOpen={() => {

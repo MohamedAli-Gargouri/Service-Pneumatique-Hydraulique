@@ -27,6 +27,7 @@ export default function DeleteConfirm(props) {
         }}
       >
         <DialogHeader>
+        <div className='m-1 flex justify-center items-center gap-2 font-black' dangerouslySetInnerHTML={{ __html: props.Icon }}></div>{' '}
           <Typography
             variant="paragraph"
             color={
@@ -38,7 +39,6 @@ export default function DeleteConfirm(props) {
             }
             className={`m-1 flex justify-center items-center gap-2 font-black  `}
           >
-            <div dangerouslySetInnerHTML={{ __html: props.Icon }}></div>{' '}
             {props.Title}
           </Typography>
         </DialogHeader>

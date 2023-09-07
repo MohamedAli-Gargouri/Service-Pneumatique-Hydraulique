@@ -29,8 +29,8 @@ import SideBar from '../../components/SideBar';
 import React from 'react';
 import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.jpg';
-import Product from '../../components/Product';
-export default function User_Control_Panel() {
+import Product from '../../components/Product/Edit';
+export default function UCP_EditProduct() {
   const LightModeState = useSelector((state) => state.lightMode);
   return (
     <>

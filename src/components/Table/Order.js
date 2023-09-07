@@ -103,7 +103,7 @@ const TABLE_ROWS = [
   },
 ];
 
-export default function OrderTable() {
+export default function Order_Table() {
   const LightModeState = useSelector((state) => state.lightMode);
   const [AllData, SetAllData] = React.useState(TABLE_ROWS);
   const [VisibleData, SetVisibleData] = React.useState([]);

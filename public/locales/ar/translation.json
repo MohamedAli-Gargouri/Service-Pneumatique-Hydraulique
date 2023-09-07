@@ -180,7 +180,9 @@
     "CategoryTable": {
       "TabFilter": {
         "Manage": "إدارة الفئات",
-        "Add": "إضافة فئة"
+        "Add": "إضافة فئة",
+        "CategoryTypeValue1": "الفئة الرئيسية",
+        "CategoryTypeValue2": "تصنيف فرعي"
       },
       "TabHeader": {
         "CategoryID": "معرف الفئة",
@@ -189,10 +191,20 @@
       },
       "TabActions": {
         "Add": "إضافة فئة",
-        "Back": "خلف"
+        "Back": "خلف",
+        "Add2": "إضافة فئة فرعية"
       },
       "TabInputs": {
-        "CategoryName": "اسم التصنيف"
+        "CategoryName": "اسم التصنيف",
+        "Name":"اسم",
+        "SubCategoryName": "اسم الفئة الفرعية",
+        "SubCategoryValue": "قيمة الفئة الفرعية"
+      },
+      "TabLabels":
+      {
+      "AddMain":"إضافة فئة رئيسية",
+      "AddSub":"إضافة فئة فرعية"
+
       }
     },
     "InboxTable": {
@@ -522,7 +534,11 @@
         "AddProduct_Success": "تمت إضافة المنتج بنجاح.",
         "AddProduct_Error": "فشلت إضافة المنتج",
 
-        "ProductThreeImagesLimit_Error": "لا يمكنك إضافة أكثر من ثلاث صور لكل منتج."
+        "ProductThreeImagesLimit_Error": "لا يمكنك إضافة أكثر من ثلاث صور لكل منتج.",
+        "DeleteProductImg_Confirm": "هل أنت متأكد أنك تريد حذف صورة المنتج هذه؟",
+        "DeleteProductImg_Success": "تم حذف صورة المنتج بنجاح.",
+        "DeleteProductImg_Error": "فشل حذف صورة المنتج"
+        
       },
       "Category": {
         "Category_Title": "إدارة الفئات",
@@ -554,7 +570,9 @@
         "DownloadInvoice_Error": "فشل تنزيل الفاتورة/التقدير.",
 
         "AddProductInvoice_Success": "تتم إضافة المنتجات المحددة إلى فاتورتك/تقديرك",
-        "AddProductInvoice_Error": "خطأ، لم تتم إضافة المنتجات المحددة إلى فاتورتك / تقديرك"
+        "AddProductInvoice_Error": "خطأ، لم تتم إضافة المنتجات المحددة إلى فاتورتك / تقديرك",
+        "DeleteProduct_Confirm": "هل أنت متأكد أنك تريد حذف هذا المنتج من الفاتورة / التقدير؟",
+        "DeleteProduct_Success": "تم حذف المنتج من الفاتورة/التقدير"
       },
       "Profile": {
         "SaveProfile_Success": "تم حفظ معلومات ملفك الشخصي الجديد بنجاح.",

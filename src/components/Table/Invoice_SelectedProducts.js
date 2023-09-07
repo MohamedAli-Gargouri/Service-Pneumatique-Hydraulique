@@ -65,18 +65,17 @@ const TABLE_HEAD = [
   { label: '', value: '' },
 ];
 
-export default function Invoice_SelectedProducts({
+export default function Invoice_SelectedProducts_Table({
   ProductsData,
   SetProductsData,
 }) {
-  const [OpenInvoiceAddProduct, SetOpenInvoiceAddProduct] =
-    React.useState(false);
+  const [OpenInvoiceAddProduct, SetOpenInvoiceAddProduct] = React.useState(false);
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
   const LightModeState = useSelector((state) => state.lightMode);
   const [VisibleData, SetVisibleData] = React.useState([]);
   const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
   const [currentPage, setCurrentPage] = React.useState(1); // 'asc' or 'desc'
-
+  
   const SelectedRow = React.useRef(null);
 
   const HandleDeleteRow = (id) => {
@@ -249,9 +248,10 @@ export default function Invoice_SelectedProducts({
         HandleOpen={() => {
           SetOpenDeleteDialog(!OpenDeleteDialog);
         }}
+        color="red"
         Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
-        Title={'Delete Product'}
-        Content="Are you sure you want to delete this product?"
+        Title={<TranslatedText TranslationPath="UCP.InvoiceProductList.TabHeader.Product" />}
+        Content={<TranslatedText TranslationPath="UCP.DialogMessages.Invoice.DeleteProduct_Confirm" />}
       />
       <InvoiceProductDialog
         SetAllData={SetProductsData}

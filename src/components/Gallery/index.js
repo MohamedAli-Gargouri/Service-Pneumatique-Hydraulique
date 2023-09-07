@@ -19,7 +19,7 @@ import {
 } from '@material-tailwind/react';
 import ConfirmDialog from '../Dialog/Confirm';
 import PlaceHolderImg from '../../assets/images/Placeholderimg.png';
-import TranslatedText from '../../utils/Translation';
+import TranslatedText, { TranslateString } from '../../utils/Translation';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
@@ -74,12 +74,40 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
   };
 
   const handleDelete = (e) => {
-    SetProductImages(
-      ProductImages.length == 1
-        ? [PlaceHolderImg]
-        : ProductImages.filter((a, index) => index != SelectedImgIndex),
-    );
-    SetSelectedImgIndex(0);
+
+    try {
+      const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('API Fetch is done!');
+
+          SetProductImages(
+            ProductImages.length == 1
+              ? [PlaceHolderImg]
+              : ProductImages.filter((a, index) => index != SelectedImgIndex),
+          );
+          SetSelectedImgIndex(0);
+        }, 3000);
+      });
+
+      CreateToast(
+        promise,
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProductImg_Confirm" />
+        ),
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProductImg_Success" />
+        ),
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
+        ),
+        ReactDOMServer.renderToStaticMarkup(
+          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProductImg_Error" />
+        ),
+        'promise',
+        LightModeState == LightMode().type,
+      );
+    } catch (e) {}
+
   };
   return (
     <React.Fragment>
@@ -163,6 +191,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
         </div>
 
         <ConfirmDialog
+          color="red"
           Open={OpenDeleteDialog}
           Action={() => {
             handleDelete();
@@ -172,7 +201,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
           }}
           Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
           Title={'Delete Product Image'}
-          Content="Are you sure you want to delete this product's image ?"
+          Content={TranslateString("UCP.DialogMessages.Products.DeleteProductImg_Confirm")}
         />
       </div>
     </React.Fragment>

@@ -14,7 +14,7 @@ import Loading from './pages/loading';
 import UCP_Profile from './pages/UCP/Profile';
 import UCP_Orders from './pages/UCP/Orders';
 import UCP_Order from './pages/UCP/Order';
-import UCP_Product from './pages/UCP/Product';
+import UCP_EditProduct from './pages/UCP/EditProduct';
 import UCP_Products from './pages/UCP/Products';
 import UCP_AddProduct from './pages/UCP/AddProduct';
 import UCP_MyOrders from './pages/UCP/MyOrders';
@@ -58,7 +58,7 @@ export default function App() {
         <Route path="/UCP/Orders" element={<UCP_Orders />} />
         <Route path="/UCP/MyOrders" element={<UCP_MyOrders />} />
         <Route path="/UCP/Order" element={<UCP_Order />} />
-        <Route path="/UCP/Product" element={<UCP_Product />} />
+        <Route path="/UCP/Product" element={<UCP_EditProduct />} />
         <Route path="/UCP/Products" element={<UCP_Products />} />
         <Route path="/UCP/AddProduct" element={<UCP_AddProduct />} />
         <Route path="/UCP/Accounts" element={<UCP_Accounts />} />

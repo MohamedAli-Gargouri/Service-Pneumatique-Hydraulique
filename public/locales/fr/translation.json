@@ -183,14 +183,26 @@
       "TabHeader": {
         "CategoryID": "Identifiant de catégorie",
         "CategoryName": "Nom de catégorie",
-        "CategoryType": "Type de catégorie"
+        "CategoryType": "Type de catégorie",
+        "CategoryTypeValue1": "catégorie principale",
+        "CategoryTypeValue2": "Sous-catégorie"
       },
       "TabActions": {
         "Add": "Ajouter une catégorie",
+        "Add2": "Ajouter une sous-catégorie",
         "Back": "arrière"
       },
       "TabInputs": {
-        "CategoryName": "Nom de catégorie"
+        "CategoryName": "Nom de catégorie",
+        "Name":"Nom",
+        "SubCategoryName": "Nom de la sous-catégorie",
+        "SubCategoryValue": "Valeur de la sous-catégorie"
+      },
+      "TabLabels":
+      {
+      "AddMain":"Ajouter une catégorie principale",
+      "AddSub":"Ajouter une sous-catégorie"
+
       }
     },
     "InboxTable": {
@@ -520,7 +532,10 @@
 
         "AddProduct_Success": "Produit ajouté avec succès.",
         "AddProduct_Error": "Échec de l'ajout du produit",
-        "ProductThreeImagesLimit_Error": "Vous ne pouvez pas ajouter plus de trois images par produit."
+        "ProductThreeImagesLimit_Error": "Vous ne pouvez pas ajouter plus de trois images par produit.",
+        "DeleteProductImg_Confirm": "Êtes-vous sûr de vouloir supprimer cette image de produit ?",
+        "DeleteProductImg_Success": "Image du produit supprimée avec succès.",
+        "DeleteProductImg_Error": "Échec de la suppression de l'image du produit"
       },
       "Category": {
         "Category_Title": "Gérer les catégories",
@@ -552,7 +567,9 @@
         "DownloadInvoice_Error": "La facture/devis n'a pas pu être téléchargée.",
 
         "AddProductInvoice_Success": "Les produits sélectionnés sont ajoutés à votre Facture / Devis",
-        "AddProductInvoice_Error": "Erreur, Les produits sélectionnés ne sont pas ajoutés à votre Facture / Devis"
+        "AddProductInvoice_Error": "Erreur, Les produits sélectionnés ne sont pas ajoutés à votre Facture / Devis",
+        "DeleteProduct_Confirm": "Êtes-vous sûr de vouloir supprimer ce produit de la facture/devis ?",
+        "DeleteProduct_Success": "Produit supprimé de la facture/devis"
       },
       "Profile": {
         "SaveProfile_Success": "Vos nouvelles informations de profil sont enregistrées avec succès.",

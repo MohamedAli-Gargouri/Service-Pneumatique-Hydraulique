@@ -138,7 +138,7 @@ const TABLE_ROWS = [
   },
 ];
 
-export default function OrdersTable() {
+export default function Orders_Table() {
   const LightModeState = useSelector((state) => state.lightMode);
   const [OpenConfirmDialog_Cancel, SetOpenConfirmDialog_Cancel] =
     React.useState(false);
@@ -587,6 +587,7 @@ export default function OrdersTable() {
         />
       </CardFooter>
       <ConfirmDialog
+        color="red"
         Open={OpenConfirmDialog_Cancel}
         Action={HandleOrdercancel}
         HandleOpen={() => {

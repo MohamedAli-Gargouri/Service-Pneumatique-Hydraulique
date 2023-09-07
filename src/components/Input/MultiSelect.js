@@ -17,14 +17,12 @@ import './MultiSelect.css';
 export default function MultiSelect({ Data, DataLabelName, SelectData }) {
   const LightModeState = useSelector((state) => state.lightMode);
   const OnSubCategorySelect = (Selected) => {
-    console.log(SelectData.current);
+
     SelectData.current = Selected;
-    console.log(SelectData.current);
   };
   const OnSubCategoryRemove = (Selected) => {
-    console.log(SelectData.current);
     SelectData.current = Selected;
-    console.log(SelectData.current);
+
   };
 
   const setPlaceholderStyle = (placeholderColor) => {
@@ -82,7 +80,6 @@ export default function MultiSelect({ Data, DataLabelName, SelectData }) {
   );
 }
 MultiSelect.propTypes = {
-  InputLabel: PropTypes.string.isRequired,
   Data: PropTypes.array.isRequired,
   DataLabelName: PropTypes.string.isRequired,
   SelectData: PropTypes.any,

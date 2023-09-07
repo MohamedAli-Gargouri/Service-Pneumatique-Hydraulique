@@ -29,7 +29,7 @@ import React from 'react';
 import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.jpg';
 import AccountsTable from '../../components/Table/Accounts';
-export default function Accounts() {
+export default function UCP_Accounts() {
   const LightModeState = useSelector((state) => state.lightMode);
   return (
     <>

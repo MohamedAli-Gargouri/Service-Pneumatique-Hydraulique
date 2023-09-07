@@ -39,11 +39,11 @@ function Pagination({
     SetVisibleData(currentData);
   }, [currentPage]);
 
- /* React.useEffect(() => {
+  React.useEffect(() => {
     setCurrentPage(1);
     SetVisibleData(currentData);
     SettotalPages(Math.ceil(AllData.length / itemsPerPage));
-  }, [AllData]);*/
+  }, [AllData]);
 
   const handleNextChange = () => {
     if (totalPages >= currentPage + 1) {

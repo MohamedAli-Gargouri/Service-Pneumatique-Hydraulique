@@ -17,7 +17,7 @@ import {
   Textarea,
 } from '@material-tailwind/react';
 import debounce from 'lodash/debounce';
-import TranslatedText from '../../utils/Translation';
+import TranslatedText,{TranslateString} from '../../utils/Translation';
 import React from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
@@ -26,6 +26,12 @@ import ReactDOMServer from 'react-dom/server';
 export default function Product({ HandleOpen }) {
   const [inputValues, setInputValues] = React.useState(['', '']);
   const LightModeState = useSelector((state) => state.lightMode);
+  const [SelectedCategory,SetSelectedCategory]=React.useState("Comp")
+  const Categories=[
+    {categoryID:1,CategoryName:"Compressors",CategoryValue:"Comp"},
+    {categoryID:2,CategoryName:"Tubes",CategoryValue:"Tub"},
+    {categoryID:3,CategoryName:"Secheurs",CategoryValue:"Secheur"}
+  ]
   const HandleAddCategory = () => {
     try {
       const promise = new Promise((resolve, reject) => {
@@ -84,7 +90,7 @@ export default function Product({ HandleOpen }) {
       <div className="w-full flex flex-col justify-center items-center">
         <Typography variant="h6" className="text-center">
           <i className="fa-solid fa-arrow-up-wide-short h-5 w-5 mx-2"></i>
-          Create Main Category
+          <TranslatedText TranslationPath="UCP.CategoryTable.TabLabels.AddMain" />
         </Typography>
         <Input
           labelProps={{
@@ -101,26 +107,32 @@ export default function Product({ HandleOpen }) {
           onClick={HandleAddCategory}
         >
           <i className="fa-solid fa-plus "></i>
-          {
             <TranslatedText TranslationPath="UCP.CategoryTable.TabActions.Add" />
-          }
+          
         </Button>
       </div>
 
       <div className="w-full flex flex-col gap-4 justify-center items-center">
         <Typography variant="h6" className="text-center">
           <i className="fa-solid fa-arrow-down-wide-short h-5 w-5 mx-2"></i>
-          Create Sub Category
+          <TranslatedText TranslationPath="UCP.CategoryTable.TabLabels.AddSub" />
         </Typography>
 
         <Select
           label={
             <TranslatedText TranslationPath="UCP.AddProduct.TabInputs.PCategory" />
           }
+          value={SelectedCategory}
+          onChange={(e)=>SetSelectedCategory(e)}
         >
-          <Option value={1}>Compressor</Option>
-          <Option value={2}>Tube</Option>
-          <Option value={3}>Secher</Option>
+          {
+            Categories.map((Category)=>{
+              return(
+                <Option key={Category.categoryID} value={Category.CategoryValue}>{Category.CategoryName}</Option>
+              )
+
+            })
+          }
         </Select>
 
         <Input
@@ -130,14 +142,14 @@ export default function Product({ HandleOpen }) {
             },
           }}
           label={
-            <TranslatedText TranslationPath="UCP.CategoryTable.TabInputs.CategoryName" />
+            <TranslatedText TranslationPath="UCP.CategoryTable.TabInputs.SubCategoryName" />
           }
         />
 
         <div className="w-full flex flex-col justify-center items-center gap-2">
           {inputValues.map((value, index) => {
             return (
-              <div className="w-full flex justify-center items-center gap-2">
+              <div key={"SubCategoryInput"+index} className="w-full flex justify-center items-center gap-2">
                 <Input
                   onChange={(e) => handleInputChange(index, e)}
                   labelProps={{
@@ -146,7 +158,7 @@ export default function Product({ HandleOpen }) {
                         LightModeState == LightMode().type ? 'black' : 'white',
                     },
                   }}
-                  label={'Sub Category Value ' + parseInt(index + 1, 10)}
+                  label={TranslateString("UCP.CategoryTable.TabInputs.SubCategoryValue") +" "+ parseInt(index + 1, 10)}
                 />
                 {index == inputValues.length - 1 && (
                   <>
@@ -176,9 +188,8 @@ export default function Product({ HandleOpen }) {
           onClick={HandleAddCategory}
         >
           <i className="fa-solid fa-plus"></i>
-          {
-            <TranslatedText TranslationPath="UCP.CategoryTable.TabActions.Add" />
-          }
+            <TranslatedText TranslationPath="UCP.CategoryTable.TabActions.Add2" />
+          
         </Button>
       </div>
     </div>

@@ -28,7 +28,7 @@ import TranslatedText from '../../utils/Translation';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
 
-export default function User_Control_Panel() {
+export default function UCP_Profile() {
   const LightModeState = useSelector((state) => state.lightMode);
   const [imageSrc, setImageSrc] = React.useState('');
 

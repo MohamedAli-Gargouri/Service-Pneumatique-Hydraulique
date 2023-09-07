@@ -186,14 +186,26 @@
       "TabHeader": {
         "CategoryID": "Category ID",
         "CategoryName": "Category Name",
-        "CategoryType": "Category Type"
+        "CategoryType": "Category Type",
+        "CategoryTypeValue1": "Main Category",
+        "CategoryTypeValue2": "Sub Category"
       },
       "TabActions": {
         "Add": "Add Category",
+        "Add2": "Add Sub-Category",
         "Back": "Back"
       },
       "TabInputs": {
-        "CategoryName": "Category Name"
+        "Name":"Name",
+        "CategoryName": "Category Name",
+        "SubCategoryName": "Sub-Category Name",
+        "SubCategoryValue": "Sub-Category Value"
+      },
+      "TabLabels":
+      {
+      "AddMain":"Add Main Category",
+      "AddSub":"Add Sub-Category"
+
       }
     },
     "InboxTable": {
@@ -484,7 +496,7 @@
         "DeleteOrder_Error": "Your Order's deletion failed."
       },
       "Orders": {
-        "CancelOrder_Title": "cancel Order",
+        "CancelOrder_Title": "Cancel Order",
         "PauseOrder_Title": "Pause Order",
         "ResumeOrder_Title": "Resume Order",
         "SetOrderReady_Title": "Mark Order Ready",
@@ -522,6 +534,10 @@
         "AddProduct_Success": "Product added successfully.",
         "AddProduct_Error": "Product add failed",
 
+        "DeleteProductImg_Confirm": "Are you sure you want to delete this product image?",
+        "DeleteProductImg_Success": "Product Image deleted successfully.",
+        "DeleteProductImg_Error": "Product Image deletion failed",
+
         "ProductThreeImagesLimit_Error": "You cannot add more than three images per product."
       },
       "Category": {
@@ -555,7 +571,9 @@
         "DownloadInvoice_Error": "Invoice / Estimation failed to be downloaded.",
 
         "AddProductInvoice_Success": "The selected products are added to your Invoice / Estimate",
-        "AddProductInvoice_Error": "Error, The selected products are not added to your Invoice / Estimate"
+        "AddProductInvoice_Error": "Error, The selected products are not added to your Invoice / Estimate",
+        "DeleteProduct_Confirm": "Are you sure you want to delete this product from the Invoice / Estimate?",
+        "DeleteProduct_Success": "Product Deleted from the Invoice / Estimate"
       },
       "Profile": {
         "SaveProfile_Success": "Your new profile information are saved successfully.",

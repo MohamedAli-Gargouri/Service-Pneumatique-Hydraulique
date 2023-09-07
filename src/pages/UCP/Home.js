@@ -29,7 +29,7 @@ import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
 import SPHVideosrc from '../../assets/videos/SPH.mp4';
 import Carousel from '../../components/Carousel';
-export default function User_Control_Panel() {
+export default function UCP_Home() {
   const LightModeState = useSelector((state) => state.lightMode);
 
   const [Info, SetInfo] = React.useState([
@@ -97,7 +97,7 @@ export default function User_Control_Panel() {
               <div className="p-2 w-full gap-2 justify-center items-start  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {Info.map((Insight, index) => {
                   return (
-                    <Card className=" bg-inherit text-inherit mt-2 p-2 border-l-red-400  border-4 flex flex-col md:flex-row flex-wrap hover:scale-95 justify-evenly gap-2 items-center col-span-1">
+                    <Card key={"Insight"+index} className=" bg-inherit text-inherit mt-2 p-2 border-l-red-400  border-4 flex flex-col md:flex-row flex-wrap hover:scale-95 justify-evenly gap-2 items-center col-span-1">
                       <div className=" p-2 md:p-4 rounded-full bg-red-600 text-white self-center md:self-start ">
                         {Insight.logo}
                       </div>
@@ -115,7 +115,6 @@ export default function User_Control_Panel() {
                 <div className=" rounded-md aspect-video  w-full h-full mt-0 col-span-2">
                   <video
                     className=" rounded-md"
-                    pl
                     width={'100%'}
                     height={'100%'}
                     controls

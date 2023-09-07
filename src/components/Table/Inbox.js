@@ -90,15 +90,15 @@ const TABLE_HEAD_OrderNotification = [
 
 const TABLE_ROWS_OrderNotifications = [
   {
-    Notification_ID: '156154',
-    OrderID: '2',
+    Notification_ID: 10,
+    OrderID: 2,
     NotificationType: 'Normal',
     Notification_Message:
       "Your order is now set to Pending, this usually mean it's gonna take sometime to prepare your order, be patient..",
   },
   {
-    Notification_ID: '1687',
-    OrderID: '2',
+    Notification_ID: 11,
+    OrderID: 3,
     NotificationType: 'Good',
     Notification_Message: 'Your order is now ready !',
   },
@@ -106,7 +106,7 @@ const TABLE_ROWS_OrderNotifications = [
 
 const TABLE_ROWS_ContactNofiications = [
   {
-    Notification_ID: '1',
+    Notification_ID: 1,
     Email: 'Hassen@gmail.com',
     F_Name: 'Hassen',
     L_Name: 'Jeribi',
@@ -116,7 +116,7 @@ const TABLE_ROWS_ContactNofiications = [
   },
 
   {
-    Notification_ID: '156',
+    Notification_ID: 2,
     Email: 'Hassen@gmail.com',
     F_Name: 'Hassen',
     L_Name: 'Jeribi',
@@ -126,17 +126,14 @@ const TABLE_ROWS_ContactNofiications = [
   },
 ];
 
-export default function Products() {
+export default function Inbox_Table() {
   const [OpenCategoryDialog, SetOpenCategoryDialog] = React.useState(false);
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
   const LightModeState = useSelector((state) => state.lightMode);
   const [SelectedTab, SetSelectedTab] = React.useState('Orders');
 
-  const [AllData, SetAllData] = React.useState(
-    SelectedTab == 'Orders'
-      ? TABLE_ROWS_OrderNotifications
-      : TABLE_ROWS_ContactNofiications,
-  );
+  const [AllOrders, SetAllOrders] = React.useState(TABLE_ROWS_OrderNotifications);
+  const [AllContacts, SetAllContacts] = React.useState(TABLE_ROWS_ContactNofiications);
   const [VisibleData, SetVisibleData] = React.useState([]);
   const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
   const [currentPage, setCurrentPage] = React.useState(1); // 'asc' or 'desc'
@@ -149,7 +146,6 @@ export default function Products() {
       value: 'Orders',
       Tab_fn: () => {
         SetSelectedTab('Orders');
-        SetAllData(TABLE_ROWS_OrderNotifications);
       },
     },
     {
@@ -159,7 +155,6 @@ export default function Products() {
       value: 'Contacts',
       Tab_fn: () => {
         SetSelectedTab('Contacts');
-        SetAllData(TABLE_ROWS_ContactNofiications);
       },
     },
   ];
@@ -262,9 +257,9 @@ export default function Products() {
               label={<TranslatedText TranslationPath="Global.Actions.Search" />}
               onChange={(e) => {
                 SearchRow(
-                  TABLE_ROWS_OrderNotifications,
-                  AllData,
-                  SetAllData,
+                  SelectedTab=="Orders"?TABLE_ROWS_OrderNotifications:TABLE_ROWS_ContactNofiications,
+                  SelectedTab=="Orders"?AllOrders:AllContacts,
+                  SelectedTab=="Orders"?SetAllOrders:SetAllContacts,
                   e,
                 );
               }}
@@ -285,6 +280,7 @@ export default function Products() {
               {SelectedTab == 'Orders'
                 ? TABLE_HEAD_OrderNotification.map((head, index) => (
                     <th
+                      key={"Orders_TableHead"+index}
                       onClick={() => {
                         if (index !== TABLE_HEAD_OrderNotification.length - 1)
                           SortData(
@@ -296,7 +292,6 @@ export default function Products() {
                             'Inbox_Order',
                           );
                       }}
-                      key={head.value}
                       className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                     >
                       <Typography
@@ -329,7 +324,7 @@ export default function Products() {
                             'Inbox_Contact',
                           );
                       }}
-                      key={head.value}
+                      key={"Contacts_TableHead"+index}
                       className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                     >
                       <Typography
@@ -351,14 +346,10 @@ export default function Products() {
           </thead>
           <tbody>
             {SelectedTab == 'Orders'
-              ? VisibleData.map(
+              ? AllOrders.map(
                   (
-                    {
-                      Notification_ID,
-                      NotificationType,
-                      OrderID,
-                      Notification_Message,
-                    },
+                    Order,
+
                     index,
                   ) => {
                     const isLast =
@@ -368,41 +359,35 @@ export default function Products() {
                       : 'p-4 border-b border-blue-gray-50';
 
                     return (
-                      <tr key={Notification_ID}>
+                      <tr key={"Order"+Order.Notification_ID}>
                         <td className={classes}>
-                          <div className="flex flex-col">
                             <Typography variant="small" className="font-normal">
-                              #{Notification_ID}
+                              #{Order.Notification_ID}
                             </Typography>
-                          </div>
                         </td>
 
                         <td className={classes}>
-                          <div className="flex flex-col">
                             <Typography variant="small" className="font-normal">
-                              #{OrderID}
+                              #{Order.OrderID}
                             </Typography>
-                          </div>
                         </td>
                         <td className={classes}>
-                          <div className="w-max">
                             <Chip
                               size="sm"
                               variant="filled"
-                              value={Notification_Message}
+                              value={Order.Notification_Message}
                               color={
-                                NotificationType === 'Good'
+                                Order.NotificationType === 'Good'
                                   ? 'green'
-                                  : NotificationType === 'Normal'
+                                  : Order.NotificationType === 'Normal'
                                   ? 'amber'
                                   : 'red'
                               }
                             />
-                          </div>
+
                         </td>
 
                         <td className={classes}>
-                          <Tooltip content="Delete Notification">
                             <IconButton
                               variant="text"
                               onClick={() => {
@@ -411,23 +396,14 @@ export default function Products() {
                             >
                               <i className="fa-solid fa-trash"></i>
                             </IconButton>
-                          </Tooltip>
                         </td>
                       </tr>
                     );
                   },
                 )
-              : VisibleData.map(
+              : AllContacts.map(
                   (
-                    {
-                      Notification_ID,
-                      NotificationType,
-                      Email,
-                      F_Name,
-                      L_Name,
-                      PhoneNumber,
-                      Notification_Message,
-                    },
+                    Contact,
                     index,
                   ) => {
                     const isLast =
@@ -437,62 +413,57 @@ export default function Products() {
                       : 'p-4 border-b border-blue-gray-50';
 
                     return (
-                      <tr key={Notification_ID}>
+                      <tr key={"Contacts"+Contact.Notification_ID}>
                         <td className={classes}>
-                          <div className="flex flex-col">
                             <Typography variant="small" className="font-normal">
-                              #{Notification_ID}
+                              #{Contact.Notification_ID}
                             </Typography>
-                          </div>
                         </td>
 
                         <td className={classes}>
-                          <div className="flex flex-col">
+
                             <Typography variant="small" className="font-normal">
-                              {Email}
+                              {Contact.Email}
                             </Typography>
-                          </div>
+
                         </td>
                         <td className={classes}>
-                          <div className="flex flex-col">
+
                             <Typography variant="small" className="font-normal">
-                              {F_Name}
+                              {Contact.F_Name}
                             </Typography>
-                          </div>
+
                         </td>
                         <td className={classes}>
-                          <div className="flex flex-col">
                             <Typography variant="small" className="font-normal">
-                              {L_Name}
+                              {Contact.L_Name}
                             </Typography>
-                          </div>
                         </td>
                         <td className={classes}>
-                          <div className="flex flex-col">
+
                             <Typography variant="small" className="font-normal">
-                              {PhoneNumber}
+                              {Contact.PhoneNumber}
                             </Typography>
-                          </div>
+
                         </td>
                         <td className={classes}>
-                          <div className="w-max">
+
                             <Chip
                               size="sm"
                               variant="filled"
-                              value={Notification_Message}
+                              value={Contact.Notification_Message}
                               color={
-                                NotificationType === 'Good'
+                                Contact.NotificationType === 'Good'
                                   ? 'green'
-                                  : NotificationType === 'Normal'
+                                  : Contact.NotificationType === 'Normal'
                                   ? 'amber'
                                   : 'red'
                               }
                             />
-                          </div>
+
                         </td>
 
                         <td className={classes}>
-                          <Tooltip content="Delete Notification">
                             <IconButton
                               variant="text"
                               onClick={() => {
@@ -501,7 +472,6 @@ export default function Products() {
                             >
                               <i className="fa-solid fa-trash"></i>
                             </IconButton>
-                          </Tooltip>
                         </td>
                       </tr>
                     );
@@ -512,7 +482,7 @@ export default function Products() {
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
         <Pagination
-          AllData={AllData}
+          AllData={SelectedTab=='Orders'?AllOrders:AllContacts}
           VisibleData={VisibleData}
           SetVisibleData={SetVisibleData}
           currentPage={currentPage}
@@ -521,6 +491,7 @@ export default function Products() {
       </CardFooter>
       {SelectedTab == 'Orders' ? (
         <ConfirmDeleteDialog
+          color="red"
           Open={OpenDeleteDialog}
           Action={HandleNotificationDelete}
           HandleOpen={() => {
@@ -536,6 +507,7 @@ export default function Products() {
         />
       ) : (
         <ConfirmDeleteDialog
+          color="red"
           Open={OpenDeleteDialog}
           Action={HandleMessageDelete}
           HandleOpen={() => {

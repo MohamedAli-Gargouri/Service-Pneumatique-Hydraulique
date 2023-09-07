@@ -29,7 +29,7 @@ import React from 'react';
 import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.jpg';
 import MyOrders from '../../components/Table/MyOrders';
-export default function User_Control_Panel() {
+export default function UCP_MyOrders() {
   const LightModeState = useSelector((state) => state.lightMode);
   return (
     <>

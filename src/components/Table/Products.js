@@ -208,7 +208,7 @@ const TABLE_ROWS = [
   },
 ];
 
-export default function Products() {
+export default function Products_Table() {
   const [OpenCategoryDialog, SetOpenCategoryDialog] = React.useState(false);
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
   const LightModeState = useSelector((state) => state.lightMode);
@@ -547,6 +547,7 @@ export default function Products() {
         />
       </CardFooter>
       <ConfirmDeleteDialog
+        color="red"
         Open={OpenDeleteDialog}
         Action={HandleProductDelete}
         HandleOpen={() => {
@@ -563,7 +564,6 @@ export default function Products() {
       <CategoryDialog
         Open={OpenCategoryDialog}
         Action={() => {
-          console.log('Opening the Catalog');
         }}
         HandleOpen={() => {
           SetOpenCategoryDialog(!OpenCategoryDialog);

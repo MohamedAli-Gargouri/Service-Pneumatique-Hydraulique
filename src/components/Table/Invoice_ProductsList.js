@@ -67,7 +67,7 @@ const TABLE_HEAD = [
   },
 ];
 
-export default function Invoice_ProductsList({
+export default function Invoice_ProductsList_Table({
   P_Selected,
   P_Quantities,
   P_Products,
@@ -201,8 +201,7 @@ export default function Invoice_ProductsList({
     },
   ];
 
-  const [OpenCategoryDialog, SetOpenCategoryDialog] = React.useState(false);
-  const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
+
   const LightModeState = useSelector((state) => state.lightMode);
 
   const [AllData, SetAllData] = React.useState(TABLE_ROWS);
@@ -395,30 +394,8 @@ export default function Invoice_ProductsList({
           setCurrentPage={setCurrentPage}
         />
       </CardFooter>
-      <ConfirmDeleteDialog
-        Open={OpenDeleteDialog}
-        Action={() => {
-          console.log('Deleting Product');
-        }}
-        HandleOpen={() => {
-          SetOpenDeleteDialog(!OpenDeleteDialog);
-        }}
-        Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
-        Title={'Delete Product'}
-        Content="Are you sure you want to delete this product?"
-      />
-      <CategoryDialog
-        Open={OpenCategoryDialog}
-        Action={() => {
-          console.log('Opening the Catalog');
-        }}
-        HandleOpen={() => {
-          SetOpenCategoryDialog(!OpenCategoryDialog);
-        }}
-        Icon={'<i className="fa-solid fa-gear"></i>'}
-        Title={'Category Management'}
-        Content=""
-      />
+
+
     </>
   );
 }

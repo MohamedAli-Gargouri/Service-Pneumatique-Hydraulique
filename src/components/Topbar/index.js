@@ -17,7 +17,7 @@ import { OPENCART } from '../../redux/actions/cartActions';
 import { Bars2Icon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import Notification from '../Notification';
 import LanguageSelect from '../NavBar/languageListSelect';
-export default function SidebarWithLogo(props) {
+export default function UCP_TopBar(props) {
   const [open, setOpen] = React.useState(false);
   const toggleOpen = () => setOpen(!open);
   const XLBreakPoint = 1140;
@@ -64,7 +64,7 @@ export default function SidebarWithLogo(props) {
         </div>
         <div className="col-span-1 flex flex-row gap-1  w-full justify-end items-center">
           <div className="Cart mx-1">
-            <Badge content="2" className="">
+            <Badge content="2" className="" placement="top-end">
               <IconButton
                 variant="text"
                 size="sm"

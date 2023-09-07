@@ -32,8 +32,6 @@ export default function InvoiceTemplate({
   TaxRate,
   ProductsData,
 }) {
-  console.log(H_FirstName);
-
   // Define styles for the PDF
   const styles = StyleSheet.create({
     page: {
@@ -140,7 +138,7 @@ export default function InvoiceTemplate({
         //======First page==========//
         if (currentPage == 1) {
           return (
-            <Page size="A4" style={styles.page}>
+            <Page key={"PAGE"+pageIndex} size="A4" style={styles.page}>
               <PDFHeader
                 InvoiceNumber={InvoiceNumber}
                 DocumentType={DocumentType}
@@ -180,7 +178,7 @@ export default function InvoiceTemplate({
         }
         if (currentPage == NbPages && NbPages != 1) {
           return (
-            <Page size="A4" style={styles.page}>
+            <Page key={"PAGE"+pageIndex} size="A4" style={styles.page}>
               <PDFHeader
                 InvoiceNumber={InvoiceNumber}
                 DocumentType={DocumentType}
@@ -218,7 +216,7 @@ export default function InvoiceTemplate({
         }
         if (currentPage != NbPages && NbPages != 1) {
           return (
-            <Page size="A4" style={styles.page}>
+            <Page key={"PAGE"+pageIndex} size="A4" style={styles.page}>
               <PDFHeader
                 InvoiceNumber={InvoiceNumber}
                 DocumentType={DocumentType}
