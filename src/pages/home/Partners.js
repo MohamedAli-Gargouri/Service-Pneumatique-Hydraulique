@@ -17,6 +17,7 @@ import CastelloLogo from '../../assets/images/partners/Castello.jpg';
 import MMLogo from '../../assets/images/partners/mm.jpg';
 import JorcLogo from '../../assets/images/partners/jorc.jpg';
 import websiteBackgroundimg from '../../assets/images/partners/WebsiteBackground.jpg';
+import useElementInViewport from '../../utils/hooks';
 const Partners = () => {
   const Partners = [
     {
@@ -90,43 +91,20 @@ const Partners = () => {
   const [PartnersCards, SetPartnersCards] = React.useState(
     Array(Partners.length).fill(true),
   );
-  const [hasExecuted, setHasExecuted] = React.useState(false);
+  const PartnersGridRef = React.useRef()
+  const HandleShowcase=()=>
+  {
+        SetPartnersCards(Array(Partners.length).fill(false));
+  
+  }
+  const IsElementInView=useElementInViewport(PartnersGridRef,0,HandleShowcase,true)
   const HandleCardFlip = (index) => {
     const Prevstate = [...PartnersCards];
     Prevstate[index] = !Prevstate[index];
     SetPartnersCards(Prevstate);
   };
-  const handleScroll = () => {
-    // Check if the action has already been executed
-    if (!hasExecuted) {
-      // Calculate the position of the item you're interested in
-      const itemElement = document.getElementById('PartnersGrid'); // Replace with your item's ID
 
-      if (itemElement) {
-        const rect = itemElement.getBoundingClientRect();
-        const windowHeight =
-          window.innerHeight || document.documentElement.clientHeight;
 
-        // Check if the item is within a certain range of the viewport
-        if (
-          rect.top <= windowHeight * 0.5 &&
-          rect.bottom >= windowHeight * 0.5
-        ) {
-          SetPartnersCards(Array(Partners.length).fill(false));
-          setHasExecuted(true); // Mark the action as executed
-        }
-      }
-    }
-  };
-
-  React.useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    // Clean up the event listener on unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
   return (
     <React.Fragment>
       <div
@@ -151,7 +129,7 @@ const Partners = () => {
       </Typography>
 
       <div
-        id="PartnersGrid"
+        ref={PartnersGridRef}
         className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 flex-wrap justify-center items-center p-2 md:p-10"
       >
         {Partners.map((Partner, index) => {

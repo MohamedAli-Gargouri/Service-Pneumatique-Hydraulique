@@ -16,7 +16,8 @@ import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import ReactDOMServer from 'react-dom/server';
 import { CreateToast } from '../../utils/Toast';
-export default function AccordionCustom() {
+import { enableScroll,disableScroll } from '../../utils/others/Scroll';
+export default function FilterMenu({IsMobile}) {
   const Menus=[
     {
     MenuID:1,
@@ -125,6 +126,21 @@ export default function AccordionCustom() {
 
   };
 
+  React.useEffect(()=>{
+    //Disabling Scroll for Mobile phones to avoid buggy screen.
+    const md=720
+    if(IsMobile)
+    {
+      disableScroll();
+    }
+     
+  return ()=>{
+    if(IsMobile)
+    {
+      enableScroll();
+    }}
+        
+  },[])
   return (
     <>
 

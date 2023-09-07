@@ -28,7 +28,8 @@ import ProductImage2 from "./../../assets/images/products/product_2.png"
 import ProductImage3 from "./../../assets/images/products/product_3.png"
 import Pagination from "../../utils/Table/Pagination"
 import TranslatedText from '../../utils/Translation';
-import PropTypes from 'prop-types';     
+import PropTypes from 'prop-types'; 
+import { debounce } from 'lodash';    
   Select.propTypes=
   {
     label:PropTypes.any
@@ -117,6 +118,25 @@ const AllData=[
   ]
 
 export default function Products() {
+
+  React.useEffect(()=>{
+
+    const handleScroll = debounce(() => {
+      if(window.innerWidth < smBreakpoint)
+      {
+        setDisplayVariant(0)
+      }else
+      {
+        setDisplayVariant(1)
+      }
+    },100)
+  
+    window.addEventListener('scroll', handleScroll);
+
+    return ()=>{window.removeEventListener('scroll',handleScroll)}
+
+  },[])
+
   const [VisibleData,SetVisibleData]=React.useState([])
   const [CurrentPage,setCurrentPage]=React.useState(1)
   const smBreakpoint = 540;
@@ -134,15 +154,16 @@ export default function Products() {
   return (
     <div className={`Products w-full h-full`}>
       <Drawer
+      overlay={false}
         open={MobileDraweropen}
         onClose={closeMobileDrawer}
-        className={`md:hidden p-4 bg ${
+        className={`md:hidden overflow-scroll p-4 w-full h-full ${
           LightModeState == LightMode().type
             ? 'bg-whiteTheme_T3'
             : 'bg-darkTheme_T1'
         }`}
       >
-        <FilterMenu />
+        {MobileDraweropen&&<FilterMenu IsMobile={true} />}
       </Drawer>
 
       <Navbar />
@@ -164,8 +185,8 @@ export default function Products() {
           }`}
         >
           <div className="flex justify-center h-full w-full">
-            <div className=" p-2  w-full h-full">
-              <FilterMenu />
+            <div className=" p-2  w-full h-full overflow-scroll">
+              <FilterMenu IsMobile={false}/>
             </div>
           </div>
         </div>

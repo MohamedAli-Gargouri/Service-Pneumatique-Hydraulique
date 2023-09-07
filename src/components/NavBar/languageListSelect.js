@@ -5,7 +5,9 @@ import frflag from '../../assets/images/fr_flag.png';
 import tnflag from '../../assets/images/tn_flag.png';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
+import {useDispatch} from "react-redux/es/hooks/useDispatch"
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { SetEnglish,SetArabic,SetFrench } from '../../redux/actions/LanguageActions';
 import {
   Menu,
   MenuHandler,
@@ -17,10 +19,14 @@ import {
 } from '@material-tailwind/react';
 export default function LanguageList() {
   const LightModeState = useSelector((state) => state.lightMode);
-  const [SelectedLanguage, setSelectedLanguage] = React.useState('en');
+  const LocalStorageLanguage=useSelector((state)=>state.language);
+  const [SelectedLanguage, setSelectedLanguage] = React.useState(LocalStorageLanguage);
+  const dispatch=useDispatch()
   //=======Setting Translation-start=================//
   const { t, i18n } = useTranslation();
   const HandleLanguageChange = (SelectedLanguage) => {
+   
+    dispatch(SelectedLanguage=="fr"?SetFrench():SelectedLanguage=="en"?SetEnglish():SetArabic())
     setSelectedLanguage(SelectedLanguage);
     i18n.changeLanguage(SelectedLanguage);
   };

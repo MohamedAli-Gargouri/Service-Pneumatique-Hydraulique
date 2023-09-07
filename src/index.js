@@ -10,11 +10,15 @@ import store, { persistor } from './redux/store/store';
 import './i18n';
 import Loading from './pages/loading';
 import { PersistGate } from 'redux-persist/integration/react';
+import ErrorBoundary from './pages/Error';
 //=========font & icons configuration-start ==========//
 
 //=========font & icons configuration-end ==========//
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
 root.render(
+  <ErrorBoundary>
   <React.StrictMode>
     <ThemeProvider>
       <BrowserRouter>
@@ -29,5 +33,6 @@ root.render(
         </Suspense>
       </BrowserRouter>
     </ThemeProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
+  </ErrorBoundary>
 );

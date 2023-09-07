@@ -26,7 +26,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import { OPENCART } from '../../redux/actions/cartActions';
 import PropTypes from 'prop-types';
-
+import { debounce } from 'lodash';
 
 Badge.propTypes = {
   placement: PropTypes.string.isRequired,
@@ -37,10 +37,16 @@ export default function ComplexNavbar() {
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
   React.useEffect(() => {
+    const setNavOpen=()=>
+    {
+      window.innerWidth >= 960 && setIsNavOpen(false)
+    }
     window.addEventListener(
       'resize',
-      () => window.innerWidth >= 960 && setIsNavOpen(false),
+      setNavOpen,
     );
+
+    return(()=>window.removeEventListener("resize",setNavOpen))
   }, []);
   //=======Setting Mobile View-end=================//
 
@@ -59,50 +65,30 @@ export default function ComplexNavbar() {
       dispatch(LightMode());
     }
   };
-  var prevScrollPos = React.useRef(0);
-  var NavbarVisible = React.useRef(true);
+  const [isNavbarVisible, setIsNavbarVisible] = React.useState(true);
 
-  window.addEventListener('scroll', () => {
-    const currentScrollPos = window.pageYOffset;
-    const navbar = document.getElementById('navbar');
-    if (prevScrollPos.current < currentScrollPos) {
-      if (NavbarVisible.current == true) {
-        // Scrolling down, hide the navbar with animation
-        navbar.classList.remove('animate-NavSlideDown');
-        navbar.classList.add('animate-NavSlideUp');
-        // Set final position after animation duration
-        NavbarVisible.current = false;
-        setTimeout(() => {
-          navbar.style.transition = 'none'; // Disable transition temporarily
-          navbar.style.transform = 'translateY(-130%)';
-          setTimeout(() => {
-            navbar.style.transition = ''; // Re-enable transition
-          }, 0);
-        }, 300); // Assuming animation duration is 300ms
+  React.useEffect(() => {
+    let prevScrollPos = window.pageYOffset;
+  
+    const handleScroll = debounce(() => {
+      const currentScrollPos = window.pageYOffset;
+      const scrollDown = currentScrollPos > prevScrollPos;
+  
+      if (scrollDown && isNavbarVisible) {
+        setIsNavbarVisible(false);
+      } else if (!scrollDown && !isNavbarVisible) {
+        setIsNavbarVisible(true);
       }
-    }
-
-    if (prevScrollPos.current > currentScrollPos) {
-      if (NavbarVisible.current == false) {
-        // Scrolling up, show the navbar with animation
-        navbar.classList.remove('animate-NavSlideUp');
-        navbar.classList.add('animate-NavSlideDown');
-
-        NavbarVisible.current = true;
-        setTimeout(() => {
-          navbar.style.transition = 'none'; // Disable transition temporarily
-          navbar.style.transform = 'translateY(0)';
-          setTimeout(() => {
-            navbar.style.transition = ''; // Re-enable transition
-          }, 0);
-        }, 300);
-      }
-    }
-
-    setTimeout(() => {
-      prevScrollPos.current = currentScrollPos;
-    }, 0);
-  });
+  
+      prevScrollPos = currentScrollPos;
+    },100)
+  
+    window.addEventListener('scroll', handleScroll);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isNavbarVisible]);
 
   //=========Setting Dark and light mode states-end========//
   return (
@@ -115,7 +101,13 @@ export default function ComplexNavbar() {
           LightModeState == LightMode().type
             ? 'bg-whiteTheme_T2 tc-whiteTheme_T1'
             : 'bg-darkTheme_T2 tc-darkTheme_T1'
-        }`}
+        }
+        ${
+          isNavbarVisible
+          ? 'animate-NavSlideDown'
+          : 'animate-NavSlideUp'
+        }
+        `}
       >
         <div className=" flex items-center justify-center gap-1 ">
           <img

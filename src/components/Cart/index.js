@@ -17,6 +17,7 @@ import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
 
 export default function Cart() {
+  
   const LightModeState = useSelector((state) => state.lightMode);
   const dispatch = useDispatch();
   const smBreakpoint = 540;
@@ -58,6 +59,7 @@ export default function Cart() {
       closeDrawerRight();
     } catch (e) {}
   };
+
   return (
     <React.Fragment>
       <Drawer

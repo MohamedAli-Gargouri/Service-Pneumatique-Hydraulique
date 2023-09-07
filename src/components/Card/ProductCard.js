@@ -7,6 +7,7 @@ import {
   Button,
   Rating,
   IconButton,
+  Chip,
 } from '@material-tailwind/react';
 import './ProductCard.css';
 import React from 'react';
@@ -70,6 +71,17 @@ export default function ProductCard({
                 <Typography variant="small" className={`font-thin`}>
                   {ProductShortDescription}
                 </Typography>
+
+
+                <div className=' my-2 flex gap-1 justify-center items-center flex-wrap'>
+              { 
+                ProductSubCategory.map((SubCategory,index)=>{
+              return(
+                <Chip key={"Subcategory"+index} value={SubCategory.SubCategoryName} />
+              )
+                })
+              }
+            </div>
 
           </div>
 
@@ -173,13 +185,23 @@ export default function ProductCard({
           <Typography variant="paragraph" className={`font-thin`}>
             {ProductShortDescription}
           </Typography>
-        </div>
-
-
           <Rating
             className={'flex-wrap justify-center items-center'}
             unratedColor="red"
           />
+          <div className=' my-2 flex gap-1 justify-center items-center flex-wrap'>
+              { 
+                ProductSubCategory.map((SubCategory,index)=>{
+              return(
+                <Chip key={"Subcategory"+index} value={SubCategory.SubCategoryName} />
+              )
+                })
+              }
+            </div>
+        </div>
+
+
+
 
       </Card>
     );
