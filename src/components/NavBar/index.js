@@ -24,7 +24,7 @@ import TranslatedText from '../../utils/Translation';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import { OPENCART } from '../../redux/actions/cartActions';
+import { openCart } from '../../redux/actions/MyCartActions';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 
@@ -52,10 +52,11 @@ export default function ComplexNavbar() {
 
   //=========Setting Dark and light mode states-start========//
   const LightModeState = useSelector((state) => state.lightMode);
+  const CartList=useSelector((state)=>state.cartList)
   const dispatch = useDispatch();
 
   const toggleCart = () => {
-    dispatch(OPENCART());
+    dispatch(openCart());
   };
   const HandleLightModeSwitch = () => {
     if (LightModeState == LightMode().type) {
@@ -109,11 +110,12 @@ export default function ComplexNavbar() {
         }
         `}
       >
-        <div className=" flex items-center justify-center gap-1 ">
+        <div className="flex items-center justify-center gap-1 ">
           <img
+            onClick={()=>window.location.href="./"}
             src={SPHlogo}
-            alt="avatar"
-            className="w-15 h-10 animate-LogoRotate"
+            alt="SPH Logo"
+            className=" max-w-xs max-h-10 rounded-full animate-LogoRotate hover:scale-95"
           />
           <Typography
             
@@ -150,7 +152,7 @@ export default function ComplexNavbar() {
 
           <LanguageSelect />
 
-          <Badge content="2" className="" placement="top-end">
+          <Badge content={CartList.length}  placement="top-end">
             <IconButton
               variant="text"
               size="sm"

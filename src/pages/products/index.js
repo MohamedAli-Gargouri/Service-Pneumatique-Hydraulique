@@ -44,6 +44,9 @@ const AllData=[
   ProductBrand:"Hertz",
   ProductName:"X1564",
   ProductPrice:1500,
+  ProductLongDesc:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductInformation:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductShipping:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit" 
   },
   {
   ProductID:2,
@@ -54,6 +57,9 @@ const AllData=[
   ProductBrand:"Maxo",
   ProductName:"B9",
   ProductPrice:2500,
+  ProductLongDesc:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductInformation:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductShipping:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit" 
   },
   {
   ProductID:3,
@@ -64,6 +70,9 @@ const AllData=[
   ProductBrand:"MM",
   ProductName:"Caddy",
   ProductPrice:3500,
+  ProductLongDesc:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductInformation:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductShipping:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit" 
   },
   {
   ProductID:4,
@@ -74,6 +83,9 @@ const AllData=[
   ProductBrand:"MM",
   ProductName:"Caddy",
   ProductPrice:3500,
+  ProductLongDesc:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductInformation:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductShipping:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit" 
   },
   {
   ProductID:5,
@@ -84,6 +96,9 @@ const AllData=[
   ProductBrand:"MM",
   ProductName:"Caddy",
   ProductPrice:3500,
+  ProductLongDesc:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductInformation:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductShipping:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit" 
   },
   {
   ProductID:6,
@@ -94,6 +109,9 @@ const AllData=[
   ProductBrand:"MM",
   ProductName:"Caddy",
   ProductPrice:3500,
+  ProductLongDesc:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductInformation:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductShipping:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit" 
   },
   {
   ProductID:7,
@@ -104,6 +122,9 @@ const AllData=[
   ProductBrand:"MM",
   ProductName:"Caddy",
   ProductPrice:3500,
+  ProductLongDesc:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductInformation:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductShipping:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit" 
   },
   {
   ProductID:8,
@@ -114,28 +135,13 @@ const AllData=[
   ProductBrand:"MM",
   ProductName:"Caddy",
   ProductPrice:3500,
+  ProductLongDesc:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductInformation:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
+  ProductShipping:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit" 
   },
   ]
 
 export default function Products() {
-
-  React.useEffect(()=>{
-
-    const handleScroll = debounce(() => {
-      if(window.innerWidth < smBreakpoint)
-      {
-        setDisplayVariant(0)
-      }else
-      {
-        setDisplayVariant(1)
-      }
-    },100)
-  
-    window.addEventListener('scroll', handleScroll);
-
-    return ()=>{window.removeEventListener('scroll',handleScroll)}
-
-  },[])
 
   const [VisibleData,SetVisibleData]=React.useState([])
   const [CurrentPage,setCurrentPage]=React.useState(1)
@@ -151,6 +157,23 @@ export default function Products() {
   };
   const openMobileDrawer = () => SetMobileDraweropen(true);
   const closeMobileDrawer = () => SetMobileDraweropen(false);
+  React.useEffect(()=>{
+
+    const handleResize = debounce(() => {
+      if(window.innerWidth < smBreakpoint)
+      {
+        setDisplayVariant(0)
+      }else
+      {
+        setDisplayVariant(1)
+      }
+    },50)
+  
+    window.addEventListener('resize', handleResize);
+
+    return ()=>{window.removeEventListener('resize',handleResize)}
+
+  },[])
   return (
     <div className={`Products w-full h-full`}>
       <Drawer
@@ -290,6 +313,7 @@ export default function Products() {
                   return(
                     <div key={Product.ProductID} className=" col-span-1">
                     <Productcard
+                      ProductID={Product.ProductID}
                       ProductShortDescription={Product.ProductShortDesc}
                       ProductImages={Product.ProductImages}
                       ProductCategory={Product.ProductCategory}
@@ -297,7 +321,10 @@ export default function Products() {
                       ProductName={Product.ProductName}
                       ProductPrice={Product.ProductPrice}
                       ProductSubCategory={Product.ProductSubCategory}
-                    variant={DisplayVariant} />
+                      variant={DisplayVariant}
+                      ProductLongDesc={Product.ProductLongDesc}
+                      ProductInformation={Product.ProductInformation}
+                      ProductShipping={Product.ProductShipping}  />
                   </div>
                   )
 

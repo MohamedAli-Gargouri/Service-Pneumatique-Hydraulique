@@ -9,23 +9,26 @@ import {
   IconButton,
 } from '@material-tailwind/react';
 import './ProductCard.css';
-import productSample1 from '../../assets/images/products/product_1.png';
-import productSample2 from '../../assets/images/products/product_2.png';
 import React from 'react';
 import QuantityInput from '../Input/Quantity';
+import { useDispatch,useSelector } from 'react-redux';
+import useCart from '../../utils/hooks/Cart';
 export default function CartCard({
-  text,
-  ProductImage,
+  ProductID,
+  ProductImages,
+  ProductBrand,
   ProductName,
   ProductPrice,
+  ProductQuantity
 }) {
-  const [isHovered, setIsHovered] = React.useState(false);
-
+const LightModeState = useSelector((state) => state.lightMode);
+const {AddProduct,SetQuantity,RemoveProduct}=useCart()
   return (
     <div className="w-full  shadow-lg">
-      <div className=" grid grid-row grid-cols-6 justify-center items-center">
-        <div className=" col-span-1">
+      <div className=" grid grid-row grid-cols-10 justify-center items-center">
+        <div className=" col-span-2">
           <IconButton
+          onClick={()=>RemoveProduct(ProductID)}
             size="sm"
             variant="text"
             className=" ml-4 rounded-full hover:scale-150"
@@ -34,20 +37,31 @@ export default function CartCard({
           </IconButton>
         </div>
 
-        <div className=" col-span-2 flex flex-col justify-center items-center">
-          <Typography variant="h6" className={`font-light`}>
-            Compressor
+        <div className="hidden md:flex  col-span-1 justify-center items-center">
+          {ProductImages.length>0&&<img className='p-1 rounded-full ring-1 ring-red-400 aspect-square h-8 w-8' src={ProductImages[0]}/>}
+        </div>
+        <div className=" col-span-3 flex flex-col justify-center items-center">
+          <div className=' flex  justify-evenly gap-1 items-start'>
+          <Typography variant="h6" className={` font-thin`}>
+            {ProductBrand}
           </Typography>
 
-          <Typography variant="paragraph" className={`font-body`}>
-            MX-74070
+          <Typography variant="paragraph" className={`font-thin`}>
+            {ProductName}
           </Typography>
-          <Typography variant="paragraph" color="green" className={`font-bold`}>
-            2x 1000TND
+          </div>
+          <Typography variant="paragraph" color="green" className={` self-center font-semibold`}>
+            {ProductQuantity}x {ProductPrice} ({parseInt(ProductQuantity, 10)*parseInt(ProductPrice, 10)}) TND
           </Typography>
         </div>
-        <div className=" col-span-3 relative w-full flex flex-wrap justify-center items-center">
-          <QuantityInput />
+        <div className=" col-span-5 md:col-span-4 relative w-full flex flex-wrap justify-center items-center">
+          <QuantityInput
+              quantity={ProductQuantity}
+              ProductID={ProductID}
+              incrementHandler={SetQuantity}
+              decrementHandler={SetQuantity}
+              onchangeHandler={SetQuantity}
+          />
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ import SPHLOGO from '../../assets/images/SPH Logo.png';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import { OPENCART } from '../../redux/actions/cartActions';
+import { openCart } from '../../redux/actions/MyCartActions';
 import { Bars2Icon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import Notification from '../Notification';
 import LanguageSelect from '../NavBar/languageListSelect';
@@ -31,7 +31,7 @@ export default function UCP_TopBar(props) {
   const dispatch = useDispatch();
 
   const toggleCart = () => {
-    dispatch(OPENCART());
+    dispatch(openCart());
   };
   const HandleLightModeSwitch = () => {
     if (LightModeState == LightMode().type) {

@@ -6,7 +6,7 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['lightMode', 'isLogged','language'],
+  whitelist: ['lightMode', 'isLogged','language','cartList'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

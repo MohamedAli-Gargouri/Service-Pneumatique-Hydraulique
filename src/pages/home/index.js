@@ -22,7 +22,7 @@ const Home = () => {
       >
         <div className=" col-span-2 md:col-span-1 p-1 flex justify-center items-center order-2 mt-0 md:order-1 w-full animate-LeftToRight aspect-square">
           <img
-            className="m-0 w-[70%] h-[70%] lg:w-[55%] lg:h-[55%]  animate-rotate   Imageshadow"
+            className="m-0 aspect-square max-w-xs md:max-w-md  lg:max-w-xl  animate-rotate   Imageshadow"
             src={HeroCompressor}
           />
         </div>

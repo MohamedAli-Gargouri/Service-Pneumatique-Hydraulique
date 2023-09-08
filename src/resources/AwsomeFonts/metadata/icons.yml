@@ -25904,11 +25904,11 @@ om:
     - solid
   unicode: f679
   voted: false
-opencart:
+openCart:
   changes:
     - 4.4.0
     - 5.0.0
-  label: OpenCart
+  label: openCart
   search:
     terms: []
   styles:

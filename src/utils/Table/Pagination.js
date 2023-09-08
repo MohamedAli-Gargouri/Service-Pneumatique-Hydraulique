@@ -61,7 +61,7 @@ function Pagination({
     <>
       <Typography variant="small" className=" text-center font-normal">
         <TranslatedText TranslationPath="Table.Labels.Page.Part1" />
-        {currentPage}{' '}
+        {' '}{currentPage}{' '}
         <TranslatedText TranslationPath="Table.Labels.Page.Part2" />{' '}
         {totalPages}
       </Typography>

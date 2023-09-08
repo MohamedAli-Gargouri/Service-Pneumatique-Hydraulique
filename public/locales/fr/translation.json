@@ -484,7 +484,10 @@
         "Reject": "La tâche a échoué."
       },
       "Cart": {
-        "RemoveProduct": "Produit retiré du panier."
+        "RemoveProduct": "Produit retiré de votre panier.",
+        "AddProduct":"Produit ajouté à votre panier.",
+        "QuantityError":"Assurez-vous de sélectionner une valeur de quantité comprise entre 1 et 100",
+        "NoProducts":"Vous n'avez aucun produit dans votre panier."
       },
       "MyOrders": {
         "DeleteOrder_Confirm": "Etes-vous sûr de vouloir supprimer votre commande ?",

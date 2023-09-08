@@ -16,10 +16,8 @@ const useElementInViewport = (elementRef, margin = 0,HandlerFunction,ExecuteOnce
         ) {
           if(!Executed.current)
           {
-            console.log("Here")
             if(ExecuteOnce)
             {
-              console.log("Here2")
               Executed.current=true
             }
             HandlerFunction()

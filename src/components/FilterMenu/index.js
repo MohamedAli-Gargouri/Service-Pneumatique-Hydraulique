@@ -148,7 +148,7 @@ export default function FilterMenu({IsMobile}) {
 return(
 <Accordion
 key={"MENU"+Menu.MenuID}
-className={`${
+className={` md:animate-QuickLeftToRight ${
   LightModeState == LightMode().type
     ? 'tc-whiteTheme_T1'
     : 'tc-darkTheme_T1'

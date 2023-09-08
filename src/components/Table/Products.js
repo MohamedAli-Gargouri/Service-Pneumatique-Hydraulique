@@ -286,7 +286,7 @@ export default function Products_Table() {
               <TranslatedText TranslationPath="UCP.Products.Description" />
             </Typography>
           </div>
-          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+          <div className="flex flex-col gap-2 sm:flex-row">
             <Button
               className="flex items-center gap-3"
               size="sm"

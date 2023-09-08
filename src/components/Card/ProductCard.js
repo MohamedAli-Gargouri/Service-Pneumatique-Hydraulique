@@ -14,7 +14,13 @@ import React from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import TranslatedText from '../../utils/Translation';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { addProduct } from '../../redux/actions/MyCartActions';
+import { useDispatch } from 'react-redux';
+import ReactDOMServer from 'react-dom/server';
+import { CreateToast } from '../../utils/Toast';
+import useCart from '../../utils/hooks/Cart';
 export default function ProductCard({
+  ProductID,
   ProductShortDescription,
   ProductImages,
   ProductCategory,
@@ -23,13 +29,41 @@ export default function ProductCard({
   ProductPrice,
   ProductSubCategory,
   variant,
+  ProductLongDesc,
+  ProductInformation,
+  ProductShipping 
 }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const LightModeState = useSelector((state) => state.lightMode);
+  const {AddProduct,SetQuantity,RemoveProduct}=useCart()
+  const ProductDetails={
+    ProductID:ProductID,
+    ProductShortDescription:ProductShortDescription,
+    ProductImages:ProductImages,
+    ProductCategory:ProductCategory,
+    ProductBrand:ProductBrand,
+    ProductName:ProductName,
+    ProductPrice:ProductPrice,
+    ProductSubCategory:ProductSubCategory,
+    ProductLongDesc:ProductLongDesc,
+    ProductInformation:ProductInformation,
+    ProductShipping:ProductShipping,
+  }
+
+  const Product={ProductID:ProductID,
+    ProductBrand:ProductBrand,
+    ProductName:ProductName, 
+    ProductCategory:ProductCategory,
+    ProductImages:ProductImages,
+    ProductPrice:ProductPrice,
+    ProductQuantity:1
+    }
+
+
   if (variant == 1) {
     return (
       <Card
-        className={`${
+        className={` animate-fade ${
           LightModeState == LightMode().type
             ? 'tc-whiteTheme_T1 bg-whiteTheme_T2  '
             : 'tc-darkTheme_T1 bg-darkTheme_T2 '
@@ -44,7 +78,7 @@ export default function ProductCard({
             <img
               key={isHovered ? "Image2" : "Image1"}
               src={isHovered ? ProductImages[0] : ProductImages[1]}
-              className="aspect-square  bg-cover Imageshadow animate-fade"
+              className="aspect-square  bg-cover Imageshadow animate-Quickfade"
             />
           </div>
 
@@ -93,6 +127,7 @@ export default function ProductCard({
 
             <IconButton
               onClick={() => {
+                localStorage.setItem('ProductPreviewProps', JSON.stringify(ProductDetails));
                 window.location.href = '/ProductDetails';
               }}
               size="sm"
@@ -103,6 +138,7 @@ export default function ProductCard({
             </IconButton>
 
             <Button
+            onClick={()=>AddProduct(Product)}
               size="sm"
               variant="outlined"
               className="focus:ring-0 flex items-center rounded-sm justify-center gap-1 p-2 hover:scale-105"
@@ -135,7 +171,7 @@ export default function ProductCard({
           <img
            key={isHovered ? "Image2" : "Image1"}
             src={isHovered ? ProductImages[0] : ProductImages[1]}
-            className={`aspect-square max-h-64 bg-cover Imageshadow animate-fade`}
+            className={`aspect-square max-h-64 bg-cover Imageshadow animate-Quickfade`}
           />
 
           <div className="hover-content p-4 w-full">
@@ -154,6 +190,7 @@ export default function ProductCard({
 
 
                 <Button
+                onClick={()=>AddProduct(Product)}
                   size="sm"
                   variant="outlined"
                   className="focus:ring-0 flex items-center gap-3 p-2 rounded-sm hover:scale-105 mr-2"

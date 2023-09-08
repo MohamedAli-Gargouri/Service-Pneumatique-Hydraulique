@@ -23,7 +23,9 @@ export default function RegisterCard() {
 
       <div className="mt-[10rem]">
         <Card
-          className={`${
+          className={`
+           animate-QuickTopToBottom
+          ${
             LightModeState == LightMode().type
               ? 'bg-whiteTheme_T3'
               : 'bg-darkTheme_T1'
@@ -34,7 +36,7 @@ export default function RegisterCard() {
             color="red"
             className="mb-4 grid h-28 place-items-center"
           >
-            <i className="fa-solid fa-right-to-bracket"></i>
+            <i className="fa-solid fa-right-to-bracket fa-2x"></i>
             <Typography variant="h3" color="white">
               <TranslatedText
                 TranslationPath="Register.Register_Title"

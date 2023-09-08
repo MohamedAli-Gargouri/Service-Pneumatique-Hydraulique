@@ -23,7 +23,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import PhoneInput from '../../components/Input/Phone';
 import Footer from '../../components/footer';
-import PropTypes from 'prop-types';  
+import PropTypes from 'prop-types'; 
 export default function ContactCard() {
   Input.propTypes=
   {
@@ -34,13 +34,16 @@ export default function ContactCard() {
     label:PropTypes.any
   }
   const LightModeState = useSelector((state) => state.lightMode);
+
   return (
     <>
       <Navbar />
       <div className="BackgroundImage py-4 px-2  bg-cover bg-center min-h-screen flex flex-row flex-wrap  justify-center items-center gap-4">
         <div className=" mt-[20vh]">
           <Card
-            className={` backdrop-blur-lg ${
+            className={`
+            animate-QuickLeftToRight
+            backdrop-blur-lg ${
               LightModeState == LightMode().type
                 ? 'bg-whiteTheme_T3'
                 : 'bg-darkTheme_T1'
@@ -52,7 +55,7 @@ export default function ContactCard() {
               className="mb-4 grid h-28 place-items-center"
             >
               <Typography variant="h3">
-                <i className="fa-solid fa-circle-info "></i>
+                <i className="fa-solid fa-circle-info mx-2 "></i>
                 <TranslatedText TranslationPath="Contact.Title1" />
               </Typography>
             </CardHeader>
@@ -213,37 +216,14 @@ export default function ContactCard() {
                 </ListItem>
               </List>
 
-              <div className=" flex flex-row justify-around items-center">
-                <div className="hover:scale-125">
-                  <Popover
-                    animate={{
-                      mount: { scale: 1, y: 0 },
-                      unmount: { scale: 0, y: 25 },
-                    }}
-                  >
-                    <PopoverHandler>
-                      <IconButton variant="filled" color="red" className=" ">
-                        <i className="fa-regular fa-copy"></i>
-                      </IconButton>
-                    </PopoverHandler>
-                    <PopoverContent
-                      className={`${
-                        LightModeState == LightMode().type
-                          ? 'bg-whiteTheme_T1 tc-whiteTheme_T1'
-                          : 'bg-darkTheme_T1 tc-darkTheme_T1'
-                      }`}
-                    >
-                      Information Copied !
-                    </PopoverContent>
-                  </Popover>
-                </div>
-              </div>
             </CardBody>
           </Card>
         </div>
         <div className=" mt-6 md:mt-[20vh]">
           <Card
-            className={`${
+            className={`
+              animate-QuickRightToLeft
+                ${
               LightModeState == LightMode().type
                 ? 'bg-whiteTheme_T3'
                 : 'bg-darkTheme_T1'
@@ -255,7 +235,7 @@ export default function ContactCard() {
               className="mb-4 grid h-28 place-items-center"
             >
               <Typography variant="h3" color="white">
-                <i className="fa-solid fa-envelope "></i>
+                <i className="fa-solid fa-envelope mx-2 "></i>
                 <TranslatedText TranslationPath="Contact.Title2" />
               </Typography>
             </CardHeader>

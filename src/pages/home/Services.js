@@ -5,8 +5,25 @@ import ServiceImage from '../../assets/images/service.png';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 
+import useElementInViewport from '../../utils/hooks';
 const Services = () => {
   const LightModeState = useSelector((state) => state.lightMode);
+
+  const [AnimateServicesList,SetAnimateServicesList]=React.useState(false)
+  const [AnimateServicesImg,SetAnimateServicesImg]=React.useState(false)
+
+  const ServicesListRef=React.useRef()
+  const CompressorImgRef=React.useRef()
+  const HandleAnimatingServiceImg=()=>
+  {
+    SetAnimateServicesImg(true)
+  }
+  const HandleAnimatingServiceList=()=>
+  {
+    SetAnimateServicesList(true)
+  }
+  const IsElementInImgView=useElementInViewport(CompressorImgRef,0,HandleAnimatingServiceImg,true)
+  const IsElementInListView=useElementInViewport(ServicesListRef,0,HandleAnimatingServiceList,true)
   return (
     <React.Fragment>
       <div
@@ -24,14 +41,14 @@ const Services = () => {
       </div>
       <div>
         <div className="flex flex-wrap  flex-col md:flex-row md:flex-nowrap">
-          <div className=" flex justify-center items-center m-4 md:w-1/3 md:h-1/3 animate-LeftToRight">
+          <div ref={CompressorImgRef} className={`${ AnimateServicesImg&&"animate-QuickLeftToRight"} flex justify-center items-center m-4 md:w-1/3 md:h-1/3`}>
             <img
               src={ServiceImage}
               alt="image 3"
               className=" aspect-square animate-rotate object-fit: cover w-[80%] h-1/1"
             />
           </div>
-          <div className=" text-center flex flex-col items-center justify-center md:items-start flex-wrap animate-RightToLeft ">
+          <div ref={ServicesListRef} className={` ${AnimateServicesList&&"animate-QuickRightToLeft"} text-center flex flex-col items-center justify-center md:items-start flex-wrap`}>
             <Typography
               variant="h1"
               

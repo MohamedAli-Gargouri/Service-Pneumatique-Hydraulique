@@ -202,3 +202,7 @@ body {
 .text-blue-gray-400 {
   color: inherit !important;
 }
+.Toastify__toast-container
+{
+  z-index: 15000 !important;
+}

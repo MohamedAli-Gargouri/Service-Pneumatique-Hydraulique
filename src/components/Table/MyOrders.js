@@ -27,7 +27,7 @@ import {
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import { OPENCART } from '../../redux/actions/cartActions';
+import { openCart } from '../../redux/actions/MyCartActions';
 import ConfirmDialog from '../Dialog/Confirm';
 import React from 'react';
 import Pagination from '../../utils/Table/Pagination';
@@ -132,7 +132,7 @@ export default function MyOrders_Table() {
   const dispatch = useDispatch();
   const LightModeState = useSelector((state) => state.lightMode);
   const toggleCart = () => {
-    dispatch(OPENCART());
+    dispatch(openCart());
   };
   const [ConfirmCancelDialog, SetConfirmCancelDialog] = React.useState(false);
   const [AllData, SetAllData] = React.useState(TABLE_ROWS);
@@ -230,8 +230,8 @@ export default function MyOrders_Table() {
             : 'tc-darkTheme_T1 '
         }`}
       >
-        <div className="mb-8 flex items-center justify-between gap-8">
-          <div>
+        <div className="mb-8 flex items-center justify-between gap-1">
+          <div >
             <Typography variant="h5">
               <TranslatedText TranslationPath="UCP.MyOrdersTable.Title" />
             </Typography>
@@ -239,12 +239,12 @@ export default function MyOrders_Table() {
               <TranslatedText TranslationPath="UCP.MyOrdersTable.Description" />
             </Typography>
           </div>
-          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+          <div className="flex flex-col gap-2 sm:flex-row">
             <Button
               onClick={() => {
                 toggleCart();
               }}
-              className="flex items-center gap-3"
+              className="flex  items-center gap-3"
               size="sm"
             >
               <i className="fa-solid fa-cart-shopping"></i>{' '}

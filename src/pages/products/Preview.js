@@ -24,31 +24,22 @@ import AnimatedTab from '../../components/Tab';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import Footer from '../../components/footer';
 import Gallery from '../../components/Gallery';
-import QuantityInput from '../../components/Input/Quantity';
 import Breadcrump from '../../components/Breadcrump';
-import ProductImg1 from '../../assets/images/products/product_1.png';
-import ProductImg2 from '../../assets/images/products/product_2.png';
-import ProductImg3 from '../../assets/images/products/product_3.png';
+import useCart from '../../utils/hooks/Cart';
 
 import TranslatedText from '../../utils/Translation';
 export default function Products() {
-  const ProductInfo={
-    ProductID:1,
-    ProductcategoryName:"Compressors",
-    ProductBrand:"Hertz",
-    ProductName:"X15648",
-    ProductPrice:1500,
-    ProductShortDesc:"Sed egestas, ante et vulputate volutpat, eros pede semper est, vitaeluctus metus libero eu augue. Morbi purus libero, faucibusadipiscing. Sed lectus.",
-    ProductSubCategories:[
-      {SubCategoryID:1,SubCategoryName:"Size,100ML",CategoryID:1},
-      {SubCategoryID:2,SubCategoryName:"Power,4cv",CategoryID:1},
-      {SubCategoryID:3,SubCategoryName:"Consomation,7L",CategoryID:1}
-    ],
-    ProductLongDesc:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
-    ProductInformation:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit",
-    ProductShipping:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Donec odio. Quisque volutpat mattis eros. Nullam malesuadaerat ut turpis. Suspendisse urna viverra non, semper suscipit" 
-  }
+  const {OrderCart,AddProduct,SetQuantity,RemoveProduct}=useCart()
+  const ProductInfo = JSON.parse(localStorage.getItem('ProductPreviewProps'));
 
+  const Product={ProductID:ProductInfo.ProductID,
+    ProductBrand:ProductInfo.ProductBrand,
+    ProductName:ProductInfo.ProductName, 
+    ProductCategory:ProductInfo.ProductCategory,
+    ProductImages:ProductInfo.ProductImages,
+    ProductPrice:ProductInfo.ProductPrice,
+    ProductQuantity:1
+    }
   const Tabs=[
     {
       TabID:1,
@@ -77,14 +68,14 @@ export default function Products() {
           Child={{ PageUrl: '/ProductDetails', PageName: <TranslatedText TranslationPath="Product.Product" /> }}
         />
       </div>
-      <div className="mb-[1rem]  grid grid-cols-2 justify-center items-center gap-3 ">
+      <div className="mb-[1rem]  grid grid-cols-2 w-full justify-center items-center gap-3 ">
         <div className="col-span-2 md:col-span-1">
-          <Gallery Images={[ProductImg1, ProductImg2, ProductImg3]} />
+          <Gallery Images={ProductInfo.ProductImages} />
         </div>
 
-        <div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-start  justify-center">
+        <div className="col-span-2 md:col-span-1 flex flex-col items-center justify-center w-full">
         <Typography variant="h5" className=" font-semibold">
-            {ProductInfo.ProductcategoryName}
+            {ProductInfo.ProductCategory}
           </Typography>
 
           <Typography variant="h6" className=" font-thin">
@@ -99,21 +90,20 @@ export default function Products() {
             {ProductInfo.ProductPrice} TND
           </Typography>
           <Typography variant="paragraph" className=" font-thin m-4 md:m-0">
-        {ProductInfo.ProductShortDesc}
+        {ProductInfo.ProductShortDescription}
           </Typography>
-          <QuantityInput />
 
-          <div className="md:ml-3">
             <Button
-              className="flex items-center gap-1 w-full hover:scale-110"
+              className=" my-2 flex items-center justify-center gap-1 w-[50%] hover:scale-110 "
+              onClick={()=>AddProduct(Product)}
             >
               <i className="fa-solid fa-cart-plus"></i>
-              <TranslatedText TranslationPath="Global.Actions.Discover" />
+              <TranslatedText TranslationPath="Global.Actions.AddCart" />
             </Button>
-          </div>
+
           <div className=' mt-2 flex gap-1 justify-center items-center flex-wrap'>
     { 
-      ProductInfo.ProductSubCategories.map((SubCategory,index)=>{
+      ProductInfo.ProductSubCategory.map((SubCategory,index)=>{
     return(
       <Chip key={"Subcategory"+index} value={SubCategory.SubCategoryName} />
     )
@@ -141,7 +131,7 @@ export default function Products() {
 
 
         }
-        DefaultSelectValue={'Description'}
+        DefaultSelectValue={TranslateString("Product.Description")}
       />
 
       <Footer />

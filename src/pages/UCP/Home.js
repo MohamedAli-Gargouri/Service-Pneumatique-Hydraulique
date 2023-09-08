@@ -36,28 +36,28 @@ export default function UCP_Home() {
     {
       Name: 'Products',
       Count: 500,
-      logo: <i className="fa-solid fa-boxes-stacked  fa-2x"></i>,
+      logo: <i className="fa-solid fa-boxes-stacked  md:fa-2x"></i>,
       msg: '',
       col: 'red',
     },
     {
       Name: 'Clients',
       Count: 10,
-      logo: <i className="fa-solid fa-users fa-2x"></i>,
+      logo: <i className="fa-solid fa-users md:fa-2x"></i>,
       msg: '',
       col: 'blue',
     },
     {
       Name: 'Employee',
       Count: 3,
-      logo: <i className="fa-solid fa-user-gear fa-2x"></i>,
+      logo: <i className="fa-solid fa-user-gear md:fa-2x"></i>,
       msg: '',
       col: 'green',
     },
     {
       Name: 'Orders',
       Count: 50,
-      logo: <i className="fa-solid fa-clipboard-check fa-2x"></i>,
+      logo: <i className="fa-solid fa-clipboard-check md:fa-2x"></i>,
       msg: '',
       col: 'yellow',
     },
@@ -94,16 +94,17 @@ export default function UCP_Home() {
                   : 'tc-darkTheme_T1 bg-darkTheme_T2'
               }`}
             >
-              <div className="p-2 w-full gap-2 justify-center items-start  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div className="p-2 overflow-hidden w-full gap-2 justify-center items-start  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {Info.map((Insight, index) => {
                   return (
-                    <Card key={"Insight"+index} className=" bg-inherit text-inherit mt-2 p-2 border-l-red-400  border-4 flex flex-col md:flex-row flex-wrap hover:scale-95 justify-evenly gap-2 items-center col-span-1">
-                      <div className=" p-2 md:p-4 rounded-full bg-red-600 text-white self-center md:self-start ">
+                    <Card key={"Insight"+index} className=" bg-inherit text-inherit mt-2 p-2 border-l-red-400  border-4 flex flex-col md:flex-row flex-wrap hover:scale-95 justify-stretch gap-2 items-center col-span-1">
+                      <div className=" p-2 md:p-4  rounded-sm bg-red-600 text-white self-center md:self-start ">
                         {Insight.logo}
-                      </div>
-                      <Typography variant="h6" className="">
+                        <Typography variant="h6" className="">
                         <CountUp end={Insight.Count} duration={10} />
                       </Typography>
+                      </div>
+                      
 
                       <Typography variant="lead" className="">
                         {Insight.Name}
@@ -112,7 +113,7 @@ export default function UCP_Home() {
                   );
                 })}
 
-                <div className=" rounded-md aspect-video  w-full h-full mt-0 col-span-2">
+                <div className=" animate-QuickLeftToRight rounded-md aspect-video  w-full h-full mt-0 col-span-2">
                   <video
                     className=" rounded-md"
                     width={'100%'}
@@ -124,7 +125,7 @@ export default function UCP_Home() {
                   </video>
                 </div>
 
-                <div className="h-full w-full mt-0 col-span-2">
+                <div className=" animate-QuickRightToLeft h-full w-full mt-0 col-span-2">
                   <Carousel />
                 </div>
               </div>

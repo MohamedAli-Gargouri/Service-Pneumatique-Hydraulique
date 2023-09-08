@@ -37309,7 +37309,7 @@
     },
     "free": ["solid"]
   },
-  "opencart": {
+  "openCart": {
     "changes": ["4.4.0", "5.0.0"],
     "ligatures": [],
     "search": {
@@ -37317,7 +37317,7 @@
     },
     "styles": ["brands"],
     "unicode": "f23d",
-    "label": "OpenCart",
+    "label": "openCart",
     "voted": false,
     "svg": {
       "brands": {

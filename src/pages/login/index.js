@@ -24,7 +24,9 @@ export default function LoginCard() {
       <Navbar />
       <div className="mt-[10rem]">
         <Card
-          className={`${
+          className={`
+           animate-QuickBottomToTop
+          ${
             LightModeState == LightMode().type
               ? 'bg-whiteTheme_T3'
               : 'bg-darkTheme_T1'

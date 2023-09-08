@@ -487,7 +487,10 @@
         "Reject": "Task Failed."
       },
       "Cart": {
-        "RemoveProduct": "Product removed from the cart."
+        "RemoveProduct": "Product removed from your cart.",
+        "AddProduct":"Product Added to your cart.",
+        "QuantityError":"Make sure you select a quantity value between 1-100",
+        "NoProducts":"You don't have any products in your cart." 
       },
       "MyOrders": {
         "CreateOrder_Success": "Your order is submitted Successfully.",

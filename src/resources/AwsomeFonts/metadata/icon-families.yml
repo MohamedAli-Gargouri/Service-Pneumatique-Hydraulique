@@ -32037,7 +32037,7 @@ om:
       - religion
   unicode: f679
   voted: false
-opencart:
+openCart:
   changes:
     - 4.4.0
     - 5.0.0
@@ -32048,7 +32048,7 @@ opencart:
     pro:
       - family: classic
         style: brands
-  label: OpenCart
+  label: openCart
   search:
     terms: []
   unicode: f23d

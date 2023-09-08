@@ -7,7 +7,7 @@ export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
   const LightModeState = useSelector((state) => state.lightMode);
   return (
     <div
-      className={`rounded-md shadow-sm mx-4 grid grid-cols-1  justify-center items-center gap-3 bg-cover ${
+      className={` animate-QuickTopToBottom rounded-md shadow-sm mx-4 grid grid-cols-1  justify-center items-center gap-3 bg-cover ${
         LightModeState == LightMode().type
           ? 'bg-whiteTheme_T2 tc-whiteTheme_T1'
           : 'bg-darkTheme_T2 tc-darkTheme_T1'

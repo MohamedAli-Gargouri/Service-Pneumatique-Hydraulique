@@ -27,7 +27,7 @@ import {
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import { OPENCART } from '../../redux/actions/cartActions';
+import { openCart } from '../../redux/actions/MyCartActions';
 import ConfirmDialog from '../Dialog/Confirm';
 import React from 'react';
 import Pagination from '../../utils/Table/Pagination';

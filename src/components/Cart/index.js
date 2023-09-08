@@ -6,24 +6,22 @@ import {
   IconButton,
 } from '@material-tailwind/react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { CLOSECART } from '../../redux/actions/cartActions';
+import { closeCart } from '../../redux/actions/MyCartActions';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { disableScroll, enableScroll } from '../../utils/others/Scroll';
 import CartCard from '../Card/CartCard';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-
 import TranslatedText from '../../utils/Translation';
-import { CreateToast } from '../../utils/Toast';
-import ReactDOMServer from 'react-dom/server';
-
+import useCart from '../../utils/hooks/Cart';
 export default function Cart() {
   
   const LightModeState = useSelector((state) => state.lightMode);
   const dispatch = useDispatch();
   const smBreakpoint = 540;
   const [openRight, setOpenRight] = React.useState(false);
-  const closeDrawerRight = () => dispatch(CLOSECART());
-
+  const closeDrawerRight = () => dispatch(closeCart());
+  const CartList=useSelector((state)=>state.cartList)
+  const {OrderCart,AddProduct,SetQuantity,RemoveProduct}=useCart()
   const CartStatus = useSelector((state) => state.cartStatus);
   if (CartStatus) {
     disableScroll();
@@ -31,38 +29,20 @@ export default function Cart() {
     enableScroll();
   }
 
-  const HandleOrder = () => {
-    try {
-      const promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('API Fetch is done!');
-        }, 3000);
-      });
-
-      CreateToast(
-        promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.CreateOrder_Success" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.CreateOrder_Success" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.CreateOrder_Error" />,
-        ),
-        'promise',
-        LightModeState == LightMode().type,
-      );
-      closeDrawerRight();
-    } catch (e) {}
-  };
-
+  const CartTotal=(cartList)=>
+  {
+    var total=0
+    cartList.map((product)=>
+    {
+      total+=(parseInt(product.ProductPrice,10)*parseInt(product.ProductQuantity,10))
+    }
+    )
+    return total
+  }
   return (
     <React.Fragment>
       <Drawer
+        overlay={false}
         placement="right"
         open={CartStatus}
         onClose={closeDrawerRight}
@@ -109,21 +89,40 @@ export default function Cart() {
             className="text-center  font-bold"
             color="green"
           >
-            11000 TND
+            {CartTotal(CartList)} TND
           </Typography>
         </div>
 
         <div className="Total  flex flex-col justify-stretch mx-4 my-4 items-stretch ">
-          <Button className="flex items-center gap-3" onClick={HandleOrder}>
+          <Button className="flex items-center gap-3" onClick={()=>OrderCart(closeDrawerRight)}>
             <i className="fa-solid fa-cart-shopping"></i>
             <TranslatedText TranslationPath="Cart.Actions.Order" />
           </Button>
         </div>
 
         <div className=" flex flex-col flex-wrap justify-center items-center gap-1">
-          <CartCard />
 
-          <CartCard />
+          {CartList.map((selectedProduct,index)=>{
+            return(
+            <div key={"CART_ITEM"+index}>  
+            <CartCard
+            ProductID={selectedProduct.ProductID}
+            ProductImage={selectedProduct}
+            ProductBrand={selectedProduct.ProductBrand}
+            ProductName={selectedProduct.ProductName}
+            ProductPrice={selectedProduct.ProductPrice}
+            ProductQuantity={selectedProduct.ProductQuantity}
+            ProductImages={selectedProduct.ProductImages}
+            />
+            </div>
+            )
+
+          })}
+          {CartList.length==0&& <Typography variant="h6" className="text-center font-thin">
+          <TranslatedText TranslationPath="UCP.DialogMessages.Cart.NoProducts" />
+
+          </Typography>}
+          
         </div>
       </Drawer>
     </React.Fragment>

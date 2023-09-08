@@ -30,13 +30,18 @@ module.exports = withMT({
         PulseSlow: "pulse 6s linear infinite",
         rotate: "rotateAndFade 10s ease-in-out infinite",
         LeftToRight: "LeftToRight  1s ease-in-out",
-        QuickLeftToRight: "LeftToRight  0.5s linear",
-        QuickRightToLeft: "RightToLeft  0.5s linear",
+        QuickLeftToRight: "LeftToRight  1s ease-in-out forwards",
+        QuickRightToLeft: "RightToLeft  1s ease-in-out forwards",
+
+        QuickTopToBottom: "TopToBottom  1s ease-in-out forwards",
+        QuickBottomToTop: "BottomToTop  1s ease-in-out forwards",
+
         LogoRotate: "LogoRotate  10s ease-out infinite",
         bg: "animateBg 1s linear infinite",
         NavSlideUp: "SlideUp 0.3s ease-in-out forwards",
         NavSlideDown: "SlideDown 0.3s ease-in-out forwards",
         fade: "fade 1s ease-in-out",
+        Quickfade: "fade 0.1s linear"
       },
       keyframes: {
         fade: {
@@ -44,20 +49,28 @@ module.exports = withMT({
           "100%": { opacity: "100%" },
         },
         SlideDown: {
-          "0%": { transform: "translateY(-130%)" },
-          "100%": { transform: "translateY(0%)" },
+          "0%": { transform: "translateY(-130%)",opacity:"0%" },
+          "100%": { transform: "translateY(0%)",opacity:"100%" },
         },
         SlideUp: {
           "0%": { transform: "translateY(0%)",opacity:"100%" },
           "100%": { transform: "translateY(-130%)",opacity: "0%"  },
         },
+        TopToBottom: {
+          "0%": { transform: "translateY(-100%)", opacity:"0%" },
+          "100%": { transform: "translateY(0%)",opacity:"100%" },
+        },
+        BottomToTop: {
+          "0%": { transform: "translateY(+100%)", opacity:"0%" },
+          "100%": { transform: "translateY(0%)",opacity:"100%" },
+        },
         RightToLeft: {
-          "0%": { transform: "translateX(+100%)" },
-          "100%": { transform: "translateX(0%)" },
+          "0%": { transform: "translateX(+100%)", opacity:"0%" },
+          "100%": { transform: "translateX(0%)",opacity:"100%" },
         },
         LeftToRight: {
-          "0%": { transform: "translateX(-100%)" },
-          "100%": { transform: "translateX(0%)" },
+          "0%": { transform: "translateX(-100%)",opacity:"0%" },
+          "100%": { transform: "translateX(0%)",opacity:"100%" },
         },
         rotateAndFade: {
           "0%": {

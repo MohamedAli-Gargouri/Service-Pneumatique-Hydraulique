@@ -244,7 +244,7 @@ export default function Product() {
 
 
         }
-        DefaultSelectValue={'Description'}
+        DefaultSelectValue={TranslateString("Product.Description")}
       />
 
       </div>
