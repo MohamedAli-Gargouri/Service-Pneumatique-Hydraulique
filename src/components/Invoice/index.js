@@ -22,7 +22,7 @@ import {
   StyleSheet,
   PDFViewer,
 } from '@react-pdf/renderer';
-import Product_1 from '../../assets/images/products/product_1.png';
+import Product_1 from '../../assets/images/products/product_1.webp';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import InvoicePDF from './PDFGenerator';
 import debounce from 'lodash/debounce';

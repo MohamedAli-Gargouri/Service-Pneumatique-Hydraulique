@@ -10,7 +10,7 @@ import {
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import ConfirmDeleteDialog from '../../components/Dialog/Confirm';
-import Product_1 from '../../assets/images/products/product_1.png';
+import Product_1 from '../../assets/images/products/product_1.webp';
 import QuantityInput from '../Input/Quantity/Invoice';
 import React from 'react';
 import {

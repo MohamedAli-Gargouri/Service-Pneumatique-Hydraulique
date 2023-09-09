@@ -27,7 +27,7 @@ import Footer from '../../components/footer';
 import SideBar from '../../components/SideBar';
 import React from 'react';
 import TopBar from '../../components/Topbar';
-import Topbarbg from '../../assets/images/Topbarbg.jpg';
+import Topbarbg from '../../assets/images/Topbarbg.webp';
 import Invoice from '../../components/Invoice';
 export default function UCP_Invoice() {
   const LightModeState = useSelector((state) => state.lightMode);

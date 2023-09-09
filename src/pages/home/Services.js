@@ -1,7 +1,7 @@
 import { Typography } from '@material-tailwind/react';
 import React from 'react';
 import TranslatedText from '../../utils/Translation';
-import ServiceImage from '../../assets/images/service.png';
+import ServiceImage from '../../assets/images/service.webp';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 

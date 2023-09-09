@@ -117,10 +117,10 @@ body {
 }
 
 .BackgroundImage {
-  background-image: url('./assets//images/background1.png');
+  background-image: url('./assets//images/background1.webp');
 }
 .BackgroundImage2 {
-  background-image: url('./assets//images/background2.png');
+  background-image: url('./assets//images/background2.webp');
 }
 
 .Imageshadow {

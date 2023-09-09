@@ -4,7 +4,7 @@ import { Typography } from '@material-tailwind/react';
 import React from 'react';
 import { Button } from '@material-tailwind/react';
 import TranslatedText from '../../utils/Translation';
-import SPHLogo from '../../assets/images/SPH Logo.png';
+import SPHLogo from '../../assets/images/SPH Logo.webp';
 import ProductCarousel from '../../components/Carousel/productsCarousel';
 
 import { useSelector } from 'react-redux/es/hooks/useSelector';

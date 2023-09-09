@@ -10,9 +10,9 @@ import {
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import ConfirmDeleteDialog from '../../components/Dialog/Confirm';
-import Product_1 from '../../assets/images/products/product_1.png';
-import Product_2 from '../../assets/images/products/product_2.png';
-import Product_3 from '../../assets/images/products/product_3.png';
+import Product_1 from '../../assets/images/products/product_1.webp';
+import Product_2 from '../../assets/images/products/product_2.webp';
+import Product_3 from '../../assets/images/products/product_3.webp';
 import React from 'react';
 import {
   Card,

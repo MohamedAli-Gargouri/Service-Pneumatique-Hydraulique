@@ -23,9 +23,9 @@ import Footer from '../../components/footer';
 import Productcard from '../../components/Card/ProductCard';
 import FilterMenu from '../../components/FilterMenu';
 import Breadcrump from '../../components/Breadcrump';
-import ProductImage1 from "./../../assets/images/products/product_1.png"
-import ProductImage2 from "./../../assets/images/products/product_2.png"
-import ProductImage3 from "./../../assets/images/products/product_3.png"
+import ProductImage1 from "./../../assets/images/products/product_1.webp"
+import ProductImage2 from "./../../assets/images/products/product_2.webp"
+import ProductImage3 from "./../../assets/images/products/product_3.webp"
 import Pagination from "../../utils/Table/Pagination"
 import TranslatedText from '../../utils/Translation';
 import PropTypes from 'prop-types'; 

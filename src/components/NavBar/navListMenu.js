@@ -23,19 +23,19 @@ import {
   CircleStackIcon,
 } from '@heroicons/react/24/outline';
 import Translate from '../../utils/Translation';
-import Fittings_and_accessories from '../../assets/images/productNavMenu/Fittings_and_accessories.png';
-import Tubes from '../../assets/images/productNavMenu/Tubes.png';
-import Distributors_and_accessories from '../../assets/images/productNavMenu/Distributors_and_accessories.png';
-import Filters_and_accessories from '../../assets/images/productNavMenu/Filters_and_accessories.png';
-import Cylinders_and_accessories from '../../assets/images/productNavMenu/Cylinders_and_accessories.png';
-import sensors from '../../assets/images/productNavMenu/sensors.png';
-import compressors from '../../assets/images/productNavMenu/compressors.png';
-import Dryer_tank_and_drain from '../../assets/images/productNavMenu/Dryer_tank_and_drain.png';
-import Wika_pressure_gauge_and_thermometer_regulation from '../../assets/images/productNavMenu/Wika_pressure_gauge_and_thermometer_regulation.png';
-import valves from '../../assets/images/productNavMenu/valves.png';
-import Maxdryer from '../../assets/images/productNavMenu/Maxdryer.png';
-import solenoid_valve from '../../assets/images/productNavMenu/solenoid_valve.png';
-import actuators from '../../assets/images/productNavMenu/actuators.png';
+import Fittings_and_accessories from '../../assets/images/productNavMenu/Fittings_and_accessories.webp';
+import Tubes from '../../assets/images/productNavMenu/Tubes.webp';
+import Distributors_and_accessories from '../../assets/images/productNavMenu/Distributors_and_accessories.webp';
+import Filters_and_accessories from '../../assets/images/productNavMenu/Filters_and_accessories.webp';
+import Cylinders_and_accessories from '../../assets/images/productNavMenu/Cylinders_and_accessories.webp';
+import sensors from '../../assets/images/productNavMenu/sensors.webp';
+import compressors from '../../assets/images/productNavMenu/compressors.webp';
+import Dryer_tank_and_drain from '../../assets/images/productNavMenu/Dryer_tank_and_drain.webp';
+import Wika_pressure_gauge_and_thermometer_regulation from '../../assets/images/productNavMenu/Wika_pressure_gauge_and_thermometer_regulation.webp';
+import valves from '../../assets/images/productNavMenu/valves.webp';
+import Maxdryer from '../../assets/images/productNavMenu/Maxdryer.webp';
+import solenoid_valve from '../../assets/images/productNavMenu/solenoid_valve.webp';
+import actuators from '../../assets/images/productNavMenu/actuators.webp';
 
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';

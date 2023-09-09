@@ -23,9 +23,9 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import Gallery from '../../components/Gallery';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
-import ProductImg1 from '../../assets/images/products/product_1.png';
-import ProductImg2 from '../../assets/images/products/product_2.png';
-import ProductImg3 from '../../assets/images/products/product_3.png';
+import ProductImg1 from '../../assets/images/products/product_1.webp';
+import ProductImg2 from '../../assets/images/products/product_2.webp';
+import ProductImg3 from '../../assets/images/products/product_3.webp';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import MultiSelect from '../Input/MultiSelect';
 export default function Product() {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Select, Option } from '@material-tailwind/react';
-import enflag from '../../assets/images/en_flag.png';
-import frflag from '../../assets/images/fr_flag.png';
-import tnflag from '../../assets/images/tn_flag.png';
+import enflag from '../../assets/images/en_flag.webp';
+import frflag from '../../assets/images/fr_flag.webp';
+import tnflag from '../../assets/images/tn_flag.webp'
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import {useDispatch} from "react-redux/es/hooks/useDispatch"

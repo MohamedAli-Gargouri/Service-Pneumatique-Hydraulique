@@ -23,7 +23,7 @@ import Footer from '../../components/footer';
 import SideBar from '../../components/SideBar';
 import React from 'react';
 import TopBar from '../../components/Topbar';
-import Topbarbg from '../../assets/images/Topbarbg.jpg';
+import Topbarbg from '../../assets/images/Topbarbg.webp';
 import TranslatedText from '../../utils/Translation';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';

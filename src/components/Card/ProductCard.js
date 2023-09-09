@@ -178,9 +178,10 @@ export default function ProductCard({
             <div className="flex flex-wrap justify-center items-center">
 
                 <IconButton
-                  onClick={() => {
-                    window.location.href = '/ProductDetails';
-                  }}
+              onClick={() => {
+                localStorage.setItem('ProductPreviewProps', JSON.stringify(ProductDetails));
+                window.location.href = '/ProductDetails';
+              }}
                   size="sm"
                   variant="text"
                   className="rounded-full hover:scale-150 mr-2"

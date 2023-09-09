@@ -9,7 +9,7 @@ import {
   CardBody,
 } from '@material-tailwind/react';
 import Sidebar from '../SideBar';
-import SPHLOGO from '../../assets/images/SPH Logo.png';
+import SPHLOGO from '../../assets/images/SPH Logo.webp';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';

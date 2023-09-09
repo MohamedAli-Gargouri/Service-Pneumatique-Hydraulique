@@ -26,9 +26,9 @@ import {
   IconButton,
   Tooltip,
 } from '@material-tailwind/react';
-import Product_1 from '../../assets/images/products/product_1.png';
-import Product_2 from '../../assets/images/products/product_2.png';
-import Product_3 from '../../assets/images/products/product_3.png';
+import Product_1 from '../../assets/images/products/product_1.webp';
+import Product_2 from '../../assets/images/products/product_2.webp';
+import Product_3 from '../../assets/images/products/product_3.webp';
 import Pagination from '../../utils/Table/Pagination';
 import SortData from '../../utils/Table/SortRows';
 import TabFilter from '../../utils/Table/TabFilter';

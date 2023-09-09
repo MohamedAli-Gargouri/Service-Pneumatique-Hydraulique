@@ -11,7 +11,7 @@ import {
 import PDFContent from './PDF_Content';
 import PDFFooter from './PDF_Footer';
 import PDFHeader from './PDF_Header';
-import SPHLOGO from '../../assets/images/SPH Logo.png';
+import SPHLOGO from '../../assets/images/SPH Logo.webp';
 export default function InvoiceTemplate({
   InvoiceNumber,
   DocumentType,

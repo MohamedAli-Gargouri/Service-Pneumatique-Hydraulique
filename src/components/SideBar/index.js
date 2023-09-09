@@ -28,7 +28,7 @@ import {
 import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import SPHLOGO from '../../assets/images/SPH Logo.png';
+import SPHLOGO from '../../assets/images/SPH Logo.webp';
 export default function UCP_SideNavbar() {
   const [openAlert, setOpenAlert] = React.useState(true);
   const LightModeState = useSelector((state) => state.lightMode);

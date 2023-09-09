@@ -27,7 +27,7 @@ import Footer from '../../components/footer';
 import SideBar from '../../components/SideBar';
 import React from 'react';
 import TopBar from '../../components/Topbar';
-import Topbarbg from '../../assets/images/Topbarbg.jpg';
+import Topbarbg from '../../assets/images/Topbarbg.webp';
 import Products from '../../components/Table/Products';
 export default function UCP_Products() {
   const LightModeState = useSelector((state) => state.lightMode);

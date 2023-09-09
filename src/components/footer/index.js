@@ -1,6 +1,6 @@
 import { Typography } from '@material-tailwind/react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import logo from '../../assets/images/SPH Logo.png';
+import logo from '../../assets/images/SPH Logo.webp';
 import TranslatedText from '../../utils/Translation';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 const List = [
@@ -67,7 +67,7 @@ export default function FooterWithSocialLinks() {
           <div
             className={` col-span-6 md:col-span-1 md:mt-4 md:mb-6 flex flex-wrap justify-center items-center`}
           >
-            <img src={logo} alt="logo-ct" className="w-[7rem] h-[4rem] m-4" />{' '}
+            <img src={logo} alt="logo-ct" className=" max-w-[5rem] aspect-video m-4" />{' '}
             <h5>Service Pneumatique Hydraulique</h5>
           </div>
 

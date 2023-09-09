@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./ErrorBoundary.css"
-import logo from '../../assets/images/SPH Logo.png'
+import logo from '../../assets/images/SPH Logo.webp'
 import {
     Card,
     CardHeader,

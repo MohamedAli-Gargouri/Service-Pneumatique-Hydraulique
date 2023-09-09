@@ -1,5 +1,5 @@
 import React from 'react';
-import SPHlogo from '../../assets/images/SPH Logo.png';
+import SPHlogo from '../../assets/images/SPH Logo.webp';
 import {
   Navbar,
   MobileNav,

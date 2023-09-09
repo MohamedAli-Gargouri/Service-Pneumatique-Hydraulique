@@ -1,22 +1,22 @@
 import { Typography, Card } from '@material-tailwind/react';
 import React from 'react';
 import TranslatedText from '../../utils/Translation';
-import ServiceImage from '../../assets/images/service.png';
+import ServiceImage from '../../assets/images/service.webp';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import ReactCardFlip from 'react-card-flip';
-import HertzLogo from '../../assets/images/partners/Hertz.png';
-import WIKALogo from '../../assets/images/partners/Wika.png';
-import OMILogo from '../../assets/images/partners/OMI.jpg';
-import AirWorkLogo from '../../assets/images/partners/airwork.jpg';
-import Waircom from '../../assets/images/partners/waircom.jpg';
-import CDCPneumatiqueLogo from '../../assets/images/partners/pneumatics corps.jpg';
-import UskonLogo from '../../assets/images/partners/UKSON.jpg';
-import ESKALogo from '../../assets/images/partners/ESKA.jpg';
-import CastelloLogo from '../../assets/images/partners/Castello.jpg';
-import MMLogo from '../../assets/images/partners/mm.jpg';
-import JorcLogo from '../../assets/images/partners/jorc.jpg';
-import websiteBackgroundimg from '../../assets/images/partners/WebsiteBackground.jpg';
+import HertzLogo from '../../assets/images/partners/Hertz.webp';
+import WIKALogo from '../../assets/images/partners/Wika.webp';
+import OMILogo from '../../assets/images/partners/OMI.webp';
+import AirWorkLogo from '../../assets/images/partners/airwork.webp';
+import Waircom from '../../assets/images/partners/waircom.webp';
+import CDCPneumatiqueLogo from '../../assets/images/partners/pneumatics corps.webp';
+import UskonLogo from '../../assets/images/partners/UKSON.webp';
+import ESKALogo from '../../assets/images/partners/ESKA.webp';
+import CastelloLogo from '../../assets/images/partners/Castello.webp';
+import MMLogo from '../../assets/images/partners/mm.webp';
+import JorcLogo from '../../assets/images/partners/jorc.webp';
+import websiteBackgroundimg from '../../assets/images/partners/WebsiteBackground.webp';
 import useElementInViewport from '../../utils/hooks';
 const Partners = () => {
   const Partners = [

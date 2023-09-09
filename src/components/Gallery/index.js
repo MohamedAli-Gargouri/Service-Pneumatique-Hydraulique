@@ -18,7 +18,7 @@ import {
   IconButton,
 } from '@material-tailwind/react';
 import ConfirmDialog from '../Dialog/Confirm';
-import PlaceHolderImg from '../../assets/images/Placeholderimg.png';
+import PlaceHolderImg from '../../assets/images/Placeholderimg.webp';
 import TranslatedText, { TranslateString } from '../../utils/Translation';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';

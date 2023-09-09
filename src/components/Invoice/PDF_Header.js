@@ -9,7 +9,7 @@ import {
   Image,
 } from '@react-pdf/renderer';
 
-import SPHLOGO from '../../assets/images/SPH Logo.png';
+import SPHLOGO from '../../assets/images/SPH Logo.webp';
 // Invoice component
 export default function InvoiceHeader({
   InvoiceNumber,

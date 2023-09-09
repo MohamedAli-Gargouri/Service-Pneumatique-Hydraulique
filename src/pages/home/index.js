@@ -3,8 +3,8 @@ import Footer from '../../components/footer';
 import React from 'react';
 import Presentation from './Presentation';
 import Services from './Services';
-import HeroImage from '../../assets/images/background1.png';
-import HeroCompressor from '../../assets/images/HeroBannerCompressor.png';
+import HeroImage from '../../assets/images/background1.webp';
+import HeroCompressor from '../../assets/images/HeroBannerCompressor.webp';
 import Partners from './Partners';
 import Employees from './Employees';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
@@ -33,7 +33,7 @@ const Home = () => {
               background:
                 'linear-gradient(to right, rgb(229, 57, 53,0.0), rgb(0, 0, 0,0.3))',
             }}
-            className="w-full md:w-fit  text-white Imageshadow text-center animate-RightToLeft  hover:scale-105 backdrop-blur-md rounded-lg flex flex-col justify-start gap-0 items-center pt-3"
+            className="w-full md:w-fit  text-white Imageshadow text-center animate-RightToLeft backdrop-blur-md rounded-lg flex flex-col justify-start gap-0 items-center pt-3"
           >
             <Typography variant="h1">
               <TranslatedText TranslationPath="Home.HeroTitle" />

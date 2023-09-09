@@ -3,10 +3,10 @@ import Slider from 'react-slick';
 import ProductCard from '../Card/ProductCarouselCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import productimg1 from '../../assets/images/productNavMenu/compressors.png';
-import productimg2 from '../../assets/images/productNavMenu/Dryer_tank_and_drain.png';
-import productimg3 from '../../assets/images/productNavMenu/valves.png';
-import productimg4 from '../../assets/images/productNavMenu/Filters_and_accessories.png';
+import productimg1 from '../../assets/images/productNavMenu/compressors.webp';
+import productimg2 from '../../assets/images/productNavMenu/Dryer_tank_and_drain.webp';
+import productimg3 from '../../assets/images/productNavMenu/valves.webp';
+import productimg4 from '../../assets/images/productNavMenu/Filters_and_accessories.webp';
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
