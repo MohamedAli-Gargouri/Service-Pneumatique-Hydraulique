@@ -20,7 +20,7 @@ export default function ProfileCard({
   return (
     <Card className="w-full h-[30rem]">
       <CardHeader floated={false} className="h-auto">
-        <img src={image} alt="profile-picture" />
+        <img loading="lazy" src={image} alt="profile-picture" />
       </CardHeader>
       <CardBody className="text-center">
         <Typography variant="h4" color="blue-gray" className="mb-2">

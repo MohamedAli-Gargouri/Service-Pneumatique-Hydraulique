@@ -32,7 +32,7 @@ export default function LanguageList() {
       <Menu>
         <MenuHandler>
           <IconButton variant="text" className="rounded-full p-0">
-            <img
+            <img loading="lazy"
               src={
                 SelectedLanguage == 'en'
                   ? enflag
@@ -50,7 +50,7 @@ export default function LanguageList() {
             className="flex items-center gap-2"
             onClick={() => HandleLanguageChange('en')}
           >
-            <img
+            <img loading="lazy"
               src={enflag}
               alt={'en'}
               className={`h-5 w-5 rounded-full object-cover`}
@@ -64,7 +64,7 @@ export default function LanguageList() {
             className="flex items-center gap-2"
             onClick={() => HandleLanguageChange('fr')}
           >
-            <img
+            <img loading="lazy"
               src={frflag}
               alt={'fr'}
               className={`h-5 w-5 rounded-full object-cover`}
@@ -78,7 +78,7 @@ export default function LanguageList() {
             className="flex items-center gap-2"
             onClick={() => HandleLanguageChange('ar')}
           >
-            <img
+            <img loading="lazy"
               src={tnflag}
               alt={'ar'}
               className={`h-5 w-5 rounded-full object-cover`}

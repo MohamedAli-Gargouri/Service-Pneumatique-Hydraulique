@@ -41,7 +41,7 @@ const {AddProduct,SetQuantity,RemoveProduct}=useCart()
         </div>
 
         <div className="hidden md:flex  col-span-1 justify-center items-center">
-          {ProductImages.length>0&&<img className='p-1 rounded-full ring-1 ring-red-400 aspect-square h-8 w-8' src={ProductImages[0]}/>}
+          {ProductImages.length>0&&<img loading="lazy" className='p-1 rounded-full ring-1 ring-red-400 aspect-square h-8 w-8' src={ProductImages[0]}/>}
         </div>
         <div className=" col-span-3 flex flex-col justify-center items-center">
           <div className=' flex  justify-evenly gap-1 items-start'>

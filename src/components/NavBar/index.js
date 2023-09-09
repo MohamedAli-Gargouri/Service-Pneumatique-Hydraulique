@@ -102,7 +102,7 @@ export default function ComplexNavbar() {
         `}
       >
         <div className="flex items-center justify-center gap-1 ">
-          <img
+          <img loading="lazy"
             onClick={()=>window.location.href="./"}
             src={SPHlogo}
             alt="SPH Logo"

@@ -38,7 +38,7 @@ export default function PhoneInput({ InputLabel }) {
             color="blue-gray"
             className="flex h-10 items-center gap-2 rounded-r-none border border-r-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3"
           >
-            <img
+            <img loading="lazy"
               src={flags.svg}
               alt={name}
               className="h-4 w-4 rounded-full object-cover"
@@ -62,7 +62,7 @@ export default function PhoneInput({ InputLabel }) {
                 className="flex items-center gap-2"
                 onClick={() => setCountry(index)}
               >
-                <img
+                <img loading="lazy"
                   src={flags.svg}
                   alt={name}
                   className="h-5 w-5 rounded-full object-cover"

@@ -90,7 +90,7 @@ export default function UCP_Profile() {
               }`}
             >
               <div className=" flex flex-col justify-center items-center col-span-1">
-                <img
+                <img loading="lazy"
                   className="h-[30vh] w-[30vh] rounded-full object-cover object-center mb-4 "
                   src={
                     imageSrc == ''

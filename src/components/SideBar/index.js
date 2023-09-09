@@ -26,7 +26,7 @@ export default function UCP_SideNavbar() {
   return (
     <React.Fragment>
       <div className="my-4 flex flex-col justify-center items-center">
-        <img src={SPHLOGO} className="Imageshadow w-22 h-12 m-1" />
+        <img loading="lazy" src={SPHLOGO} className="Imageshadow w-22 h-12 m-1" />
         <Typography variant="h5">
           <TranslatedText TranslationPath="UCP.SideBar.Title" />
         </Typography>

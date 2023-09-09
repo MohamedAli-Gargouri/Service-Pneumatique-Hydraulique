@@ -172,7 +172,7 @@ export default function NavListMenu() {
           <div
             className={` aspect-square h-20 w-20 rounded-lg p-3  bg-gray-500`}
           >
-            <img className="Imageshadow w-full h-full" src={icon} />
+            <img loading="lazy" className="Imageshadow w-full h-full" src={icon} />
           </div>
           <div>
             <Typography

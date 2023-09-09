@@ -15,32 +15,32 @@ export default function CarouselCustomNavigation() {
       loop={true}
       className=" w-full h-full rounded-md "
     >
-      <img
+      <img loading="lazy"
         src={slider1}
         alt="image 1"
         className="h-full w-full aspect-video rounded-md mx-2"
       />
-      <img
+      <img loading="lazy"
         src={slider2}
         alt="image 2"
         className="h-full w-full aspect-video rounded-md"
       />
-      <img
+      <img loading="lazy"
         src={slider3}
         alt="image 3"
         className="h-full w-full aspect-video rounded-md"
       />
-      <img
+      <img loading="lazy"
         src={slider4}
         alt="image 3"
         className="h-full w-full aspect-video rounded-md"
       />
-      <img
+      <img loading="lazy"
         src={slider5}
         alt="image 3"
         className="h-full w-full aspect-video rounded-md"
       />
-      <img
+      <img loading="lazy"
         src={slider6}
         alt="image 3"
         className="h-full w-full aspect-video rounded-md"

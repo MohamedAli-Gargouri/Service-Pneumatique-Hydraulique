@@ -17,7 +17,7 @@ const Presentation = () => {
           <div className="col-span-12">
             <div className="flex items-center justify-center h-full mt-4">
               <hr className="border-red-600 rounded-lg w-[30%] h-[0.35rem] bg-red-600 m-4" />
-              <img
+              <img loading="lazy"
                 src={SPHLogo}
                 alt="image 3"
                 className="block  object-fit: cover w-1/5 h-1/1 relative "

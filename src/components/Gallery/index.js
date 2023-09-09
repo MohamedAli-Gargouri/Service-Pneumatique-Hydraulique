@@ -121,7 +121,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
                     index == SelectedImgIndex ? 'border  border-red-400' : ''
                   } Unselected bg-gray-300 rounded-md img  shadow-lg mx-1  my-1 hover:scale-110 hover:border-red-200 transition duration-300 ease-in-out cursor-pointer`}
                 >
-                  <img
+                  <img loading="lazy"
                     className=" animate-fade aspect-square rounded-sm w-full h-full  shadow-x"
                     src={imageurl}
                   />
@@ -137,7 +137,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
             if (index == SelectedImgIndex) {
               return (
                 <div key={"SelectedIMG"+index} className="relative h-full w-full max-h-60 max-w-xs   md:max-h-96 md:max-w-lg   bg-gray-300 rounded-md Selected shadow-lg hover:cursor-pointer">
-                  <img
+                  <img loading="lazy"
                     className=" animate-fade aspect-square w-full h-full shadow-x"
                     src={imageurl}
                   />

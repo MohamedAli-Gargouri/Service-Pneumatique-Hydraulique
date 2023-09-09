@@ -42,7 +42,7 @@ const Services = () => {
       <div>
         <div className="flex flex-wrap  flex-col md:flex-row md:flex-nowrap">
           <div ref={CompressorImgRef} className={`${ AnimateServicesImg&&"animate-QuickLeftToRight"} flex justify-center items-center m-4 md:w-1/3 md:h-1/3`}>
-            <img
+            <img loading="lazy"
               src={ServiceImage}
               alt="image 3"
               className=" aspect-square animate-rotate object-fit: cover w-[80%] h-1/1"

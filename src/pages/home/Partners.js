@@ -146,7 +146,7 @@ const Partners = () => {
                 containerStyle={{ height: '100%', width: '100%' }}
               >
                 <div className=" rounded-lg h-full  w-full flex justify-center items-center ">
-                  <img className=" w-fit h-fit" src={Partner.logo} />
+                  <img loading="lazy" className=" w-fit h-fit" src={Partner.logo} />
                 </div>
 
                 <div

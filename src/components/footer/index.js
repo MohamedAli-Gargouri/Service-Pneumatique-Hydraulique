@@ -68,7 +68,7 @@ export default function FooterWithSocialLinks() {
           <div
             className={` col-span-6 md:col-span-1 md:mt-4 md:mb-6 flex flex-wrap justify-center items-center`}
           >
-            <img src={logo} alt="logo-ct" className=" max-w-[5rem] aspect-video m-4" />{' '}
+            <img loading="lazy" src={logo} alt="logo-ct" className=" max-w-[5rem] aspect-video m-4" />{' '}
             <h5>Service Pneumatique Hydraulique</h5>
           </div>
 

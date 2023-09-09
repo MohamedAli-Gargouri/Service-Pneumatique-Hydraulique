@@ -75,7 +75,7 @@ import {
          shadow={false}
           floated={false}
            className=" bg-gray-300 rounded-md aspect-square  max-h-64 Selected shadow-lg img border mx-1 my-1  p-4 hover:cursor-pointer">
-        <img
+        <img loading="lazy"
         key={DisplayedProductImg}
         className="animate-fade  w-full h-full aspect-square Imageshadow rounded-lg shadow-x"
         src={DisplayedProductImg}

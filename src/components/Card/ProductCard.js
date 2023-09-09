@@ -84,7 +84,7 @@ export default function ProductCard({
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <img
+            <img loading="lazy"
               key={isHovered ? "Image2" : "Image1"}
               src={isHovered ? ProductImages[0] : ProductImages[1]}
               className="aspect-square  bg-cover Imageshadow animate-Quickfade"
@@ -177,7 +177,7 @@ export default function ProductCard({
           }}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <img
+          <img loading="lazy"
            key={isHovered ? "Image2" : "Image1"}
             src={isHovered ? ProductImages[0] : ProductImages[1]}
             className={`aspect-square max-h-64 bg-cover Imageshadow animate-Quickfade`}

@@ -19,7 +19,7 @@ const Home = () => {
         className=" grid grid-cols-2 justify-center items-center flex-wrap md:flex-nowrap gap-0 bg-cover aspect-video  h-[170vh] md:h-[100vh] w-full  "
       >
         <div className=" col-span-2 md:col-span-1 p-1 flex justify-center items-center order-2 mt-0 md:order-1 w-full animate-LeftToRight aspect-square">
-          <img
+          <img loading="lazy"
             className="m-0 aspect-square max-w-xs md:max-w-md  lg:max-w-xl  animate-rotate   Imageshadow"
             src={HeroCompressor}
           />
