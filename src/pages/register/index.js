@@ -5,14 +5,14 @@ import {
   CardFooter,
   Typography,
   Input,
-  Checkbox,
   Button,
 } from '@material-tailwind/react';
+import React from 'react';
 import Navbar from '../../components/NavBar';
 import TranslatedText from '../../utils/Translation';
 import { TranslateString } from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import PhoneInput from '../../components/Input/Phone';
 export default function RegisterCard() {
   const LightModeState = useSelector((state) => state.lightMode);

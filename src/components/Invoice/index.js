@@ -1,11 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import {
   Card,
   Tooltip,
-  Radio,
-  Switch,
   Checkbox,
-  Typography,
   Input,
   Button,
   Spinner,
@@ -15,24 +12,17 @@ import SplitPane, { Pane } from 'split-pane-react';
 import InvoiceProductTable from '../Table/Invoice_SelectedProducts';
 import './SplitPane.css';
 import {
-  Page,
-  Text,
-  Image,
-  Document,
-  StyleSheet,
   PDFViewer,
 } from '@react-pdf/renderer';
-import Product_1 from '../../assets/images/products/product_1.webp';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import InvoicePDF from './PDFGenerator';
 import debounce from 'lodash/debounce';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import TranslatedText from '../../utils/Translation';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
-
-
+import PropTypes from "prop-types"
 const PreviewInvoiceTab=({
   PreviewInvoice,
   SetPreviewInvoice,
@@ -117,6 +107,14 @@ const PreviewInvoiceTab=({
   )
 
 }
+PreviewInvoiceTab.propTypes={
+  PreviewInvoice:PropTypes.bool.isRequired,
+  SetPreviewInvoice:PropTypes.func.isRequired,
+  GenerateNewPDF:PropTypes.func.isRequired,
+  PDFLoaded:PropTypes.bool.isRequired,
+  GeneratedPDF:PropTypes.object.isRequired 
+}
+
 const GenerateInvoiceTab=({
   DocumentType,
   GeneratedPDF,
@@ -220,6 +218,7 @@ const GenerateInvoiceTab=({
                     containerProps={{ style: { minWidth: '10px' } }}
                     variant="outlined"
                     type="number"
+                    defaultValue={0}
                     onChange={(e) => {
                       HandleInvoiceValueChanges(e, 'InvoiceNumber');
                     }}
@@ -317,6 +316,8 @@ const GenerateInvoiceTab=({
               />
               {DocumentType == 'Invoice' ? (
                 <Input
+                type='number'
+                defaultValue={0}
                   containerProps={{ style: { minWidth: '10px' } }}
                   variant="outlined"
                   onChange={(e) => {
@@ -489,6 +490,8 @@ const GenerateInvoiceTab=({
               />
               {DocumentType == 'Invoice' ? (
                 <Input
+                type='number'
+                defaultValue={0}
                   containerProps={{ style: { minWidth: '10px' } }}
                   variant="outlined"
                   onChange={(e) => {
@@ -516,6 +519,20 @@ const GenerateInvoiceTab=({
     </>
   )
 }
+GenerateInvoiceTab.propTypes={
+  DocumentType:PropTypes.oneOf(["Estimate","Invoice"]).isRequired,
+  GeneratedPDF:PropTypes.object.isRequired,
+  ShowDownloadInvoice:PropTypes.func.isRequired,
+  GenerateNewPDF:PropTypes.func.isRequired,
+  SetDocumentType:PropTypes.func.isRequired,
+  HandleInvoiceValueChanges:PropTypes.func.isRequired,
+  DemanderType:PropTypes.string.isRequired,
+  setDemanderType:PropTypes.func.isRequired,
+  HostType:PropTypes.oneOf(["Person","Company"]).isRequired,
+  SetHostType:PropTypes.func.isRequired,
+  ProductsData:PropTypes.array.isRequired,
+  SetProductsData:PropTypes.func.isRequired 
+}
 
 const Invoice = () => {
   const [DemanderType, setDemanderType] = React.useState('Company');
@@ -526,13 +543,13 @@ const Invoice = () => {
   const [sizes, setSizes] = React.useState([100, '4%', 'auto']);
   const [PreviewInvoice, SetPreviewInvoice] = React.useState(false);
 
-  const InvoiceNumber = React.useRef('');
+  const InvoiceNumber = React.useRef(0);
 
   const D_FirstName = React.useRef('');
   const D_LastName = React.useRef('');
   const D_Adress = React.useRef('');
-  const D_PhoneNumber = React.useRef('');
-  const D_TaxNumber = React.useRef('');
+  const D_PhoneNumber = React.useRef(0);
+  const D_TaxNumber = React.useRef(0);
 
   const H_FirstName = React.useRef('Service Pneumatique Hydraulique SPH');
   const H_LastName = React.useRef('');
@@ -540,7 +557,7 @@ const Invoice = () => {
     'Av Med Jammousi Immeuble el HANA 3000 Sfax - Tunis',
   );
   const H_PhoneNumber = React.useRef(74227074);
-  const H_TaxNumber = React.useRef('');
+  const H_TaxNumber = React.useRef(0);
 
   const CreationDate = React.useRef(new Date().toISOString().substr(0, 10));
   const LimitDate = React.useRef('');
@@ -575,7 +592,7 @@ const Invoice = () => {
   );
 
   React.useEffect(() => {
-    InvoiceNumber.current = '';
+    InvoiceNumber.current = 0;
   }, [DocumentType]);
 
   React.useEffect(() => {
@@ -640,7 +657,7 @@ const Invoice = () => {
   const HandleInvoiceValueChanges = debounce((e, type) => {
     switch (type) {
       case 'InvoiceNumber':
-        InvoiceNumber.current = e.target.value;
+        InvoiceNumber.current = parseInt(e.target.value);
         break;
       case 'D_FNAME':
         D_FirstName.current = e.target.value;

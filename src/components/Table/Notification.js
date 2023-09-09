@@ -1,10 +1,6 @@
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import React from 'react';
 import {
-  Card,
-  CardHeader,
-  Input,
-  Typography,
   Alert,
   IconButton,
 } from '@material-tailwind/react';

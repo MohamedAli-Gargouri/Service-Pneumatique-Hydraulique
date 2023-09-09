@@ -1,23 +1,11 @@
 import {
   Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Typography,
   Input,
   Button,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  IconButton,
-  Popover,
-  PopoverHandler,
-  PopoverContent,
 } from '@material-tailwind/react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 
 import Footer from '../../components/footer';
 import SideBar from '../../components/SideBar';
@@ -65,7 +53,7 @@ export default function UCP_Profile() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch logic here */}
   };
   return (
     <>

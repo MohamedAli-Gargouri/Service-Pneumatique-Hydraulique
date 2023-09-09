@@ -1,5 +1,5 @@
 import React from 'react';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import {
   Accordion,
   AccordionHeader,
@@ -17,7 +17,12 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import ReactDOMServer from 'react-dom/server';
 import { CreateToast } from '../../utils/Toast';
 import { enableScroll,disableScroll } from '../../utils/others/Scroll';
-export default function FilterMenu({IsMobile}) {
+import PropTypes from "prop-types"
+Products_FilterMenu.propTypes=
+{
+  IsMobile:PropTypes.bool.isRequired
+}
+export default function Products_FilterMenu({IsMobile}) {
   const Menus=[
     {
     MenuID:1,

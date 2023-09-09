@@ -6,8 +6,13 @@ import {
     TabPanel,
   } from '@material-tailwind/react';
   import { useSelector } from 'react-redux/es/hooks/useSelector';
-  import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+  import { LightMode } from '../../redux/actions/LightActions';
   import React from 'react';
+  import PropTypes from "prop-types"
+  AnimatedTab.propTypes={
+    data:PropTypes.array.isRequired,
+    DefaultSelectValue:PropTypes.string
+  }
   export default function AnimatedTab({data,DefaultSelectValue}) {
     const LightModeState = useSelector((state) => state.lightMode);
     return (

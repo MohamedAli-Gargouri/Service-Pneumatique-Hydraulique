@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Page,
-  Font,
   Text,
   View,
-  Document,
   StyleSheet,
-  Image,
 } from '@react-pdf/renderer';
+import PropTypes from "prop-types"
+InvoiceFooter.propTypes={
+  ShowContact:PropTypes.bool.isRequired
+}
 export default function InvoiceFooter({ ShowContact }) {
   // Define styles for the PDF
   const styles = StyleSheet.create({

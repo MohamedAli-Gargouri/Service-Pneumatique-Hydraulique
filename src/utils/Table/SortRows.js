@@ -1,3 +1,22 @@
+import PropTypes from "prop-types"
+SortData.PropTypes={
+  ColumTitle:PropTypes.string.isRequired, 
+  sortDirection:PropTypes.oneOf["asc","desc"],
+  setSortDirection:PropTypes.func.isRequired,
+  Data:PropTypes.array.isRequired,
+  SetData:PropTypes.func.isRequired,
+  /*ADD HERE IF YOU ADD ANY NEW TABLES AND UPDATE THE LOGIC BELOW SO IT KNOWS HOW TO SORT IT FOR YOUR NEW TABLE
+   */
+  Table:PropTypes.oneOf(
+["MyOrders",
+"Order",
+"Orders",
+"Products",
+"Accounts",
+"Inbox_Order",
+"Inbox_Contact"
+]).isRequired,
+}
 export default function SortData(
   ColumTitle,
   sortDirection,
@@ -5,16 +24,14 @@ export default function SortData(
   Data,
   SetData,
   Table,
-) {
+)
+{
   let CollumnName = '';
 
   if (Table == 'MyOrders') {
     switch (ColumTitle) {
       case 'Order':
         CollumnName = 'OrderID';
-        break;
-      case 'Employee':
-        CollumnName = 'name';
         break;
       case 'Employee':
         CollumnName = 'name';

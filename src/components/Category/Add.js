@@ -1,32 +1,27 @@
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Typography,
   Input,
-  Checkbox,
   Button,
-  ListItemSuffix,
-  ListItem,
-  List,
   Select,
   Option,
   IconButton,
-  Rating,
-  Textarea,
 } from '@material-tailwind/react';
 import debounce from 'lodash/debounce';
 import TranslatedText,{TranslateString} from '../../utils/Translation';
 import React from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
-export default function Product({ HandleOpen }) {
+import PropTypes from "prop-types"
+AddCategory.propTypes={
+  HandleOpen:PropTypes.func.isRequired
+}
+export default function AddCategory({ HandleOpen }) {
   const [inputValues, setInputValues] = React.useState(['', '']);
   const LightModeState = useSelector((state) => state.lightMode);
   const [SelectedCategory,SetSelectedCategory]=React.useState("Comp")
+  const TranslatedInputLabel=TranslateString("UCP.CategoryTable.TabInputs.SubCategoryValue")
   const Categories=[
     {categoryID:1,CategoryName:"Compressors",CategoryValue:"Comp"},
     {categoryID:2,CategoryName:"Tubes",CategoryValue:"Tub"},
@@ -58,10 +53,10 @@ export default function Product({ HandleOpen }) {
         LightModeState == LightMode().type,
       );
       HandleOpen();
-    } catch (e) {}
+    } catch (e){ /*Catch logic */}
   };
   const addInputField = () => {
-    setInputValues([...inputValues, '']);
+    setInputValues([...inputValues,'']);
   };
 
   const RemoveInputField = (index) => {
@@ -158,7 +153,7 @@ export default function Product({ HandleOpen }) {
                         LightModeState == LightMode().type ? 'black' : 'white',
                     },
                   }}
-                  label={TranslateString("UCP.CategoryTable.TabInputs.SubCategoryValue") +" "+ parseInt(index + 1, 10)}
+                  label={ TranslatedInputLabel+" "+ parseInt(index + 1, 10)}
                 />
                 {index == inputValues.length - 1 && (
                   <>

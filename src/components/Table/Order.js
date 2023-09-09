@@ -1,21 +1,13 @@
 import {
-  ArrowDownTrayIcon,
   MagnifyingGlassIcon,
-  EyeIcon,
-  XMarkIcon,
-  PauseIcon,
-  CurrencyDollarIcon,
   ChevronUpDownIcon,
 } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import { PencilIcon, UserPlusIcon } from '@heroicons/react/24/solid';
+import { LightMode } from '../../redux/actions/LightActions';
 import {
-  Card,
   CardHeader,
   Input,
   Typography,
-  Button,
   CardBody,
   Chip,
   CardFooter,
@@ -23,8 +15,6 @@ import {
   TabsHeader,
   Tab,
   Avatar,
-  IconButton,
-  Tooltip,
 } from '@material-tailwind/react';
 import Product_1 from '../../assets/images/products/product_1.webp';
 import Product_2 from '../../assets/images/products/product_2.webp';

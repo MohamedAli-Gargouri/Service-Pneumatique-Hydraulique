@@ -1,16 +1,30 @@
 import React from 'react';
 import {
-  Page,
-  Font,
   Text,
   View,
-  Document,
   StyleSheet,
   Image,
 } from '@react-pdf/renderer';
 
-import SPHLOGO from '../../assets/images/SPH Logo.webp';
-// Invoice component
+import SPHLOGO from '../../assets/images/SPH Logo.png';
+import PropTypes from "prop-types"
+InvoiceHeader.propTypes={
+  InvoiceNumber:PropTypes.number,
+  DocumentType:PropTypes.oneOf(["Estimate","Invoice"]).isRequired,
+  D_FirstName:PropTypes.string.isRequired,
+  D_LastName:PropTypes.string.isRequired,
+  D_Adress:PropTypes.string.isRequired,
+  D_PhoneNumber:PropTypes.number.isRequired,
+  D_TaxNumber:PropTypes.number.isRequired,
+  H_FirstName:PropTypes.string.isRequired,
+  H_LastName:PropTypes.string.isRequired,
+  H_Adress:PropTypes.string.isRequired,
+  H_PhoneNumber:PropTypes.number.isRequired,
+  H_TaxNumber:PropTypes.number.isRequired,
+  CreationDate:PropTypes.string.isRequired,
+  LimitDate:PropTypes.string.isRequired,
+  ShowClientInformation:PropTypes.bool.isRequired,
+}
 export default function InvoiceHeader({
   InvoiceNumber,
   DocumentType,

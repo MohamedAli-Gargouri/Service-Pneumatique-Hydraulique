@@ -1,17 +1,14 @@
 import NavListMenu from './navListMenu';
-import LanguageSelect from './languageListSelect';
 import React from 'react';
 import { Typography, MenuItem } from '@material-tailwind/react';
 import {
   HomeIcon,
   PhoneIcon,
-  InformationCircleIcon,
-  CircleStackIcon,
   ArrowLeftOnRectangleIcon,
   ArrowRightOnRectangleIcon,
 } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 
 import Translate from '../../utils/Translation';
 const navListItems = [

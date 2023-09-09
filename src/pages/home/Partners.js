@@ -1,9 +1,8 @@
 import { Typography, Card } from '@material-tailwind/react';
 import React from 'react';
 import TranslatedText from '../../utils/Translation';
-import ServiceImage from '../../assets/images/service.webp';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import ReactCardFlip from 'react-card-flip';
 import HertzLogo from '../../assets/images/partners/Hertz.webp';
 import WIKALogo from '../../assets/images/partners/Wika.webp';

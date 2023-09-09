@@ -6,18 +6,21 @@ import {
   Collapse,
   Card,
   Typography,
-  CardBody,
 } from '@material-tailwind/react';
 import Sidebar from '../SideBar';
-import SPHLOGO from '../../assets/images/SPH Logo.webp';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import { openCart } from '../../redux/actions/MyCartActions';
-import { Bars2Icon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import Notification from '../Notification';
 import LanguageSelect from '../NavBar/languageListSelect';
-export default function UCP_TopBar(props) {
+import PropTypes from "prop-types"
+UCP_TopBar.propTypes={
+  Icon:PropTypes.string.isRequired,
+  SectionName:PropTypes.node.isRequired
+}
+export default function UCP_TopBar({Icon,SectionName}) {
   const [open, setOpen] = React.useState(false);
   const toggleOpen = () => setOpen(!open);
   const XLBreakPoint = 1140;
@@ -130,13 +133,13 @@ export default function UCP_TopBar(props) {
         variant="h3"
         className={`text-center xl:text-left col-span-1  tc-darkTheme_T1 `}
       >
-        {props.Icon != undefined ? (
+        {Icon != undefined ? (
           <span
             className="mr-4"
-            dangerouslySetInnerHTML={{ __html: props.Icon }}
+            dangerouslySetInnerHTML={{ __html: Icon }}
           ></span>
         ) : null}
-        {props.SectionName}
+        {SectionName}
       </Typography>
     </div>
   );

@@ -1,18 +1,21 @@
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Typography,
-  Button,
-  Rating,
   IconButton,
 } from '@material-tailwind/react';
 import './ProductCard.css';
 import React from 'react';
 import QuantityInput from '../Input/Quantity';
-import { useDispatch,useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 import useCart from '../../utils/hooks/Cart';
+import PropTypes from "prop-types"
+CartCard.propTypes = {
+  ProductID: PropTypes.number.isRequired,
+  ProductImages: PropTypes.array.isRequired,
+  ProductBrand: PropTypes.string.isRequired,
+  ProductName: PropTypes.string.isRequired,
+  ProductPrice: PropTypes.number.isRequired,
+  ProductQuantity: PropTypes.number.isRequired
+};
 export default function CartCard({
   ProductID,
   ProductImages,

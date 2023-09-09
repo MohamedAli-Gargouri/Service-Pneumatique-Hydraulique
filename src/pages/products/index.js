@@ -1,15 +1,4 @@
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Input,
-  Checkbox,
-  Button,
-  ListItemSuffix,
-  ListItem,
-  List,
   Select,
   Option,
   Drawer,
@@ -17,7 +6,7 @@ import {
 } from '@material-tailwind/react';
 import React from 'react';
 import Navbar from '../../components/NavBar';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import Footer from '../../components/footer';
 import Productcard from '../../components/Card/ProductCard';

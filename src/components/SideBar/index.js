@@ -1,33 +1,23 @@
 import React from 'react';
 import {
-  Card,
   Typography,
   List,
   ListItem,
   ListItemPrefix,
   ListItemSuffix,
   Chip,
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
   Alert,
 } from '@material-tailwind/react';
 import {
-  PresentationChartBarIcon,
-  ShoppingBagIcon,
   UserCircleIcon,
-  Cog6ToothIcon,
   InboxIcon,
   PowerIcon,
 } from '@heroicons/react/24/solid';
-import {
-  ChevronRightIcon,
-  ChevronDownIcon,
-  CubeTransparentIcon,
-} from '@heroicons/react/24/outline';
+
+
 import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import SPHLOGO from '../../assets/images/SPH Logo.webp';
 export default function UCP_SideNavbar() {
   const [openAlert, setOpenAlert] = React.useState(true);
@@ -53,10 +43,10 @@ export default function UCP_SideNavbar() {
             window.location.href = '/UCP/Home';
           }}
         >
-          <ListItemPrefix>
+          <ListItemPrefix >
             <i className="fa-solid fa-house"></i>
           </ListItemPrefix>
-          Home
+          <TranslatedText TranslationPath="UCP.SideBar.Home" />
         </ListItem>
 
         <ListItem

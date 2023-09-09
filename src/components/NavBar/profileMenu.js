@@ -9,18 +9,14 @@ import {
     Avatar,
   } from "@material-tailwind/react";
   import {
-    UserCircleIcon,
     ChevronDownIcon,
-    Cog6ToothIcon,
     InboxArrowDownIcon,
-    LifebuoyIcon,
     PowerIcon,
 
   } from "@heroicons/react/24/outline";
   import { useSelector } from "react-redux/es/hooks/useSelector";
-  import {LightMode,DarkMode} from "../../redux/actions/LightActions"
-  import CountUp from 'react-countup';
-const profileMenuItems = [
+  import {LightMode} from "../../redux/actions/LightActions"
+  const profileMenuItems = [
     
     {
       label: "Control Center",

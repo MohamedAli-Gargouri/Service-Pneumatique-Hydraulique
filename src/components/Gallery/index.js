@@ -2,19 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
   Input,
-  Checkbox,
-  Button,
-  ListItemSuffix,
-  ListItem,
-  List,
-  Select,
-  Option,
   IconButton,
 } from '@material-tailwind/react';
 import ConfirmDialog from '../Dialog/Confirm';
@@ -23,7 +11,14 @@ import TranslatedText, { TranslateString } from '../../utils/Translation';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
+import PropTypes from "prop-types"
+Gallery.propTypes={
+  AddedImages:PropTypes.object,
+   Images:PropTypes.array.isRequired,
+    Addable:PropTypes.bool.isRequired,
+     Deletable:PropTypes.bool.isRequired
+}
 export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
   const LightModeState = useSelector((state) => state.lightMode);
   const [SelectedImgIndex, SetSelectedImgIndex] = useState(0);
@@ -106,7 +101,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch code here */}
 
   };
   return (

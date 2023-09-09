@@ -1,42 +1,25 @@
 import {
-  ArrowDownTrayIcon,
   MagnifyingGlassIcon,
-  EyeIcon,
-  XMarkIcon,
-  PauseIcon,
-  CurrencyDollarIcon,
   ChevronUpDownIcon,
 } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import ConfirmDeleteDialog from '../../components/Dialog/Confirm';
+import { LightMode } from '../../redux/actions/LightActions';
 import Product_1 from '../../assets/images/products/product_1.webp';
 import QuantityInput from '../Input/Quantity/Invoice';
 import React from 'react';
 import {
-  Card,
   CardHeader,
   Input,
   Typography,
-  Button,
   CardBody,
-  Chip,
   CardFooter,
-  Tabs,
-  TabsHeader,
-  Tab,
   Avatar,
-  IconButton,
-  Tooltip,
   Checkbox,
 } from '@material-tailwind/react';
 import Pagination from '../../utils/Table/Pagination';
 import SortData from '../../utils/Table/SortRows';
-import TabFilter from '../../utils/Table/TabFilter';
 import SearchRow from '../../utils/Table/Search';
-
-import CategoryDialog from '../../components/Dialog/Category';
-import CustomTooltip from '../../components/ToolTip';
+import PropTypes from "prop-types"
 import TranslatedText from '../../utils/Translation';
 
 const TABLE_HEAD = [
@@ -66,7 +49,11 @@ const TABLE_HEAD = [
     value: 'Quantity',
   },
 ];
-
+Invoice_ProductsList_Table.propTypes={
+  P_Selected:PropTypes.object.isRequired,
+  P_Quantities:PropTypes.object.isRequired,
+  P_Products:PropTypes.object.isRequired, 
+}
 export default function Invoice_ProductsList_Table({
   P_Selected,
   P_Quantities,
@@ -74,130 +61,130 @@ export default function Invoice_ProductsList_Table({
 }) {
   const TABLE_ROWS = [
     {
-      ProductCode: '501',
+      ProductCode: 501,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 7050,
     },
     {
-      ProductCode: '502',
+      ProductCode: 502,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 7005,
     },
     {
-      ProductCode: '503',
+      ProductCode: 503,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '504',
+      ProductCode: 504,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '505',
+      ProductCode: 505,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '506',
+      ProductCode: 506,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '507',
+      ProductCode: 507,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '508',
+      ProductCode: 508,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '509',
+      ProductCode: 509,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '510',
+      ProductCode: 510,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '511',
+      ProductCode: 511,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '512',
+      ProductCode: 512,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '513',
+      ProductCode: 513,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '514',
+      ProductCode: 514,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '515',
+      ProductCode: 515,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '516',
+      ProductCode: 516,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '517',
+      ProductCode: 517,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
     {
-      ProductCode: '518',
+      ProductCode: 518,
       img: Product_1,
       Brand: 'Hertz',
       Model: 'X478897 200ML X1',
-      Price: '705',
+      Price: 705,
     },
   ];
 

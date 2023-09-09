@@ -3,7 +3,7 @@ import React from 'react';
 import TranslatedText from '../../utils/Translation';
 import Hassen from '../../assets/images/team/Employee.jpg';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import CustomTab from '../../components/Tab';
 import ProfileCard from '../../components/Card/ProfileCard';
 import COCEOPFP from '../../assets/images/team/Co-CEO.png';

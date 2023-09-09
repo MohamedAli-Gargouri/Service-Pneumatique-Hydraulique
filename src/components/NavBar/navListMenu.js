@@ -7,20 +7,10 @@ import {
   MenuHandler,
   MenuList,
   MenuItem,
-  Chip,
 } from '@material-tailwind/react';
 import {
   ChevronDownIcon,
-  FlagIcon,
-  ChatBubbleOvalLeftIcon,
-  UsersIcon,
-  FolderIcon,
   Square3Stack3DIcon,
-  RocketLaunchIcon,
-  FaceSmileIcon,
-  PuzzlePieceIcon,
-  GiftIcon,
-  CircleStackIcon,
 } from '@heroicons/react/24/outline';
 import Translate from '../../utils/Translation';
 import Fittings_and_accessories from '../../assets/images/productNavMenu/Fittings_and_accessories.webp';
@@ -38,7 +28,7 @@ import solenoid_valve from '../../assets/images/productNavMenu/solenoid_valve.we
 import actuators from '../../assets/images/productNavMenu/actuators.webp';
 
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 
 const colors = {
   blue: 'bg-blue-50 text-blue-500',

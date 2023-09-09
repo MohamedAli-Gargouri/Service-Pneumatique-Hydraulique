@@ -2,22 +2,13 @@ import React from 'react';
 import SPHlogo from '../../assets/images/SPH Logo.webp';
 import {
   Navbar,
-  MobileNav,
   Collapse,
   Typography,
-  Button,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Avatar,
-  Card,
   IconButton,
   Badge,
 } from '@material-tailwind/react';
 import { Bars2Icon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import LanguageSelect from './languageListSelect';
-import Cart from '../Cart';
 import NavList from './navList';
 import ProfileMenu from './profileMenu';
 import TranslatedText from '../../utils/Translation';

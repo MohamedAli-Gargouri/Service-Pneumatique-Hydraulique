@@ -1,6 +1,5 @@
-import { Spinner } from '@material-tailwind/react';
 import { Waveform } from '@uiball/loaders';
-
+import React from 'react';
 export default function LoginCard() {
   return (
     <div

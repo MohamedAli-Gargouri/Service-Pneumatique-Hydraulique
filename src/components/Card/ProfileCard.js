@@ -6,19 +6,28 @@ import {
   Typography,
   Tooltip,
 } from '@material-tailwind/react';
-
-export default function ProfileCard(props) {
+import PropTypes from "prop-types"
+ProfileCard.propTypes={
+  image:PropTypes.string.isRequired,
+  name:PropTypes.string.isRequired,
+  position:PropTypes.string.isRequired
+}
+export default function ProfileCard({
+  image,
+  name,
+  position
+}) {
   return (
     <Card className="w-full h-[30rem]">
       <CardHeader floated={false} className="h-auto">
-        <img src={props.image} alt="profile-picture" />
+        <img src={image} alt="profile-picture" />
       </CardHeader>
       <CardBody className="text-center">
         <Typography variant="h4" color="blue-gray" className="mb-2">
-          {props.name}
+          {name}
         </Typography>
         <Typography color="blue" className="font-medium" textGradient>
-          {props.position}
+          {position}
         </Typography>
       </CardBody>
       <CardFooter className="flex justify-center gap-7 pt-2">

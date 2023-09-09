@@ -1,21 +1,17 @@
 import React from 'react';
 import {
-  Card,
-  CardHeader,
-  Input,
   Typography,
   Button,
-  CardBody,
-  Chip,
-  CardFooter,
-  Tabs,
-  TabsHeader,
-  Tab,
-  Avatar,
-  IconButton,
-  Tooltip,
 } from '@material-tailwind/react';
 import TranslatedText from '../../utils/Translation';
+import PropTypes from "prop-types"
+Pagination.propTypes={
+  AllData:PropTypes.array.isRequired,
+  VisibleData:PropTypes.array.isRequired,
+  SetVisibleData:PropTypes.func.isRequired,
+  currentPage:PropTypes.number.isRequired,
+  setCurrentPage:PropTypes.func.isRequired, 
+}
 function Pagination({
   AllData,
   VisibleData,

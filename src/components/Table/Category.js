@@ -1,33 +1,19 @@
 import {
-  ArrowDownTrayIcon,
   MagnifyingGlassIcon,
-  EyeIcon,
-  XMarkIcon,
-  PauseIcon,
-  CurrencyDollarIcon,
   ChevronUpDownIcon,
 } from '@heroicons/react/24/outline';
-import { PencilIcon, UserPlusIcon } from '@heroicons/react/24/solid';
 import {
   Card,
   CardHeader,
   Input,
   Typography,
-  Button,
   CardBody,
-  Chip,
   CardFooter,
-  Tabs,
-  TabsHeader,
-  Tab,
-  Avatar,
   IconButton,
   Tooltip,
 } from '@material-tailwind/react';
-import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import { openCart } from '../../redux/actions/MyCartActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import ConfirmDialog from '../Dialog/Confirm';
 import React from 'react';
 import Pagination from '../../utils/Table/Pagination';
@@ -36,6 +22,7 @@ import SearchRow from '../../utils/Table/Search';
 import TranslatedText from '../../utils/Translation';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
+import PropTypes from "prop-types"
 const TABLE_HEAD = [
   {
     label: (
@@ -91,6 +78,9 @@ const TABLE_ROWS = [
   },
 ];
 
+Categories_Table.propTypes={
+  HandleOpen:PropTypes.func.isRequired
+}
 export default function Categories_Table({ HandleOpen }) {
   const LightModeState = useSelector((state) => state.lightMode);
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
@@ -125,7 +115,7 @@ export default function Categories_Table({ HandleOpen }) {
         LightModeState == LightMode().type,
       );
       HandleOpen();
-    } catch (e) {}
+    } catch (e) {/*Catch logic here */}
   };
 
   const HandleEditCategory = () => {
@@ -154,7 +144,7 @@ export default function Categories_Table({ HandleOpen }) {
         LightModeState == LightMode().type,
       );
       HandleOpen();
-    } catch (e) {}
+    } catch (e) {/*Catch logic here */}
   };
   return (
     <Card

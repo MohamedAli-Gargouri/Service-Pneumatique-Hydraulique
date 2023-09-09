@@ -1,5 +1,4 @@
 import {
-  ArrowDownTrayIcon,
   MagnifyingGlassIcon,
   EyeIcon,
   XMarkIcon,
@@ -7,13 +6,10 @@ import {
   CurrencyDollarIcon,
   ChevronUpDownIcon,
 } from '@heroicons/react/24/outline';
-import { PencilIcon, UserPlusIcon } from '@heroicons/react/24/solid';
 import {
-  Card,
   CardHeader,
   Input,
   Typography,
-  Button,
   CardBody,
   Chip,
   CardFooter,
@@ -26,7 +22,7 @@ import {
 } from '@material-tailwind/react';
 import ReactDOMServer from 'react-dom/server';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import React from 'react';
 import ConfirmDialog from '../Dialog/Confirm';
 import Pagination from '../../utils/Table/Pagination';
@@ -222,7 +218,7 @@ export default function Orders_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch Logic here*/}
   };
 
   const HandleOrderPause = () => {
@@ -250,7 +246,7 @@ export default function Orders_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch Logic here*/}
   };
 
   const HandleOrderResume = () => {
@@ -278,7 +274,7 @@ export default function Orders_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch Logic here*/}
   };
 
   const HandleOrderMarkedPaid = () => {
@@ -306,7 +302,7 @@ export default function Orders_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch Logic here*/}
   };
 
   const HandleOrderMarkedReady = () => {
@@ -334,7 +330,7 @@ export default function Orders_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch Logic here*/}
   };
 
   return (

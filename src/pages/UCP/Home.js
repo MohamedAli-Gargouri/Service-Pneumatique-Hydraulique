@@ -1,32 +1,15 @@
 import {
   Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Typography,
-  Input,
-  Button,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  IconButton,
-  Popover,
-  PopoverHandler,
-  PopoverContent,
 } from '@material-tailwind/react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import CountUp from 'react-countup';
 import Footer from '../../components/footer';
 import SideBar from '../../components/SideBar';
 import React from 'react';
 import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.webp';
-import TranslatedText from '../../utils/Translation';
-import { CreateToast } from '../../utils/Toast';
-import ReactDOMServer from 'react-dom/server';
 import SPHVideosrc from '../../assets/videos/SPH.mp4';
 import Carousel from '../../components/Carousel';
 export default function UCP_Home() {

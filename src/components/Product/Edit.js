@@ -1,19 +1,8 @@
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
   Input,
-  Checkbox,
   Button,
-  ListItemSuffix,
-  ListItem,
-  List,
   Select,
   Option,
-  IconButton,
-  Rating,
   Textarea,
 } from '@material-tailwind/react';
 import React from 'react';
@@ -26,7 +15,7 @@ import ReactDOMServer from 'react-dom/server';
 import ProductImg1 from '../../assets/images/products/product_1.webp';
 import ProductImg2 from '../../assets/images/products/product_2.webp';
 import ProductImg3 from '../../assets/images/products/product_3.webp';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import MultiSelect from '../Input/MultiSelect';
 export default function Product() {
   const LightModeState = useSelector((state) => state.lightMode);
@@ -96,12 +85,12 @@ export default function Product() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch logic here */}
   };
 
   return (
     <React.Fragment>
-      <div className="h-full w-full mb-[1rem]  grid grid-cols-2 justify-center items-center ">
+      <div className="h-full w-full gap-2 grid grid-cols-2 justify-center items-center ">
         <div className="h-full w-full ImageGallery col-span-2 md:col-span-1">
           <Gallery
             AddedImages={AddedImages}

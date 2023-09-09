@@ -148,6 +148,7 @@
   },
   "UCP": {
     "SideBar": {
+      "Home":"Home",
       "Title": "Control Center",
       "MyOrders": " My Orders",
       "Orders": "Orders",

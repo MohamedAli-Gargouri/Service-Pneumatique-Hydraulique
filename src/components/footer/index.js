@@ -2,7 +2,8 @@ import { Typography } from '@material-tailwind/react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import logo from '../../assets/images/SPH Logo.webp';
 import TranslatedText from '../../utils/Translation';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
+import React from 'react';
 const List = [
   {
     title: <TranslatedText TranslationPath="Global.Footer.Title1" />,

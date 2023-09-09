@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 //This hook determine if an element is in the ViewPort or not.
 const useElementInViewport = (elementRef, margin = 0,HandlerFunction,ExecuteOnce) => {

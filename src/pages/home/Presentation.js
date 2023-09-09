@@ -1,14 +1,10 @@
-import Navbar from '../../components/NavBar';
-import Footer from '../../components/footer';
 import { Typography } from '@material-tailwind/react';
 import React from 'react';
-import { Button } from '@material-tailwind/react';
 import TranslatedText from '../../utils/Translation';
 import SPHLogo from '../../assets/images/SPH Logo.webp';
 import ProductCarousel from '../../components/Carousel/productsCarousel';
 
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 
 const Presentation = () => {
   const LightModeState = useSelector((state) => state.lightMode);

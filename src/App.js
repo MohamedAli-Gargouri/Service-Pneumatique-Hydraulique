@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/home';
 import Register from './pages/register';
@@ -7,7 +7,7 @@ import Login from './pages/login';
 import Contact from './pages/contact';
 import Products from './pages/products';
 import ProductDetails from './pages/products/Preview';
-import { LightMode, DarkMode } from './redux/actions/LightActions';
+import { LightMode } from './redux/actions/LightActions';
 import Dev from './pages/test';
 import Cart from './components/Cart';
 import Loading from './pages/loading';

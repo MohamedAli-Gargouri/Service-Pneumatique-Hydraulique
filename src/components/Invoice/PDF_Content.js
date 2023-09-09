@@ -1,16 +1,17 @@
 import React from 'react';
 import {
-  Page,
-  Font,
   Text,
   View,
-  Document,
   StyleSheet,
-  Image,
 } from '@react-pdf/renderer';
-
-import SPHLOGO from '../../assets/images/SPH Logo.webp';
-// Invoice component
+import PropTypes from "prop-types"
+PDFContent.propTypes={
+  Discount:PropTypes.number.isRequired,
+  TaxRate:PropTypes.number.isRequired,
+  ProductsData:PropTypes.array.isRequired,
+  Data:PropTypes.array.isRequired,
+  ShowTotal:PropTypes.bool.isRequired,
+}
 export default function PDFContent({
   Discount,
   TaxRate,
@@ -18,7 +19,6 @@ export default function PDFContent({
   Data,
   ShowTotal,
 }) {
-  // Define styles for the PDF
   const styles = StyleSheet.create({
     page: {
       flexDirection: 'column',

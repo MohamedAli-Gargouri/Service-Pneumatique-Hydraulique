@@ -1,32 +1,16 @@
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
   Input,
-  Checkbox,
   Button,
-  ListItemSuffix,
-  ListItem,
-  List,
   Select,
   Option,
-  IconButton,
-  Rating,
   Textarea,
-  Menu,
-  MenuHandler,
-  MenuItem,
-  MenuList,
 } from '@material-tailwind/react';
-import { ChevronDownIcon, RocketLaunchIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 import TranslatedText,{TranslateString} from '../../utils/Translation';
 import AnimatedTab from '../../components/Tab';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import Gallery from '../../components/Gallery';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
 import MultiSelect from '../Input/MultiSelect';
@@ -92,12 +76,12 @@ export default function Product() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/**Catch logic here */}
   };
   return (
     <React.Fragment>
-      <div className="h-full w-full mb-[1rem]  grid grid-cols-2 justify-center items-center ">
-        <div className="h-full w-full ImageGallery col-span-2 md:col-span-1">
+      <div className="h-full w-full  grid grid-cols-2 gap-2 justify-center items-center ">
+        <div className="h-full w-full ImageGallery col-span-2 md:col-span-1 ">
           <Gallery
             Images={[]}
             AddedImages={AddedImages}

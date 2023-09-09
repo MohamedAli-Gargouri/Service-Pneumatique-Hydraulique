@@ -6,7 +6,6 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
-  Typography,
   Tabs,
   TabsHeader,
   TabsBody,
@@ -16,8 +15,16 @@ import {
 import AddCategory from '../Category/Add';
 import CategoryTable from '../Table/Category';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-export default function Category({ Icon, Open, HandleOpen, Title, Content }) {
+import { LightMode } from '../../redux/actions/LightActions';
+import PropTypes from "prop-types"
+CategoryDialog.propTypes={
+  Icon:PropTypes.string,
+  Open:PropTypes.bool.isRequired, 
+  HandleOpen:PropTypes.func.isRequired,
+  Title:PropTypes.node.isRequired,
+  Content:PropTypes.string 
+}
+export default function CategoryDialog({ Icon, Open, HandleOpen, Title, Content }) {
   const LightModeState = useSelector((state) => state.lightMode);
   const mdbreakpoint = 720;
   const CategoryTabs = [

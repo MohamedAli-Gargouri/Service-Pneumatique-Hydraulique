@@ -10,20 +10,16 @@ import {
   ListItem,
   ListItemPrefix,
   ListItemSuffix,
-  Chip,
-  IconButton,
-  Popover,
-  PopoverHandler,
-  PopoverContent,
 } from '@material-tailwind/react';
 import { Textarea } from '@material-tailwind/react';
 import Navbar from '../../components/NavBar';
 import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import PhoneInput from '../../components/Input/Phone';
 import Footer from '../../components/footer';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
+import React from 'react'; 
 export default function ContactCard() {
   Input.propTypes=
   {

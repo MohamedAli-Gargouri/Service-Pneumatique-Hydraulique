@@ -3,9 +3,14 @@ import {
   CardHeader,
   CardBody,
   Typography,
-  Avatar,
 } from '@material-tailwind/react';
 import { Button } from '@material-tailwind/react';
+import PropTypes from "prop-types"
+BackgroundBlogCard.propTypes=
+{
+  text:PropTypes.string.isRequired, 
+  backgroundImage : PropTypes.string.isRequired
+}
 export default function BackgroundBlogCard({ text, backgroundImage }) {
   return (
     <Card

@@ -1,31 +1,22 @@
 import {
-  ArrowDownTrayIcon,
   MagnifyingGlassIcon,
-  EyeIcon,
-  XMarkIcon,
-  PauseIcon,
-  CurrencyDollarIcon,
   ChevronUpDownIcon,
 } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import ConfirmDeleteDialog from '../../components/Dialog/Confirm';
 import React from 'react';
 import {
-  Card,
   CardHeader,
   Input,
   Typography,
-  Button,
   CardBody,
   Chip,
   CardFooter,
   Tabs,
   TabsHeader,
   Tab,
-  Avatar,
   IconButton,
-  Tooltip,
 } from '@material-tailwind/react';
 import Pagination from '../../utils/Table/Pagination';
 import SortData from '../../utils/Table/SortRows';
@@ -127,7 +118,7 @@ const TABLE_ROWS_ContactNofiications = [
 ];
 
 export default function Inbox_Table() {
-  const [OpenCategoryDialog, SetOpenCategoryDialog] = React.useState(false);
+
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
   const LightModeState = useSelector((state) => state.lightMode);
   const [SelectedTab, SetSelectedTab] = React.useState('Orders');
@@ -184,7 +175,7 @@ export default function Inbox_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch Logic here*/}
   };
 
   const HandleMessageDelete = () => {
@@ -212,7 +203,7 @@ export default function Inbox_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch logic here */}
   };
   return (
     <>

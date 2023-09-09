@@ -2,22 +2,9 @@ import React, { Component } from 'react';
 import "./ErrorBoundary.css"
 import logo from '../../assets/images/SPH Logo.webp'
 import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Typography,
-    Input,
-    Checkbox,
     Button,
-    ListItemSuffix,
-    ListItem,
-    List,
-    Select,
-    Option,
-    Drawer,
-    IconButton,
   } from '@material-tailwind/react';
+ import propTypes from "prop-types"
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -52,8 +39,8 @@ class ErrorBoundary extends Component {
                                         porte vers le grand rien
                                     </h1>
                                     <p className="my-2 text-gray-800">On dirait que tu as trouvé la porte du grand rien
-                                    Désolé pour ça! Veuillez visiter notre page d'accueil pour vous rendre là où vous devez aller.</p>
-                                    <Button className="sm:w-full lg:w-auto my-2 border rounded md py-4 px-8 text-center  text-white">Retour Accueil</Button>
+                                    Désolé pour ça! Veuillez visiter notre page d&aposaccueil pour vous rendre là où vous devez aller.</p>
+                                    <Button onClick={()=>window.location.href="/"} className="sm:w-full lg:w-auto my-2 border rounded md py-4 px-8 text-center  text-white">Retour Accueil</Button>
                                 </div>
                             </div>
                             <div>
@@ -72,5 +59,8 @@ class ErrorBoundary extends Component {
     return this.props.children;
   }
 }
+ErrorBoundary.propTypes={
+  children:propTypes.node
+ }
 
 export default ErrorBoundary;

@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import i18next from 'i18next';
 import { ThemeProvider } from '@material-tailwind/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';

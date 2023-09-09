@@ -1,24 +1,11 @@
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Typography,
-  Input,
-  Checkbox,
   Button,
-  ListItemSuffix,
-  ListItem,
-  List,
-  Select,
-  Option,
-  IconButton,
   Rating,
   Chip
 } from '@material-tailwind/react';
 import React from 'react';
 import Navbar from '../../components/NavBar';
-import Pagination from '../../components/Pagination';
 import { TranslateString } from '../../utils/Translation';
 import AnimatedTab from '../../components/Tab';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
@@ -70,7 +57,7 @@ export default function Products() {
       </div>
       <div className="mb-[1rem]  grid grid-cols-2 w-full justify-center items-center gap-3 ">
         <div className="col-span-2 md:col-span-1">
-          <Gallery Images={ProductInfo.ProductImages} />
+          <Gallery Addable={false} Deletable={false} Images={ProductInfo.ProductImages} />
         </div>
 
         <div className="col-span-2 md:col-span-1 flex flex-col items-center justify-center w-full">

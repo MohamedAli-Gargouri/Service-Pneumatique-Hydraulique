@@ -1,7 +1,15 @@
 import React from 'react';
-import { Input, Button, IconButton } from '@material-tailwind/react';
+import { Input, Button } from '@material-tailwind/react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../../redux/actions/LightActions';
+import { LightMode } from '../../../redux/actions/LightActions';
+import PropTypes from "prop-types"
+QuantityInput.propTypes={
+  ProductID:PropTypes.number.isRequired,
+  quantity:PropTypes.number.isRequired,
+  incrementHandler:PropTypes.func.isRequired,
+  decrementHandler:PropTypes.func.isRequired,
+  onchangeHandler: PropTypes.func.isRequired
+}
 export default function QuantityInput({
     ProductID,
     quantity,

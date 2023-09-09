@@ -6,9 +6,7 @@ import Services from './Services';
 import HeroImage from '../../assets/images/background1.webp';
 import HeroCompressor from '../../assets/images/HeroBannerCompressor.webp';
 import Partners from './Partners';
-import Employees from './Employees';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import TranslatedText from '../../utils/Translation';
 import { Typography, Button } from '@material-tailwind/react';
 const Home = () => {

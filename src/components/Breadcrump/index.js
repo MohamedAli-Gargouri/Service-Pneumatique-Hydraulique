@@ -1,8 +1,25 @@
 import { Breadcrumbs } from '@material-tailwind/react';
-
 import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
+import React from 'react';
+import PropTypes from 'prop-types';
+BreadcrumbsWithIcon.propTypes = {
+  Parent: PropTypes.object,
+  Child: PropTypes.object,
+  List: PropTypes.bool.isRequired,
+};
+
+/*
+=========This is an example of how the data should beformated=======
+
+ Parent={{PageUrl:"/Home",PageName:"Home"}}
+  Child={{
+  PageUrl: '/Products',
+  PageName: <TranslatedText TranslationPath="Products.Shop" />,
+        }}
+  List={true}      
+*/
 export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
   const LightModeState = useSelector((state) => state.lightMode);
   return (

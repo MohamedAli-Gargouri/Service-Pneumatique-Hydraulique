@@ -145,6 +145,7 @@
 
   "UCP": {
     "SideBar": {
+      "Home":"Accueil",
       "Title": "Centre de contrôle",
       "MyOrders": "Mes commandes",
       "Orders": "Ordres",

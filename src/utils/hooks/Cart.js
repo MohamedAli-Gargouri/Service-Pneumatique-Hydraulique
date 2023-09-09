@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { addProduct,removeProduct,setProductQuantity } from '../../redux/actions/MyCartActions';
 import { useDispatch } from 'react-redux';
 import ReactDOMServer from 'react-dom/server';
 import { CreateToast } from '../../utils/Toast';
 import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 //This hook handle the add, remove and quantity update for the cart//
 const useCart = () => {
     const LightModeState = useSelector((state) => state.lightMode);
@@ -124,7 +124,7 @@ const OrderCart = (closeDrawerRight) => {
           LightModeState == LightMode().type,
         );
         closeDrawerRight();
-      } catch (e) {}
+      } catch (e) {/*Catch logic here */}
     }else
     {
       CreateToast(

@@ -6,21 +6,24 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
-  Typography,
-  Tabs,
-  TabsHeader,
-  TabsBody,
-  Tab,
-  TabPanel,
 } from '@material-tailwind/react';
 import InvboxProductTable from '../Table/Invoice_ProductsList';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import TranslatedText from '../../utils/Translation';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
-
-export default function Invoice({
+import PropTypes from "prop-types"
+Invoice_ProductsDialog.propTypes=
+{
+  SetAllData:PropTypes.func.isRequired,
+  Open:PropTypes.bool.isRequired,
+  HandleOpen:PropTypes.func.isRequired,
+  Content:PropTypes.string,
+  Icon:PropTypes.string.isRequired,
+  Title:PropTypes.string.isRequired,  
+}
+export default function Invoice_ProductsDialog({
   SetAllData,
   Open,
   HandleOpen,

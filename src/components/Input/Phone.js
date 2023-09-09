@@ -8,11 +8,13 @@ import {
   MenuItem,
   Button,
 } from '@material-tailwind/react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import TranslatedText from '../../utils/Translation';
-export default function InputWithDropdown({ InputLabel }) {
+import { LightMode } from '../../redux/actions/LightActions';
+import PropTypes from "prop-types"
+PhoneInput.propTypes={
+  InputLabel:PropTypes.string
+}
+export default function PhoneInput({ InputLabel }) {
   const LightModeState = useSelector((state) => state.lightMode);
   const { countries } = useCountries();
 
@@ -74,6 +76,7 @@ export default function InputWithDropdown({ InputLabel }) {
       <Input
         type="tel"
         placeholder={""}
+        label={InputLabel}
         className={`rounded-l-none !border-t-blue-gray-200 focus:!border-t-blue-500`}
         labelProps={{
           className: `before:content-none after:content-none`,

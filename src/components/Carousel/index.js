@@ -5,6 +5,7 @@ import slider3 from '../../assets/images/carousel/slider3.webp';
 import slider4 from '../../assets/images/carousel/slider4.webp';
 import slider5 from '../../assets/images/carousel/slider5.webp';
 import slider6 from '../../assets/images/carousel/slider6.webp';
+import React from 'react';
 export default function CarouselCustomNavigation() {
   return (
     <Carousel

@@ -10,7 +10,7 @@ import { closeCart } from '../../redux/actions/MyCartActions';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { disableScroll, enableScroll } from '../../utils/others/Scroll';
 import CartCard from '../Card/CartCard';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import TranslatedText from '../../utils/Translation';
 import useCart from '../../utils/hooks/Cart';
 export default function Cart() {

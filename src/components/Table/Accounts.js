@@ -1,25 +1,18 @@
 import {
-  ArrowDownTrayIcon,
   MagnifyingGlassIcon,
-  EyeIcon,
-  XMarkIcon,
-  PauseIcon,
-  CurrencyDollarIcon,
   ChevronUpDownIcon,
 } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import ConfirmDialog from '../../components/Dialog/Confirm';
 import Person_1 from '../../assets/images/Person 1.jpg';
 import Person_2 from '../../assets/images/Person 2.jpg';
 import TranslatedText from '../../utils/Translation';
 import React from 'react';
 import {
-  Card,
   CardHeader,
   Input,
   Typography,
-  Button,
   CardBody,
   Chip,
   CardFooter,
@@ -176,7 +169,7 @@ export default function Accounts_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch logic here */}
   };
 
   const HandleSetEmployee = () => {
@@ -204,7 +197,7 @@ export default function Accounts_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch logic here */}
   };
 
   const HandleSetNormalUser = () => {
@@ -232,7 +225,7 @@ export default function Accounts_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch logic here */}
   };
 
   const HandleDeleteUser = () => {
@@ -260,7 +253,7 @@ export default function Accounts_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch logic here */}
   };
 
   return (

@@ -1,28 +1,9 @@
 import {
   Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Input,
-  Button,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  IconButton,
-  Popover,
-  PopoverHandler,
-  PopoverContent,
 } from '@material-tailwind/react';
-import { Textarea } from '@material-tailwind/react';
-import TransactionsTable from '../../components/Table/Orders';
-import Navbar from '../../components/NavBar';
 import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import PhoneInput from '../../components/Input/Phone';
+import { LightMode } from '../../redux/actions/LightActions';
 import Footer from '../../components/footer';
 import SideBar from '../../components/SideBar';
 import React from 'react';

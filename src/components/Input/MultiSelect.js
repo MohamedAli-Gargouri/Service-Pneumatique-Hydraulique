@@ -1,19 +1,16 @@
 import React from 'react';
-import { useCountries } from 'use-react-countries';
-import {
-  Input,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Button,
-} from '@material-tailwind/react';
+
+
 import Multiselect from 'multiselect-react-dropdown';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import TranslatedText from '../../utils/Translation';
+import { LightMode } from '../../redux/actions/LightActions';
 import './MultiSelect.css';
+import PropTypes from "prop-types"
+MultiSelect.propTypes={
+  Data:PropTypes.array.isRequired,
+  DataLabelName:PropTypes.string.isRequired,
+  SelectData:PropTypes.object.isRequired
+}
 export default function MultiSelect({ Data, DataLabelName, SelectData }) {
   const LightModeState = useSelector((state) => state.lightMode);
   const OnSubCategorySelect = (Selected) => {

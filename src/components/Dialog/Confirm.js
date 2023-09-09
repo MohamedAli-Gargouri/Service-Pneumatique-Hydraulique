@@ -8,14 +8,33 @@ import {
   Typography,
 } from '@material-tailwind/react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-export default function DeleteConfirm(props) {
+import { LightMode } from '../../redux/actions/LightActions';
+import PropTypes from "prop-types"
+ConfirmDialog.propTypes=
+{
+  Open:PropTypes.bool.isRequired,
+  color:PropTypes.string,
+  Title:PropTypes.node.isRequired,
+  Icon:PropTypes.string.isRequired,
+  Content:PropTypes.node,
+  Action:PropTypes.func.isRequired,
+  HandleOpen:PropTypes.func.isRequired
+}
+export default function ConfirmDialog({
+  Open,
+  color,
+  Title,
+  Icon,
+  Content,
+  Action,
+  HandleOpen
+}) {
   const LightModeState = useSelector((state) => state.lightMode);
   return (
     <>
       <Dialog
-        open={props.Open}
-        handler={props.HandleOpen}
+        open={Open}
+        handler={HandleOpen}
         className={`${
           LightModeState == LightMode().type
             ? 'bg-whiteTheme_T3 tc-whiteTheme_T1'
@@ -27,19 +46,19 @@ export default function DeleteConfirm(props) {
         }}
       >
         <DialogHeader>
-        <div className='m-1 flex justify-center items-center gap-2 font-black' dangerouslySetInnerHTML={{ __html: props.Icon }}></div>{' '}
+        <div className='m-1 flex justify-center items-center gap-2 font-black' dangerouslySetInnerHTML={{ __html: Icon }}></div>{' '}
           <Typography
             variant="paragraph"
             color={
-              props.color == undefined
+              color == undefined
                 ? LightModeState == LightMode().type
                   ? 'black'
                   : 'white'
-                : props.color
+                : color
             }
             className={`m-1 flex justify-center items-center gap-2 font-black  `}
           >
-            {props.Title}
+            {Title}
           </Typography>
         </DialogHeader>
         <DialogBody
@@ -50,13 +69,13 @@ export default function DeleteConfirm(props) {
               : ' tc-darkTheme_T1'
           }`}
         >
-          {props.Content}
+          {Content}
         </DialogBody>
         <DialogFooter>
           <Button
             variant="text"
             color="blue-gray"
-            onClick={props.HandleOpen}
+            onClick={HandleOpen}
             className="mr-1"
           >
             <i className="fa-solid fa-xmark mx-2"></i>
@@ -64,13 +83,13 @@ export default function DeleteConfirm(props) {
           </Button>
           <Button
             variant="text"
-            color={props.color == undefined ? 'blue' : props.color}
+            color={color == undefined ? 'blue' : color}
             onClick={() => {
-              props.Action();
-              props.HandleOpen();
+              Action();
+              HandleOpen();
             }}
           >
-            <span dangerouslySetInnerHTML={{ __html: props.Icon }}></span>
+            <span dangerouslySetInnerHTML={{ __html: Icon }}></span>
             <span>Confirm</span>
           </Button>
         </DialogFooter>

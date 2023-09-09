@@ -1,15 +1,9 @@
 import {
-  ArrowDownTrayIcon,
   MagnifyingGlassIcon,
   EyeIcon,
-  XMarkIcon,
-  PauseIcon,
-  CurrencyDollarIcon,
   ChevronUpDownIcon,
 } from '@heroicons/react/24/outline';
-import { PencilIcon, UserPlusIcon } from '@heroicons/react/24/solid';
 import {
-  Card,
   CardHeader,
   Input,
   Typography,
@@ -26,7 +20,7 @@ import {
 } from '@material-tailwind/react';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import { openCart } from '../../redux/actions/MyCartActions';
 import ConfirmDialog from '../Dialog/Confirm';
 import React from 'react';
@@ -217,7 +211,7 @@ export default function MyOrders_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch Logic here*/}
   };
   return (
     <>

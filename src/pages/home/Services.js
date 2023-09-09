@@ -3,7 +3,7 @@ import React from 'react';
 import TranslatedText from '../../utils/Translation';
 import ServiceImage from '../../assets/images/service.webp';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 
 import useElementInViewport from '../../utils/hooks';
 const Services = () => {

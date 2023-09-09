@@ -1,30 +1,14 @@
 import {
   Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Input,
-  Button,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  IconButton,
-  Popover,
-  PopoverHandler,
-  PopoverContent,
 } from '@material-tailwind/react';
 import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import Footer from '../../components/footer';
 import SideBar from '../../components/SideBar';
 import React from 'react';
 import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.webp';
-import Products from '../../components/Table/Products';
 import InboxTable from '../../components/Table/Inbox';
 export default function UCP_Inbox() {
   const LightModeState = useSelector((state) => state.lightMode);

@@ -1,21 +1,15 @@
 import {
-  ArrowDownTrayIcon,
   MagnifyingGlassIcon,
-  EyeIcon,
-  XMarkIcon,
-  PauseIcon,
-  CurrencyDollarIcon,
   ChevronUpDownIcon,
 } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import ConfirmDeleteDialog from '../../components/Dialog/Confirm';
 import Product_1 from '../../assets/images/products/product_1.webp';
 import Product_2 from '../../assets/images/products/product_2.webp';
 import Product_3 from '../../assets/images/products/product_3.webp';
 import React from 'react';
 import {
-  Card,
   CardHeader,
   Input,
   Typography,
@@ -264,7 +258,7 @@ export default function Products_Table() {
         'promise',
         LightModeState == LightMode().type,
       );
-    } catch (e) {}
+    } catch (e) {/*Catch Logic here*/}
   };
   return (
     <>

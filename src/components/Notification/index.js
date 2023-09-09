@@ -2,16 +2,12 @@ import React from 'react';
 import {
   Collapse,
   Button,
-  Card,
-  Typography,
-  CardBody,
   Badge,
   IconButton,
-  CardHeader,
 } from '@material-tailwind/react';
 import NotificationTable from '../Table/Notification';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import TranslatedText from '../../utils/Translation';
 export default function Notification() {
   const [open, setOpen] = React.useState(false);

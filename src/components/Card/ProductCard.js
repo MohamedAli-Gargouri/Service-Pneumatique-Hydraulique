@@ -1,8 +1,5 @@
 import {
   Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Typography,
   Button,
   Rating,
@@ -13,12 +10,24 @@ import './ProductCard.css';
 import React from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import TranslatedText from '../../utils/Translation';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
-import { addProduct } from '../../redux/actions/MyCartActions';
-import { useDispatch } from 'react-redux';
-import ReactDOMServer from 'react-dom/server';
-import { CreateToast } from '../../utils/Toast';
+import { LightMode } from '../../redux/actions/LightActions';
 import useCart from '../../utils/hooks/Cart';
+import PropTypes from "prop-types"
+ProductCard.propTypes=
+{
+  ProductID:PropTypes.number.isRequired,
+  ProductShortDescription: PropTypes.string.isRequired,
+  ProductImages:PropTypes.array.isRequired,
+  ProductCategory:PropTypes.string.isRequired,
+  ProductBrand:PropTypes.string.isRequired,
+  ProductName:PropTypes.string.isRequired,
+  ProductPrice:PropTypes.number.isRequired,
+  ProductSubCategory:PropTypes.arrayOf(PropTypes.object).isRequired,
+  variant:PropTypes.number.isRequired,
+  ProductLongDesc:PropTypes.string.isRequired,
+  ProductInformation:PropTypes.string.isRequired,
+  ProductShipping:PropTypes.string.isRequired 
+}
 export default function ProductCard({
   ProductID,
   ProductShortDescription,

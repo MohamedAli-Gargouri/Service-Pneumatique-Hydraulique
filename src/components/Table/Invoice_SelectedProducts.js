@@ -1,14 +1,8 @@
 import {
-  ArrowDownTrayIcon,
-  MagnifyingGlassIcon,
-  EyeIcon,
-  XMarkIcon,
-  PauseIcon,
-  CurrencyDollarIcon,
   ChevronUpDownIcon,
 } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode, DarkMode } from '../../redux/actions/LightActions';
+import { LightMode } from '../../redux/actions/LightActions';
 import ConfirmDeleteDialog from '../../components/Dialog/Confirm';
 import InvoiceProductDialog from '../Dialog/InvoiceProduct';
 import React from 'react';
@@ -16,21 +10,17 @@ import TranslatedText from '../../utils/Translation';
 import {
   Card,
   CardHeader,
-  Input,
   Typography,
   Button,
   CardBody,
-  Chip,
   CardFooter,
-  Tabs,
-  TabsHeader,
-  Tab,
   Avatar,
   IconButton,
   Tooltip,
 } from '@material-tailwind/react';
 import Pagination from '../../utils/Table/Pagination';
 import SortData from '../../utils/Table/SortRows';
+import PropTypes from "prop-types"
 const TABLE_HEAD = [
   {
     label: (
@@ -64,7 +54,10 @@ const TABLE_HEAD = [
   },
   { label: '', value: '' },
 ];
-
+Invoice_SelectedProducts_Table.propTypes={
+  ProductsData:PropTypes.array.isRequired,
+  SetProductsData:PropTypes.func.isRequired,
+}
 export default function Invoice_SelectedProducts_Table({
   ProductsData,
   SetProductsData,
@@ -206,7 +199,7 @@ export default function Invoice_SelectedProducts_Table({
                     <td className={classes}>
                       <div className="flex flex-col">
                         <Typography variant="small" className="font-normal">
-                          {Quantity * Price}
+                          {Quantity * Price} TND
                         </Typography>
                       </div>
                     </td>

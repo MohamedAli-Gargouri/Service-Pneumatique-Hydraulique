@@ -1,0 +1,51 @@
+.slick-prev 
+{
+    left: 0 !important;
+    z-index: 1000;
+    margin: 10px;
+}
+.slick-next
+{
+    z-index: 1000;
+    right: 0!important;
+    margin: 10px;
+}
+.slick-dots
+{
+    position: relative !important;
+    display: block !important;
+}
+
+.slick-prev:before, .slick-next:before
+{
+    font-family: 'slick';
+    font-size: 25px;
+    line-height: 1;
+    opacity: .75;
+    color: #e53935;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before
+{
+    font-family: 'slick';
+    font-size: 6px;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    content: '•';
+    text-align: center;
+    opacity: .25;
+    color: #e53935;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-dots li.slick-active button:before
+{
+    opacity: .75;
+    color: #e53935;
+}
