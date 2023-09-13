@@ -1,0 +1,57 @@
+{
+  "AUTH_ERROR01": {
+    "errorCode": "AUTH_ERROR01",
+    "errorMessage": "Bad credentials",
+    "errorDetails": "You inserted the wrong password / Username / Email."
+  },
+  "AUTH_ERROR02": {
+    "errorCode": "AUTH_ERROR02",
+    "errorMessage": "Locked Account",
+    "errorDetails": "Your account is locked, you need to wait 5 minutes before trying again."
+  },
+  "AUTH_ERROR03": {
+    "errorCode": "AUTH_ERROR03",
+    "errorMessage": "Disabled Account",
+    "errorDetails": "Your account is Disabled."
+  },
+  "AUTH_ERROR04": {
+    "errorCode": "AUTH_ERROR04",
+    "errorMessage": "Used Email",
+    "errorDetails": "The Email you specified is already in use."
+  },
+  "AUTH_ERROR05": {
+    "errorCode": "AUTH_ERROR05",
+    "errorMessage": "Used Phone Number",
+    "errorDetails": "The Phone Number you specified is already in use."
+  },
+  "AUTH_ERROR06": {
+    "errorCode": "AUTH_ERROR06",
+    "errorMessage": "Used userName",
+    "errorDetails": "The Username you specified is already in use."
+  },
+  "AUTH_ERROR07": {
+    "errorCode": "AUTH_ERROR07",
+    "errorMessage": "No JWT Token",
+    "errorDetails": "You need a JWT Token for this request"
+  },
+  "AUTH_ERROR08": {
+    "errorCode": "AUTH_ERROR08",
+    "errorMessage": "JWT Token Malformed",
+    "errorDetails": "JWT Token is malformed, make sure your token is correct."
+  },
+  "AUTH_ERROR09": {
+    "errorCode": "AUTH_ERROR09",
+    "errorMessage": "Incorrect JWT Token Signature",
+    "errorDetails": "JWT Token Signature is incorrect, don't modify the claims."
+  },
+  "AUTH_ERROR10": {
+    "errorCode": "AUTH_ERROR10",
+    "errorMessage": "JWT Token expired",
+    "errorDetails": "The given JWT Token is valid but expired, request a new JWT Token."
+  },
+  "AUTH_ERROR011": {
+    "errorCode": "AUTH_ERROR11",
+    "errorMessage": "Unsupported JWT Token",
+    "errorDetails": "The given JWT Token is unsupported by our system."
+  }
+}
