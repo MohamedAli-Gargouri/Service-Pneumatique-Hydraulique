@@ -53,5 +53,10 @@
     "errorCode": "AUTH_ERROR11",
     "errorMessage": "Unsupported JWT Token",
     "errorDetails": "The given JWT Token is unsupported by our system."
+  },
+  "AUTH_ERROR012": {
+    "errorCode": "AUTH_ERROR12",
+    "errorMessage": "Malformed JWT Token",
+    "errorDetails": "The given JWT Token is malformed."
   }
 }

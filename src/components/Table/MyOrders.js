@@ -196,9 +196,7 @@ export default function MyOrders_Table() {
 
       CreateToast(
         promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Success" />
-        ),
+        "",
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Success" />
         ),
@@ -208,6 +206,16 @@ export default function MyOrders_Table() {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Error" />
         ),
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'promise',
         LightModeState == LightMode().type,
       );

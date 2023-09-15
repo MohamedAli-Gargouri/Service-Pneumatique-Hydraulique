@@ -49,6 +49,7 @@
       "SignOut": "Se déconnecter"
     }
   },
+
   "Home": {
     "HeroTitle": "Service Pneumatique Hydraulique",
     "HeroDescription": "Bienvenue chez SPH, votre source de confiance pour les compresseurs d'air et les solutions d'air innovantes ! Chez SPH, nous nous engageons à révolutionner la façon dont les industries exploitent la puissance de l’air. Avec une passion pour l'excellence et un engagement envers la qualité, nous sommes fiers de proposer une gamme complète de compresseurs d'air de pointe et de solutions liées à l'air pour répondre aux divers besoins des entreprises de divers secteurs.",
@@ -110,7 +111,7 @@
   },
   "Login": {
     "Login_Title": "S'identifier",
-    "Email_Label": "E-mail",
+    "Username_Label": "Nom d'utilisateur",
     "Password_Label": "Mot de passe",
     "RememberMeLabel": "Souviens-toi de moi",
     "SignInButtonLabel": "S'IDENTIFIER",
@@ -118,6 +119,7 @@
   },
   "Register": {
     "Register_Title": "S'inscrire",
+    "UserName_Label": "Nom d'utilisateur",
     "Email_Label": "E-mail",
     "FirstName_Label": "Prénom",
     "LastName_Label": "Nom de famille",
@@ -479,6 +481,37 @@
       }
     },
     "DialogMessages": {
+      "Session":
+      {
+        "Logout":"Vous vous êtes déconnecté avec succès.",
+        "SessionExpired":"La session a expiré.."
+      },
+      "Connection":{
+        "ConnectionLost":"Impossible d'établir une connexion au serveur. S'il vous plaît, vérifiez votre connexion à internet et réessayez.",
+        "ServerLoaded":"Le serveur subit actuellement une charge élevée et votre demande n'a pas pu aboutir. Veuillez réessayer plus tard.",
+        "ServiceUnavaiable":"Le service est momentanément indisponible. Veuillez réessayer plus tard"
+      },
+      "Validation": {
+        "phoneNumberInput":"Veuillez utiliser un format de numéro de téléphone valide (par exemple, 74211876).",
+        "textInput":"Veuillez remplir la saisie de texte avec un texte valide.",
+        "numberInput":"Veuillez remplir le texte saisi avec un numéro valide.",
+        "selectInput":"Veuillez sélectionner au moins une option dans la liste déroulante.",
+        "emailInput":"Veuillez remplir le formulaire avec un e-mail valide.",
+        "passwordInput":"Mot de passe invalide, utilisez au moins 8 caractères, une majuscule, une minuscule et un chiffre.",
+        "confirmPasswordInput":"Confirmer que le mot de passe ne correspond pas au mot de passe."
+      },
+      "Register": {
+        "Register_Success": "Votre nouveau compte est enregistré avec succès.",
+        "Register_Error": "Lenregistrement du compte a échoué.",
+        "UsedEmail_Error": "L e-mail est utilisé, veuillez en choisir un autre.",
+        "UsedPhoneNumber_Error": "Le numéro de téléphone est utilisé, veuillez en choisir un autre.",
+        "UsedUsername_Error": "Le nom d'utilisateur est utilisé, veuillez en choisir un autre."
+      },
+      "Login": {
+        "Login_Success": "Vous vous êtes connecté avec succès.",
+        "Login_Error": "Échec de votre connexion.",
+        "WrongCreds_Error":"Vous avez inséré un mauvais mot de passe ou nom d'utilisateur."
+      },
       "Promise": {
         "Pending": "Veuillez attendre que la tâche soit terminée...",
         "Resolve": "Tâche terminée avec succès.",

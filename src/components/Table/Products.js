@@ -243,9 +243,7 @@ export default function Products_Table() {
 
       CreateToast(
         promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Success" />
-        ),
+        "",
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Success" />
         ),
@@ -255,6 +253,16 @@ export default function Products_Table() {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProduct_Error" />
         ),
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'promise',
         LightModeState == LightMode().type,
       );

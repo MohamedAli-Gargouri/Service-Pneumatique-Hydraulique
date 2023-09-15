@@ -17,8 +17,12 @@ import java.util.function.Function;
 public class JwtService {
     @Value("${spring.jwt.accessTokenSecretKey}")
     private String SECRET_KEY;
-    @Value("${spring.jwt.accessTokenExpirationInHour}")
-     private Integer accessTokenExpirationMs;
+    @Value("${spring.jwt.accessShortTokenExpirationInHour}")
+     private Integer shortAccessTokenExpirationHr;
+
+    @Value("${spring.jwt.accessLongTokenExpirationInHour}")
+    private Integer longAccessTokenExpirationHr;
+
     public String extractUsername(String token)throws ExpiredJwtException, UnsupportedJwtException,MalformedJwtException,SignatureException
     {
         return extractClaim(token,Claims::getSubject);
@@ -39,10 +43,10 @@ public class JwtService {
 
     }
 
-    public String generateToken(UserDetails userDetails)
+    public String generateToken(UserDetails userDetails,Boolean isLongLived)
     {
 
-        return generateToken(new HashMap<>(),userDetails);
+        return generateToken(new HashMap<>(),userDetails,isLongLived);
     }
     public boolean isTokenvalid(String token,UserDetails userDetails)
     {
@@ -51,26 +55,49 @@ public class JwtService {
         return(username.equals(userDetails.getUsername())&& !isTokenExpired(token));
     }
 
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) throws UnsupportedJwtException,MalformedJwtException,SignatureException {
 
-        return extractExpiration(token).before(new Date());
+        try
+        {
+            extractExpiration(token);
+            return true;
+        }
+        catch(ExpiredJwtException e)
+        {
+            return false;
+        }
+
     }
 
-    private Date extractExpiration(String token) {
+    private Date extractExpiration(String token) throws ExpiredJwtException, UnsupportedJwtException,MalformedJwtException,SignatureException {
 
         return extractClaim(token,Claims::getExpiration);
     }
 
-    public String generateToken(Map<String,Object> extraClaims, UserDetails userDetails)
+    public String generateToken(Map<String,Object> extraClaims, UserDetails userDetails,Boolean isLongLived)
     {
-    return Jwts.builder()
-            .setClaims(extraClaims)
-            .setSubject(userDetails.getUsername())
-            .setIssuedAt(new Date(System.currentTimeMillis()))
-            .setExpiration(new Date(System.currentTimeMillis()+accessTokenExpirationMs))
-            .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-            .compact();
-
+        //If validation is for long
+        if(isLongLived)
+        {
+            return Jwts.builder()
+                    .setClaims(extraClaims)
+                    .setSubject(userDetails.getUsername())
+                    .setIssuedAt(new Date(System.currentTimeMillis()))
+                    .setExpiration(new Date(System.currentTimeMillis()+longAccessTokenExpirationHr*60*60*1000))
+                    .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                    .compact();
+        }
+        //If validation is for short access
+        else
+        {
+            return Jwts.builder()
+                    .setClaims(extraClaims)
+                    .setSubject(userDetails.getUsername())
+                    .setIssuedAt(new Date(System.currentTimeMillis()))
+                    .setExpiration(new Date(System.currentTimeMillis()+shortAccessTokenExpirationHr*60*60*1000+1))
+                    .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                    .compact();
+        }
     }
     private Key getSignInKey() {
 

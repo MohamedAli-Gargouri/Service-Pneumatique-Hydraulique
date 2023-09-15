@@ -70,9 +70,7 @@ export default function Product() {
 
       CreateToast(
         promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Products.EditProduct_Success" />,
-        ),
+        "",
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Products.EditProduct_Success" />,
         ),
@@ -82,6 +80,16 @@ export default function Product() {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Products.EditProduct_Error" />,
         ),
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'promise',
         LightModeState == LightMode().type,
       );

@@ -53,15 +53,19 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Products.ProductThreeImagesLimit_Error" />,
         ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Products.ProductThreeImagesLimit_Error" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Products.ProductThreeImagesLimit_Error" />,
-        ),
+        "",
+        "",
+        "",
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'info',
         LightModeState == LightMode().type,
       );
@@ -86,9 +90,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
 
       CreateToast(
         promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProductImg_Confirm" />
-        ),
+        "",
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProductImg_Success" />
         ),
@@ -98,6 +100,16 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Products.DeleteProductImg_Error" />
         ),
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'promise',
         LightModeState == LightMode().type,
       );

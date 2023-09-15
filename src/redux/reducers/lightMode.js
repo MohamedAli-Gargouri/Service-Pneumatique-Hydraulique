@@ -4,6 +4,8 @@ const LightReducer = (state = 'LIGHTMODE', action) => {
       return 'LIGHTMODE';
     case 'DARKMODE':
       return 'DARKMODE';
+      case 'RESET':
+        return "LIGHTMODE";
     default:
       return state;
   }

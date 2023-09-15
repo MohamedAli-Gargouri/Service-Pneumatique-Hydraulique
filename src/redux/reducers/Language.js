@@ -6,6 +6,8 @@ const LanguageReducer = (state = "fr", action) => {
         return "fr";
       case 'ARABIC':
         return "ar";
+        case 'RESET':
+          return "fr";
       default:
         return state;
     }

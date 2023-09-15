@@ -203,9 +203,7 @@ export default function Orders_Table() {
 
       CreateToast(
         promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Success" />
-        ),
+        "",
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Success" />
         ),
@@ -215,6 +213,16 @@ export default function Orders_Table() {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Error" />
         ),
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'promise',
         LightModeState == LightMode().type,
       );
@@ -231,9 +239,7 @@ export default function Orders_Table() {
 
       CreateToast(
         promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Success" />,
-        ),
+        "",
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Success" />,
         ),
@@ -243,6 +249,16 @@ export default function Orders_Table() {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Error" />,
         ),
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'promise',
         LightModeState == LightMode().type,
       );
@@ -259,9 +275,7 @@ export default function Orders_Table() {
 
       CreateToast(
         promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Success" />,
-        ),
+        "",
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Success" />,
         ),
@@ -271,6 +285,16 @@ export default function Orders_Table() {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Error" />,
         ),
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'promise',
         LightModeState == LightMode().type,
       );
@@ -287,9 +311,7 @@ export default function Orders_Table() {
 
       CreateToast(
         promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Success" />,
-        ),
+        "",
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Success" />,
         ),
@@ -299,6 +321,16 @@ export default function Orders_Table() {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Error" />,
         ),
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'promise',
         LightModeState == LightMode().type,
       );
@@ -315,9 +347,7 @@ export default function Orders_Table() {
 
       CreateToast(
         promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Success" />,
-        ),
+        "",
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Success" />,
         ),
@@ -327,6 +357,16 @@ export default function Orders_Table() {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Error" />,
         ),
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'promise',
         LightModeState == LightMode().type,
       );

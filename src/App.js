@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/home';
 import Register from './pages/register';
@@ -24,52 +23,113 @@ import UCP_Invoice from './pages/UCP/Invoice';
 import UCP_Home from './pages/UCP/Home';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { IsNotExpiredAccessToken } from './services/auth';
+import React from 'react';
+import { CreateToast } from './utils/Toast';
+import TranslatedText from './utils/Translation';
+import ReactDOMServer from 'react-dom/server';
+import NotFound from "./pages/Error/notFound"
+import { RESET_ALL } from './redux/actions/GlobalActions';
 export default function App() {
+  const isLoggedState = useSelector((state) => state.isLogged);
   const LightModeState = useSelector((state) => state.lightMode);
+  const AccessToken = useSelector((state) => state.userAccessToken);
+  const dispatch=useDispatch()
   const root = document.getElementById('root');
-  if (LightModeState == LightMode().type) {
-    root.classList.remove('bg-darkTheme_T1');
-    root.classList.add('bg-whiteTheme_T1');
+  const isLightMode = LightModeState === LightMode().type;
 
-    root.classList.remove('tc-darkTheme_T1');
-    root.classList.add('tc-whiteTheme_T1');
-  } else {
-    root.classList.remove('bg-whiteTheme_T1');
-    root.classList.add('bg-darkTheme_T1');
+  React.useEffect(() => {
+    const rootClasses = root.classList;
+    const bgColorClass = isLightMode ? 'bg-whiteTheme_T1' : 'bg-darkTheme_T1';
+    const textColorClass = isLightMode ? 'tc-whiteTheme_T1' : 'tc-darkTheme_T1';
 
-    root.classList.remove('tc-whiteTheme_T1');
-    root.classList.add('tc-darkTheme_T1');
-  }
+    rootClasses.remove('bg-darkTheme_T1', 'bg-whiteTheme_T1', 'tc-darkTheme_T1', 'tc-whiteTheme_T1');
+    rootClasses.add(bgColorClass, textColorClass);
+  }, [isLightMode]);
+
+  const handleAccessTokenVerifying = async () => {
+    try {
+      const result = await IsNotExpiredAccessToken(AccessToken);
+      if (!result.data.tokenValid) {
+        //Access Token expired.
+        CreateToast(
+          null,
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Session.SessionExpired" />,
+          ),
+          "",
+          "",
+          "",
+              /*Custom request Errors message*/
+              [],
+              /*Custom Request Error codes */
+              [],
+              /*Default Connection Errors */
+              [
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+              ],
+          'error',
+          LightModeState == LightMode().type,
+        );
+        dispatch(RESET_ALL())
+      }
+
+    } catch (error) {
+      console.error('Error verifying access token:', error);
+    }
+  };
+
+  React.useEffect(() => {
+    const currentLocation = window.location.href;
+    const isLoginPage = currentLocation.includes('/Login') || currentLocation.includes('/login') ;
+    const isRegisterPage = currentLocation.includes('/Register') || currentLocation.includes('/reegister');
+    if(isLoggedState)
+    {
+      //checking if the access token is valid or not if the page is not login or register
+      if (!isLoginPage && !isRegisterPage) {
+        handleAccessTokenVerifying();
+      }
+    }
+
+  },[]);
+
+  // Define your routes in an array
+  const routes = [
+    { path: '/', element: <Home /> },
+    { path: '/Home', element: <Home /> },
+    { path: '/Login', element: <Login /> },
+    { path: '/Register', element: <Register /> },
+    { path: '/Contact', element: <Contact /> },
+    { path: '/Products', element: <Products /> },
+    { path: '/ProductDetails', element: <ProductDetails /> },
+    { path: '/UCP/Profil', element: <UCP_Profile /> },
+    { path: '/UCP/Orders', element: <UCP_Orders /> },
+    { path: '/UCP/MyOrders', element: <UCP_MyOrders /> },
+    { path: '/UCP/Order', element: <UCP_Order /> },
+    { path: '/UCP/Product', element: <UCP_EditProduct /> },
+    { path: '/UCP/Products', element: <UCP_Products /> },
+    { path: '/UCP/AddProduct', element: <UCP_AddProduct /> },
+    { path: '/UCP/Accounts', element: <UCP_Accounts /> },
+    { path: '/UCP/Inbox', element: <UCP_Inbox /> },
+    { path: '/UCP/Invoice', element: <UCP_Invoice /> },
+    { path: '/UCP/Home', element: <UCP_Home /> },
+    { path: '/Dev', element: <Dev /> },
+    { path: '/Loading', element: <Loading /> },
+  ];
 
   return (
-
     <div className="animate-fade w-full">
       <ToastContainer closeOnClick rtl={false} pauseOnFocusLoss draggable />
       <Cart />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/Products" element={<Products />} />
-        <Route path="/ProductDetails" element={<ProductDetails />} />
-        <Route path="/UCP/Profil" element={<UCP_Profile />} />
-        <Route path="/UCP/Orders" element={<UCP_Orders />} />
-        <Route path="/UCP/MyOrders" element={<UCP_MyOrders />} />
-        <Route path="/UCP/Order" element={<UCP_Order />} />
-        <Route path="/UCP/Product" element={<UCP_EditProduct />} />
-        <Route path="/UCP/Products" element={<UCP_Products />} />
-        <Route path="/UCP/AddProduct" element={<UCP_AddProduct />} />
-        <Route path="/UCP/Accounts" element={<UCP_Accounts />} />
-        <Route path="/UCP/Inbox" element={<UCP_Inbox />} />
-        <Route path="/UCP/Invoice" element={<UCP_Invoice />} />
-        <Route path="/UCP/Home" element={<UCP_Home />} />
-
-        <Route path="/Dev" element={<Dev />} />
-        <Route path="/Loading" element={<Loading />} />
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+          
+        ))}
+        <Route path='*' key={routes.length+1}  element={<NotFound/>} />
       </Routes>
     </div>
-
   );
 }

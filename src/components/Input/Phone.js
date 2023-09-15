@@ -12,9 +12,10 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
 import PropTypes from "prop-types"
 PhoneInput.propTypes={
-  InputLabel:PropTypes.string
+  internationalDialRef:PropTypes.object.isRequired,
+  phoneNumberRef:PropTypes.object.isRequired
 }
-export default function PhoneInput({ InputLabel }) {
+export default function PhoneInput({ internationalDialRef,phoneNumberRef }) {
   const LightModeState = useSelector((state) => state.lightMode);
   const { countries } = useCountries();
 
@@ -28,6 +29,10 @@ export default function PhoneInput({ InputLabel }) {
 
   const { name, flags, countryCallingCode } = countries[country];
 
+  React.useEffect(()=>{
+const callingCode=parseInt(countries[country].countryCallingCode.slice(1),10)
+    internationalDialRef.current=callingCode
+  },[country])
   return (
     <div className="relative flex w-full">
       <Menu placement="bottom-start">
@@ -56,7 +61,6 @@ export default function PhoneInput({ InputLabel }) {
           {countries.map(({ name, flags, countryCallingCode }, index) => {
             return (
               <MenuItem
-                Z
                 key={name}
                 value={name}
                 className="flex items-center gap-2"
@@ -74,15 +78,22 @@ export default function PhoneInput({ InputLabel }) {
         </MenuList>
       </Menu>
       <Input
-        type="tel"
+      
+        inputRef={phoneNumberRef}
+        type="number"
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
         placeholder={""}
-        label={InputLabel}
+        label={""}
+        variant='outlined'
         className={`rounded-l-none !border-t-blue-gray-200 focus:!border-t-blue-500`}
         labelProps={{
           className: `before:content-none after:content-none`,
         }}
         containerProps={{
-          className: 'min-w-0',
+          style: {
+            maxWidth: '100%',
+            minWidth: '10px',
+          },
         }}
       />
     </div>

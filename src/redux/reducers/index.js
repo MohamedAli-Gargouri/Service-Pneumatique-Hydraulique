@@ -1,13 +1,15 @@
 import LightModeReducer from './lightMode';
-import isLoggedReducer from './isLogged';
 import cartReducer,{CartListReducer} from './Cart';
 import { combineReducers } from 'redux';
 import LanguageReducer from './Language';
+import accessTokenReducer from "./accessToken"
+import isLoggedReducer from "./isLogged"
 const allReducers = combineReducers({
   lightMode: LightModeReducer,
-  isLogged: isLoggedReducer,
+  userAccessToken: accessTokenReducer,
   cartStatus: cartReducer,
   cartList:CartListReducer,
-  language:LanguageReducer
+  language:LanguageReducer,
+  isLogged:isLoggedReducer
 });
 export default allReducers;

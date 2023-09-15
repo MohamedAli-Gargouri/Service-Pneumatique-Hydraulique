@@ -639,15 +639,19 @@ const Invoice = () => {
       ReactDOMServer.renderToStaticMarkup(
         <TranslatedText TranslationPath="UCP.DialogMessages.Invoice.DownloadInvoice_Success" />,
       ),
-      ReactDOMServer.renderToStaticMarkup(
-        <TranslatedText TranslationPath="UCP.DialogMessages.Invoice.DownloadInvoice_Success" />,
-      ),
-      ReactDOMServer.renderToStaticMarkup(
-        <TranslatedText TranslationPath="UCP.DialogMessages.Invoice.DownloadInvoice_Success" />,
-      ),
-      ReactDOMServer.renderToStaticMarkup(
-        <TranslatedText TranslationPath="UCP.DialogMessages.Invoice.DownloadInvoice_Error" />,
-      ),
+      "",
+      "",
+      "",
+      /*Custom request Errors message*/
+      [],
+      /*Custom Request Error codes */
+      [],
+      /*Default Connection Errors */
+      [
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+      ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+      ],
       'info',
       LightModeState == LightMode().type,
     );

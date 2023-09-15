@@ -44,6 +44,7 @@ export default function ComplexNavbar() {
   //=========Setting Dark and light mode states-start========//
   const LightModeState = useSelector((state) => state.lightMode);
   const CartList=useSelector((state)=>state.cartList)
+  const isLoggedState=useSelector((state)=>state.isLogged)
   const dispatch = useDispatch();
 
   const toggleCart = () => {
@@ -143,7 +144,7 @@ export default function ComplexNavbar() {
 
           <LanguageSelect />
 
-          <Badge content={CartList.length}  placement="top-end">
+          {isLoggedState&&<Badge content={CartList.length}  placement="top-end">
             <IconButton
               variant="text"
               size="sm"
@@ -152,11 +153,11 @@ export default function ComplexNavbar() {
             >
               <i className="fa-solid fa-bag-shopping"></i>
             </IconButton>
-          </Badge>
+          </Badge>}
 
-          <div>
+          {isLoggedState&&<div>
             <ProfileMenu />
-          </div>
+          </div>}
         </div>
         <Collapse
           open={isNavOpen}

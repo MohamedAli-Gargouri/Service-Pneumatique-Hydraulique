@@ -9,29 +9,90 @@ import {
   Button,
 } from '@material-tailwind/react';
 import React from 'react';
-import Navbar from '../../components/NavBar';
 import TranslatedText from '../../utils/Translation';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
 import PropTypes from 'prop-types';
+import { login } from '../../services/auth';
+import { CreateToast } from '../../utils/Toast';
+import ReactDOMServer from 'react-dom/server';
+import { VerifyInputs } from '../../utils/others/VerifyInputs';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { SET_ACCESS_TOKEN  } from '../../redux/actions/AccessTokenActions';
+import { SET_LOGGED,UNSET_LOGGED } from '../../redux/actions/isLoggedActions';
 Input.propTypes=
 {
   label:PropTypes.any
 }
 export default function LoginCard() {
   const LightModeState = useSelector((state) => state.lightMode);
+  const isLogged = useSelector((state) => state.isLogged);
+  if(isLogged)
+  {
+    window.location="/home"
+  }
+  const userNameRef=React.useRef(null);
+  const passwordRef=React.useRef(null)
+  const rememberMeRef=React.useRef(null)
+  const dispatch = useDispatch();
+  const HandleLogin=(()=>{
+
+    if(VerifyInputs([userNameRef.current.value],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      LightModeState == LightMode().type))
+    {
+      const promise=login(userNameRef.current.value,passwordRef.current.value,rememberMeRef.current.checked)
+        CreateToast(
+          promise,
+          "",
+          ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Login.Login_Success" />),
+          ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />),
+          ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Login.Login_Error" />),
+          /*Custom request Errors message*/
+          [
+          ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Login.WrongCreds_Error" />),
+          ],
+          /*Custom Request Error codes */
+          ["AUTH_ERROR01"],
+          /*Default Connection Errors */
+          [
+          ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+          ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+          ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+          ],
+          'promise',
+          LightModeState == LightMode().type,
+        );
+        //login is successs
+        promise.then((res)=>{
+          dispatch(SET_ACCESS_TOKEN(res.data.token))
+          dispatch(SET_LOGGED())
+          window.location.href="./home"
+        })
+        //Login failed
+        .catch(()=>
+        {
+          dispatch(UNSET_LOGGED())
+        })
+    }
+
+
+})
   return (
-    <div className="BackgroundImage2 bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
-      <Navbar />
-      <div className="mt-[10rem]">
+    <div className=" min-h-screen BackgroundImage bg-cover  bg-center flex flex-row justify-center items-center">
         <Card
           className={`
            animate-QuickBottomToTop
           ${
             LightModeState == LightMode().type
-              ? 'bg-whiteTheme_T3'
+              ? 'bg-whiteTheme_T2'
               : 'bg-darkTheme_T1'
-          } w-[90vw] md:w-[50vw]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}
+          } w-[100vw] md:w-[70vw]  ExtraShadowed-div `}
         >
           <CardHeader
             variant="gradient"
@@ -54,15 +115,17 @@ export default function LoginCard() {
             }`}
           >
             <Input
+            inputRef={userNameRef}
               labelProps={{
                 style: {
                   color: LightModeState == LightMode().type ? 'black' : 'white',
                 },
               }}
-              label={<TranslatedText TranslationPath="Login.Email_Label" />}
+              label={<TranslatedText TranslationPath="Login.Username_Label" />}
               size="lg"
             />
             <Input
+            inputRef={passwordRef}
               labelProps={{
                 style: {
                   color: LightModeState == LightMode().type ? 'black' : 'white',
@@ -73,6 +136,7 @@ export default function LoginCard() {
             />
             <div className="-ml-2.5">
               <Checkbox
+              inputRef={rememberMeRef}
                 labelProps={{
                   style: {
                     color:
@@ -95,7 +159,8 @@ export default function LoginCard() {
             <Button
               variant="gradient"
               color="red"
-              className="hover:scale-105"
+              className="hover:scale-90"
+              onClick={HandleLogin}
               fullWidth
             >
               <TranslatedText
@@ -107,7 +172,7 @@ export default function LoginCard() {
               <TranslatedText TranslationPath="Login.SignUpRecommandationLabel" />
               <Typography
                 as="a"
-                href="#signup"
+                href="/register"
                 variant="small"
                 color="red"
                 className="ml-1 font-bold"
@@ -120,9 +185,9 @@ export default function LoginCard() {
             </Typography>
           </CardFooter>
         </Card>
-      </div>
 
-      <div></div>
+
+
     </div>
   );
 }

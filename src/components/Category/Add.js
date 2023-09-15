@@ -37,9 +37,7 @@ export default function AddCategory({ HandleOpen }) {
 
       CreateToast(
         promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Category.AddCategory_Success" />,
-        ),
+        "",
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Category.AddCategory_Success" />,
         ),
@@ -49,6 +47,16 @@ export default function AddCategory({ HandleOpen }) {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Category.CanceAddCategory_SuccesslOrder_Error" />,
         ),
+            /*Custom request Errors message*/
+            [],
+            /*Custom Request Error codes */
+            [],
+            /*Default Connection Errors */
+            [
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+            ],
         'promise',
         LightModeState == LightMode().type,
       );
@@ -88,6 +96,8 @@ export default function AddCategory({ HandleOpen }) {
           <TranslatedText TranslationPath="UCP.CategoryTable.TabLabels.AddMain" />
         </Typography>
         <Input
+        type='text'
+        variant='outlined'
           labelProps={{
             style: {
               color: LightModeState == LightMode().type ? 'black' : 'white',
@@ -97,6 +107,22 @@ export default function AddCategory({ HandleOpen }) {
             <TranslatedText TranslationPath="UCP.CategoryTable.TabInputs.CategoryName" />
           }
         />
+
+<div className=' mt-2'>
+<Input
+      type='file'
+      variant='outlined'
+          labelProps={{
+            style: {
+              color: LightModeState == LightMode().type ? 'black' : 'white',
+            },
+          }}
+          label={
+            "Image"
+          }
+        />
+</div>
+
         <Button
           className="flex items-center mt-5 gap-3"
           onClick={HandleAddCategory}

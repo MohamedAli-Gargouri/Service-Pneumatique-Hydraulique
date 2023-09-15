@@ -1,15 +1,16 @@
 package com.www.sphtn.SPH.service;
 
-import com.www.sphtn.SPH.DTO.Auth.LoginRequest;
-import com.www.sphtn.SPH.DTO.Auth.LoginResponse;
-import com.www.sphtn.SPH.DTO.Auth.RegisterRequest;
-import com.www.sphtn.SPH.DTO.Auth.RegisterResponse;
+import com.www.sphtn.SPH.DTO.Auth.*;
 import com.www.sphtn.SPH.DTO.Errors.Error;
 import com.www.sphtn.SPH.DTO.Errors.ErrorsReader;
 import com.www.sphtn.SPH.Exceptions.Auth.RegisterExceptions;
 import com.www.sphtn.SPH.model.Role;
 import com.www.sphtn.SPH.model.User;
 import com.www.sphtn.SPH.repository.UserRepository;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +60,7 @@ public class AuthService {
                     .internationalDialNumber(request.getInternationalDialNumber())
                     .build();
             repository.save(user);
-            var jwtToken=jwtService.generateToken(user);
+            var jwtToken=jwtService.generateToken(user,false);
             return ResponseEntity.ok(RegisterResponse.builder().token(jwtToken).build());
         }
         catch(RegisterExceptions.EmailUsedException e)
@@ -91,7 +92,8 @@ public class AuthService {
             );
             var user=repository.findByUsername(request.getUsername())
                     .orElseThrow();
-            var jwtToken=jwtService.generateToken(user);
+            System.out.println(request.getIsRememberMe());
+            var jwtToken=jwtService.generateToken(user,request.getIsRememberMe());
             return ResponseEntity.ok(LoginResponse.builder().token(jwtToken).build());
         }
         catch(BadCredentialsException e)
@@ -107,6 +109,40 @@ public class AuthService {
         catch(DisabledException e)
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors().get("AUTH_ERROR03")
+            );
+        }
+
+    }
+
+    public ResponseEntity<Object> VerifyAccessToken(VerifyAccessTokenRequest request){
+        try
+        {
+            return  ResponseEntity.ok().body(VerifyAccessTokenResponse.builder()
+                            .isTokenValid(jwtService.isTokenExpired(request.getToken()))
+                            .build());
+        }
+        catch(UnsupportedJwtException e)
+        {
+            return ResponseEntity.badRequest().body(
+                    VerifyAccessTokenResponse.builder()
+                            .isTokenValid(false)
+                            .Message(ErrorsReader.GetErrors().get("AUTH_ERROR011")).build()
+            );
+        }
+        catch(SignatureException e)
+        {
+            return ResponseEntity.badRequest().body(
+                    VerifyAccessTokenResponse.builder()
+                            .isTokenValid(false)
+                            .Message(ErrorsReader.GetErrors().get("AUTH_ERROR09")).build()
+            );
+        }
+        catch(MalformedJwtException e)
+        {
+            return ResponseEntity.badRequest().body(
+                    VerifyAccessTokenResponse.builder()
+                            .isTokenValid(false)
+                            .Message(ErrorsReader.GetErrors().get("AUTH_ERROR012")).build()
             );
         }
 

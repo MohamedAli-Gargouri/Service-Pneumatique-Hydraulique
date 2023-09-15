@@ -116,15 +116,19 @@ export default function Products_FilterMenu({IsMobile}) {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="Products.ApplyProductFilter_Info" />
         ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="Products.ApplyProductFilter_Info" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="Products.ApplyProductFilter_Info" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Accounts.SetUser_Error" />
-        ),
+        "",
+       "",
+       "",
+       /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'info',
         LightModeState == LightMode().type,
       );

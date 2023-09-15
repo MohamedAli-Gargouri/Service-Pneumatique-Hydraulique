@@ -1,17 +1,11 @@
 package com.www.sphtn.SPH.controller;
 
 
-import com.www.sphtn.SPH.DTO.Auth.LoginRequest;
-import com.www.sphtn.SPH.DTO.Auth.LoginResponse;
-import com.www.sphtn.SPH.DTO.Auth.RegisterRequest;
-import com.www.sphtn.SPH.DTO.Auth.RegisterResponse;
+import com.www.sphtn.SPH.DTO.Auth.*;
 import com.www.sphtn.SPH.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -27,6 +21,12 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequest request)
     {
+              System.out.println(request);
         return authService.authenticate(request);
+    }
+    @PostMapping("/VerifyAccessToken")
+    public ResponseEntity<Object> VerifyAccessToken(@RequestBody VerifyAccessTokenRequest request)
+    {
+        return authService.VerifyAccessToken(request);
     }
 }

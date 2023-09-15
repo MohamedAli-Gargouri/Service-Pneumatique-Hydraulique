@@ -20,15 +20,19 @@ const useCart = () => {
     ReactDOMServer.renderToStaticMarkup(
       <TranslatedText TranslationPath="UCP.DialogMessages.Cart.RemoveProduct" />,
     ),
-    ReactDOMServer.renderToStaticMarkup(
-      <TranslatedText TranslationPath="UCP.DialogMessages.Cart.RemoveProduct" />,
-    ),
-    ReactDOMServer.renderToStaticMarkup(
-      <TranslatedText TranslationPath="UCP.DialogMessages.Cart.RemoveProduct" />,
-    ),
-    ReactDOMServer.renderToStaticMarkup(
-      <TranslatedText TranslationPath="UCP.DialogMessages.Cart.RemoveProduct" />,
-    ),
+    "",
+    "",
+    "",
+    /*Custom request Errors message*/
+    [],
+    /*Custom Request Error codes */
+    [],
+    /*Default Connection Errors */
+    [
+    ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+    ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+    ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+    ],
     'info',
     LightModeState == LightMode().type,
   );
@@ -48,15 +52,19 @@ const SetQuantity=(ProductID,NewQuantity)=>
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Cart.QuantityError" />,
         ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Cart.QuantityError" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Cart.QuantityError" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Cart.QuantityError" />,
-        ),
+        "",
+        "",
+        "",
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'info',
         LightModeState == LightMode().type,
       );
@@ -81,15 +89,19 @@ const AddProduct=(Product)=>
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Cart.AddProduct" />,
         ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Cart.AddProduct" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Cart.AddProduct" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Cart.AddProduct" />,
-        ),
+        "",
+        "",
+        "",
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'info',
         LightModeState == LightMode().type,
       );
@@ -108,9 +120,7 @@ const OrderCart = (closeDrawerRight) => {
   
         CreateToast(
           promise,
-          ReactDOMServer.renderToStaticMarkup(
-            <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.CreateOrder_Success" />,
-          ),
+          "",
           ReactDOMServer.renderToStaticMarkup(
             <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.CreateOrder_Success" />,
           ),
@@ -120,6 +130,16 @@ const OrderCart = (closeDrawerRight) => {
           ReactDOMServer.renderToStaticMarkup(
             <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.CreateOrder_Error" />,
           ),
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
           'promise',
           LightModeState == LightMode().type,
         );
@@ -132,15 +152,19 @@ const OrderCart = (closeDrawerRight) => {
         ReactDOMServer.renderToStaticMarkup(
           <TranslatedText TranslationPath="UCP.DialogMessages.Cart.NoProducts" />,
         ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Cart.NoProducts" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Cart.NoProducts" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Cart.NoProducts" />,
-        ),
+        "",
+        "",
+        "",
+        /*Custom request Errors message*/
+        [],
+        /*Custom Request Error codes */
+        [],
+        /*Default Connection Errors */
+        [
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+        ],
         'info',
         LightModeState == LightMode().type,
       );

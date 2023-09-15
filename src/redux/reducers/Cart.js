@@ -25,6 +25,8 @@ export const CartListReducer = (state = [], action) => {
         return [...state,action.payload.product];
       }
       }
+      case 'RESET':
+        return [];
       
     case 'REMOVE_PRODUCT':      
         return state.filter(product => product.ProductID !== action.payload.productid);

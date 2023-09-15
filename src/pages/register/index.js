@@ -8,28 +8,94 @@ import {
   Button,
 } from '@material-tailwind/react';
 import React from 'react';
-import Navbar from '../../components/NavBar';
 import TranslatedText from '../../utils/Translation';
 import { TranslateString } from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
 import PhoneInput from '../../components/Input/Phone';
+import {register} from "../../services/auth"
+import { CreateToast } from '../../utils/Toast';
+import ReactDOMServer from 'react-dom/server';
+import { VerifyInputs } from '../../utils/others/VerifyInputs';
 export default function RegisterCard() {
   const LightModeState = useSelector((state) => state.lightMode);
+  const isLogged = useSelector((state) => state.isLogged);
+  if(isLogged)
+  {
+    window.location="/home"
+  }
+  const userNamerRef=React.useRef(null)
+  const emailRef=React.useRef(null)
+  const firstNameRef=React.useRef(null)
+  const lastNameRef=React.useRef(null)
+  const passwordRef=React.useRef(null)
+  const internationalDialNumberRef=React.useRef(null)
+  const phoneNumberRef=React.useRef(null)
+  const confirmPasswordRef=React.useRef(null)
 
-  return (
-    <div className="BackgroundImage2 bg-cover  bg-center min-h-screen grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 place-items-center">
-      <Navbar />
+  const HandleRegister=(()=>{
 
-      <div className="mt-[10rem]">
+      if(VerifyInputs([userNamerRef.current.value,firstNameRef.current.value,lastNameRef.current.value],
+        [emailRef.current.value],
+        [],
+        [internationalDialNumberRef.current],
+        [phoneNumberRef.current.value],
+        [passwordRef.current.value],
+        [confirmPasswordRef.current.value],
+        LightModeState == LightMode().type))
+      {
+        const promise=register(
+          userNamerRef.current.value,
+          emailRef.current.value,
+          firstNameRef.current.value,
+          lastNameRef.current.value,
+          passwordRef.current.value,
+          internationalDialNumberRef.current,
+          phoneNumberRef.current.value)
+          CreateToast(
+            promise,
+            "",
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Register.Register_Success" />),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Register.Register_Error" />),
+            /*Custom request Errors message*/
+            [
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Register.UsedEmail_Error" />),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Register.UsedPhoneNumber_Error" />),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Register.UsedUsername_Error" />)
+            ],
+            /*Custom Request Error codes */
+            ["AUTH_ERROR04","AUTH_ERROR05","AUTH_ERROR06"],
+            /*Default Connection Errors */
+            [
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+            ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+            ],
+            'promise',
+            LightModeState == LightMode().type,
+          );
+          promise.then((resolveRes)=>{
+            window.location.href="./login"
+          }).catch((errorRes)=>
+          {
+
+          })
+      }
+
+
+  })
+
+  return (<>
+    <div className="  min-h-screen BackgroundImage bg-cover bg-center flex flex-row justify-center items-center py-7 px-1 ">
         <Card
           className={`
            animate-QuickTopToBottom
           ${
             LightModeState == LightMode().type
-              ? 'bg-whiteTheme_T3'
+              ? 'bg-whiteTheme_T2'
               : 'bg-darkTheme_T1'
-          } w-[90vw] md:w-[50vw]  ExtraShadowed-div  m-0 bg-opacity-80 backdrop-blur-lg `}
+          } w-[100vw] md:w-[70vw]  ExtraShadowed-div `}
         >
           <CardHeader
             variant="gradient"
@@ -51,7 +117,22 @@ export default function RegisterCard() {
                 : 'tc-darkTheme_T1'
             }`}
           >
+
+            <div className=' grid justify-between items-center grid-cols-1 md:grid-cols-2 gap-4'>
+                        <Input
+              inputRef={userNamerRef}
+              labelProps={{
+                style: {
+                  color: LightModeState == LightMode().type ? 'black' : 'white',
+                },
+              }}
+              label={<TranslatedText TranslationPath="Register.UserName_Label" />}
+              size="lg"
+              required
+            />
+
             <Input
+            inputRef={emailRef}
               labelProps={{
                 style: {
                   color: LightModeState == LightMode().type ? 'black' : 'white',
@@ -59,8 +140,10 @@ export default function RegisterCard() {
               }}
               label={<TranslatedText TranslationPath="Register.Email_Label" />}
               size="lg"
+              required
             />
             <Input
+            inputRef={firstNameRef}
               labelProps={{
                 style: {
                   color: LightModeState == LightMode().type ? 'black' : 'white',
@@ -70,8 +153,10 @@ export default function RegisterCard() {
                 <TranslatedText TranslationPath="Register.FirstName_Label" />
               }
               size="lg"
+              required
             />
             <Input
+            inputRef={lastNameRef}
               labelProps={{
                 style: {
                   color: LightModeState == LightMode().type ? 'black' : 'white',
@@ -81,8 +166,11 @@ export default function RegisterCard() {
                 <TranslatedText TranslationPath="Register.LastName_Label" />
               }
               size="lg"
+              required
             />
             <Input
+            type='password'
+            inputRef={passwordRef}
               labelProps={{
                 style: {
                   color: LightModeState == LightMode().type ? 'black' : 'white',
@@ -92,9 +180,12 @@ export default function RegisterCard() {
                 <TranslatedText TranslationPath="Register.Password_Label" />
               }
               size="lg"
+              required
             />
 
             <PhoneInput
+              internationalDialRef={internationalDialNumberRef}
+              phoneNumberRef={phoneNumberRef}
               labelProps={{
                 style: {
                   color: LightModeState == LightMode().type ? 'black' : 'white',
@@ -103,6 +194,8 @@ export default function RegisterCard() {
               InputLabel={TranslateString('Register.Phone_Label')}
             />
             <Input
+            type='password'
+            inputRef={confirmPasswordRef}
               labelProps={{
                 style: {
                   color: LightModeState == LightMode().type ? 'black' : 'white',
@@ -112,7 +205,9 @@ export default function RegisterCard() {
                 <TranslatedText TranslationPath="Register.Confirm_Password_Label" />
               }
               size="lg"
+              required
             />
+            </div>
             <Typography
               variant="small"
               className={`${
@@ -137,13 +232,15 @@ export default function RegisterCard() {
                 <TranslatedText TranslationPath="Register.PasswordCondition_Label" />
               }
             </Typography>
+
           </CardBody>
           <CardFooter className={``}>
             <Button
               variant="gradient"
               color="red"
               fullWidth
-              className="hover:scale-105"
+              className=" hover:scale-95"
+              onClick={HandleRegister}
             >
               <TranslatedText
                 TranslationPath="Register.SignInButtonLabel"
@@ -161,7 +258,7 @@ export default function RegisterCard() {
               <TranslatedText TranslationPath="Register.SignUpRecommandationLabel" />
               <Typography
                 as="a"
-                href="#signup"
+                href="/login"
                 variant="small"
                 color="red"
                 className="ml-1 font-bold"
@@ -174,9 +271,7 @@ export default function RegisterCard() {
             </Typography>
           </CardFooter>
         </Card>
-      </div>
-
-      <div></div>
     </div>
+    </>
   );
 }

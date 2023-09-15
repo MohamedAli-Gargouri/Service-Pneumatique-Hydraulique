@@ -9,6 +9,8 @@
       "Login": "Login",
       "Register": "Register"
     },
+
+    
     "ProductsMenu": {
       "Fittings_and_accessories": "Fittings And Accessories",
       "Tubes": "Tubes",
@@ -49,6 +51,7 @@
       "SignOut": "SignOut"
     }
   },
+
   "Home": {
     "HeroTitle": "Pneumatic Hydraulic Service",
     "HeroDescription": "Welcome to SPH, Your Trusted Source for Innovative Air Compressors and Air Solutions! At SPH, we are dedicated to revolutionizing the way industries harness the power of air. With a passion for excellence and a commitment to quality, we proudly offer a comprehensive range of cutting-edge air compressors and air-related solutions to meet the diverse needs of businesses across various sectors.",
@@ -113,7 +116,7 @@
   },
   "Login": {
     "Login_Title": "Sign In",
-    "Email_Label": "Email",
+    "Username_Label": "Username",
     "Password_Label": "Password",
     "RememberMeLabel": "Remember me",
     "SignInButtonLabel": "SIGN IN",
@@ -121,7 +124,9 @@
   },
   
   "Register": {
+    
     "Register_Title": "Sign Up",
+    "UserName_Label": "Username",
     "Email_Label": "Email",
     "FirstName_Label": "First Name ",
     "LastName_Label": "Last Name",
@@ -482,6 +487,36 @@
       }
     },
     "DialogMessages": {
+      "Session":
+      {
+        "SessionExpired":"Session expired.."
+      },
+      "Connection":{
+        "ConnectionLost":"Unable to establish a connection to the server. Please check your internet connection and try again.",
+        "ServerLoaded":"The server is currently experiencing high load, and your request could not be completed. Please try again later.",
+        "ServiceUnavaiable":"The service is temporarily unavailable. Please try again later"
+      },
+      "Validation": {
+        "phoneNumberInput":"Please use a valid phone number format (e.g., 74211876).",
+        "textInput":"Please fill in the text input with a valid text.",
+        "numberInput":"Please fill in the text input with a valid number.",
+        "selectInput":"Please select at least one option from the dropdown.",
+        "emailInput":"Please fill in the  input with a valid Email.",
+        "passwordInput":"Invalid password, Use at least 8 characters, one uppercase, one lowercase and one number.",
+        "confirmPasswordInput":"Confirm password does not match the password."
+      },
+      "Register": {
+        "Register_Success": "Your new account is registered successfully.",
+        "Register_Error": "Account registration failed.",
+        "UsedEmail_Error": "The Email is used, please pick another.",
+        "UsedPhoneNumber_Error": "The Phone Number is used, please pick another.",
+        "UsedUsername_Error": "The username is used, please pick another."
+      },
+      "Login": {
+        "Login_Success": "You logged in successfully.",
+        "Login_Error": "Failed to log you in.",
+        "WrongCreds_Error":"You inserted the wrong password or Username."
+      },
       "Promise": {
         "Pending": "Please wait for the task to complete...",
         "Resolve": "Task Completed successfully.",

@@ -153,8 +153,8 @@ const Carousel = () => {
     dots: true,
     infinite: true,
     speed: 4000,
-    slidesToShow: 3, // Number of divs per slide
-    slidesToScroll: 3,
+    slidesToShow: 5, // Number of divs per slide
+    slidesToScroll: 5,
     responsive: [
       {
         breakpoint: 1024,

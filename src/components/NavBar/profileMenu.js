@@ -16,14 +16,21 @@ import {
   } from "@heroicons/react/24/outline";
   import { useSelector } from "react-redux/es/hooks/useSelector";
   import {LightMode} from "../../redux/actions/LightActions"
+import { useDispatch } from "react-redux";
+import { RESET_ALL } from "../../redux/actions/GlobalActions";
+import { CreateToast } from "../../utils/Toast";
+import TranslatedText from "../../utils/Translation";
+import ReactDOMServer from 'react-dom/server';
   const profileMenuItems = [
     
     {
+      value:"Control_Center",
       label: "Control Center",
       icon: InboxArrowDownIcon,
       href:"/UCP/Home"
     },
     {
+      value:"Sign_Out",
       label: "Sign Out",
       icon: PowerIcon,
       href:"/login"
@@ -33,7 +40,37 @@ import {
   export default function ProfileMenu() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const LightModeState=useSelector(state=>state.lightMode)
+    const dispatch=useDispatch()
     const closeMenu = () => setIsMenuOpen(false);
+
+    const HandleMenuItemClick=((value,path)=>{
+      closeMenu
+      if(value=="Sign_Out")
+      {
+        dispatch(RESET_ALL())
+        CreateToast(
+          null,
+          ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Session.Logout" />),
+          "",
+          "",
+          "",
+          /*Custom request Errors message*/
+          [],
+          /*Custom Request Error codes */
+          [],
+          /*Default Connection Errors */
+          [],
+          'info',
+          LightModeState == LightMode().type,
+        );
+      }
+      if(value=="Control_Center")
+      {
+        //*ControlCenterLogic*//
+        window.location.href=path
+      }
+     
+    })
    
     return (
       <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end" >
@@ -59,12 +96,12 @@ import {
           </Button>
         </MenuHandler>
         <MenuList className={`p-1 ${LightModeState==LightMode().type?"bg-whiteTheme_T2":"bg-darkTheme_T2"}`}>
-          {profileMenuItems.map(({ label, icon,href }, key) => {
+          {profileMenuItems.map(({ label, icon,href,value }, key) => {
             const isLastItem = key === profileMenuItems.length - 1;
             return (
               <MenuItem
                 key={label}
-                onClick={closeMenu}
+                onClick={()=>{HandleMenuItemClick(value,href)}}
                 className={`flex items-center gap-2 rounded ${LightModeState==LightMode().type?"tc-whiteTheme_T1":"tc-darkTheme_T1"}`}
               >
                 {React.createElement(icon, {
@@ -73,9 +110,8 @@ import {
                   style:{color:`${isLastItem ? "red" : "inherit"}`}
                 })}
                 <Typography
-                  as="a"
+                  as="paragraph"
                   variant="small"
-                  href={href}
                   className={`font-normal`}
                   color={isLastItem ? "red" : "inherit"}
                 >

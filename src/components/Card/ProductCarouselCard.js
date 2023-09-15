@@ -68,7 +68,7 @@ import {
         ProductShipping:ProductShipping,
       }
     return (
-      <Card className={` p-2 m-2  max-h-[40rem] ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2  ":"tc-darkTheme_T1 bg-darkTheme_T2 "}`}>
+      <Card className={` p-2 m-2 max-w-[20rem]  max-h-[40rem] ${LightModeState==LightMode().type?"tc-whiteTheme_T1 bg-whiteTheme_T2  ":"tc-darkTheme_T1 bg-darkTheme_T2 "}`}>
         <CardHeader 
         onMouseEnter={()=>SetIsHovered(true)}
         onMouseLeave={()=>SetIsHovered(false)}

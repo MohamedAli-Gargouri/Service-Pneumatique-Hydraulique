@@ -30,6 +30,8 @@ export default function ContactCard() {
     label:PropTypes.any
   }
   const LightModeState = useSelector((state) => state.lightMode);
+  const phoneInputRef=React.useRef(null)
+  const internationalDialNumberRef=React.useRef(null)
 
   return (
     <>
@@ -278,7 +280,7 @@ export default function ContactCard() {
                 size="lg"
                 required
               />
-              <PhoneInput />
+              <PhoneInput phoneNumberRef={phoneInputRef} internationalDialRef={internationalDialNumberRef}/>
               <Textarea
                 labelProps={{
                   style: {
