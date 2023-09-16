@@ -18,6 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationConfig {
 
     private final UserRepository repository;
+
+    //This is the definition of our custom UserDetailService which will be used by the Security Context
     @Bean
     public UserDetailsService userDetailsService() {
         // Define a lambda expression to fetch user details by username

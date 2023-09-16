@@ -16,14 +16,20 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository repository;
+    //*===================THIS METHOD IS USED BY SPRING SECURITY, DO NOT TOUCH*==================//
     public User loadUserByUsername(String username) throws UsernameNotFoundException
     {
     return repository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("Username Not found"));
     }
-    public List<User> findAllUsers()
+
+
+    public List<User> findAllUsers_PasswordHidden()
     {
-             return repository.findAll();
+             return repository.findAllUsersExcludingPassword();
     }
+
+
+
     public User getUserById(String userId) throws UserExceptions.UserNotFound {
 
         if (repository.findById(userId).isPresent()) {

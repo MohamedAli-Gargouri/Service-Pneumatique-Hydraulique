@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -28,7 +29,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthentificationFilter extends OncePerRequestFilter {
     @Autowired
-    private UserService userService;
+    private UserDetailsService userDetailsService;
     @Autowired
     private JwtService jwtService;
     @Override
@@ -38,42 +39,43 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String username;
-        try {
-            //If it's in the WhiteList ignore it.
-            if (request.getRequestURI().matches("^/api/v1/auth/.*")) {
-                filterChain.doFilter(request, response);
-            } else {
+
+
                 //if it's not in the white list
                 if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    filterChain.doFilter(request, response);
+                    /*response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                     ObjectMapper objectMapper = new ObjectMapper();
                     String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR07"));
-                    response.getWriter().write(json);
-                    return;
-
+                    response.getWriter().write(json);*/
+                    return ;
                 }
+        try {
                 jwt = authHeader.substring(7);
                 username = jwtService.extractUsername(jwt);
-                //Test if the user is authenticated
-               var AAAAA=SecurityContextHolder.getContext().getAuthentication();
+                //SecurityContextHolder.getContext().getAuthentication() == null means the user is not connected yet
                 if (username != null && SecurityContextHolder.getContext().getAuthentication() == null)
                 {
-                    UserDetails userDetails = userService.loadUserByUsername(username);
-                    if (jwtService.isTokenValid(jwt, userDetails)) {
+                    UserDetails userDetails_ProvidedByTheService = userDetailsService.loadUserByUsername(username);
+                    //Test if the token is valid
+                    if (jwtService.isTokenValid(jwt, userDetails_ProvidedByTheService)) {
+                        //this Object is needed in order to update our Security Context
                         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                                userDetails,
+                                userDetails_ProvidedByTheService,
                                 null,
-                                userDetails.getAuthorities()
+                                userDetails_ProvidedByTheService.getAuthorities()
                         );
+                        //Adding more details to our AuthToken such ass their IP address,Time stamp
                         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        //Updating the Security Context with our connected User.
                         SecurityContextHolder.getContext().setAuthentication(authToken);
 
                     }
                 }
                 filterChain.doFilter(request, response);
-            }
-
         }
+
+
         catch(ExpiredJwtException e)
         {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

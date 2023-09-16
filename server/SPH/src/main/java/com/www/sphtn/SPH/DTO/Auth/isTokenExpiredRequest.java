@@ -8,9 +8,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class VerifyAccessTokenResponse {
-    private boolean isTokenValid;
-    private Object Message;
+public class isTokenExpiredRequest {
+    private String token;
 }
 
 

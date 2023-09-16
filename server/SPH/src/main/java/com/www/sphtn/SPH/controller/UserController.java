@@ -24,7 +24,7 @@ public class UserController {
     @GetMapping
     public List<User> getUsers()
     {
-        return service.findAllUsers();
+        return service.findAllUsers_PasswordHidden();
     }
 
     @GetMapping("/{userID}")

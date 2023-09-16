@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.OncePerRequestFilter;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -20,18 +22,21 @@ public class SecurityConfiguration {
     private JwtAuthentificationFilter jwtAuthentificationFilter;
     @Autowired
     private AuthenticationProvider authentificationProvider;
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
-    {
-                //http.cors(AbstractHttpConfigurer::disable);
-                http.csrf(AbstractHttpConfigurer::disable);
-                http.authorizeHttpRequests(auth->{
-                    auth.requestMatchers("/api/v1/auth/**").permitAll();
-                    auth.requestMatchers("/api/v1/admin/**").hasRole(Role.ADMIN.toString());
-                    auth.anyRequest().authenticated();
-                });
-                http.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-                http.authenticationProvider(authentificationProvider).addFilterBefore(jwtAuthentificationFilter, UsernamePasswordAuthenticationFilter.class);
-                return http.build();
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authentificationProvider)
+                .addFilterBefore(jwtAuthentificationFilter, UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers("/api/v1/auth/**").permitAll()
+                                .requestMatchers("/api/v1/admin/**").hasRole(Role.ADMIN.toString())
+                                .anyRequest().authenticated()
+                );
+
+        return http.build();
     }
 }

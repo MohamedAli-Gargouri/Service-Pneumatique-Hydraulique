@@ -21,11 +21,12 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequest request)
     {
+        System.out.println("Not called");
         return authService.authenticate(request);
     }
-    @PostMapping("/VerifyAccessToken")
-    public ResponseEntity<Object> VerifyAccessToken(@RequestBody VerifyAccessTokenRequest request)
+    @PostMapping("/isTokenExpired")
+    public ResponseEntity<Object> isTokenExpired(@RequestBody isTokenExpiredRequest request)
     {
-        return authService.VerifyAccessToken(request);
+        return authService.isTokenExpired(request);
     }
 }

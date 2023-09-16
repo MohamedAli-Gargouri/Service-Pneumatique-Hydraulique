@@ -14,12 +14,12 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.*;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +27,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -51,7 +50,8 @@ public class AuthService {
     @Value("${spring.admin.defaultAdminInternationalDialNumber}")
     private Integer rootInternationalDialNumber;
 
-    private final BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final FileRepository dbfileRepository;
     private final JwtService jwtService;
@@ -201,34 +201,34 @@ public class AuthService {
 
     }
 
-    public ResponseEntity<Object> VerifyAccessToken(VerifyAccessTokenRequest request){
+    public ResponseEntity<Object> isTokenExpired(isTokenExpiredRequest request){
         try
         {
-            return  ResponseEntity.ok().body(VerifyAccessTokenResponse.builder()
-                            .isTokenValid(jwtService.isTokenExpired(request.getToken()))
+            return  ResponseEntity.ok().body(isTokenExpiredResponse.builder()
+                            .isTokenExpired(jwtService.isTokenExpired(request.getToken()))
                             .build());
         }
         catch(UnsupportedJwtException e)
         {
             return ResponseEntity.badRequest().body(
-                    VerifyAccessTokenResponse.builder()
-                            .isTokenValid(false)
+                    isTokenExpiredResponse.builder()
+                            .isTokenExpired(false)
                             .Message(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR011")).build()
             );
         }
         catch(SignatureException e)
         {
             return ResponseEntity.badRequest().body(
-                    VerifyAccessTokenResponse.builder()
-                            .isTokenValid(false)
+                    isTokenExpiredResponse.builder()
+                            .isTokenExpired(false)
                             .Message(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR09")).build()
             );
         }
         catch(MalformedJwtException e)
         {
             return ResponseEntity.badRequest().body(
-                    VerifyAccessTokenResponse.builder()
-                            .isTokenValid(false)
+                    isTokenExpiredResponse.builder()
+                            .isTokenExpired(false)
                             .Message(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR012")).build()
             );
         }
