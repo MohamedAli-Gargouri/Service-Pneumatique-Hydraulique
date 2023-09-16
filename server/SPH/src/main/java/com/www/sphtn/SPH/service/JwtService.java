@@ -25,13 +25,23 @@ public class JwtService {
 
     public String extractUsername(String token)throws ExpiredJwtException, UnsupportedJwtException,MalformedJwtException,SignatureException
     {
-        return extractClaim(token,Claims::getSubject);
+        return Jwts.parserBuilder()
+                .setSigningKey(getSignInKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
-    public <T> T extractClaim(String token, Function<Claims,T> claimsResolver) throws ExpiredJwtException, UnsupportedJwtException,MalformedJwtException,SignatureException
+    public String extractClaim(String token, Function<Claims,String> claimFun) throws ExpiredJwtException, UnsupportedJwtException,MalformedJwtException,SignatureException
     {
-        final Claims claims=extractAllClaims(token);
-        return claimsResolver.apply(claims);
+
+       return  claimFun.apply(Jwts.parserBuilder()
+               .setSigningKey(getSignInKey())
+               .build()
+               .parseClaimsJws(token)
+               .getBody());
+
     }
     private Claims extractAllClaims(String token) throws ExpiredJwtException, UnsupportedJwtException,MalformedJwtException,SignatureException
     {
@@ -45,22 +55,20 @@ public class JwtService {
 
     public String generateToken(UserDetails userDetails,Boolean isLongLived)
     {
-
         return generateToken(new HashMap<>(),userDetails,isLongLived);
     }
-    public boolean isTokenvalid(String token,UserDetails userDetails)
+    public boolean isTokenValid(String token, UserDetails userDetails) throws ExpiredJwtException, UnsupportedJwtException,MalformedJwtException,SignatureException
     {
         final String username=extractUsername(token);
-        boolean a=isTokenExpired(token);
         return(username.equals(userDetails.getUsername())&& !isTokenExpired(token));
     }
 
-    public boolean isTokenExpired(String token) throws UnsupportedJwtException,MalformedJwtException,SignatureException {
+    public boolean isTokenExpired(String token) throws  UnsupportedJwtException,MalformedJwtException,SignatureException {
 
         try
         {
-            extractExpiration(token);
-            return true;
+            return extractExpiration(token).before(new Date());
+            
         }
         catch(ExpiredJwtException e)
         {
@@ -71,7 +79,11 @@ public class JwtService {
 
     private Date extractExpiration(String token) throws ExpiredJwtException, UnsupportedJwtException,MalformedJwtException,SignatureException {
 
-        return extractClaim(token,Claims::getExpiration);
+        return Jwts.parserBuilder()
+                .setSigningKey(getSignInKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody().getExpiration();
     }
 
     public String generateToken(Map<String,Object> extraClaims, UserDetails userDetails,Boolean isLongLived)

@@ -1,5 +1,6 @@
 package com.www.sphtn.SPH.configuration;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.www.sphtn.SPH.DTO.Errors.ErrorType;
 import com.www.sphtn.SPH.DTO.Errors.ErrorsReader;
 import com.www.sphtn.SPH.service.JwtService;
 import com.www.sphtn.SPH.service.UserService;
@@ -14,13 +15,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -50,7 +47,7 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
                 if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                     response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                     ObjectMapper objectMapper = new ObjectMapper();
-                    String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors().get("AUTH_ERROR07"));
+                    String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR07"));
                     response.getWriter().write(json);
                     return;
 
@@ -58,9 +55,11 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
                 jwt = authHeader.substring(7);
                 username = jwtService.extractUsername(jwt);
                 //Test if the user is authenticated
-                if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+               var AAAAA=SecurityContextHolder.getContext().getAuthentication();
+                if (username != null && SecurityContextHolder.getContext().getAuthentication() == null)
+                {
                     UserDetails userDetails = userService.loadUserByUsername(username);
-                    if (jwtService.isTokenvalid(jwt, userDetails)) {
+                    if (jwtService.isTokenValid(jwt, userDetails)) {
                         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                                 userDetails,
                                 null,
@@ -79,7 +78,7 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
         {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             ObjectMapper objectMapper = new ObjectMapper();
-            String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors().get("AUTH_ERROR10"));
+            String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR10"));
             response.getWriter().write(json);
 
         }
@@ -88,14 +87,14 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
 
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             ObjectMapper objectMapper = new ObjectMapper();
-            String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors().get("AUTH_ERROR011"));
+            String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR011"));
             response.getWriter().write(json);
         }
         catch(MalformedJwtException e)
         {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             ObjectMapper objectMapper = new ObjectMapper();
-            String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors().get("AUTH_ERROR08"));
+            String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR08"));
 
             response.getWriter().write(json);
 
@@ -104,7 +103,7 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
         {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             ObjectMapper objectMapper = new ObjectMapper();
-            String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors().get("AUTH_ERROR09"));
+            String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR09"));
             response.getWriter().write(json);
 
         }

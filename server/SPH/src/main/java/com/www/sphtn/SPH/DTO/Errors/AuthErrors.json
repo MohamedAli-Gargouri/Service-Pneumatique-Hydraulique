@@ -1,4 +1,9 @@
 {
+  "AUTH_ERROR00": {
+    "errorCode": "AUTH_ERROR00",
+    "errorMessage": "Unknown Auth Error",
+    "errorDetails": "Please contact Dev Team, unknown Error occurred"
+  },
   "AUTH_ERROR01": {
     "errorCode": "AUTH_ERROR01",
     "errorMessage": "Bad credentials",

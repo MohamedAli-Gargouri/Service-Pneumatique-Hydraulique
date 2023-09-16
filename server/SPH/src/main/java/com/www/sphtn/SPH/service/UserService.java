@@ -1,5 +1,6 @@
 package com.www.sphtn.SPH.service;
 
+import com.www.sphtn.SPH.Exceptions.Users.UserExceptions;
 import com.www.sphtn.SPH.model.User;
 import com.www.sphtn.SPH.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,38 +16,24 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository repository;
-    public User loadUserByEmail(String email) throws UsernameNotFoundException
-    {
-        return repository.findByEmail(email).orElseThrow(()->new UsernameNotFoundException("UserEmail Not found"));
-    }
-
     public User loadUserByUsername(String username) throws UsernameNotFoundException
     {
     return repository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("Username Not found"));
-    }
-    public User findUserById(String id) throws UsernameNotFoundException
-    {
-        return repository.findById(id).orElseThrow(()->new UsernameNotFoundException("user id Not found"));
-    }
-
-    public User addUser( User user)
-    {
-        user.setId(UUID.randomUUID().toString().split("-")[0]);
-        return repository.save(user);
     }
     public List<User> findAllUsers()
     {
              return repository.findAll();
     }
-    public User getUserById(String userId)
-    {
-        return repository.findById(userId).get();
+    public User getUserById(String userId) throws UserExceptions.UserNotFound {
+
+        if (repository.findById(userId).isPresent()) {
+            return repository.findById(userId).get();
+        }
+        else {
+           throw new UserExceptions.UserNotFound();
+        }
     }
 
-    public List<User> getUserbyLastName(String lastName)
-    {
-        return repository.findByLastName(lastName);
-    }
 
     public User updateUser(User updatedUser)
     {

@@ -1,5 +1,8 @@
 package com.www.sphtn.SPH.controller;
 
+import com.www.sphtn.SPH.DTO.Errors.ErrorType;
+import com.www.sphtn.SPH.DTO.Errors.ErrorsReader;
+import com.www.sphtn.SPH.Exceptions.Users.UserExceptions;
 import com.www.sphtn.SPH.model.User;
 import com.www.sphtn.SPH.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,36 +21,32 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody User user)
-    {
-        return service.addUser(user);
-    }
-
     @GetMapping
     public List<User> getUsers()
     {
         return service.findAllUsers();
     }
 
-    @GetMapping("/hellworld")
-    public ResponseEntity Hellworld()
-    {
-        return ResponseEntity.ok().body("Hello world");
-    }
     @GetMapping("/{userID}")
-    public User getUser(@PathVariable String userID)
+    public ResponseEntity<Object> getUser(@PathVariable String userID)
     {
-        return service.getUserById(userID);
+        try
+        {
+            return ResponseEntity.ok().body(service.getUserById(userID));
+        }
+        catch(UserExceptions.UserNotFound e)
+        {
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.USER_ERRORS).get("USER_ERROR01"));
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.ok().body(ErrorsReader.GetErrors(ErrorType.USER_ERRORS).get("USER_ERROR00"));
+        }
+
+
     }
 
-    @GetMapping("/firstName/{firstName}")
-    public List<User> findUserByFirstName(@PathVariable String LastName)
-    {
-        return service.getUserbyLastName(LastName);
 
-    }
     @PutMapping
     public User modifyUser(@RequestBody User user)
     {

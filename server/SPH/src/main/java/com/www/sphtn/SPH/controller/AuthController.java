@@ -21,7 +21,6 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequest request)
     {
-              System.out.println(request);
         return authService.authenticate(request);
     }
     @PostMapping("/VerifyAccessToken")

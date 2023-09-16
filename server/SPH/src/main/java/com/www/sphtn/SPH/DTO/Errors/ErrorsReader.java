@@ -8,14 +8,21 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class ErrorsReader {
-    private static final String JSON_FILE_PATH = "src\\main\\java\\com\\www\\sphtn\\SPH\\DTO\\Errors\\Error.json";
-
-    public static HashMap<String, Error> GetErrors() {
+    public static HashMap<String, Error> GetErrors(ErrorType errorType) {
+        String JSON_PATH = "src\\main\\java\\com\\www\\sphtn\\SPH\\DTO\\Errors\\";
+        String JSON_FileName="";
         try
         {
-            //System.out.println(System.getProperty("user.dir"));
+            switch(errorType)
+            {
+                case AUTH_ERRORS:
+                    JSON_FileName="AuthErrors.json";
+                    break;
+                case USER_ERRORS:
+                    JSON_FileName="UserErrors.json";
+            }
             ObjectMapper objectMapper = new ObjectMapper();
-            File jsonFile = new File(JSON_FILE_PATH);
+            File jsonFile = new File(JSON_PATH+JSON_FileName);
             // Read JSON file into a map of ErrorData objects
             return objectMapper.readValue(jsonFile, new TypeReference<HashMap<String, Error>>() {
             });
