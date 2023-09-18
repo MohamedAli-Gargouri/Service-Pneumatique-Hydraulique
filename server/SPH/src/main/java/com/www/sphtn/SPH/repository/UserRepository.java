@@ -18,7 +18,6 @@ public interface UserRepository extends MongoRepository<User,String> {
     Optional<User> findByPhoneNumber(int phoneNumber,int internationalDialNumber);
     @Query("{lastName:?0}")
     List<User> findByLastName(String lastName);
-    @Query(value = "{}", fields = "{ 'password' : 0 }")
-    List<User> findAllUsersExcludingPassword();
+
 
 }

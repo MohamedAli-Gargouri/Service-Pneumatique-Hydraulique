@@ -76,10 +76,6 @@ public class AuthService {
 
                 dbFile DefaultProfileImageFile=dbFile.builder()
                         .name(fileName)
-                        .deletedBy(null)
-                        .deleteDateTime(null)
-                        .isDeleted(false)
-                        .createdBy(null)
                         .size(fileSize)
                         .fileBinary(fileBytes)
                         .extension(fileExtension)
@@ -179,7 +175,6 @@ public class AuthService {
             );
             var user=userRepository.findByUsername(request.getUsername())
                     .orElseThrow();
-            System.out.println(request.getIsRememberMe());
             var jwtToken=jwtService.generateToken(user,request.getIsRememberMe());
             return ResponseEntity.ok(LoginResponse.builder().token(jwtToken).build());
         }

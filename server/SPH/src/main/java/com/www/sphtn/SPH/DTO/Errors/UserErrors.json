@@ -8,5 +8,21 @@
     "errorCode": "USER_ERROR01",
     "errorMessage": "User Not Found",
     "errorDetails": "The user you're looking for is not found within our system."
+  },
+  "USER_ERROR02": {
+    "errorCode": "USER_ERROR02",
+    "errorMessage": "Wrong Password",
+    "errorDetails": "Wrong Password for the user you want to change, please  check your confirm Password"
+  },
+  "USER_ERROR03": {
+    "errorCode": "USER_ERROR03",
+    "errorMessage": "Email Exists",
+    "errorDetails": "The Email you trying to change to is already used by another user."
+  },
+
+  "USER_ERROR04": {
+    "errorCode": "USER_ERROR04",
+    "errorMessage": "Phone Exists",
+    "errorDetails": "The PhoneNumber you trying to change to is already used by another user."
   }
 }

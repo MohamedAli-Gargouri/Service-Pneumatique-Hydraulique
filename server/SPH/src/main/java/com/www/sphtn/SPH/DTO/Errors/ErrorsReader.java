@@ -20,6 +20,9 @@ public class ErrorsReader {
                     break;
                 case USER_ERRORS:
                     JSON_FileName="UserErrors.json";
+                case PROD_ERRORS:
+                    JSON_FileName="ProductErrors.json";
+                    break;
             }
             ObjectMapper objectMapper = new ObjectMapper();
             File jsonFile = new File(JSON_PATH+JSON_FileName);

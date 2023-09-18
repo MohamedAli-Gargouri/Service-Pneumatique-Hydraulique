@@ -7,4 +7,24 @@ public class UserExceptions {
             super();
         }
     }
+    public static class WrongConfirmPassword extends RuntimeException {
+        public WrongConfirmPassword() {
+            super();
+        }
+    }
+    public static class UsernameExist extends RuntimeException {
+        public UsernameExist() {
+            super();
+        }
+    }
+    public static class PhoneNumberExists extends RuntimeException {
+        public PhoneNumberExists() {
+            super();
+        }
+    }
+    public static class EmailExists extends RuntimeException {
+        public EmailExists() {
+            super();
+        }
+    }
 }

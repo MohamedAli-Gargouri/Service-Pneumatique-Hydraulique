@@ -44,11 +44,7 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
                 //if it's not in the white list
                 if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                     filterChain.doFilter(request, response);
-                    /*response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    String json = objectMapper.writeValueAsString(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR07"));
-                    response.getWriter().write(json);*/
-                    return ;
+                    return;
                 }
         try {
                 jwt = authHeader.substring(7);

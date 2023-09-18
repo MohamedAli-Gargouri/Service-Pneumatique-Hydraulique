@@ -12,17 +12,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "Files")
+@Document(collection = "Products")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class dbFile {
+public class Product {
     @Id
     private String id;
-    private String name;
-    private String extension;
-    private byte[] fileBinary;
-    private long size;
+    @Indexed(unique = true)
+    private Long productCode;
+    private String productBrand;
+    private String productName;
+    private Integer productPrice;
+    private Integer storeQuantity;
+    private Integer stockQuantity;
+    private String shortDescription;
+    private String longDescription;
+    private String additionalInformation;
+    private String shippingInformation;
     private Date createDateTime;
+    @DBRef
+    private List<dbFile> productImages;
 }

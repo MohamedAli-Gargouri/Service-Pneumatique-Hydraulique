@@ -26,18 +26,21 @@ public class User implements UserDetails {
     private String userName;
     private String firstName;
     private String lastName;
-    private String internationalDialingCode;
     @Indexed(unique = true)
     private Integer phoneNumber;
-    public Integer internationalDialNumber;
+    private Integer internationalDialNumber;
     @Indexed(unique = true)
     private String email;
     private Role role;
+    @JsonIgnore
     private String password;
+    @JsonIgnore
     private Date createDateTime;
-    private Date deleteDateTime;
+    @JsonIgnore
     private boolean isEnabled;
+    @JsonIgnore
     private Date lockDateTime;
+    @JsonIgnore
     private boolean isAccountNonLocked;
     @Indexed(unique = false)
     @DBRef

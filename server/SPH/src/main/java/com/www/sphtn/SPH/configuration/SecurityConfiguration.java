@@ -35,8 +35,14 @@ public class SecurityConfiguration {
                                 .requestMatchers("/api/v1/auth/**").permitAll()
                                 .requestMatchers("/api/v1/admin/**").hasRole(Role.ADMIN.toString())
                                 .anyRequest().authenticated()
-                );
+
+                ).exceptionHandling(httpSecurityExceptionHandlingConfigurer ->httpSecurityExceptionHandlingConfigurer.accessDeniedHandler(accessDeniedHandler() ));
 
         return http.build();
+    }
+
+    @Bean
+    public CustomAccessDeniedHandler accessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
     }
 }
