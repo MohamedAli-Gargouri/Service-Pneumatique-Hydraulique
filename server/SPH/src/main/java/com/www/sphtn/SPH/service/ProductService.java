@@ -2,7 +2,9 @@ package com.www.sphtn.SPH.service;
 
 import com.www.sphtn.SPH.DTO.dbFile.dbFileRequest;
 import com.www.sphtn.SPH.Exceptions.Products.ProductExceptions;
+import com.www.sphtn.SPH.model.Category;
 import com.www.sphtn.SPH.model.Product;
+import com.www.sphtn.SPH.model.SubCategoryValue;
 import com.www.sphtn.SPH.model.dbFile;
 import com.www.sphtn.SPH.repository.FileRepository;
 import com.www.sphtn.SPH.repository.ProductRepository;
@@ -40,7 +42,10 @@ public class ProductService {
                        String longDescription,
                        String additionalInformation,
                        String shippingInformation,
-                       List<dbFileRequest> productImages)
+                       List<dbFileRequest> productImages,
+                       Category category,
+                       List<SubCategoryValue> subCategoryValueList
+                            )
         {
             ArrayList<dbFile> ListProductImg =new ArrayList<dbFile>();
 
@@ -68,6 +73,8 @@ public class ProductService {
                         .shippingInformation(shippingInformation)
                         .createDateTime(new Date())
                         .productImages(ListProductImg)
+                        .Category(category)
+                        .subCategoryValues(subCategoryValueList)
                         .build());
 
 
@@ -86,7 +93,10 @@ public void EditProduct(
           String additionalInformation,
           String shippingInformation,
           List<dbFileRequest> productImages,
-          Boolean clearImages) throws ProductExceptions.WrongProductID
+          Boolean clearImages,
+          Category category,
+          List<SubCategoryValue> subCategoryValueList
+) throws ProductExceptions.WrongProductID
     {
         ArrayList<dbFile> ListProductImg =new ArrayList<dbFile>();
             for(dbFileRequest file:productImages)
@@ -124,6 +134,8 @@ public void EditProduct(
             prod.get().setAdditionalInformation(additionalInformation);
             prod.get().setShippingInformation(shippingInformation);
             prod.get().setProductImages(ListProductImg);
+            prod.get().setCategory(category);
+            prod.get().setSubCategoryValues(subCategoryValueList);
         }
         //case we are deleting the images
         if(clearImages)
@@ -139,8 +151,9 @@ public void EditProduct(
             prod.get().setAdditionalInformation(additionalInformation);
             prod.get().setShippingInformation(shippingInformation);
             prod.get().setProductImages(new ArrayList<>());
-
             prod.get().getProductImages().forEach(fileRepository::delete);
+            prod.get().setCategory(category);
+            prod.get().setSubCategoryValues(subCategoryValueList);
 
         }
         //case we're not changing the images
@@ -157,6 +170,8 @@ public void EditProduct(
             prod.get().setLongDescription(longDescription);
             prod.get().setAdditionalInformation(additionalInformation);
             prod.get().setShippingInformation(shippingInformation);
+            prod.get().setCategory(category);
+            prod.get().setSubCategoryValues(subCategoryValueList);
         }
         productRepository.save(prod.get());
 

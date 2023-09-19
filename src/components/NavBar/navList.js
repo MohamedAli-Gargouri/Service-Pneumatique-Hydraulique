@@ -50,13 +50,13 @@ export default function NavList() {
         {
           if(isLoggedState)
           {
-            return <></>
+            return null
           }
 
         }
           return (
             <Typography
-              key={key}
+              key={"NAV"+key}
               as="a"
               href={route}
               variant="small"

@@ -50,34 +50,54 @@ export default function App() {
   const handleAccessTokenVerifying = async () => {
     try {
       const result = await IsNotExpiredAccessToken(AccessToken);
-      if (!result.data.tokenValid) {
-        //Access Token expired.
-        CreateToast(
-          null,
-          ReactDOMServer.renderToStaticMarkup(
-            <TranslatedText TranslationPath="UCP.DialogMessages.Session.SessionExpired" />,
-          ),
-          "",
-          "",
-          "",
-              /*Custom request Errors message*/
-              [],
-              /*Custom Request Error codes */
-              [],
-              /*Default Connection Errors */
-              [
-              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
-              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
-              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
-              ],
-          'error',
-          LightModeState == LightMode().type,
-        );
-        dispatch(RESET_ALL())
-      }
-
+      console.log(result)
+      //Test if the token expired
+      if (result.data.tokenExpired || result.data=="") {
+        throw new Error("UNVALID_ACCESS_TOKEN");
+          }
     } catch (error) {
-      console.error('Error verifying access token:', error);
+              //Access Token expired.
+              if(error=="UNVALID_ACCESS_TOKEN")
+              {
+                CreateToast(
+                  null,
+                  ReactDOMServer.renderToStaticMarkup(
+                    <TranslatedText TranslationPath="UCP.DialogMessages.Session.SessionExpired" />,
+                  ),
+                  "",
+                  "",
+                  "",
+                      /*Custom request Errors message*/
+                      [],
+                      /*Custom Request Error codes */
+                      [],
+                      /*Default Connection Errors */
+                      [],
+                  'error',
+                  LightModeState == LightMode().type,
+                );
+              }
+              if(error.code=="ERR_NETWORK")
+              {
+                CreateToast(
+                  null,
+                  ReactDOMServer.renderToStaticMarkup(
+                    <TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />,
+                  ),
+                  "",
+                  "",
+                  "",
+                      /*Custom request Errors message*/
+                      [],
+                      /*Custom Request Error codes */
+                      [],
+                      /*Default Connection Errors */
+                      [],
+                  'error',
+                  LightModeState == LightMode().type,
+                );
+              }
+              dispatch(RESET_ALL())
     }
   };
 

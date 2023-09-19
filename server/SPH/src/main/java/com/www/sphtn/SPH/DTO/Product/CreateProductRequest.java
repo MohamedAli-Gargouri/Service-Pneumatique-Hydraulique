@@ -29,4 +29,6 @@ public class CreateProductRequest {
     private String additionalInformation;
     private String shippingInformation;
     private List<dbFileRequest> productImages;
+    private String categoryId;
+    private List<String> subCategoryValueIds;
 }

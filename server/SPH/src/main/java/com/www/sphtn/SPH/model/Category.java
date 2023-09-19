@@ -12,31 +12,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "Products")
+@Document(collection = "Categories")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
+public class Category {
     @Id
     private String id;
     @Indexed(unique = true)
-    private Long productCode;
-    private String productBrand;
-    private String productName;
-    private Integer productPrice;
-    private Integer storeQuantity;
-    private Integer stockQuantity;
-    private String shortDescription;
-    private String longDescription;
-    private String additionalInformation;
-    private String shippingInformation;
+    private String name;
     private Date createDateTime;
+    @DBRef
+    private dbFile categoryImg_File;
 
-    @DBRef
-    private Category Category;
-    @DBRef
-    private List<SubCategoryValue> subCategoryValues;
-    @DBRef
-    private List<dbFile> productImages;
 }

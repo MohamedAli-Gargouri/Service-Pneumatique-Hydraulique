@@ -7,13 +7,18 @@ import com.www.sphtn.SPH.DTO.Product.CreateProductRequest;
 import com.www.sphtn.SPH.DTO.Product.EditProductRequest;
 import com.www.sphtn.SPH.DTO.User.ModifyUserRequest;
 import com.www.sphtn.SPH.DTO.dbFile.dbFileRequest;
+import com.www.sphtn.SPH.Exceptions.Category.CategoryExceptions;
 import com.www.sphtn.SPH.Exceptions.General.MissingParam;
 import com.www.sphtn.SPH.Exceptions.Products.ProductExceptions;
 import com.www.sphtn.SPH.Exceptions.Users.UserExceptions;
+import com.www.sphtn.SPH.model.Category;
 import com.www.sphtn.SPH.model.Product;
+import com.www.sphtn.SPH.model.SubCategoryValue;
 import com.www.sphtn.SPH.model.User;
+import com.www.sphtn.SPH.repository.CategoryRepository;
 import com.www.sphtn.SPH.repository.FileRepository;
 import com.www.sphtn.SPH.repository.ProductRepository;
+import com.www.sphtn.SPH.repository.SubCategoryValueRepository;
 import com.www.sphtn.SPH.service.ProductService;
 import com.www.sphtn.SPH.service.UserService;
 import jakarta.websocket.server.PathParam;
@@ -30,16 +35,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Pageable;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/v1/product")
 @RequiredArgsConstructor
 public class ProductController {
 
+    @Autowired
+    private SubCategoryValueRepository subCategoryValueRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
     @Autowired
     private ProductService service;
     @Autowired
@@ -79,11 +86,58 @@ public class ProductController {
     {
         try
         {
+            //==============TESTING IF THE BODY MATCHES THE REQUEST FORMAT==============
+            if(createProductRequest.getProductImages()==null)
+            {
+                throw new MissingParam();
+            }
+            boolean OneAttributeIsNull = Stream.of(
+                            createProductRequest.getProductCode(),
+                            createProductRequest.getProductBrand(),
+                            createProductRequest.getProductPrice(),
+                            createProductRequest.getSubCategoryValueIds(),
+                            createProductRequest.getCategoryId(),
+                            createProductRequest.getAdditionalInformation(),
+                            createProductRequest.getLongDescription(),
+                            createProductRequest.getShippingInformation(),
+                            createProductRequest.getShortDescription(),
+                            createProductRequest.getProductName(),
+                            createProductRequest.getShortDescription(),
+                            createProductRequest.getStockQuantity(),
+                            createProductRequest.getStoreQuantity()
+                    )
+                    .anyMatch(Objects::isNull);
+            if(OneAttributeIsNull)
+            {
+                throw new MissingParam();
+            }
+
+            if(categoryRepository.findById(createProductRequest.getCategoryId()).isEmpty())
+            {
+                throw new CategoryExceptions.CategoryNotFound();
+            }
+            createProductRequest.getSubCategoryValueIds().forEach(subCategoryValueId->
+            {
+                if(subCategoryValueRepository.findById(subCategoryValueId).isEmpty())
+                {
+                    throw new CategoryExceptions.SubCategoryValueNotFound();
+                }
+            });
 
             if(repository.findByProductCode(createProductRequest.getProductCode()).isPresent())
             {
                 throw new ProductExceptions.ProductCodeExist();
             }
+
+            Category productCategory=categoryRepository.findById(createProductRequest.getCategoryId()).get();
+
+            ArrayList<SubCategoryValue> ProductSubCategoryValues=new ArrayList<SubCategoryValue>();
+
+            createProductRequest.getSubCategoryValueIds().forEach(subCategoryId->
+            {
+                ProductSubCategoryValues.add(subCategoryValueRepository.findById(subCategoryId).get());
+            });
+
             service.createProduct(
                     createProductRequest.getProductCode(),
                     createProductRequest.getProductBrand(),
@@ -95,11 +149,26 @@ public class ProductController {
                     createProductRequest.getLongDescription(),
                     createProductRequest.getAdditionalInformation(),
                     createProductRequest.getShippingInformation(),
-                    createProductRequest.getProductImages()
+                    createProductRequest.getProductImages(),
+                    productCategory,
+                    ProductSubCategoryValues
+
             );
             return ResponseEntity.ok().body("Product Created");
         }
 
+        catch(MissingParam e)
+        {
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR03"));
+        }
+        catch(CategoryExceptions.CategoryNotFound e)
+        {
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR01"));
+        }
+        catch(CategoryExceptions.SubCategoryValueNotFound e)
+        {
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR09"));
+        }
         catch(ProductExceptions.ProductCodeExist e)
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.PROD_ERRORS).get("PRODUCT_ERROR01"));
@@ -118,6 +187,19 @@ public class ProductController {
     {
         try
         {
+            if(categoryRepository.findById(editProductRequest.getCategoryId()).isEmpty())
+            {
+                throw new CategoryExceptions.CategoryNotFound();
+            }
+
+            editProductRequest.getSubCategoryValueIds().forEach(subCategoryValueId->
+            {
+                if(subCategoryValueRepository.findById(subCategoryValueId).isEmpty())
+                {
+                    throw new CategoryExceptions.SubCategoryValueNotFound();
+                }
+            });
+
            Optional<Product> prodById=repository.findById(editProductRequest.getId());
            Optional<Product> prodByProdCode=repository.findByProductCode(editProductRequest.getProductCode());
             if(prodById.isEmpty())
@@ -128,6 +210,15 @@ public class ProductController {
             {
                 throw new ProductExceptions.ProductCodeExist();
             }
+
+            Category productCategory=categoryRepository.findById(editProductRequest.getCategoryId()).get();
+
+            ArrayList<SubCategoryValue> ProductSubCategoryValues=new ArrayList<SubCategoryValue>();
+
+            editProductRequest.getSubCategoryValueIds().forEach(subCategoryId->
+            {
+                ProductSubCategoryValues.add(subCategoryValueRepository.findById(subCategoryId).get());
+            });
             service.EditProduct(
                     editProductRequest.getId(),
                     editProductRequest.getProductCode(),
@@ -141,11 +232,20 @@ public class ProductController {
                     editProductRequest.getAdditionalInformation(),
                     editProductRequest.getShippingInformation(),
                     editProductRequest.getProductImages(),
-                    editProductRequest.getClearImages()
+                    editProductRequest.getClearImages(),
+                    productCategory,
+                    ProductSubCategoryValues
             );
             return ResponseEntity.ok().body("Product saved");
         }
-
+        catch(CategoryExceptions.CategoryNotFound e)
+        {
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR01"));
+        }
+        catch(CategoryExceptions.SubCategoryValueNotFound e)
+        {
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR09"));
+        }
         catch(ProductExceptions.ProductCodeExist e)
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.PROD_ERRORS).get("PRODUCT_ERROR01"));

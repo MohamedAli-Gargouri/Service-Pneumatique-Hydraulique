@@ -110,7 +110,7 @@ import ReactDOMServer from 'react-dom/server';
                   style:{color:`${isLastItem ? "red" : "inherit"}`}
                 })}
                 <Typography
-                  as="paragraph"
+                  as="small"
                   variant="small"
                   className={`font-normal`}
                   color={isLastItem ? "red" : "inherit"}

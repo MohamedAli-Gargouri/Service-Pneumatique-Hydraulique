@@ -27,7 +27,7 @@ export const login = async (userName,password,rememberMeValue) => {
     }
     catch (e)
     {
-        console.log(e)
+        //Handle Error Code//
     }
     
 
@@ -53,12 +53,10 @@ export const register = async (userName,email,firstName,lastName,password,intern
 // Function to make a registration API request
 export const IsNotExpiredAccessToken = async (tokenValue) => {
 
-  const data={
-    token:tokenValue,
-      }
-  const response = axiosInstance.post(`${API_URL}/VerifyAccessToken`, data);
-  return response;
 
+    const data={token:tokenValue}
+          const response = axiosInstance.post(`${API_URL}/isTokenExpired`, data)
+          return response;
 };
 IsNotExpiredAccessToken.propTypes={
   tokenValue:PropTypes.string.isRequired

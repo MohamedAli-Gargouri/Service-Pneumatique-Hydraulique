@@ -23,6 +23,9 @@ public class ErrorsReader {
                 case PROD_ERRORS:
                     JSON_FileName="ProductErrors.json";
                     break;
+                case CATEGORY_ERRORS:
+                    JSON_FileName="CategoryErrors.json";
+                    break;
             }
             ObjectMapper objectMapper = new ObjectMapper();
             File jsonFile = new File(JSON_PATH+JSON_FileName);

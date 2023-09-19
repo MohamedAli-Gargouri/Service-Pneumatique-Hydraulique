@@ -26,4 +26,6 @@ public class EditProductRequest {
     private String shippingInformation;
     private List<dbFileRequest> productImages;
     private Boolean clearImages;
+    private String categoryId;
+    private List<String> subCategoryValueIds;
 }

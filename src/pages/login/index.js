@@ -125,6 +125,7 @@ export default function LoginCard() {
               size="lg"
             />
             <Input
+            type='password'
             inputRef={passwordRef}
               labelProps={{
                 style: {

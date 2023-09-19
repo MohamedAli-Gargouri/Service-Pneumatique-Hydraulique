@@ -1,0 +1,69 @@
+{
+  "CATEGORY_ERROR00": {
+    "errorCode": "CATEGORY_ERROR00",
+    "errorMessage": "Unknown Category Error",
+    "errorDetails": "Please contact Dev Team, unknown Error occurred"
+  },
+  "CATEGORY_ERROR01": {
+    "errorCode": "CATEGORY_ERROR01",
+    "errorMessage": "Wrong Category ID",
+    "errorDetails": "The Category ID doesn't exist within our system, please check your ID."
+  },
+  "CATEGORY_ERROR02": {
+    "errorCode": "CATEGORY_ERROR02",
+    "errorMessage": "Category name exist",
+    "errorDetails": "Please choose another name for your category, this name is already in use."
+  },
+  "CATEGORY_ERROR03": {
+    "errorCode": "CATEGORY_ERROR03",
+    "errorMessage": "Wrong POST request parameters",
+    "errorDetails": "You are missing some parameters in the request, PARAM EXAMPLE {'name':'Compressors','categoryImg_File':{'name':'CategoryImg','extension':'jpg','size':100,'fileBinary':'SGVsbG8sIFdvcmxkIQ=='}}"
+  },
+  "CATEGORY_ERROR04": {
+    "errorCode": "CATEGORY_ERROR04",
+    "errorMessage": "Wrong PUT request parameters",
+    "errorDetails": "You are missing some parameters in the request, PARAM EXAMPLE {'id':'6509a40064bd1a2b882ad7be','name':'Compressors','categoryImg_File':{'name':'CategoryImg','extension':'jpg','size':100,'fileBinary':'SGVsbG8sIFdvcmxkIQ=='}} NOTE, if you don't wanna change the img, just leave it with empty 'categoryImg_File':{}"
+  },
+
+  "CATEGORY_ERROR05": {
+    "errorCode": "CATEGORY_ERROR05",
+    "errorMessage": "Wrong Sub-Category ID",
+    "errorDetails": "The Sub-Category ID doesn't exist within our system, please check your ID."
+  },
+  "CATEGORY_ERROR06": {
+    "errorCode": "CATEGORY_ERROR06",
+    "errorMessage": "Sub-Category name exist",
+    "errorDetails": "Please choose another name for your Sub-category, this name is already in use."
+  },
+  "CATEGORY_ERROR07": {
+    "errorCode": "CATEGORY_ERROR07",
+    "errorMessage": "Wrong POST request parameters",
+    "errorDetails": "You are missing some parameters in the request, PARAM EXAMPLE {'name':'Size','categoryId':'6509a88e55a524552531dc2f'}"
+  },
+  "CATEGORY_ERROR08": {
+    "errorCode": "CATEGORY_ERROR088",
+    "errorMessage": "Wrong PUT request parameters",
+    "errorDetails": "You are missing some parameters in the request, PARAM EXAMPLE {'id':'6509c51dd738c2007f7b56f0','name':'Width','categoryId':'6509bb79d65b8a3fbd994ffa'}"
+  },
+
+  "CATEGORY_ERROR09": {
+    "errorCode": "CATEGORY_ERROR09",
+    "errorMessage": "Wrong Sub-CategoryValue ID",
+    "errorDetails": "The Sub-CategoryValue ID doesn't exist within our system, please check your ID."
+  },
+  "CATEGORY_ERROR010": {
+    "errorCode": "CATEGORY_ERROR010",
+    "errorMessage": "Sub-CategoryValue value exist",
+    "errorDetails": "Please choose another Value for your Sub-categoryValue, this value is already in use."
+  },
+  "CATEGORY_ERROR011": {
+    "errorCode": "CATEGORY_ERROR011",
+    "errorMessage": "Wrong POST request parameters",
+    "errorDetails": "You are missing some parameters in the request, PARAM EXAMPLE {'subCategoryId':'6509c529d738c2007f7b56f1','value':'5CV'}"
+  },
+  "CATEGORY_ERROR012": {
+    "errorCode": "CATEGORY_ERROR012",
+    "errorMessage": "Wrong PUT request parameters",
+    "errorDetails": "You are missing some parameters in the request, PARAM EXAMPLE {'id':'6509cd2bb3a81866d787a531','value':'5CV','subCategoryId':'6509c529d738c2007f7b56f10'}"
+  }
+}
