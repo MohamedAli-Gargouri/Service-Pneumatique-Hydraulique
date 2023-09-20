@@ -63,5 +63,10 @@
     "errorCode": "AUTH_ERROR12",
     "errorMessage": "Malformed JWT Token",
     "errorDetails": "The given JWT Token is malformed."
+  },
+  "AUTH_ERROR013": {
+    "errorCode": "AUTH_ERROR13",
+    "errorMessage": "Missing Permissions",
+    "errorDetails": "You don't have permission to do this action."
   }
 }

@@ -63,7 +63,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Object>  GetProducts( @RequestParam String productId)
+    public ResponseEntity<Object>  GetProduct( @RequestParam String productId)
     {
         try {
 
@@ -78,6 +78,11 @@ public class ProductController {
         catch(ProductExceptions.WrongProductID e)
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.PROD_ERRORS).get("PRODUCT_ERROR02"));
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
     }
@@ -118,9 +123,15 @@ public class ProductController {
             }
             createProductRequest.getSubCategoryValueIds().forEach(subCategoryValueId->
             {
+                //Testing if one of the provided SubCategoryValues is not within our DB
                 if(subCategoryValueRepository.findById(subCategoryValueId).isEmpty())
                 {
                     throw new CategoryExceptions.SubCategoryValueNotFound();
+                }
+                //Testing if one of the SubCategoryValues is not within the Product Category
+                if(!subCategoryValueRepository.findById(subCategoryValueId).get().getSubCategory().getCategory().getId().equals(createProductRequest.getCategoryId()))
+                {
+                        throw new ProductExceptions.WrongProductCategory_CategoryValues();
                 }
             });
 
@@ -161,6 +172,10 @@ public class ProductController {
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR03"));
         }
+        catch(ProductExceptions.WrongProductCategory_CategoryValues e)
+        {
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.PROD_ERRORS).get("PRODUCT_ERROR03"));
+        }
         catch(CategoryExceptions.CategoryNotFound e)
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR01"));
@@ -176,7 +191,7 @@ public class ProductController {
         catch (Exception e)
         {
             System.out.println(e);
-            return ResponseEntity.ok().body(ErrorsReader.GetErrors(ErrorType.USER_ERRORS).get("USER_ERROR00"));
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
 
@@ -194,9 +209,15 @@ public class ProductController {
 
             editProductRequest.getSubCategoryValueIds().forEach(subCategoryValueId->
             {
+                //Testing if one of the provided SubCategoryValues is not within our DB
                 if(subCategoryValueRepository.findById(subCategoryValueId).isEmpty())
                 {
                     throw new CategoryExceptions.SubCategoryValueNotFound();
+                }
+                //Testing if one of the SubCategoryValues is not within the Product Category
+                if(!subCategoryValueRepository.findById(subCategoryValueId).get().getSubCategory().getCategory().getId().equals(editProductRequest.getCategoryId()))
+                {
+                    throw new ProductExceptions.WrongProductCategory_CategoryValues();
                 }
             });
 
@@ -242,6 +263,10 @@ public class ProductController {
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR01"));
         }
+        catch(ProductExceptions.WrongProductCategory_CategoryValues e)
+        {
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.PROD_ERRORS).get("PRODUCT_ERROR03"));
+        }
         catch(CategoryExceptions.SubCategoryValueNotFound e)
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR09"));
@@ -257,7 +282,7 @@ public class ProductController {
         catch (Exception e)
         {
             System.out.println(e);
-            return ResponseEntity.ok().body(ErrorsReader.GetErrors(ErrorType.USER_ERRORS).get("USER_ERROR00"));
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
 
@@ -284,6 +309,11 @@ public class ProductController {
         catch(ProductExceptions.WrongProductID e)
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.PROD_ERRORS).get("PRODUCT_ERROR02"));
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
     }

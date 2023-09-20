@@ -22,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -62,9 +63,10 @@ public class SubCategoryValueController {
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR09"));
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR00"));
+            System.out.println(e);
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
     }
@@ -92,6 +94,7 @@ public class SubCategoryValueController {
             {
                 throw new CategoryExceptions.SubCategoryNotFound();
             }
+
             SubCategoryValue newSubCategoryValue= SubCategoryValue
                     .builder()
                     .value(request.getValue())
@@ -116,7 +119,7 @@ public class SubCategoryValueController {
         catch (Exception e)
         {
             System.out.println(e);
-            return ResponseEntity.ok().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR00"));
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
 
@@ -155,7 +158,6 @@ public class SubCategoryValueController {
             {
                 throw new CategoryExceptions.SubCategoryValue_ValueExists();
             }
-
             subcategoryValueById.get().setValue(request.getValue());
 
             if(!subcategoryValueById.get().getSubCategory().getId().equals(request.getSubCategoryId()))
@@ -184,7 +186,7 @@ public class SubCategoryValueController {
         catch (Exception e)
         {
             System.out.println(e);
-            return ResponseEntity.ok().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR00"));
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
 
@@ -208,10 +210,10 @@ public class SubCategoryValueController {
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR09"));
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             System.out.println(e);
-            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR00"));
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
     }

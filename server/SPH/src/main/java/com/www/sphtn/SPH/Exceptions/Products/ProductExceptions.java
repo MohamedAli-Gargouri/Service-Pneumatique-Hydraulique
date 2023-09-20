@@ -12,4 +12,14 @@ public class ProductExceptions {
             super();
         }
     }
+    public static class LimitedProductQuantity extends RuntimeException {
+        public LimitedProductQuantity() {
+            super();
+        }
+    }
+    public static class WrongProductCategory_CategoryValues extends RuntimeException {
+        public WrongProductCategory_CategoryValues() {
+            super();
+        }
+    }
 }

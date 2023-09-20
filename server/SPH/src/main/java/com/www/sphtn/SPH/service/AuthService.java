@@ -3,7 +3,7 @@ package com.www.sphtn.SPH.service;
 import com.www.sphtn.SPH.DTO.Auth.*;
 import com.www.sphtn.SPH.DTO.Errors.ErrorType;
 import com.www.sphtn.SPH.DTO.Errors.ErrorsReader;
-import com.www.sphtn.SPH.Exceptions.Auth.RegisterExceptions;
+import com.www.sphtn.SPH.Exceptions.Auth.AuthExceptions;
 import com.www.sphtn.SPH.model.Role;
 import com.www.sphtn.SPH.model.User;
 import com.www.sphtn.SPH.model.dbFile;
@@ -113,15 +113,15 @@ public class AuthService {
         {
             if(userRepository.findByEmail(request.getEmail()).isPresent())
             {
-                throw new RegisterExceptions.EmailUsedException();
+                throw new AuthExceptions.EmailUsedException();
             }
             if(userRepository.findByUsername(request.getUsername()).isPresent())
             {
-                throw new RegisterExceptions.UserNameUsedException();
+                throw new AuthExceptions.UserNameUsedException();
             }
             if(userRepository.findByPhoneNumber(request.getPhoneNumber(),request.getInternationalDialNumber()).isPresent())
             {
-                throw new RegisterExceptions.PhoneUsedException();
+                throw new AuthExceptions.PhoneUsedException();
             }
              dbFile defaultfile=dbfileRepository.getDefaultProfilePicture("defaultProfilePicture.jpg").get();
             if(dbfileRepository.getDefaultProfilePicture("defaultProfilePicture.jpg").isEmpty())
@@ -146,17 +146,17 @@ public class AuthService {
             var jwtToken=jwtService.generateToken(user,false);
             return ResponseEntity.ok(RegisterResponse.builder().token(jwtToken).build());
         }
-        catch(RegisterExceptions.EmailUsedException e)
+        catch(AuthExceptions.EmailUsedException e)
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR04")
             );
         }
-        catch(RegisterExceptions.UserNameUsedException e)
+        catch(AuthExceptions.UserNameUsedException e)
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR06")
             );
         }
-        catch(RegisterExceptions.PhoneUsedException e)
+        catch(AuthExceptions.PhoneUsedException e)
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.AUTH_ERRORS).get("AUTH_ERROR05")
             );

@@ -21,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 @RestController
@@ -72,7 +73,7 @@ public class UserController {
         catch (Exception e)
         {
             System.out.println(e);
-            return ResponseEntity.ok().body(ErrorsReader.GetErrors(ErrorType.USER_ERRORS).get("USER_ERROR00"));
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
 
@@ -111,7 +112,8 @@ public class UserController {
         }
         catch (Exception e)
         {
-            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.USER_ERRORS).get("USER_ERROR00"));
+            System.out.println(e);
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
     }
@@ -143,7 +145,8 @@ public class UserController {
         }
         catch (Exception e)
         {
-            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.USER_ERRORS).get("USER_ERROR00"));
+            System.out.println(e);
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
     }

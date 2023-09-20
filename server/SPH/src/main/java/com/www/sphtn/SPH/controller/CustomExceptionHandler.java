@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingPathVariableException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -48,6 +49,14 @@ public class CustomExceptionHandler {
                 .errorDetails("Wrong body format, please check the required JSON Object for this request, NOTE if you have a binary field, it must be encoded to base64!")
                 .build());
     }
+    @ExceptionHandler(MissingServletRequestParameterException.class) // Correct the exception type here
+    public ResponseEntity<ControllerError> missingRequestParameter(MissingServletRequestParameterException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ControllerError.builder()
+                .errorMessage("Missing Parameter")
+                .errorDetails("The targeted request requires the following parameter: " + ex.getParameterName())
+                .build());
+    }
+
 
 }
 

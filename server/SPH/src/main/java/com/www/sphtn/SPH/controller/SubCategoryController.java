@@ -56,9 +56,10 @@ public class SubCategoryController {
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR05"));
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR00"));
+            System.out.println(e);
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
     }
@@ -111,7 +112,7 @@ public class SubCategoryController {
         catch (Exception e)
         {
             System.out.println(e);
-            return ResponseEntity.ok().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR00"));
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
 
@@ -176,10 +177,11 @@ public class SubCategoryController {
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR06"));
         }
+
         catch (Exception e)
         {
             System.out.println(e);
-            return ResponseEntity.ok().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR00"));
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
 
@@ -203,10 +205,10 @@ public class SubCategoryController {
         {
             return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR05"));
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             System.out.println(e);
-            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR00"));
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
         }
 
     }
