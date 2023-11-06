@@ -23,6 +23,8 @@ import TranslatedText from '../../utils/Translation';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
 import PropTypes from "prop-types"
+import { readBinaryData,arrayBufferToBase64 } from '../../utils/file';
+import { getCategories,getSubCategories,PutSubCategory,PutCategory,DELETECategory,DELETESubCategory } from '../../services/category';
 const TABLE_HEAD = [
   {
     label: (
@@ -45,107 +47,297 @@ const TABLE_HEAD = [
   { label: '', value: '' },
 ];
 
-const TABLE_ROWS = [
-  {
-    CategoryID: '1',
-    name: 'Compressors',
-    type: 1,
-  },
-  {
-    CategoryID: '4',
-    name: 'Dryers',
-    type: 1,
-  },
-  {
-    CategoryID: '3',
-    name: 'Tubes',
-    type: 1,
-  },
-  {
-    CategoryID: '2',
-    name: 'Size',
-    type: 2,
-  },
-  {
-    CategoryID: '5',
-    name: 'Power',
-    type: 2,
-  },
-  {
-    CategoryID: '6',
-    name: 'V Rating',
-    type: 2,
-  },
-];
+
 
 Categories_Table.propTypes={
   HandleOpen:PropTypes.func.isRequired
 }
 export default function Categories_Table({ HandleOpen }) {
+  const accessToken = useSelector((state) => state.userAccessToken);
   const LightModeState = useSelector((state) => state.lightMode);
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
+
+  const [TABLE_ROWS, SetTABLE_ROWS] = React.useState([]);
   const [AllData, SetAllData] = React.useState(TABLE_ROWS);
   const [VisibleData, SetVisibleData] = React.useState([]);
   const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
   const [currentPage, setCurrentPage] = React.useState(1);
 
+  const UploadedFileInputRef=React.useRef();
+  const FileInputRef=React.useRef([])
+  const InputValuesRef=React.useRef([])
+  const DeleteCategoryId=React.useRef(null)
+  const Selected_ImgUpload_CategoryID=React.useRef(null);
+  React.useEffect(()=>{
+    async function  GetCategories()
+    {
+
+      const TABLE_ROWS_TEMP = [];
+      const result=await getCategories(0,0,true,accessToken)
+      const result_2=await getSubCategories(0,0,true,accessToken)
+      const InputValuesRef_Temp=[]
+      FileInputRef.current=[]
+
+      console.log(result.data)
+      result.data.map((M_Category)=>{
+        TABLE_ROWS_TEMP.push({
+          CategoryID: M_Category.id,
+          name: M_Category.name,
+          type: 1,
+        })
+
+        InputValuesRef_Temp.push(
+          {
+            CategoryID: M_Category.id,
+          name: M_Category.name,
+          }
+        )
+
+        //Filling the list of file inputs
+        FileInputRef.current.push({
+          CategoryID: M_Category.id,
+          categoryImg_File:
+          {
+              name:null,
+              extension:null,
+              size:0,
+              fileBinary:null
+          }
+        })
+      })
+
+      result_2.data.map((S_Category)=>{
+
+        TABLE_ROWS_TEMP.push({
+          CategoryID: S_Category.id,
+          name: S_Category.name,
+          type: 2,
+          parent_CategoryId:S_Category.category.id
+        })
+        InputValuesRef_Temp.push(
+          {
+          CategoryID: S_Category.id,
+          name: S_Category.name,
+          }
+        )
+      })
+      
+      //Setting the default InputValues
+      InputValuesRef.current=InputValuesRef_Temp
+
+      SetTABLE_ROWS(TABLE_ROWS_TEMP)
+      SetAllData(TABLE_ROWS_TEMP)
+    }
+    GetCategories()
+  },[])
+
+  const handleInputChange=(e,CategoryID)=>{
+    const newName=e.target.value;
+    const InputValuesRef_temp=[]
+    InputValuesRef.current.map((Input)=>{
+      if(Input.CategoryID==CategoryID)
+      {
+        InputValuesRef_temp.push({
+          CategoryID: Input.CategoryID,
+          name: newName,
+        })
+      }else
+      {
+        InputValuesRef_temp.push(Input)
+      }
+
+    })
+
+    InputValuesRef.current=InputValuesRef_temp
+    
+  }
+
+  //This function handles the delete of a category
   const HandleDeleteCategory = () => {
     try {
-      const promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('API Fetch is done!');
-        }, 3000);
-      });
+      var subCategory=AllData.find(category=>category.CategoryID==DeleteCategoryId.current)
 
-      CreateToast(
-        promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Category.DeleteCategory_Success" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Category.DeleteCategory_Success" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Category.DeleteCategory_Success" />,
-        ),
-        'promise',
-        LightModeState == LightMode().type,
-      );
+      //test if its a subCategory
+      if(subCategory.type==2)
+      {
+        const promise = DELETESubCategory(DeleteCategoryId.current,accessToken);
+
+        CreateToast(
+          promise,
+          "",
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success" />,
+          ),
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+          ),
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Error" />,
+          ),
+              /*Custom request Errors message*/
+              [ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Category.AddCategory_NamedUsed" />)],
+              /*Custom Request Error codes */
+              ["CATEGORY_ERROR02"],
+              /*Default Connection Errors */
+              [
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+              ],
+          'promise',
+          LightModeState == LightMode().type,
+        );
+
+        //Updating the current data with the changed name.
+        promise.then(()=>{
+          const NewAllData=AllData.filter(row=>row.CategoryID!=DeleteCategoryId.current)
+          SetAllData(NewAllData)
+
+        }).catch(()=>null)
+      }
+      //test if its a main category
+      if(subCategory.type==1)
+      {
+        const promise = DELETECategory(DeleteCategoryId.current,accessToken);
+        CreateToast(
+          promise,
+          "",
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success" />,
+          ),
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+          ),
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Error" />,
+          ),
+              /*Custom request Errors message*/
+              [ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Category.AddCategory_NamedUsed" />)],
+              /*Custom Request Error codes */
+              ["CATEGORY_ERROR02"],
+              /*Default Connection Errors */
+              [
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+              ],
+          'promise',
+          LightModeState == LightMode().type,
+        );
+                //Updating the current data with the changed name.
+                promise.then(()=>{
+                  const NewAllData=AllData.filter(row=>row.CategoryID!=DeleteCategoryId.current)
+                  SetAllData(NewAllData)
+                }).catch(()=>null)
+      }
       HandleOpen();
     } catch (e) {/*Catch logic here */}
   };
 
-  const HandleEditCategory = () => {
+  //This function handles the Edit Of a Category
+  const HandleEditCategory = (CategoryID) => {
     try {
-      const promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('API Fetch is done!');
-        }, 3000);
-      });
+      var subCategory=AllData.find(category=>category.CategoryID==CategoryID)
+      const newName=InputValuesRef.current.find(input=>input.CategoryID==CategoryID).name
+      //test if its a subCategory
+      if(subCategory.type==2)
+      {
+        const promise = PutSubCategory(CategoryID,newName,subCategory.parent_CategoryId,accessToken);
 
-      CreateToast(
-        promise,
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Error" />
-        ),
-        'promise',
-        LightModeState == LightMode().type,
-      );
-      HandleOpen();
+        CreateToast(
+          promise,
+          "",
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success" />,
+          ),
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+          ),
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Error" />,
+          ),
+              /*Custom request Errors message*/
+              [ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Category.AddCategory_NamedUsed" />)],
+              /*Custom Request Error codes */
+              ["CATEGORY_ERROR02"],
+              /*Default Connection Errors */
+              [
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+              ],
+          'promise',
+          LightModeState == LightMode().type,
+        );
+
+        //Updating the current data with the changed name.
+        promise.then(()=>{
+          subCategory.name=newName
+        }).catch(()=>null)
+      }
+      //test if its a main category
+      if(subCategory.type==1)
+      {
+
+        const Category_IMGFile=FileInputRef.current.find(category=>category.CategoryID==CategoryID).categoryImg_File
+        console.log(Category_IMGFile)
+        const IMGBinaryBase64 = Category_IMGFile.fileBinary;
+        const IMGName=Category_IMGFile.name
+        const IMGExtension=Category_IMGFile.extension
+        const IMGSize=Category_IMGFile.size
+
+        const promise = PutCategory(CategoryID,newName,IMGName,IMGExtension,IMGSize,IMGBinaryBase64,accessToken);
+        CreateToast(
+          promise,
+          "",
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Success" />,
+          ),
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
+          ),
+          ReactDOMServer.renderToStaticMarkup(
+            <TranslatedText TranslationPath="UCP.DialogMessages.Category.EditCategory_Error" />,
+          ),
+              /*Custom request Errors message*/
+              [ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Category.AddCategory_NamedUsed" />)],
+              /*Custom Request Error codes */
+              ["CATEGORY_ERROR02"],
+              /*Default Connection Errors */
+              [
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
+              ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
+              ],
+          'promise',
+          LightModeState == LightMode().type,
+        );
+                //Updating the current data with the changed name.
+                promise.then(()=>{
+                  subCategory.name=newName
+                }).catch(()=>null)
+      }
+
+      //HandleOpen();
     } catch (e) {/*Catch logic here */}
   };
+
+  const HandleImg_Upload=async(CategoryID)=>{
+    console.log(FileInputRef.current)
+    const fileBinary = await readBinaryData(UploadedFileInputRef.current.files[0]);
+    const fileBinaryBase64 = arrayBufferToBase64(fileBinary);
+    const fileData=UploadedFileInputRef.current.files[0]
+    const FileName=fileData.name.split('.')[0]
+    const FileExtension=fileData.name.split('.')[1]
+    const FileSize=fileData.size
+
+    const category=FileInputRef.current.find(category=>category.CategoryID==CategoryID)
+    category.categoryImg_File.name=FileName
+    category.categoryImg_File.extension=FileExtension
+    category.categoryImg_File.fileBinary=fileBinaryBase64
+    category.categoryImg_File.size=FileSize
+    console.log(FileInputRef.current)
+  }
   return (
     <Card
       className={`${
@@ -179,6 +371,7 @@ export default function Categories_Table({ HandleOpen }) {
         </div>
       </CardHeader>
       <CardBody className="overflow-scroll px-0">
+      <Input variant="static" type='file' hidden inputRef={UploadedFileInputRef} onChange={()=>HandleImg_Upload(Selected_ImgUpload_CategoryID.current)} />
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
@@ -230,6 +423,8 @@ export default function Categories_Table({ HandleOpen }) {
                   <td className={classes}>
                     <div className="flex flex-col">
                       <Input
+                      onChange={(e)=>{handleInputChange(e,CategoryID)}}
+                      inputMode='text'
                         label={<TranslatedText TranslationPath="UCP.CategoryTable.TabInputs.Name" />}
                         size="md"
                         defaultValue={name}
@@ -255,15 +450,27 @@ export default function Categories_Table({ HandleOpen }) {
 
                   <td className={classes}>
                     <Tooltip content="Save Category">
-                      <IconButton variant="text" onClick={HandleEditCategory}>
+                      
+                      <IconButton variant="text" onClick={()=>HandleEditCategory(CategoryID)}>
                         <i className="fa-solid fa-floppy-disk h-4 w-4"></i>
                       </IconButton>
                     </Tooltip>
+
+                    {type==1&&<Tooltip content="Upload Image">
+                      
+                      <IconButton variant="text" onClick={()=>{
+                        Selected_ImgUpload_CategoryID.current=CategoryID;
+                        UploadedFileInputRef.current.click()}} >
+
+                      <i className="fa-solid fa-image h-4 w-4"></i>
+                      </IconButton>
+                    </Tooltip>}
                     <Tooltip content="Delete Category">
                       <IconButton
                         variant="text"
                         onClick={() => {
                           SetOpenDeleteDialog(true);
+                          DeleteCategoryId.current=CategoryID;
                         }}
                       >
                         <i className="fa-solid fa-trash h-4 w-4"></i>

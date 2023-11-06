@@ -8,6 +8,7 @@ import com.www.sphtn.SPH.DTO.Errors.ErrorType;
 import com.www.sphtn.SPH.DTO.Errors.ErrorsReader;
 import com.www.sphtn.SPH.Exceptions.Category.CategoryExceptions;
 import com.www.sphtn.SPH.Exceptions.General.MissingParam;
+import com.www.sphtn.SPH.model.Category;
 import com.www.sphtn.SPH.model.SubCategory;
 import com.www.sphtn.SPH.model.SubCategoryValue;
 import com.www.sphtn.SPH.repository.CategoryRepository;
@@ -21,10 +22,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 @RestController
@@ -37,16 +35,58 @@ public class SubCategoryValueController {
     @Autowired
     private SubCategoryRepository subCategoryRepository;
 
-
+    @Autowired
+    private CategoryRepository categoryRepository;
     @GetMapping("/all")
-    public ResponseEntity<Page<SubCategoryValue>>  getSubCategoriesValues(
+    public ResponseEntity<Object>  getSubCategoriesValues(
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "0") int Page)
+            @RequestParam(defaultValue = "0") int Page,
+            @RequestParam(defaultValue = "false") boolean getAll)
     {
-        PageRequest pageable =  PageRequest.of(Page, size);
-        return ResponseEntity.ok().body(repository.findAll(pageable));
+        if(getAll)
+        {
+            return ResponseEntity.ok().body(repository.findAll());
+        }
+        else
+        {
+            PageRequest pageable =  PageRequest.of(Page, size);
+            return ResponseEntity.ok().body(repository.findAll(pageable));
+        }
     }
 
+    @GetMapping("/ByCategory")
+    public ResponseEntity<Object>  GetSubCategoryValueBySubCategory( @RequestParam String CategoryId)
+    {
+        try {
+            Optional<Category> category=categoryRepository.findById(CategoryId);
+            if (category.isEmpty()) {
+                 throw new CategoryExceptions.CategoryNotFound();
+            }
+
+
+            List<SubCategoryValue> FilterByCategoryList = new ArrayList<>();
+            List<SubCategoryValue> subcategoryValues = repository.findAll();
+            subcategoryValues.forEach(subCategoryValue ->
+            {
+                if(subCategoryValue.getSubCategory().getCategory().getId().equals(CategoryId))
+                {
+                    FilterByCategoryList.add(subCategoryValue);
+                }
+            });
+
+                return ResponseEntity.ok().body(FilterByCategoryList);
+        }
+        catch(CategoryExceptions.CategoryNotFound e)
+        {
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.CATEGORY_ERRORS).get("CATEGORY_ERROR01"));
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return ResponseEntity.badRequest().body(ErrorsReader.GetErrors(ErrorType.GLOBAL_ERRORS).get("GLOBAL_ERROR00"));
+        }
+
+    }
     @GetMapping
     public ResponseEntity<Object>  GetSubCategoryValue( @RequestParam String subCategoryValueId)
     {

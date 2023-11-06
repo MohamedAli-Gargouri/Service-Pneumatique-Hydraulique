@@ -1,19 +1,25 @@
 package com.www.sphtn.SPH.configuration;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class CorsConfig implements WebMvcConfigurer {
+public class CorsConfig {
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**") // Specify the path(s) you want to allow
-                .allowedOrigins("http://localhost:3000") // Replace with your frontend URL
-                .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow the HTTP methods you need
-                .allowedHeaders("*"); // Allow all headers
-
-        // You can add more allowedOrigins() if needed for multiple frontend URLs
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                // Configure your CORS settings here
+                registry.addMapping("/api/**")
+                        .allowedOrigins("http://localhost:3000")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE","OPTIONS")
+                        .allowedHeaders("Authorization", "Content-Type")
+                        .exposedHeaders("Access-Control-Allow-Origin");
+            }
+        };
     }
 }

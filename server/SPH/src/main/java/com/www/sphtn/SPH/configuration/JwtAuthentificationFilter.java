@@ -40,12 +40,12 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
         final String jwt;
         final String username;
 
-
                 //if it's not in the white list
                 if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                     filterChain.doFilter(request, response);
                     return;
                 }
+
         try {
                 jwt = authHeader.substring(7);
                 username = jwtService.extractUsername(jwt);

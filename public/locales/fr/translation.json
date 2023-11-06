@@ -568,6 +568,7 @@
         "EditProduct_Error": "Échec de la modification des informations sur le produit",
 
         "AddProduct_Success": "Produit ajouté avec succès.",
+        "AddProduct_ProductCodeExist_Error": "Veuillez choisir un code produit différent, celui-ci est déjà utilisé.",
         "AddProduct_Error": "Échec de l'ajout du produit",
         "ProductThreeImagesLimit_Error": "Vous ne pouvez pas ajouter plus de trois images par produit.",
         "DeleteProductImg_Confirm": "Êtes-vous sûr de vouloir supprimer cette image de produit ?",
@@ -586,7 +587,16 @@
         "EditCategory_Error": "La modification de votre catégorie a échoué.",
 
         "AddCategory_Success": "Votre catégorie ajoutée avec succès",
-        "AddCategory_Error": "Votre ajout de catégorie a échoué."
+        "AddCategory_Error": "Votre ajout de catégorie a échoué.",
+        "AddCategory_NamedUsed": "Veuillez choisir un autre nom pour votre nouvelle catégorie, celui-ci existe",
+
+        "AddSubCategory_Success": "Votre sous-catégorie ajoutée avec succèsy",
+        "AddSubCategory_Error": "Votre ajout de sous-catégorie a échoué.",
+        "AddSubCategory_NamedUsed": "Veuillez choisir un autre nom pour votre nouvelle sous-catégorie, celle-ci existe",
+
+        "AddSubCategoryValue_Success": "Vos valeurs de sous-catégorie ont été enregistrées avec succès",
+        "AddSubCategoryValue_Error": "L'ajout des valeurs de votre sous-catégorie a échoué.",
+        "AddSubCategoryValue_ValueUsed": "Les valeurs des sous-catégories doivent être uniques. Veuillez sélectionner des valeurs uniques."
       },
       "Inbox": {
         "DeleteNotification_Title": "Supprimer la notification",

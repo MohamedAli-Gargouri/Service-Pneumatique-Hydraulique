@@ -1,41 +1,26 @@
 package com.www.sphtn.SPH.controller;
 
-import com.www.sphtn.SPH.DTO.Errors.Error;
 import com.www.sphtn.SPH.DTO.Errors.ErrorType;
 import com.www.sphtn.SPH.DTO.Errors.ErrorsReader;
 import com.www.sphtn.SPH.DTO.Product.CreateProductRequest;
 import com.www.sphtn.SPH.DTO.Product.EditProductRequest;
-import com.www.sphtn.SPH.DTO.User.ModifyUserRequest;
-import com.www.sphtn.SPH.DTO.dbFile.dbFileRequest;
 import com.www.sphtn.SPH.Exceptions.Category.CategoryExceptions;
 import com.www.sphtn.SPH.Exceptions.General.MissingParam;
 import com.www.sphtn.SPH.Exceptions.Products.ProductExceptions;
-import com.www.sphtn.SPH.Exceptions.Users.UserExceptions;
-import com.www.sphtn.SPH.model.Category;
-import com.www.sphtn.SPH.model.Product;
-import com.www.sphtn.SPH.model.SubCategoryValue;
-import com.www.sphtn.SPH.model.User;
-import com.www.sphtn.SPH.repository.CategoryRepository;
-import com.www.sphtn.SPH.repository.FileRepository;
-import com.www.sphtn.SPH.repository.ProductRepository;
-import com.www.sphtn.SPH.repository.SubCategoryValueRepository;
+import com.www.sphtn.SPH.model.*;
+import com.www.sphtn.SPH.repository.*;
 import com.www.sphtn.SPH.service.ProductService;
-import com.www.sphtn.SPH.service.UserService;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 @RestController
@@ -43,10 +28,16 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class ProductController {
 
+    @Value("${spring.admin.defaultAdminUserName}")
+    private String rootUsername;
     @Autowired
     private SubCategoryValueRepository subCategoryValueRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private OrderRepository orderRepository;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private ProductService service;
     @Autowired
@@ -54,12 +45,20 @@ public class ProductController {
     @Autowired
     private FileRepository fileRepository;
     @GetMapping("/all")
-    public ResponseEntity<Page<Product>>  GetProducts(
+    public ResponseEntity<Object>  GetProducts(
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "0") int Page)
+            @RequestParam(defaultValue = "0") int Page,
+            @RequestParam(defaultValue = "false") boolean getAll)
     {
-        PageRequest pageable =  PageRequest.of(Page, size);
-        return ResponseEntity.ok().body(repository.findAll((PageRequest) pageable));
+        if(getAll)
+        {
+            return ResponseEntity.ok().body(repository.findAll());
+        }
+        else
+        {
+            PageRequest pageable =  PageRequest.of(Page, size);
+            return ResponseEntity.ok().body(repository.findAll((PageRequest) pageable));
+        }
     }
 
     @GetMapping
@@ -257,6 +256,35 @@ public class ProductController {
                     productCategory,
                     ProductSubCategoryValues
             );
+            List<Order> orders=orderRepository.findAll();
+
+            orders.forEach( order ->
+            {
+                User rootUser=userRepository.findByUsername(rootUsername).get();
+                //Verify if there is any orders paused by the system.
+                if(order.getOrderStatus()==Status.PAUSED && order.getPausedBy().equals(rootUser))
+                {
+                    AtomicReference<Boolean> isResumeAble= new AtomicReference<>(true);
+                    AtomicInteger index= new AtomicInteger();
+                    order.getOrderProducts().forEach(product ->
+                    {
+                        if(product.getStoreQuantity()<order.getOrderQuantities().get(index.get()))
+                        {
+                            isResumeAble.set(false);
+                        }
+                        index.getAndIncrement();
+                    });
+                    if(isResumeAble.get())
+                    {
+                        //if the products quantity is enough to satisfy the order, the system switches the order to pending
+                        order.setOrderStatus(Status.PENDING);
+                        order.setResumeDateTime(new Date());
+                        order.setResumedBy(rootUser);
+                        orderRepository.save(order);
+                    }
+                }
+
+            });
             return ResponseEntity.ok().body("Product saved");
         }
         catch(CategoryExceptions.CategoryNotFound e)

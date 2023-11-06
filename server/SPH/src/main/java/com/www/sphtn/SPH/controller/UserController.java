@@ -38,11 +38,19 @@ public class UserController {
     private UserRepository repository;
 
     @GetMapping("/all")
-    public ResponseEntity<Page<User>> getUsers(@RequestParam(defaultValue = "5") int size,
-                                               @RequestParam(defaultValue = "0") int Page)
+    public ResponseEntity<Object> getUsers(@RequestParam(defaultValue = "5") int size,
+                                               @RequestParam(defaultValue = "0") int Page,
+                                               @RequestParam(defaultValue = "false") boolean getAll)
     {
-        PageRequest pageable =  PageRequest.of(Page, size);
-        return ResponseEntity.ok().body(repository.findAll(pageable));
+        if(getAll)
+        {
+            return ResponseEntity.ok().body(repository.findAll());
+        }
+        else
+        {
+            PageRequest pageable =  PageRequest.of(Page, size);
+            return ResponseEntity.ok().body(repository.findAll(pageable));
+        }
     }
 
     @GetMapping

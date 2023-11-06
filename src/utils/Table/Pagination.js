@@ -20,7 +20,7 @@ function Pagination({
   setCurrentPage,
 }) {
   //Items per page
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
   // Calculate the index range for the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;

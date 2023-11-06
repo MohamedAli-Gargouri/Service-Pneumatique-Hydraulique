@@ -11,10 +11,12 @@ import com.www.sphtn.SPH.Exceptions.General.MissingParam;
 import com.www.sphtn.SPH.Exceptions.Products.ProductExceptions;
 import com.www.sphtn.SPH.model.Category;
 import com.www.sphtn.SPH.model.Product;
+import com.www.sphtn.SPH.model.SubCategory;
 import com.www.sphtn.SPH.model.dbFile;
 import com.www.sphtn.SPH.repository.CategoryRepository;
 import com.www.sphtn.SPH.repository.FileRepository;
 import com.www.sphtn.SPH.repository.ProductRepository;
+import com.www.sphtn.SPH.repository.SubCategoryRepository;
 import com.www.sphtn.SPH.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 @RestController
@@ -38,15 +37,29 @@ public class CategoryController {
     private ProductRepository productRepository;
     @Autowired
     private CategoryRepository repository;
+
+    @Autowired
+    private SubCategoryRepository subCategoryRepository;
     @Autowired
     private FileRepository fileRepository;
     @GetMapping("/all")
-    public ResponseEntity<Page<Category>>  GetCategories(
+    public ResponseEntity<Object>  GetCategories(
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "0") int Page)
+            @RequestParam(defaultValue = "0") int Page,
+            @RequestParam(defaultValue = "false") boolean getAll)
+
     {
-        PageRequest pageable =  PageRequest.of(Page, size);
-        return ResponseEntity.ok().body(repository.findAll(pageable));
+        if(getAll)
+        {
+            List<Category> AllCategories = repository.findAll();
+            return ResponseEntity.ok().body(AllCategories);
+        }
+        else
+        {
+            PageRequest pageable =  PageRequest.of(Page, size);
+            return ResponseEntity.ok().body(repository.findAll(pageable));
+        }
+
     }
 
     @GetMapping
@@ -214,6 +227,17 @@ public class CategoryController {
             if (category.isPresent()) {
                 //Deleting Category Image
                 fileRepository.delete(category.get().getCategoryImg_File());
+
+                //Deleting the category's sub categories
+                List<SubCategory> subCategories=subCategoryRepository.findAll();
+                subCategories.forEach(subCategory ->
+                {
+                    //If the subcategory's parent is the one we're deleting, delete the sub category
+                    if(subCategory.getCategory().getId().equals(categoryId))
+                    {
+                        subCategoryRepository.deleteById(subCategory.getId());
+                    }
+                });
 
                 //Deleting the Category
                 repository.deleteById(categoryId);

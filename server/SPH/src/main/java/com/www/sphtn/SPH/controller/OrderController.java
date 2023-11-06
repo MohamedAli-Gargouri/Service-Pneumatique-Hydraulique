@@ -40,12 +40,21 @@ public class OrderController {
     @Autowired
     private JwtService jwtService;
     @GetMapping("/all")
-    public ResponseEntity<Page<Order>>  getOrders(
+    public ResponseEntity<Object>  getOrders(
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "0") int Page)
+            @RequestParam(defaultValue = "0") int Page,
+            @RequestParam(defaultValue = "false") boolean getAll)
     {
-        PageRequest pageable =  PageRequest.of(Page, size);
-        return ResponseEntity.ok().body(repository.findAll((PageRequest) pageable));
+        if(getAll)
+        {
+            return ResponseEntity.ok().body(repository.findAll());
+        }
+        else
+        {
+            PageRequest pageable =  PageRequest.of(Page, size);
+            return ResponseEntity.ok().body(repository.findAll((PageRequest) pageable));
+        }
+
     }
 
     @GetMapping

@@ -10,7 +10,7 @@ import React from 'react';
 import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.webp';
 import AddProduct from '../../components/Product/Add';
-export default function UCP_EditProduct() {
+export default function UCP_AddProduct() {
   const LightModeState = useSelector((state) => state.lightMode);
   return (
     <>

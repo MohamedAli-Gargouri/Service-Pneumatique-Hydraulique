@@ -7,9 +7,11 @@ import com.www.sphtn.SPH.DTO.Errors.ErrorsReader;
 import com.www.sphtn.SPH.Exceptions.Category.CategoryExceptions;
 import com.www.sphtn.SPH.Exceptions.General.MissingParam;
 import com.www.sphtn.SPH.model.SubCategory;
+import com.www.sphtn.SPH.model.SubCategoryValue;
 import com.www.sphtn.SPH.repository.CategoryRepository;
 import com.www.sphtn.SPH.repository.ProductRepository;
 import com.www.sphtn.SPH.repository.SubCategoryRepository;
+import com.www.sphtn.SPH.repository.SubCategoryValueRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,15 +31,27 @@ public class SubCategoryController {
     private ProductRepository productRepository;
     @Autowired
     private SubCategoryRepository repository;
+
+    @Autowired
+    private SubCategoryValueRepository subCategoryValueRepository;
     @Autowired
     private CategoryRepository categoryrepository;
     @GetMapping("/all")
-    public ResponseEntity<Page<SubCategory>>  getSubCategories(
+    public ResponseEntity<Object>  getSubCategories(
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "0") int Page)
+            @RequestParam(defaultValue = "0") int Page,
+            @RequestParam(defaultValue = "false") boolean getAll)
     {
-        PageRequest pageable =  PageRequest.of(Page, size);
-        return ResponseEntity.ok().body(repository.findAll(pageable));
+        if(getAll)
+        {
+            return ResponseEntity.ok().body(repository.findAll());
+        }
+        else
+        {
+            PageRequest pageable =  PageRequest.of(Page, size);
+            return ResponseEntity.ok().body(repository.findAll(pageable));
+        }
+
     }
 
     @GetMapping
@@ -95,7 +109,7 @@ public class SubCategoryController {
                     .build();
 
             repository.save(newSubCategory);
-            return ResponseEntity.ok().body("sub-Category created, ID:"+newSubCategory.getId());
+            return ResponseEntity.ok().body(newSubCategory.getId());
         }
         catch(CategoryExceptions.CategoryNotFound e)
         {
@@ -194,6 +208,17 @@ public class SubCategoryController {
 
             Optional<SubCategory> subcategory = repository.findById(subCategoryId);
             if (subcategory.isPresent()) {
+
+                //Deleting the subcategory's values
+                List<SubCategoryValue> subCategoryValues=subCategoryValueRepository.findAll();
+                subCategoryValues.forEach(subCategoryValue ->
+                {
+                    if(subCategoryValue.getSubCategory().getId().equals(subCategoryId))
+                    {
+                        subCategoryValueRepository.deleteById(subCategoryValue.getId());
+                    }
+                });
+
                 //Deleting the subCategory
                 repository.deleteById(subCategoryId);
                 return ResponseEntity.ok().body("sub-Category Deleted.");

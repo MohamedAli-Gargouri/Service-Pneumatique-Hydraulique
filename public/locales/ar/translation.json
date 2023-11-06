@@ -574,6 +574,7 @@
         "EditProduct_Error": "فشل تعديل معلومات المنتج",
 
         "AddProduct_Success": "تمت إضافة المنتج بنجاح.",
+        "AddProduct_ProductCodeExist_Error": "يرجى اختيار رمز منتج مختلف، فهذا الرمز قيد الاستخدام بالفعل.",
         "AddProduct_Error": "فشلت إضافة المنتج",
 
         "ProductThreeImagesLimit_Error": "لا يمكنك إضافة أكثر من ثلاث صور لكل منتج.",
@@ -594,7 +595,16 @@
         "EditCategory_Error": "فشل تعديل فئتك.",
 
         "AddCategory_Success": "تمت إضافة فئتك بنجاح",
-        "AddCategory_Error": "فشلت إضافة الفئة الخاصة بك."
+        "AddCategory_Error": "فشلت إضافة الفئة الخاصة بك.",
+        "AddCategory_NamedUsed": "يرجى اختيار اسم آخر لفئتك الجديدة، هذا موجود",
+
+        "AddSubCategory_Success": "تمت إضافة فئتك الفرعية بنجاح",
+        "AddSubCategory_Error": "فشلت إضافة فئتك الفرعية.",
+        "AddSubCategory_NamedUsed": "يرجى اختيار اسم آخر لفئتك الفرعية الجديدة، هذا موجود",
+
+        "AddSubCategoryValue_Success": "تم حفظ قيم الفئة الفرعية الخاصة بك بنجاح",
+        "AddSubCategoryValue_Error": "فشلت إضافة قيم الفئة الفرعية الخاصة بك.",
+        "AddSubCategoryValue_ValueUsed": "يجب أن تكون قيم الفئات الفرعية فريدة، يرجى اختيار قيم فريدة."
       },
       "Inbox": {
         "DeleteNotification_Title": "حذف الإخطار",

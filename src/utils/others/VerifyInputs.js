@@ -13,7 +13,7 @@ export function VerifyInputs(TextInputsList,EmailInputList, SelectInputsList, Nu
         if(TextInputsList.length>0)
         {
             TextInputsList.map((textInputValue)=>{
-                if(textInputValue=="")
+                if(textInputValue=="" ||textInputValue==undefined)
                  {
                     throw new Error("TextInputEmpty")
                  }

@@ -50,7 +50,6 @@ export default function App() {
   const handleAccessTokenVerifying = async () => {
     try {
       const result = await IsNotExpiredAccessToken(AccessToken);
-      console.log(result)
       //Test if the token expired
       if (result.data.tokenExpired || result.data=="") {
         throw new Error("UNVALID_ACCESS_TOKEN");
