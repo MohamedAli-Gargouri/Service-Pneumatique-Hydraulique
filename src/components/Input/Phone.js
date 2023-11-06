@@ -17,6 +17,7 @@ PhoneInput.propTypes={
 }
 export default function PhoneInput({ internationalDialRef,phoneNumberRef }) {
   const LightModeState = useSelector((state) => state.lightMode);
+
   const countryArray = Object.entries(countries);
   // Initialize the country state with the index of Tunisia
   const [country, setCountry] = React.useState(['TN',countries.TN]);
@@ -25,6 +26,7 @@ export default function PhoneInput({ internationalDialRef,phoneNumberRef }) {
   React.useEffect(()=>{
     internationalDialRef.current=country[1].phone[0]
   },[country])
+
 
   return (
     <div className="relative flex w-full">
@@ -37,12 +39,14 @@ export default function PhoneInput({ internationalDialRef,phoneNumberRef }) {
             className="flex h-10 items-center gap-2 rounded-r-none border border-r-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3"
           >
             <img loading="lazy"
+
               key={country[0]}
               src={'https://flagcdn.com/'+country[0].toLocaleLowerCase()+'.svg'}
               alt={selectedCountryName}
               className="h-4 w-4 rounded-full object-cover"
             />
             {country[1].name}
+
           </Button>
         </MenuHandler>
         <MenuList
@@ -52,6 +56,7 @@ export default function PhoneInput({ internationalDialRef,phoneNumberRef }) {
               : 'bg-darkTheme_T2'
           } max-h-[20rem] max-w-[18rem]`}
         >
+
           {countryArray.map((country, index) => {
             return (
               <MenuItem
@@ -66,6 +71,7 @@ export default function PhoneInput({ internationalDialRef,phoneNumberRef }) {
                   className="h-5 w-5 rounded-full object-cover"
                 />
                 {country[1].name} <span className="ml-auto">{country[1].phone[0]}</span>
+
               </MenuItem>
             );
           })}
