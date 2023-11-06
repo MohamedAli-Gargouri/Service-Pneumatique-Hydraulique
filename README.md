@@ -13,94 +13,19 @@ Conversely, the project's back-end was constructed with Spring Boot, and MongoDB
 ## Setting up the Front-end
 
 1. Start first by installing Node JS [`Node Download Link`](https://nodejs.org/en/download/current)
-   And then download or clone the git repo, after doing so simply install the dependencies (Make sure to include --force)
-
+   And then download or clone the git repo, after doing so simply install the dependencies.
 ```bash
 npm install
 ```
-
-After finishing the download, create a new .env file (this gonna contain keys for this app)
-If you wanna add HTTPS to the app and add your own certificates, in the ssl folder, put your own cert.pm and key.pm and set the HTTPS to True in the env.
-For the rest, Kendo UI, get your license from Kendo UI and puts it inside the Licenses folder and for MetaAPP Key, go create a new application Meta
-[`Meta Link`](https://developers.facebook.com/async/registration/dialog/?src=default) and get your Meta App key from there,
-same for TinyMceAPI key and Syncfusion, get your own keys from their websites and put them here for them to work with the app, for the rest, these are just the api paths for the backened, change them if you modified the backened or added a new api.
-
+Once you've installed the necessary dependencies, proceed by creating a .env file and including the following information:
 ```bash
+REACT_APP_API_URL=http://localhost:8080
+REACT_APP_URL=http://localhost:3000
+REACT_APP_REDUX_LOCALSTORAGE_SECRETKEY=yourReduxEncryptionKey
 
-
-HTTPS=false
-SSL_CRT_FILE=./ssl/cert.pem
-SSL_KEY_FILE=./ssl/key.pem
-KENDO_UI_LICENSE=./kendo-ui-license.txt
-
-REACT_APP_METAAPPKEY=YourMetaAppKey
-REACT_APP_METAAPP_APPSCOPES=email,pages_manage_cta,pages_show_list,instagram_basic,instagram_content_publish,pages_read_engagement,pages_read_engagement,pages_manage_metadata,pages_manage_metadata,pages_read_user_content,pages_manage_posts,pages_manage_engagement,public_profile
-REACT_APP_METAAPP_APPFIELDS=birthday,first_name,last_name,id,email,picture
-
-REACT_APP_TINYMCEJWTAPIKEY=YourTinyMCEJWTKEY
-REACT_APP_SYNCFUSIONLICENSEKEY=YourSyncFusionLicenseKey
-
-REACT_APP_FRONTENDURL=https://localhost:3000
-REACT_APP_BACKENDURL=https://localhost:7297
-REACT_APP_REGISTERAPINAME=/api/Auth/register
-REACT_APP_LOGINAPINAME=/api/Auth/login
-REACT_APP_FORGOTPWAPINAME=/api/Auth/ForgotPW
-REACT_APP_CHANGEPWAPINAME=/api/Auth/ChangePW
-REACT_APP_CHANGEPERSONALINFO=/api/User/ChangeUserBasicInformations
-REACT_APP_CHANGEUSERIMAGE=/api/User/ChangeUserImage
-REACT_APP_CHANGEPW=/api/User/ChangeUserPass
-REACT_APP_CREATESUBGROUP=/api/Group/CreateSubGroup
-REACT_APP_GETGROUPINFO=/api/Group/GetGroupInfo
-REACT_APP_MOVEGROUP=/api/Group/MoveGroup
-REACT_APP_CHANGEGROUPPERMISSION=/api/Group/ChangePermission
-REACT_APP_CHANGEGROUPNAME=/api/Group/ChangeGroupName
-REACT_APP_DELETEGROUP=/api/Group/DeleteGroup
-REACT_APP_GETSLAVEUSERS=/api/User/GetSlaveUsers
-REACT_APP_CREATESLAVEUSER=/api/User/CreateSlaveUser
-REACT_APP_GETUSERINFOBYID=/api/User/GetUserInfoByID
-REACT_APP_ADDUSERSTOGROUPS=/api/User/AddUsersToGroups
-REACT_APP_REMOVEUSERSFROMGROUPS=/api/User/RemoveUsersFromGroups
-REACT_APP_EDITSLAVEUSERINFO=/api/User/EDITSLAVEUSERINFO
-REACT_APP_REMOVEUSERS=/api/User/RemoveUsers
-REACT_APP_ADDINSTAGRAMPAGE=/api/Page/AddInstagramPage
-REACT_APP_ADDFACEBOOKPAGE=/api/Page/AddFacebookPage
-REACT_APP_GETGROUPPAGES=/api/Page/GetGroupPages
-REACT_APP_DELETEPAGES=/api/Page/DeletePages
-REACT_APP_GETPAGEASSOCIATIONS=/api/Page/GetAssociatedPageInformations
-REACT_APP_GETPAGEINFO=/api/Page/GetPageInformations
-REACT_APP_GETFBCATEGORIES=/api/Page/GetAllPagesCategories
-REACT_APP_GETAPPPLATFORMS=/api/Platform/GetAppPlatforms
-REACT_APP_UPDATEPAGEINFO=/api/Page/UpdatePageInfo
-REACT_APP_UPDATEPAGEPICTURE=/api/Page/UpdatePagePicture
-REACT_APP_ADDPATTERN=/api/Pattern/AddPatternToGroup
-REACT_APP_REMOVEPATTERN=/api/Pattern/DeletePattern
-REACT_APP_GETGROUPATTERNS=/api/Pattern/GetGroupPatterns
-REACT_APP_ADDPOST=/api/Post/AddPost
-REACT_APP_EDITPOST=/api/Post/EditPost
-REACT_APP_MODIFYPOST=/api/Post/ModifyPost
-REACT_APP_DELETEPOST=/api/Post/DeletePost
-REACT_APP_GETGROUPPOSTS=/api/Post/GetGroupPosts
-REACT_APP_GETOPTIMALPUBLISHDATE=/api/Inseights/GetOptimalPublishDate
-REACT_APP_GETPOSTSINSEIGHTS=/api/Inseights/GetPostsInseights
-REACT_APP_GETSINGLEPOSTINSEIGHTS=/api/Inseights/GetSinglePostInsights
-REACT_APP_ADDASSET=/api/Asset/AddAsset
-REACT_APP_ASSIGNTHUMBNAIL=/api/Asset/AssignVideoThumbnail
-REACT_APP_DELETEGROUPASSET=/api/Asset/DeleteAsset
-REACT_APP_GETGROUPASSETS=/api/Asset/GetGroupAssets
-REACT_APP_GETGROUPVIDEOASSETS=/api/Asset/GetGroupVideoAssets
-REACT_APP_GETPLATFORMACCOUNTS=/api/Platform//GetAllPlatformAccounts
-REACT_APP_GETTAGABLEPLATFORMACCOUNTS=/api/Platform/GetTagalePlatformAccounts
-REACT_APP_GETMENTIONABLEPLATFORMACCOUNTS=/api/Platform/GetMentionablePlatformAccounts
-REACT_APP_GETPOSTINFO=/api/Post/GetPostInfoByID
-REACT_APP_GETPAGEPLATFORMID=/api/Page/GetPagePlatformID
-REACT_APP_SEARCHLOCATION=/api/Search/SearchFBLocation
-REACT_APP_SEARCHCOUNTRY=/api/Search/SearchFBCountry
-REACT_APP_SEARCHREGION=/api/Search/SearchFBRegion
-REACT_APP_SEARCHINTEREST=/api/Search/SearchFBInterest
-REACT_APP_GETPERSONALINFO=/api/User/GetUserInfo
 ```
 
-Now after adding the .env file, simply start your app with
+Once you've added the .env file and configured it according to your requirements, simply initiate or build the project.
 
 for Development:
 
@@ -116,199 +41,114 @@ npm run build
 
 ## Setting up the Back-end
 
-- Visual Studio
+To get started with the project, follow these steps:
 
-1. Next, make sure to download and install Visual Studio. You can find the download link for Visual Studio [here](https://visualstudio.microsoft.com/fr/).
+1. **Download IntelliJ IDEA**: First, download and install IntelliJ IDEA by following [this link](https://www.jetbrains.com/idea/download/?section=windows).
 
-2. After installing Visual Studio, open the project located inside the "Server" folder (Make sure that you install ASP.net Core from the Visual Studio Installer)
+2. **Open the Project in IntelliJ IDEA**:
+   - Navigate to the 'Server' folder in your project directory.
+   - Open the 'SPH' folder within the 'Server' folder as a project using IntelliJ IDEA.
 
-3. Customize your run configuration to execute the following three folders: SocialPostBackEnd, SocialPost_PlatformAccountService, SocialPost_Scheduler_Service, and SocialPost_PlatformAccountsManager_Service.
+3. **Configure the Project SDK**:
+   - In IntelliJ IDEA, access the 'Project Settings.'
+   - Set up the Project SDK by choosing OpenJDK 20. You can download OpenJDK 20 [here](https://jdk.java.net/java-se-ri/20).
+   
+4. **Enable Lombok Annotations**:
+   - Ensure that Lombok annotations are enabled for your project. You may need to install the Lombok plugin if it's not already available in IntelliJ IDEA.
 
-- Visual Studio Code:
+5. **Install Project Dependencies**:
+   - Go to the 'Maven' tab located on the right-hand side in IntelliJ IDEA.
+   - Click on 'Reload All Maven Projects' to install all the project dependencies.
 
-1. Start by installing the .NET 6.0 SDK and ASP.NET Core Runtime 6.0.2. You can download them from the official links:
-   - [.NET 6.0 SDK & Runtime Download Link](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-2. ensure that the .NET SDK is installed globally on your computer, and its SDK path is included in the environment variables. You can check if .NET is correctly set up by running the following command in your terminal:
+6. **Application.properties**:
+   - Now go to Resources/application.properties and copy the following configuration format and updated with your personal configuration
+   ```bash
 
-```bash
-dotnet --info
-```
+      spring.data.mongodb.host=localhost
+      spring.data.mongodb.port=27017
+      spring.data.mongodb.database=SPH
+      spring.data.mongodb.auto-index-creation=true
+      
+      spring.jwt.accessShortTokenExpirationInHour=10000
+      spring.jwt.accessLongTokenExpirationInHour=24
+      spring.jwt.accessTokenSecretKey="YourAccessTokenEncryptionKey"
+      
+      
+      spring.admin.defaultAdminUserName=SPH_SYSTEM
+      spring.admin.defaultAdminFirstName=SPH
+      spring.admin.defaultAdminLastName=SYSTEM
+      spring.admin.defaultAdminEmail="sph@sph-tn.com"
+      spring.admin.defaultAdminInternationalDialNumber=216
+      spring.admin.defaultPhoneNumber=74211876
+      spring.admin.defaultAdminPassword="Sph123456789"
+      
+      logging.level.org.springframework.data.mongodb.core.MongoTemplate=DEBUG
 
-3. if it shows the dotnet infos, go to each folder (SocialPost, AccountsService, SchedulerService) and run it seperatly using the terminal with
-
-```bash
-dotnet run --project SocialPost.csproj
-```
-
-```bash
-dotnet run --project AccountsService.csproj
-```
-
-```bash
-dotnet run --project ScheduleService.csproj
-```
-
-- Configuration
-
-  Now after you managed to get the projects starting, you need to update the appsettings.json with the proper keys for your app to be working correctly, the format for each project should be like this
-
-  - SocialPost 's appsettings.json
-
-                  ```bash
-                  {
-                    "ConnectionStrings": {
-                      "DefaultConnection": ""Server=yourSQLServerName;Database=yourDBName;Integrated Security=True;"",
-                      "MetaAppID": "YourMetaAppID",
-                      "MetaAppCode": "YourMetaAppCode",
-                      "MetaAppScopes": "email, pages_manage_cta, pages_show_list, instagram_basic, instagram_manage_comments, instagram_manage_insights, instagram_content_publish, instagram_manage_messages, pages_read_engagement,       pages_manage_metadata, pages_manage_posts, public_profile"
-                    },
-                    "AppSettings": {
-                      "Token": "YourEncryptionSecretKey"
-                    },
-                    "Logging": {
-                      "LogLevel": {
-                        "Default": "Information",
-                        "Microsoft.AspNetCore": "Warning"
-                      }
-                    },
-                    "AllowedHosts": "*",
-                    "InseightsConstants": {
-                      "SharesImportanceConstant": "2",
-                      "LikesImportanceConstant": "1",
-                      "CommentsImportanceConstant": "3"
-                    },
-                    "EmailJSConstants": {
-                      "serviceId": "YourEmailJSServiceId",
-                      "templateId": "yourEmailTemplateId",
-                      "userId": "YourEmailJsUserId",
-                      "accessToken": "YourEmailJSAccessTooken",
-                      "emailJSUrl": "https://api.emailjs.com/api/v1.0/email/send"
-                    }
-                  }
-                  ```
-
-  - AccountService 's appsettings.json
-
-                    ```bash
-                      {
-                    "Logging": {
-                      "LogLevel": {
-                        "Default": "Information",
-                        "Microsoft.Hosting.Lifetime": "Information"
-                      }
-                    },
-                    "ConnectionStrings": {
-                      "DefaultConnection": "Server=yourSQLServerName;Database=yourDBName;Integrated Security=True;",
-                      "MetaAppID": "yourMetaAppId",
-                      "MetaAppCode": "YourMetaAppCode",
-                      "MetaAppScopes": "email, pages_manage_cta, pages_show_list, instagram_basic, instagram_manage_comments, instagram_manage_insights, instagram_content_publish, instagram_manage_messages, pages_read_engagement, pages_manage_metadata, pages_manage_posts, public_profile"
-
-                    },
-                    "ServiceConfig": {
-                      "ServiceRepeatCheckDelay": "3600000",
-                      "ServiceRepeatDelayAfterMetaAppLimit": "1000",
-                      "CustomDetailedLogging": "true",
-                      "StartDelay": "300000"
-
-                    }
-
-                  }
-
-                  ```
-
-  - SchedulerService 's appsettings.json
-
-                    ```bash
-                  {
-                    "Logging": {
-                      "LogLevel": {
-                        "Default": "Information",
-                        "Microsoft.Hosting.Lifetime": "Information"
-                      }
-                    },
-                    "ConnectionStrings": {
-                      "DefaultConnection": ""Server=yourSQLServerName;Database=yourDBName;Integrated Security=True;""
-                    },
-                    "ServiceConfig": {
-                      "ServiceRepeatCheckDelay": "3600000",
-                      "CustomDetailedLogging": "true",
-                      "Video_Publish_RetryLimit": "100",
-                      "Video_Publish_Retry_WaitTime": "15"
-                    },
-                    "EmailJSConstants": {
-                      "serviceId": "YourEMAILJSServiceId",
-                      "templateId": "YourEmailJSTemplateId",
-                      "userId": "YourUserId",
-                      "accessToken": "YourEmailJSAccessToken",
-                      "emailJSUrl": "https://api.emailjs.com/api/v1.0/email/send"
-                    }
-                  }
-
-                  ```
+   ```
+     
+You're now ready to work on your project in IntelliJ IDEA with the necessary setup.
 
 ## Pictures
 
 <details>
 <summary>Authentification</summary>
-
-![Login Page](https://i.imgur.com/lJm5HFI.png)
-![Register Page](https://imgur.com/6B1Dysb.png)
-![recovery](https://imgur.com/xNx1odH.png)
-![recoverymail](https://imgur.com/nFPvws2.png)
-
-</details>
-
-<details>
-<summary>Post management</summary>
-
-![schedule](https://i.imgur.com/dL7fDsK.png)
-![addpost](https://imgur.com/RvgatjB.png)
-![addpost2](https://imgur.com/IBQFIhS.png)
-![emoji](https://imgur.com/B882qHL.png)
-![dynamicfield](https://imgur.com/9ydCd5N.png)
-![dynamicfield2](https://imgur.com/MSRpRmI.png)
-![filter](https://imgur.com/iNTxp9h.png)
-![gallery](https://imgur.com/uo5y3eB.png)
-![gallery2](https://imgur.com/J1IRLAt.png)
-![thumbnail](https://imgur.com/EJLUuMU.png)
-![postperformance](https://imgur.com/mdLWnrL.png)
-![postperformance2](https://imgur.com/bf3yydg.png)
+   
+   
+![Screenshot 2023-11-06 210630](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/03a212c3-5f01-432b-ba8f-3ca9ce1e561d)
+   
+![Screenshot 2023-11-06 210649](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/e17b4e35-ad7b-456f-a4df-2e685d9a796a)
 
 </details>
 
 <details>
-<summary>Group management</summary>
+<summary>Presentation</summary>
+   
+![Screenshot 2023-11-06 210423](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/0de1c0b1-6041-410e-8ae6-358ce8cdf069)
+   
+![Screenshot 2023-11-06 210536](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/e3963a54-f800-437c-9d89-41493e1d0b17)
+   
+![Screenshot 2023-11-06 210553](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/125cdc66-1624-4a87-a8bd-6903d9750c48)
 
-![grouplist](https://imgur.com/FxQcsTM.png)
-![editgroup](https://imgur.com/wiKnaYp.png)
-
-</details>
-
-<details>
-<summary>User management</summary>
-         
-![userslist](https://imgur.com/PGsjcFA.png)
-![userslist](https://imgur.com/UlQPbFR.png)
+![Screenshot 2023-11-06 210611](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/a122b733-2f82-41e6-928a-32f76bc92a03)
 
 </details>
 
 <details>
-<summary>Page management</summary>
-         
-![pagelist](https://imgur.com/4ql8Dab.png)
-![addpage1](https://imgur.com/pZSDYWb.png)
-![addpage2](https://imgur.com/oX1NXyR.png)
-![editpage](https://imgur.com/y1Q2733.png)
+<summary>Products</summary>
+   
+![Screenshot 2023-11-06 210715](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/ad8e3122-3a5f-4ecc-b32f-bca768a1b671)
+   
+![Screenshot 2023-11-06 211810](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/94874b8a-380e-44be-8b63-6665c4dc9925)
+   
 
 </details>
 
 <details>
-<summary>Profile management</summary>
-         
-![profileedit](https://imgur.com/bmHukEL.png)
-![profileedit2](https://imgur.com/uKqPuvg.png)
+<summary>Control Center</summary>
+   
+![Screenshot 2023-11-06 210751](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/7735aa68-b4ed-4b23-84de-fd6177aa6487)
+   
+![Screenshot 2023-11-06 210813](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/22cb0d6f-9746-48b8-b0d7-78508e99b3a2)
+   
+![Screenshot 2023-11-06 210905](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/92983891-b50e-4004-a39f-32af33894285)
+   
+![Screenshot 2023-11-06 210931](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/df9853df-eacb-46da-b1c4-13f2aaf2aec9)
+   
+![Screenshot 2023-11-06 211004](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/a1664f1c-d42c-4022-b440-31e20d4b41ea)
+   
+![Screenshot 2023-11-06 211204](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/faa50977-a3fa-43a6-9fa7-5f7a18964b82)
+
+![Screenshot 2023-11-06 211220](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/d0be11dd-087b-4477-b19e-7c78d984c5a8)
+![Screenshot 2023-11-06 211239](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/abadacca-5440-4712-a3fa-aae2c11b63e9)
+
+![Screenshot 2023-11-06 211351](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/e9fcdfbb-7f40-442e-80a3-22d5aad74f23)
+
+![Screenshot 2023-11-06 211515](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/b356904b-0b2f-47c7-88fc-2af49f5a6673)
+
 
 </details>
+
+
 
 ## Learn More
 
