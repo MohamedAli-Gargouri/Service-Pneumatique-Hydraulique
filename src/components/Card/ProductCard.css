@@ -1,0 +1,37 @@
+@keyframes moveUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container:hover .hover-content {
+  position: absolute;
+  bottom: 0rem;
+  background-color: rgb(236, 239, 241, 0.9);
+  animation: moveUp 0.3s ease-in-out;
+}
+
+.hover-content {
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: -5rem;
+  background-color: rgb(236, 239, 241, 0.9);
+  animation: moveDown 0.3s ease-in-out;
+}

@@ -1,0 +1,22 @@
+{
+  "RATING_ERROR00": {
+    "errorCode": "RATING_ERROR00",
+    "errorMessage": "Unknown Rating Error",
+    "errorDetails": "Please contact Dev Team, unknown Error occurred"
+  },
+  "RATING_ERROR01": {
+    "errorCode": "RATING_ERROR01",
+    "errorMessage": "Wrong Rating ID",
+    "errorDetails": "The Rating ID doesn't exist within our system, please check your ID."
+  },
+  "RATING_ERROR02": {
+    "errorCode": "RATING_ERROR02",
+    "errorMessage": "Invalid Rating value",
+    "errorDetails": "The Rating value is not valid, make sure its in the range [0-5]"
+  },
+  "RATING_ERROR03": {
+    "errorCode": "RATING_ERROR03",
+    "errorMessage": "Wrong create Rate request parameters",
+    "errorDetails": "You are missing some parameters in the request, PARAM EXAMPLE {'productId':'650af028b66c805cf930bec5','rateValue':5}"
+  }
+}

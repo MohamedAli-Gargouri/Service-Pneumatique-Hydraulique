@@ -1,0 +1,710 @@
+{
+  "navbar": {
+    "companyname": "Hydraulic Pneumatic Service",
+    "Menus": {
+      "Home": "Home",
+      "About": "About",
+      "Contact": "Contact",
+      "Products": "Products",
+      "Login": "Login",
+      "Register": "Register"
+    },
+
+    
+    "ProductsMenu": {
+      "Fittings_and_accessories": "Fittings And Accessories",
+      "Tubes": "Tubes",
+      "Distributors_and_accessories": "Distributors And Accessories",
+      "Filters_and_accessories": "Filters And Accessories",
+      "Cylinders_and_accessories": "Cylinders And Accessories",
+      "sensors": "Sensors",
+      "compressors": "Compressors",
+      "Dryer_tank_and_drain": "Dryer Tank And Drain",
+      "Wika_pressure_gauge_and_thermometer_regulation": "Wika Pressure Gauge And thermometer regulation",
+      "valves": "valves",
+      "Maxdryer": "Maxdryer",
+      "solenoid_valve": "Solenoid valve",
+      "actuators": "Actuators"
+    },
+    "ProductsMenuDescription": {
+      "Fittings_and_accessories": "Essential components for hydraulic and pneumatic systems.",
+      "Tubes": "Efficient fluid conveyance for hydraulic and pneumatic systems.",
+      "Distributors_and_accessories": "Enhancing hydraulic and pneumatic system functionality.",
+      "Filters_and_accessories": "Cleanliness and longevity for hydraulic and pneumatic systems.",
+      "Cylinders_and_accessories": "Precision and power for hydraulic and pneumatic systems.",
+      "sensors": "Real-time feedback for hydraulic and pneumatic systems.",
+      "compressors": "Reliable air and gas compression for hydraulic and pneumatic systems.",
+      "Dryer_tank_and_drain": "Moisture-free solutions for hydraulic and pneumatic systems.",
+      "Wika_pressure_gauge_and_thermometer_regulation": "WIKA: Precise pressure gauge & thermometer regulation for peak hydraulic & pneumatic system performance.",
+      "valves": "Optimize fluid control for your hydraulic and pneumatic systems.",
+      "Maxdryer": "Advanced moisture removal for peak hydraulic and pneumatic system efficiency.",
+      "solenoid_valve": "Efficient fluid control for hydraulic and pneumatic systems.",
+      "actuators": "Powering precise movements in hydraulic and pneumatic systems."
+    },
+    "Languages": {
+      "English": "English",
+      "French": "French",
+      "Arabic": "Arabic"
+    },
+    "Profile": {
+      "Profile": "Profile",
+      "SignOut": "SignOut"
+    }
+  },
+
+  "Home": {
+    "HeroTitle": "Pneumatic Hydraulic Service",
+    "HeroDescription": "Welcome to SPH, Your Trusted Source for Innovative Air Compressors and Air Solutions! At SPH, we are dedicated to revolutionizing the way industries harness the power of air. With a passion for excellence and a commitment to quality, we proudly offer a comprehensive range of cutting-edge air compressors and air-related solutions to meet the diverse needs of businesses across various sectors.",
+    "ContactusBtn": "Contact us",
+    "CheckProducts": "Check products",
+
+    "Presentation": "SPH (Service Pneumatique Hydraulique), trading, distribution and manufacturing company for pneumatic and hydraulic components. Since its creation in 1992 and after the great experience in the field of automation in general which allowed it to become a reference in Tunisia, SPH anxious to maintain this reference.",
+    "Services": {
+      "Service_Title": "Our Services",
+      "Service_SubTitle": "Unleashing Fluid Power Innovation",
+      "Service1": "Sale",
+      "Service2": "Advice",
+      "Service3": "Technical assistance",
+      "Service_Description": "With us you will find a complete service from experts in the hydraulics and pneumatics business."
+    },
+    "Partners": {
+      "Partner_Title": "Partners",
+      "Partner_Description": "To meet the requirements of our customers, all our products, from major manufacturers"
+    },
+    "Team": {
+      "Team_title": "Meet Our Team"
+    }
+  },
+
+  "Product":
+  {
+
+    "Shop":"Shop",
+    "Product":"Product",
+    "Description":"Description",
+    "AddInfo":"Additional Information",
+    "Shipping":"Shipping, returns",
+    "Actions":{
+     "AddCart":"Add to cart"
+    }
+  },
+  "Products": {
+    
+    "ApplyProductFilter_Info": "Filter Applied !",
+    "List": "List",
+    "Shop": "Our Shop",
+    "Filter": {
+        "Rate":"Rate",
+        "Date":"Date",
+        "Default":"Default"
+    },
+    "Category":"Categoy",
+    "Brand":"Brand",
+    "SubCategory":"Sub Category",
+    "MinPrice":"Minimum Price",
+    "MaxPrice":"Maximum Price",
+    "Actions":
+    {
+      "ApplyFilter":"Apply Filter"
+    },
+    "Label":
+    {
+        "Sortby": "Sort by"
+    }
+    
+
+  },
+  "Login": {
+    "Login_Title": "Sign In",
+    "Username_Label": "Username",
+    "Password_Label": "Password",
+    "RememberMeLabel": "Remember me",
+    "SignInButtonLabel": "SIGN IN",
+    "SignUpRecommandationLabel": "Don't have an account?"
+  },
+  
+  "Register": {
+    
+    "Register_Title": "Sign Up",
+    "UserName_Label": "Username",
+    "Email_Label": "Email",
+    "FirstName_Label": "First Name ",
+    "LastName_Label": "Last Name",
+    "Phone_Label": "Phone Number",
+    "Password_Label": "Password",
+    "Confirm_Password_Label": "Confirm Password",
+    "PasswordCondition_Label": "Use at least 8 characters, one uppercase, one lowercase and one number.",
+    "RememberMeLabel": "Remember me",
+    "SignInButtonLabel": "SIGN UP",
+    "SignUpRecommandationLabel": "Have an account?"
+  },
+  "Contact": {
+    "Title1": "Information",
+    "Title2": "Contact",
+    "SubTitle1": "Head office and Point of sale",
+    "SubTitle2": "Point of sale",
+    "Address": "Address",
+    "Phone": "Phone",
+    "Fax": "Fax",
+    "Email": "Email",
+    "FName": "First Name",
+    "LName": "Last Name",
+    "Message": "Message"
+  },
+  "UCP": {
+    "SideBar": {
+      "Home":"Home",
+      "Title": "Control Center",
+      "MyOrders": " My Orders",
+      "Orders": "Orders",
+      "Products": "Products",
+      "ManageAccounts": "Manage Accounts",
+      "InvoiceEstimate": "Invoice / Estimate",
+      "Inbox": "Inbox",
+      "Profil": "Profile",
+      "Back": "Back",
+      "Logout": "Log Out"
+    },
+    "AccountsTable": {
+      "Title": "Accounts list",
+      "Description": "See information about all platform Accounts",
+      "TabFilter": {
+        "All": "All",
+        "Admin": "Admin",
+        "Employee": "Employee",
+        "Client": "Client"
+      },
+      "TabHeader": {
+        "AccountID": "Account ID",
+        "Username": "Username",
+        "FullName": "Full Name",
+        "privilege": "Privilege",
+        "TotalSpent": "Total Spent"
+      },
+      "TabActions": {},
+      "TabInputs": {}
+    },
+    "CategoryTable": {
+      "TabFilter": {
+        "Manage": "Manage Categories",
+        "Add": "Add Category"
+      },
+      "TabHeader": {
+        "CategoryID": "Category ID",
+        "CategoryName": "Category Name",
+        "CategoryType": "Category Type",
+        "CategoryTypeValue1": "Main Category",
+        "CategoryTypeValue2": "Sub Category"
+      },
+      "TabActions": {
+        "Add": "Add Category",
+        "Add2": "Add Sub-Category",
+        "Back": "Back"
+      },
+      "TabInputs": {
+        "Name":"Name",
+        "CategoryName": "Category Name",
+        "SubCategoryName": "Sub-Category Name",
+        "SubCategoryValue": "Sub-Category Value"
+      },
+      "TabLabels":
+      {
+      "AddMain":"Add Main Category",
+      "AddSub":"Add Sub-Category"
+
+      }
+    },
+    "InboxTable": {
+      "Title": "Inbox",
+      "Description": "See All your notifications",
+      "TabFilter": {
+        "Orders": "Orders",
+        "Contacts": "Contacts"
+      },
+      "TabHeader": {
+        "ID": "ID",
+        "Order": "Order",
+        "Message": "Message",
+        "Email": "Email",
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "PhoneNumber": "Phone Number"
+      },
+      "TabActions": {},
+      "TabInputs": {}
+    },
+    "InvoiceProductList": {
+      "Title": "Products list",
+      "Description": "See information about all Products you want to add for your invoice.",
+      "TabFilter": {},
+      "TabHeader": {
+        "ProductCode": "Product Code",
+        "Product": "Product ",
+        "Price": "Unit Price (HT)",
+        "Quantity": "Quantity"
+      },
+      "TabActions": {
+        "Back": "Back",
+        "Add": "Add to Invoice (Selected)"
+      },
+      "TabInputs": {}
+    },
+    "InvoiceSelectedProductsTable": {
+      "Title": "Invoice / Estimate Products",
+      "Description": "These are the products you selected for your Invoice/Estimate",
+      "TabFilter": {},
+      "TabHeader": {
+        "ProductCode": "Product Code",
+        "Product": "Product ",
+        "Price": "Unit Price (HT)",
+        "Quantity": "Quantity",
+        "Total": "Total (HT)"
+      },
+      "TabActions": {
+        "Add": "Add Products to Invoice"
+      },
+      "TabInputs": {}
+    },
+    "Notifications": {
+      "Title": "Notifications",
+      "TabFilter": {},
+      "TabHeader": {
+        "Order": "Order"
+      },
+      "TabActions": {
+        "ViewAll": "View All"
+      },
+      "TabInputs": {}
+    },
+    "Order": {
+      "Title": "Ordered Products list",
+      "Description": "See information about all the ordered products in the order.",
+      "TabFilter": {
+        "All": "All",
+        "Low": "Low",
+        "High": "High",
+        "Unavailable": "Unavailable"
+      },
+      "TabHeader": {
+        "ProductCode": "Product code",
+        "Product": "Product ",
+        "Quantity": "Quantity",
+        "Status": "Status",
+        "Price": "Unit Price (HT)",
+        "Total": "Total (HT)"
+      },
+      "TabActions": {},
+      "TabInputs": {}
+    },
+    "Orders": {
+      "Title": "Orders list",
+      "Description": "See information about all Orders",
+      "TabFilter": {
+        "All": "All",
+        "Paid": "Paid",
+        "Ready": "Ready",
+        "Pending": "Pending",
+        "Paused": "Paused",
+        "Cancelled": "Cancelled"
+      },
+      "TabHeader": {
+        "OrderID": "Order ID",
+        "Client": "Client",
+        "ClientNumber": "Client Number",
+        "Status": "Status",
+        "Date": "Date",
+        "Total": "Total (HT)"
+      },
+      "TabActions": {},
+      "TabInputs": {}
+    },
+    "Products": {
+      "Title": "Products list",
+      "Description": "See information about all Products you have in your e-commerce website.",
+      "TabFilter": {
+        "All": "All",
+        "Low": "Low",
+        "High": "High"
+      },
+      "TabHeader": {
+        "ProductCode": "Product Code",
+        "Product": "Product",
+        "Price": "Price",
+        "Status": "Status",
+        "Quantity": "Quantity",
+        "ShopQuantity": "Shop Quantity",
+        "StockQuantity": "Stock Quantity",
+        "ShortDescription": "Short Description",
+        "LongDescription": "Long Description",
+        "Information": "Information",
+        "Shipping": "Shipping"
+      },
+      "TabActions": {
+        "AddProduct": "Add product",
+        "ManageCategory": "Manage Category"
+      },
+      "TabInputs": {}
+    },
+    "MyOrdersTable": {
+      "Title": "My Orders Table",
+      "Description": "See information about all of my Orders",
+      "TabFilter": {
+        "All": "All",
+        "Paid": "Paid",
+        "Ready": "Ready",
+        "Pending": "Pending",
+        "Paused": "Paused",
+        "Cancelled": "Cancelled"
+      },
+      "TabHeader": {
+        "OrderID": "Order num",
+        "Employee": "Employee",
+        "Status": "Status",
+        "Date": "Date",
+        "Total": "Total"
+      },
+      "TabActions": {
+        "AddOrder": "Add Order"
+      },
+      "TabInputs": {}
+    },
+    "AddProduct": {
+      "Title": "Add Product",
+      "TabFilter": {
+        "LDescription": "Long Description",
+        "Additonalinfo": "Additional information",
+        "Shipping": "Shipping"
+      },
+      "TabHeader": {},
+      "TabActions": {
+        "CreateProduct": "Create Product"
+      },
+      "TabInputs": {
+        "PName": "Product Name",
+        "PPrice": "Product Price",
+        "PCode": "Product Code",
+        "StoreQuantity": "Store Quantity",
+        "StockQuantity": "Stock Quantity",
+        "SDescription": "Short Description",
+        "PCategory": "Product Category"
+      }
+    },
+    "EditProduct": {
+      "Title": "Edit Product",
+      "TabFilter": {
+        "LDescription": "Long Description",
+        "Additonalinfo": "Additional information",
+        "Shipping": "Shipping"
+      },
+      "TabHeader": {},
+      "TabActions": {
+        "SaveProduct": "Save Product"
+      },
+      "TabInputs": {
+        "PName": "Product Name",
+        "PPrice": "Product Price",
+        "PCode": "Product Code",
+        "StoreQuantity": "Store Quantity",
+        "StockQuantity": "Stock Quantity",
+        "SDescription": "Short Description",
+        "PCategory": "Product Category"
+      }
+    },
+    "Invoice": {
+      "Title1": "Generate Invoice / Estimate",
+      "Title2": "Preview Invoice / Estimate",
+      "TabFilter": {},
+      "TabHeader": {
+        "DocumentType": "Document Type",
+        "DemanderInformations": "Demander Informations",
+        "Invoice_EstimateLimits": "Invoice / Estimate limits",
+        "TaxDiscount": "Tax / Discount",
+        "HostInformations": "Host Informations",
+        "Invoice_Estimate_Products": "Invoice / Estimate Products"
+      },
+      "TabActions": {
+        "DownloadInvoice_Estimate": "Download Invoice / Estimate",
+        "GenerateINvoice_Estimate": "Generate Invoice / Estimate",
+        "TogglePreview": "Toggle Preview",
+        "Refresh": "Refresh",
+        "Invoice": "Invoice",
+        "Estimate": "Estimate",
+        "Person": "Person",
+        "Company": "Company",
+        "PreviewDisabledMsg": "Preview is Off.",
+        "GeneratingDownload": "Generating your download please wait.."
+      },
+      "TabInputs": {
+        "InvoiceNumber": "Invoice Number",
+        "D_FirstName": "First Name",
+        "D_LastName": "Last Name",
+        "D_CompanyName": "Company Name",
+        "D_Adress": "Company Name",
+        "D_PhoneNumber": "Phone Number",
+        "D_FiscaleNumber": "Fiscale Number",
+        "CreateDate": "Creation date",
+        "LimitDate": "Limit Date",
+        "Discount": "Discount Percentage",
+        "TaxRate": "Tax Percentage",
+        "H_FirstName": "First Name",
+        "H_LastName": "Last Name",
+        "H_CompanyName": "Company Name",
+        "H_Adress": "Company Name",
+        "H_PhoneNumber": "Phone Number",
+        "H_FiscaleNumber": "Fiscale Number"
+      }
+    },
+    "Profil": {
+      "Title": "Generate Invoice / Estimate",
+      "TabFilter": {},
+      "TabHeader": {
+        "PasswordInfo": "You need to input your current password in the verification Password to be able to make changes."
+      },
+      "TabActions": {
+        "SaveInformation": "Save Information"
+      },
+      "TabInputs": {
+        "ProfilImage": "Profil Imager",
+        "FName": "First Name",
+        "LName": "Last Name",
+        "NewPassword": "New password",
+        "VerifyPassword": "Verification Password"
+      }
+    },
+
+    "TopNav": {
+      "TabTitles": {
+        "MyOrders": "My Orders",
+        "Order": "Order",
+        "Orders": "Orders",
+        "Products": "Products",
+        "EditProduct": "Edit Product",
+        "AddProduct": "Add Product",
+        "Accounts": "Accounts",
+        "InvoiceEstimate": "Invoice / Estimate",
+        "Inbox": "Inbox",
+        "Profil": "Profil"
+      }
+    },
+    "DialogMessages": {
+      "Session":
+      {
+        "Logout":"You logged out successfully.",
+        "SessionExpired":"Session expired.."
+      },
+      "Connection":{
+        "ConnectionLost":"Unable to establish a connection to the server. Please check your internet connection and try again.",
+        "ServerLoaded":"The server is currently experiencing high load, and your request could not be completed. Please try again later.",
+        "ServiceUnavaiable":"The service is temporarily unavailable. Please try again later"
+      },
+      "Validation": {
+        "phoneNumberInput":"Please use a valid phone number format (e.g., 74211876).",
+        "textInput":"Please fill in the text input with a valid text.",
+        "numberInput":"Please fill in the text input with a valid number.",
+        "selectInput":"Please select at least one option from the dropdown.",
+        "emailInput":"Please fill in the  input with a valid Email.",
+        "passwordInput":"Invalid password, Use at least 8 characters, one uppercase, one lowercase and one number.",
+        "confirmPasswordInput":"Confirm password does not match the password."
+      },
+      "Register": {
+        "Register_Success": "Your new account is registered successfully.",
+        "Register_Error": "Account registration failed.",
+        "UsedEmail_Error": "The Email is used, please pick another.",
+        "UsedPhoneNumber_Error": "The Phone Number is used, please pick another.",
+        "UsedUsername_Error": "The username is used, please pick another."
+      },
+      "Login": {
+        "Login_Success": "You logged in successfully.",
+        "Login_Error": "Failed to log you in.",
+        "WrongCreds_Error":"You inserted the wrong password or Username."
+      },
+      "Promise": {
+        "Pending": "Please wait for the task to complete...",
+        "Resolve": "Task Completed successfully.",
+        "Reject": "Task Failed."
+      },
+      "Cart": {
+        "RemoveProduct": "Product removed from your cart.",
+        "AddProduct":"Product Added to your cart.",
+        "QuantityError":"Make sure you select a quantity value between 1-100",
+        "NoProducts":"You don't have any products in your cart." 
+      },
+      "MyOrders": {
+        "CreateOrder_Success": "Your order is submitted Successfully.",
+        "CreateOrder_Error": "Your order submission failed.",
+        "DeleteOrder_Success": "Your order is deleted successfully.",
+        "DeleteOrder_Error": "Your Order's deletion failed."
+      },
+      "Orders": {
+        "CancelOrder_Title": "Cancel Order",
+        "PauseOrder_Title": "Pause Order",
+        "ResumeOrder_Title": "Resume Order",
+        "SetOrderReady_Title": "Mark Order Ready",
+        "MarkOrderAsPaid_Title": "Mark Order as Paid",
+
+        "CancelOrder_Confirm": "Are you sure you want to cancel this client's order?",
+        "PauseOrder_Confirm": "Are you sure you want to Pause this client's order?",
+        "ResumeOrder_Confirm": "Are you sure you want to Resume this client's order?",
+        "SetOrderReady_Confirm": "Are you sure you want to mark this client's order as ready and waiting to be picked up from the store?",
+        "MarkOrderAsPaid_Confirm": "Are you sure you want mark this client's order as paid and closed?",
+
+        "CancelOrder_Success": "The Order is cancelled successfully.",
+        "PauseOrder_Success": "The Order is paused successfully.",
+        "ResumeOrder_Success": "The Order is resumed successfully.",
+        "SetOrderReady_Success": "The Order is now marked ready for pickup.",
+        "MarkOrderAsPaid_Success": "The Order is now marked paid and finished.",
+
+        "CancelOrder_Error": "The Order cancelation failed.",
+        "PauseOrder_Error": "The Order pause failed.",
+        "ResumeOrder_Error": "The Order resume failed.",
+        "SetOrderReady_Error": "The Order Markation as ready failed.",
+        "MarkOrderAsPaid_Error": "The Order markation as paid failed."
+      },
+      "Order": {},
+      "Products": {
+        "DeleteProduct_Title": "Delete Product",
+
+        "DeleteProduct_Confirm": "Are you sure you want to delete this product from your platform?",
+        "DeleteProduct_Success": "Product deleted successfully.",
+        "DeleteProduct_Error": "Product deletion failed",
+
+        "EditProduct_Success": "Product's information edited successfully.",
+        "EditProduct_Error": "Product's information edit failed",
+
+        "AddProduct_Success": "Product added successfully.",
+        "AddProduct_ProductCodeExist_Error": "Please pick a different Product Code, this one is already in use.",
+        "AddProduct_Error": "Product add failed",
+
+        "DeleteProductImg_Confirm": "Are you sure you want to delete this product image?",
+        "DeleteProductImg_Success": "Product Image deleted successfully.",
+        "DeleteProductImg_Error": "Product Image deletion failed",
+
+        "ProductThreeImagesLimit_Error": "You cannot add more than three images per product."
+      },
+      "Category": {
+        "Category_Title": "Manage Categories",
+        "DeleteCategory_Title": "Delete Category",
+
+        "DeleteCategory_Confirm": "Are you sure you want to delete this Category from your platform? (Be careful, this will result on the removal of all products within this category!)",
+        "DeleteCategory_Success": "Your Category and all of its products are deleted successfully.",
+        "DeleteCategory_Error": "Your Category deletion failed.",
+
+        "EditCategory_Success": "Your Category edited successfully.",
+        "EditCategory_Error": "Your Category edited failed.",
+
+        "AddCategory_Success": "Your Category Added successfully",
+        "AddCategory_Error": "Your Category Add failed.",
+        "AddCategory_NamedUsed": "Please pick another name for your new category, this one exists",
+
+        "AddSubCategory_Success": "Your sub-Category Added successfully",
+        "AddSubCategory_Error": "Your sub-Category Add failed.",
+        "AddSubCategory_NamedUsed": "Please pick another name for your new sub-category, this one exists",
+        
+        "AddSubCategoryValue_Success": "Your sub-Category values saved successfully",
+        "AddSubCategoryValue_Error": "Your sub-Category values Add failed.",
+        "AddSubCategoryValue_ValueUsed": "Sub-category values must be unique, please pick unique values."
+      
+      },
+      "Inbox": {
+        "DeleteNotification_Title": "Delete Notification",
+
+        "DeleteNotification_Confirm": "Are you sure you want to delete this Notification from your inbox? (This is permanent)",
+        "DeleteNotification_Success": "Notification deleted successfully.",
+        "DeleteMessage_Title": "Delete Message",
+        "DeleteMessage_Confirm": "Are you sure you want to delete this message from your inbox? (This is permanent)",
+        "DeleteMessage_Success": "Message deleted successfully.",
+
+        "DeleteNotification_Error": "Error, Notification is not deleted.",
+        "DeleteMessage_Error": "Error, Message is not deleted."
+      },
+      "Invoice": {
+        "DownloadInvoice_Success": "Invoice / Estimation is being downloaded.",
+        "DownloadInvoice_Error": "Invoice / Estimation failed to be downloaded.",
+
+        "AddProductInvoice_Success": "The selected products are added to your Invoice / Estimate",
+        "AddProductInvoice_Error": "Error, The selected products are not added to your Invoice / Estimate",
+        "DeleteProduct_Confirm": "Are you sure you want to delete this product from the Invoice / Estimate?",
+        "DeleteProduct_Success": "Product Deleted from the Invoice / Estimate"
+      },
+      "Profile": {
+        "SaveProfile_Success": "Your new profile information are saved successfully.",
+        "SaveProfile_Error": "Error, Your new profile information are not saved successfully.",
+        "SaveProfile_Error2": "Error, Your Image size, format or size is not supported.",
+        "SaveProfile_Error3": "Error, the confirmation password is wrong, please type your current password."
+      },
+      "Accounts": {
+        "SetDeleteUser_Title": "Delete User",
+
+        "SetDeleteUser_Confirm": "Are you sure you want to delete this user from your platform ?",
+        "SetDeleteUser_Success": "The user is deleted successfully.",
+        "SetDeleteUser_Error": "Error, could not delete the user.",
+        "SetDeleteUser_Error2": "Error, you cannot delete the owner of the platform.",
+
+        "SetAdmin_Title": "Set Admin",
+
+        "SetAdmin_Confirm": "Are you sure you want to give this user admin privileges (This will give him access to do everything)",
+        "SetAdmin_Success": "The user is set to admin successfully.",
+        "SetAdmin_Error": "Error, could not set this user an admin.",
+
+        "SetEmployee_Title": "Set Employee",
+
+        "SetEmployee_Confirm": "Are you sure you want to give this user Employee privileges (This will give him access to deal with client orders)",
+        "SetEmployee_Success": "The user is set to Employee successfully.",
+        "SetEmployee_Error": "Error, could not set this user an Employee.",
+
+        "SetUser_Title": "Remove privileges",
+
+        "SetUser_Confirm": "Are you sure you want to remove this user's privileges? (This will make him a client with no special privileges)",
+        "SetUser_Success": "The user's privileges are removed successfully.",
+        "SetUser_Error": "Error, could not set this user's privileges ",
+        "SetUser_Error2": "Error, You cannot strip away the admin privileges from the platform owner."
+      }
+    }
+  },
+  "Table": {
+    "Actions": {
+      "Next": "Next page",
+      "Previous": "Previous Page"
+    },
+    "Labels": {
+      "Page": {
+        "Part1": "Page ",
+        "Part2": "Out of "
+      }
+    }
+  },
+  "Cart": {
+    "Actions": {
+      "Order": "Order Products",
+      "AddCart": "Add to cart"
+    },
+    "Labels": {
+      "Total": "Cart Total",
+      "Title": "My cart"
+    }
+  },
+  "Global": {
+    "Actions": {
+      "Contact_Us": "Contact us",
+      "CheckProducts": "Check products.",
+      "Search": "Search",
+      "Discover": "Discover",
+      "AddCart": "Add to cart",
+      "MinimumPriceRange": "Minimum price",
+      "MaxPriceRange": "Maximum price"
+    },
+    "Labels": {},
+    "Footer": {
+      "Title1": "CONTACT: HEAD OFFICE",
+      "Title2": "CONTACT: POINT OF SALE",
+      "Phone": "Phone",
+      "Fax": "Fax",
+      "Email": "Email",
+      "Adress": "Address",
+      "Adress_Value1": "Road of Gabes KM 0.5 Building Elfrikha Sfax - Tunisia",
+      "Adress_Value2": "Avenue Med Jamoussi Building el HANA 3000 Sfax - Tunisa",
+      "Rights": "Hydraulic Pneumatic Service. All Rights Reserved.",
+      "Dev": "Developed By G-IT"
+    }
+  }
+}

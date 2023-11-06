@@ -1,0 +1,17 @@
+{
+  "GLOBAL_ERROR00": {
+    "errorCode": "AUTH_ERROR00",
+    "errorMessage": "Unknown Global Error",
+    "errorDetails": "Please contact Dev Team, unknown Global Error occurred"
+  },
+  "GLOBAL_ERROR01": {
+    "errorCode": "GLOBAL_ERROR01",
+    "errorMessage": "Wrong request parameters",
+    "errorDetails": "You are missing some parameters in the request"
+  },
+  "GLOBAL_ERROR02": {
+    "errorCode": "GLOBAL_ERROR02",
+    "errorMessage": "Wrong properties",
+    "errorDetails": "You added properties that are not required by the request."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "ORDER_ERROR00": {
+    "errorCode": "ORDER_ERROR00",
+    "errorMessage": "Unknown Order Error",
+    "errorDetails": "Please contact Dev Team, unknown Error occurred"
+  },
+  "ORDER_ERROR01": {
+    "errorCode": "ORDER_ERROR01",
+    "errorMessage": "Wrong Order ID",
+    "errorDetails": "The Order ID doesn't exist within our system, please check your ID."
+  },
+  "ORDER_ERROR02": {
+    "errorCode": "ORDER_ERROR02",
+    "errorMessage": "Wrong Quantity value,'>=1' ",
+    "errorDetails": "You inserted a wrong quantity value, please make sure the quantity is in the range [1,00+]"
+  },
+  "ORDER_ERROR03": {
+    "errorCode": "ORDER_ERROR03",
+    "errorMessage": "Wrong CREATE ORDER request parameters",
+    "errorDetails": "You are missing some parameters in the request, PARAM EXAMPLE {'productsIds':['650af028b66c805cf930bec5','650af032b66c805cf930bec8'],'productQuantities':['80','8']}"
+  },
+  "ORDER_ERROR04": {
+    "errorCode": "ORDER_ERROR04",
+    "errorMessage": "Wrong PAUSE ORDER request parameters",
+    "errorDetails": "You are missing some parameters in the request, PARAM EXAMPLE {'orderId':'650af0e22e1cc31abf795bdc'}"
+  },
+  "ORDER_ERROR05": {
+    "errorCode": "ORDER_ERROR05",
+    "errorMessage": "Order already paused.",
+    "errorDetails": "The order you trying to pause is already paused."
+  },
+
+  "ORDER_ERROR06": {
+    "errorCode": "ORDER_ERROR06",
+    "errorMessage": "Order already cancelled.",
+    "errorDetails": "The order you trying to cancel is already cancelled."
+  },
+  "ORDER_ERROR07": {
+    "errorCode": "ORDER_ERROR07",
+    "errorMessage": "Order already resumed .",
+    "errorDetails": "The order you trying to resume is already resumed."
+  },
+  "ORDER_ERROR08": {
+    "errorCode": "ORDER_ERROR08",
+    "errorMessage": "Order already marked paid .",
+    "errorDetails": "The order you trying to mark as paid is already marked paid."
+  },
+  "ORDER_ERROR09": {
+    "errorCode": "ORDER_ERROR09",
+    "errorMessage": "Order already set as ready",
+    "errorDetails": "The order you trying to set as ready is already set Ready."
+  },
+  "ORDER_ERROR010": {
+    "errorCode": "ORDER_ERROR010",
+    "errorMessage": "Order already set as Delivered",
+    "errorDetails": "The order you trying to set as Delivered is already set Delivered."
+  }
+}

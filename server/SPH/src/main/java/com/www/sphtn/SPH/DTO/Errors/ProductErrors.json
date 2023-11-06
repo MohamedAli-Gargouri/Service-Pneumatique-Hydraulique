@@ -1,0 +1,28 @@
+{
+  "PRODUCT_ERROR00": {
+    "errorCode": "PRODUCT_ERROR00",
+    "errorMessage": "Unknown Product Error",
+    "errorDetails": "Please contact Dev Team, unknown Error occurred"
+  },
+  "PRODUCT_ERROR01": {
+    "errorCode": "PRODUCT_ERROR01",
+    "errorMessage": "Product Code Exist",
+    "errorDetails": "You cannot create two products with the same product code, the product code is the BAR CODE, it should be unique."
+  },
+  "PRODUCT_ERROR02": {
+    "errorCode": "PRODUCT_ERROR02",
+    "errorMessage": "Product ID is wrong",
+    "errorDetails": "The product ID you provided is invalid, NOTE: this is the ID in the DB, not the Product Code."
+  }
+,
+  "PRODUCT_ERROR03": {
+    "errorCode": "PRODUCT_ERROR03",
+    "errorMessage": "Wrong Category and subCategoryValues",
+    "errorDetails": "You cannot insert a product with subCategoryValues not within the product's Category."
+  },
+  "PRODUCT_ERROR04": {
+    "errorCode": "PRODUCT_ERROR04",
+    "errorMessage": "Limited Stock Quantity",
+    "errorDetails": "The stock quantity for the product is not enough to satisfy your order."
+  }
+}
