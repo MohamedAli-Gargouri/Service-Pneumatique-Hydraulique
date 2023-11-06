@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCountries } from 'use-react-countries';
+import {countries,getEmojiFlag} from 'countries-list';
 import {
   Input,
   Menu,
@@ -17,22 +17,17 @@ PhoneInput.propTypes={
 }
 export default function PhoneInput({ internationalDialRef,phoneNumberRef }) {
   const LightModeState = useSelector((state) => state.lightMode);
-  const { countries } = useCountries();
 
-  // Find the index of Tunisia in the countries array
-  const tunisiaIndex = countries.findIndex(
-    (country) => country.name === 'Tunisia',
-  );
-
+  const countryArray = Object.entries(countries);
   // Initialize the country state with the index of Tunisia
-  const [country, setCountry] = React.useState(tunisiaIndex);
-
-  const { name, flags, countryCallingCode } = countries[country];
+  const [country, setCountry] = React.useState(['TN',countries.TN]);
+  const selectedCountryName=country.name;
 
   React.useEffect(()=>{
-const callingCode=parseInt(countries[country].countryCallingCode.slice(1),10)
-    internationalDialRef.current=callingCode
+    internationalDialRef.current=country[1].phone[0]
   },[country])
+
+
   return (
     <div className="relative flex w-full">
       <Menu placement="bottom-start">
@@ -44,11 +39,14 @@ const callingCode=parseInt(countries[country].countryCallingCode.slice(1),10)
             className="flex h-10 items-center gap-2 rounded-r-none border border-r-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3"
           >
             <img loading="lazy"
-              src={flags.svg}
-              alt={name}
+
+              key={country[0]}
+              src={'https://flagcdn.com/'+country[0].toLocaleLowerCase()+'.svg'}
+              alt={selectedCountryName}
               className="h-4 w-4 rounded-full object-cover"
             />
-            {countryCallingCode}
+            {country[1].name}
+
           </Button>
         </MenuHandler>
         <MenuList
@@ -58,20 +56,22 @@ const callingCode=parseInt(countries[country].countryCallingCode.slice(1),10)
               : 'bg-darkTheme_T2'
           } max-h-[20rem] max-w-[18rem]`}
         >
-          {countries.map(({ name, flags, countryCallingCode }, index) => {
+
+          {countryArray.map((country, index) => {
             return (
               <MenuItem
-                key={name}
-                value={name}
+                key={country[0]}
+                value={country[0]}
                 className="flex items-center gap-2"
-                onClick={() => setCountry(index)}
+                onClick={() => setCountry(country)}
               >
                 <img loading="lazy"
-                  src={flags.svg}
-                  alt={name}
+                  src={'https://flagcdn.com/'+country[0].toLocaleLowerCase()+'.svg'}
+                  alt={country[0]}
                   className="h-5 w-5 rounded-full object-cover"
                 />
-                {name} <span className="ml-auto">{countryCallingCode}</span>
+                {country[1].name} <span className="ml-auto">{country[1].phone[0]}</span>
+
               </MenuItem>
             );
           })}
