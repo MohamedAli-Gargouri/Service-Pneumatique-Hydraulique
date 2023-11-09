@@ -17,6 +17,25 @@ import {register} from "../../services/auth"
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
 import { VerifyInputs } from '../../utils/others/VerifyInputs';
+import { motion } from 'framer-motion';
+
+const Animations = {
+  hidden: {
+    opacity: 0,
+    y: -500,
+    x: 0,
+    scale: 0.5,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
 export default function RegisterCard() {
   const LightModeState = useSelector((state) => state.lightMode);
   const isLogged = useSelector((state) => state.isLogged);
@@ -88,9 +107,13 @@ export default function RegisterCard() {
 
   return (<>
     <div className="  min-h-screen BackgroundImage bg-cover bg-center flex flex-row justify-center items-center py-7 px-1 ">
+        <motion.div
+         initial={"hidden"}
+         variants={Animations}
+         animate={'visible'}
+        >
         <Card
           className={`
-           animate-QuickTopToBottom
           ${
             LightModeState == LightMode().type
               ? 'bg-whiteTheme_T2'
@@ -271,6 +294,7 @@ export default function RegisterCard() {
             </Typography>
           </CardFooter>
         </Card>
+        </motion.div>
     </div>
     </>
   );

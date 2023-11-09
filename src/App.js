@@ -139,7 +139,7 @@ export default function App() {
   ];
 
   return (
-    <div className="animate-fade w-full">
+    <div className="w-full">
       <ToastContainer closeOnClick rtl={false} pauseOnFocusLoss draggable />
       <Cart />
       <Routes>

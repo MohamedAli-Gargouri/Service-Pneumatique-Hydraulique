@@ -19,7 +19,7 @@ export default function UCP_Invoice() {
             LightModeState == LightMode().type
               ? 'tc-whiteTheme_T1 bg-whiteTheme_T2'
               : 'tc-darkTheme_T1 bg-darkTheme_T2'
-          }   hidden xl:block w-[20vw] animate-fade`}
+          }   hidden xl:block w-[20vw]`}
         >
           <SideBar />
         </aside>

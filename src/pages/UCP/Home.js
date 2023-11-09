@@ -12,6 +12,47 @@ import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.webp';
 import SPHVideosrc from '../../assets/videos/SPH.mp4';
 import Carousel from '../../components/Carousel';
+import { motion } from 'framer-motion';
+
+const Animations = {
+  hidden: {
+    opacity: 0,
+    y: 0,
+    x: 0,
+    scale: 0.5,
+  },
+  hiddenLeft: {
+    opacity: 0,
+    y: 0,
+    x: -200,
+    scale: 0.5,
+  },
+  hiddenRight: {
+    opacity: 0,
+    y: 0,
+    x: 200,
+    scale: 0.5,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+const ListAnimations = {
+  hidden: { opacity: 0, y: -10 },
+  visible: (index) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.4 + index * 0.1,
+    },
+  }),
+};
 export default function UCP_Home() {
   const LightModeState = useSelector((state) => state.lightMode);
 
@@ -53,7 +94,7 @@ export default function UCP_Home() {
             LightModeState == LightMode().type
               ? 'tc-whiteTheme_T1 bg-whiteTheme_T2'
               : 'tc-darkTheme_T1 bg-darkTheme_T2'
-          }   hidden xl:block w-[20vw] animate-fade`}
+          }   hidden xl:block w-[20vw]`}
         >
           <SideBar />
         </aside>
@@ -80,7 +121,14 @@ export default function UCP_Home() {
               <div className="p-2 overflow-hidden w-full gap-2 justify-center items-start  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {Info.map((Insight, index) => {
                   return (
-                    <Card key={"Insight"+index} className=" bg-inherit text-inherit mt-2 p-2 border-l-red-400  border-4 flex flex-col md:flex-row flex-wrap hover:scale-95 justify-stretch gap-2 items-center col-span-1">
+                    <motion.div
+                    key={"Insight"+index}
+                    initial="hidden"
+                    animate={'visible'}
+                    variants={ListAnimations}
+                    custom={index}>
+
+                    <Card className=" bg-inherit text-inherit mt-2 p-2 border-l-red-400  border-4 flex flex-col md:flex-row flex-wrap hover:scale-95 justify-stretch gap-2 items-center col-span-1">
                       <div className=" p-2 md:p-4  rounded-sm bg-red-600 text-white self-center md:self-start ">
                         {Insight.logo}
                         <Typography variant="h6" className="">
@@ -93,10 +141,15 @@ export default function UCP_Home() {
                         {Insight.Name}
                       </Typography>
                     </Card>
+                    </motion.div>
                   );
                 })}
 
-                <div className=" animate-QuickLeftToRight rounded-md aspect-video  w-full h-full mt-0 col-span-2">
+                <motion.div 
+                initial={"hiddenLeft"}
+                variants={Animations}
+                animate={'visible'}
+                className=" rounded-md aspect-video  w-full h-full mt-0 col-span-2">
                   <video
                     className=" rounded-md"
                     width={'100%'}
@@ -106,11 +159,15 @@ export default function UCP_Home() {
                     <source src={SPHVideosrc} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                </div>
+                </motion.div>
 
-                <div className=" animate-QuickRightToLeft h-full w-full mt-0 col-span-2">
+                <motion.div 
+                initial={"hiddenRight"}
+                variants={Animations}
+                animate={'visible'}
+                className=" h-full w-full mt-0 col-span-2">
                   <Carousel />
-                </div>
+                </motion.div>
               </div>
             </Card>
           </section>

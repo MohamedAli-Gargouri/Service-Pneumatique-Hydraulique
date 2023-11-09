@@ -17,7 +17,42 @@ import MMLogo from '../../assets/images/partners/mm.webp';
 import JorcLogo from '../../assets/images/partners/jorc.webp';
 import websiteBackgroundimg from '../../assets/images/partners/WebsiteBackground.webp';
 import useElementInViewport from '../../utils/hooks';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+//Animations Config
+const Animations = {
+  hidden: {
+    opacity: 0,
+    y: 0,
+    x: 0,
+    scale: 0.5,
+  },
+  hiddenLeft: {
+    opacity: 0,
+    y: 0,
+    x: -200,
+    scale: 0.5,
+  },
+  hiddenRight: {
+    opacity: 0,
+    y: 0,
+    x: 200,
+    scale: 0.5,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
 const Partners = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+  });
   const Partners = [
     {
       PartnerID: 1,
@@ -113,11 +148,21 @@ const Partners = () => {
             : 'bg-darkTheme_T2'
         } `}
       >
-        <hr className=" border-red-600 rounded-lg w-[30%] h-[0.35rem] bg-red-600 m-4" />
+        <motion.hr 
+        initial={"hiddenLeft"}
+        variants={Animations}
+        animate={inView ? 'visible' : 'hiddenLeft'}
+        ref={ref}  
+        className=" border-red-600 rounded-lg w-[30%] h-[0.35rem] bg-red-600 m-4" />
         <Typography variant="h4" className={` text-center font-extrabold `}>
           <TranslatedText TranslationPath="Home.Partners.Partner_Title" />
         </Typography>
-        <hr className=" border-red-600 rounded-lg w-[30%] h-[0.35rem] bg-red-600 m-4" />
+        <motion.hr
+        initial={"hiddenRight"}
+        variants={Animations}
+        animate={inView ? 'visible' : 'hiddenRight'}
+        ref={ref}
+         className=" border-red-600 rounded-lg w-[30%] h-[0.35rem] bg-red-600 m-4" />
       </div>
 
       <Typography

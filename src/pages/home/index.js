@@ -9,8 +9,51 @@ import Partners from './Partners';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import TranslatedText from '../../utils/Translation';
 import { Typography, Button } from '@material-tailwind/react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
+//Animations Config
+const BannerLeftSideAnimations = {
+  hidden: {
+    opacity: 0,
+    y: 0,
+    x: -200,
+    scale: 0.5,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
+const BannerRightSideAnimations = {
+  hidden: {
+    opacity: 0,
+    y: 0,
+    x: 200,
+    scale: 0.5,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
 const Home = () => {
   const LightModeState = useSelector((state) => state.lightMode);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+  });
   return (
     <React.Fragment>
       <Navbar />
@@ -18,20 +61,30 @@ const Home = () => {
         style={{ backgroundImage: `url(${HeroImage})` }}
         className=" grid grid-cols-2 justify-center items-center flex-wrap md:flex-nowrap gap-0 bg-cover aspect-video  h-[170vh] md:h-[100vh] w-full  "
       >
-        <div className=" col-span-2 md:col-span-1 p-1 flex justify-center items-center order-2 mt-0 md:order-1 w-full animate-LeftToRight aspect-square">
+        <motion.div 
+         initial={"hidden"}
+         variants={BannerLeftSideAnimations}
+         animate={inView ? 'visible' : 'hidden'}
+         ref={ref} 
+         className=" col-span-2 md:col-span-1 p-1 flex justify-center items-center order-2 mt-0 md:order-1 w-full aspect-square">
           <img loading="lazy"
-            className="m-0 aspect-square  max-w-[15rem] md:max-w-md  lg:max-w-xl  animate-rotate   Imageshadow"
+            className="m-0 aspect-square  max-w-[15rem] md:max-w-md  lg:max-w-xl Imageshadow"
             src={HeroCompressor}
           />
-        </div>
+        </motion.div>
 
-        <div className=" col-span-2 md:col-span-1 w-full order-1 mt-28 md:mt-0  md:h-full  flex justify-center  items-start md:items-center p-4">
+        <motion.div 
+        initial={"hidden"}
+        variants={BannerRightSideAnimations}
+        animate={inView ? 'visible' : 'hidden'}
+        ref={ref} 
+        className="col-span-2 md:col-span-1 w-full order-1 mt-28 md:mt-0  md:h-full  flex justify-center  items-start md:items-center p-4">
           <div
             style={{
               background:
                 'linear-gradient(to right, rgb(229, 57, 53,0.0), rgb(0, 0, 0,0.3))',
             }}
-            className="w-full md:w-fit  text-white Imageshadow text-center animate-RightToLeft backdrop-blur-md rounded-lg flex flex-col justify-start gap-0 items-center pt-3"
+            className="w-full md:w-fit  text-white Imageshadow text-center  backdrop-blur-md rounded-lg flex flex-col justify-start gap-0 items-center pt-3"
           >
             <Typography variant="h1">
               <TranslatedText TranslationPath="Home.HeroTitle" />
@@ -64,7 +117,7 @@ const Home = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
       <Presentation />
       <Services />

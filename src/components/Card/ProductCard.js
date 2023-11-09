@@ -13,6 +13,8 @@ import TranslatedText from '../../utils/Translation';
 import { LightMode } from '../../redux/actions/LightActions';
 import useCart from '../../utils/hooks/Cart';
 import PropTypes from "prop-types"
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 ProductCard.propTypes=
 {
   ProductID:PropTypes.number.isRequired,
@@ -28,6 +30,31 @@ ProductCard.propTypes=
   ProductInformation:PropTypes.string.isRequired,
   ProductShipping:PropTypes.string.isRequired 
 }
+
+const Animations = {
+  hidden: {
+    opacity: 0,
+    y: 0,
+    x: 0,
+    scale: 0.5,
+  },
+  hiddenRight: {
+    opacity: 0,
+    y: 0,
+    x: 200,
+    scale: 0.5,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
+
 export default function ProductCard({
   ProductID,
   ProductShortDescription,
@@ -42,6 +69,9 @@ export default function ProductCard({
   ProductInformation,
   ProductShipping 
 }) {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+  });
   const [isHovered, setIsHovered] = React.useState(false);
   const LightModeState = useSelector((state) => state.lightMode);
   const {AddProduct,SetQuantity,RemoveProduct}=useCart()
@@ -71,6 +101,12 @@ export default function ProductCard({
 
   if (variant == 1) {
     return (
+      <motion.div
+      initial={"hidden"}
+      variants={Animations}
+      animate={inView ? 'visible' : 'hidden'}
+      ref={ref} 
+      >
       <Card
         className={` animate-fade ${
           LightModeState == LightMode().type
@@ -84,10 +120,13 @@ export default function ProductCard({
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <img loading="lazy"
+            <motion.img 
+              whileHover={{ opacity: 0.5 }} 
+              transition={{ duration: 0.3 }}
+              loading="lazy"
               key={isHovered ? "Image2" : "Image1"}
               src={isHovered ? ProductImages[0] : ProductImages[1]}
-              className="aspect-square  bg-cover Imageshadow animate-Quickfade"
+              className="aspect-square  bg-cover Imageshadow"
             />
           </div>
 
@@ -159,10 +198,17 @@ export default function ProductCard({
           </div>
         </div>
       </Card>
+      </motion.div>
     );
   }
   if (variant == 2 || variant == 3 || variant == 0) {
     return (
+      <motion.div
+      initial={"hidden"}
+      variants={Animations}
+      animate={inView ? 'visible' : 'hidden'}
+      ref={ref} 
+      >
       <Card
         className={`${
           LightModeState == LightMode().type
@@ -177,10 +223,12 @@ export default function ProductCard({
           }}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <img loading="lazy"
+          <motion.img loading="lazy"
+           whileHover={{ opacity: 0.5 }} 
+           transition={{ duration: 0.3 }}
            key={isHovered ? "Image2" : "Image1"}
             src={isHovered ? ProductImages[0] : ProductImages[1]}
-            className={`aspect-square max-h-64 bg-cover Imageshadow animate-Quickfade`}
+            className={`aspect-square max-h-64 bg-cover Imageshadow`}
           />
 
           <div className="hover-content p-4 w-full">
@@ -251,6 +299,7 @@ export default function ProductCard({
 
 
       </Card>
+      </motion.div>
     );
   }
 }

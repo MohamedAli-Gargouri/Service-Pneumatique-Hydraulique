@@ -18,9 +18,30 @@ import { LightMode, DarkMode } from '../../redux/actions/LightActions';
 import { openCart } from '../../redux/actions/MyCartActions';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
-
+import { motion } from 'framer-motion';
 Badge.propTypes = {
   placement: PropTypes.string.isRequired,
+};
+
+const Animations = {
+  hidden: {
+    opacity: 0,
+    y: 0,
+    x: 0,
+    scale: 0.7,
+    transition: {
+      duration: 0.2,
+    },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
 };
 export default function ComplexNavbar() {
   //=======Setting Mobile View-start=================//
@@ -89,18 +110,17 @@ export default function ComplexNavbar() {
       id="navbar"
       className="fixed flex justify-center items-center top-0 left-0 w-screen z-50 mt-4 animate-NavSlideDown"
     >
+      <motion.div
+        initial={"visible"}
+        variants={Animations}
+        animate={isNavbarVisible ? 'visible' : 'hidden'}
+      >
       <Navbar
         className={` backdrop-blur-md  lg:rounded-full mx-4 ${
           LightModeState == LightMode().type
             ? 'bg-whiteTheme_T2 tc-whiteTheme_T1'
             : 'bg-darkTheme_T2 tc-darkTheme_T1'
-        }
-        ${
-          isNavbarVisible
-          ? 'animate-NavSlideDown'
-          : 'animate-NavSlideUp'
-        }
-        `}
+        }`}
       >
         <div className="flex items-center justify-center gap-1 ">
           <img loading="lazy"
@@ -166,6 +186,7 @@ export default function ComplexNavbar() {
           <NavList />
         </Collapse>
       </Navbar>
+      </motion.div>
     </header>
   );
 }

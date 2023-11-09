@@ -19,6 +19,92 @@ import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
 import SPHLOGO from '../../assets/images/SPH Logo.webp';
+import { motion } from 'framer-motion';
+const ListAnimations = {
+  hidden: { opacity: 0, y: 0,x:-100,scale:0.5 },
+  visible: (index) => ({
+    opacity: 1,
+    y: 0,
+    x:0,
+    scale:1,
+    transition: {
+      delay: 0.1 + index * 0.05,
+    },
+  }),
+};
+
+const menuList=[
+  {
+    id:1,
+    icon:<i className="fa-solid fa-house h-5 w-5"></i>,
+    name:<TranslatedText TranslationPath="UCP.SideBar.Home" />,
+    url:"/UCP/Home",
+    chipValue:0
+  },
+  {
+    id:2,
+    icon:<i className="fa-solid fa-cart-shopping h-5 w-5"></i>,
+    name:<TranslatedText TranslationPath="UCP.SideBar.MyOrders" />,
+    url:"/UCP/MyOrders",
+    chipValue:0  
+  },
+  {
+    id:3,
+    icon:<i className="fa-solid fa-file-invoice h-5 w-5"></i>,
+    name:<TranslatedText TranslationPath="UCP.SideBar.Orders" />,
+    url:"/UCP/Orders",
+    chipValue:0  
+  },
+  {
+    id:4,
+    icon:<i className="fa-solid fa-boxes-stacked h-5 w-5"></i>,
+    name:<TranslatedText TranslationPath="UCP.SideBar.Products" />,
+    url:"/UCP/Products",
+    chipValue:0  
+  },
+  {
+    id:5,
+    icon:<InboxIcon className="h-5 w-5" />,
+    name:<TranslatedText TranslationPath="UCP.SideBar.Inbox" />,
+    url:"/UCP/Inbox",
+    chipValue:0  
+  },
+  {
+    id:6,
+    icon:<i className="fa-solid fa-users h-5 w-5"></i>,
+    name:<TranslatedText TranslationPath="UCP.SideBar.ManageAccounts" />,
+    url:"/UCP/Accounts",
+    chipValue:0  
+  },
+  {
+    id:7,
+    icon:<i className="fa-solid fa-file-invoice"></i>,
+    name:<TranslatedText TranslationPath="UCP.SideBar.InvoiceEstimate" />,
+    url:"/UCP/Invoice",
+    chipValue:0  
+  },
+  {
+    id:8,
+    icon:<UserCircleIcon className="h-5 w-5" />,
+    name:<TranslatedText TranslationPath="UCP.SideBar.Profil" />,
+    url:"/UCP/Profil",
+    chipValue:0  
+  },
+  {
+    id:9,
+    icon:<i className="fa-solid fa-arrow-left"></i>,
+    name:<TranslatedText TranslationPath="UCP.SideBar.Back" />,
+    url:"/",
+    chipValue:0  
+  },
+  {
+    id:10,
+    icon:<PowerIcon className="h-5 w-5" />,
+    name:<TranslatedText TranslationPath="UCP.SideBar.Logout" />,
+    url:"/login",
+    chipValue:0  
+  },
+]
 export default function UCP_SideNavbar() {
   const [openAlert, setOpenAlert] = React.useState(true);
   const LightModeState = useSelector((state) => state.lightMode);
@@ -38,158 +124,46 @@ export default function UCP_SideNavbar() {
             : 'tc-darkTheme_T1 '
         }`}
       >
-        <ListItem
-          onClick={() => {
-            window.location.href = '/UCP/Home';
-          }}
-        >
-          <ListItemPrefix >
-            <i className="fa-solid fa-house"></i>
-          </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Home" />
-        </ListItem>
 
-        <ListItem
-          onClick={() => {
-            window.location.href = '/UCP/MyOrders';
-          }}
-        >
-          <ListItemPrefix>
-            <i className="fa-solid fa-cart-shopping h-5 w-5"></i>
-          </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.MyOrders" />
-          <ListItemSuffix>
-            <Chip
-              value="5"
-              size="sm"
-              color="green"
-              variant="ghost"
-              className={`rounded-full ${
-                LightModeState == LightMode().type
-                  ? 'tc-whiteTheme_T1 '
-                  : 'tc-darkTheme_T1 '
-              }`}
-            />
-          </ListItemSuffix>
-        </ListItem>
 
-        <ListItem
-          onClick={() => {
-            window.location.href = '/UCP/Orders';
-          }}
-        >
-          <ListItemPrefix>
-            <i className="fa-solid fa-file-invoice h-5 w-5"></i>
-          </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Orders" />
-          <ListItemSuffix>
-            <Chip
-              value="14"
-              size="sm"
-              variant="ghost"
-              className={`rounded-full ${
-                LightModeState == LightMode().type
-                  ? 'tc-whiteTheme_T1 '
-                  : 'tc-darkTheme_T1 '
-              }`}
-            />
-          </ListItemSuffix>
-        </ListItem>
+{menuList.map((menuItem,index)=>{
+return(
+  <motion.div
+  key={menuItem.id}
+  initial="hidden"
+  animate={'visible'}
+  variants={ListAnimations}
+  custom={index}>
+  <ListItem
+  key={menuItem.id}
+  onClick={() => {
+    window.location.href = menuItem.url;
+  }}
+>
+  <ListItemPrefix>
+    {menuItem.icon}
+  </ListItemPrefix>
+  {menuItem.name}
+  <ListItemSuffix>
+    {menuItem.chipValue>0?<Chip
+      value={menuItem.chipValue}
+      size="sm"
+      color="green"
+      variant="ghost"
+      className={`rounded-full ${
+        LightModeState == LightMode().type
+          ? 'tc-whiteTheme_T1 '
+          : 'tc-darkTheme_T1 '
+      }`}
+    />:null}
+  </ListItemSuffix>
+</ListItem>
+</motion.div>
+)
 
-        <ListItem
-          onClick={() => {
-            window.location.href = '/UCP/Products';
-          }}
-        >
-          <ListItemPrefix>
-            <i className="fa-solid fa-boxes-stacked h-5 w-5"></i>
-          </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Products" />
-          <ListItemSuffix>
-            <Chip
-              value="50"
-              size="sm"
-              color="green"
-              variant="ghost"
-              className={`rounded-full ${
-                LightModeState == LightMode().type
-                  ? 'tc-whiteTheme_T1 '
-                  : 'tc-darkTheme_T1 '
-              }`}
-            />
-          </ListItemSuffix>
-        </ListItem>
-        <ListItem
-          onClick={() => {
-            window.location.href = '/UCP/Inbox';
-          }}
-        >
-          <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Inbox" />
-          <ListItemSuffix>
-            <Chip
-              value="14"
-              size="sm"
-              variant="ghost"
-              className={`rounded-full ${
-                LightModeState == LightMode().type
-                  ? 'tc-whiteTheme_T1 '
-                  : 'tc-darkTheme_T1 '
-              }`}
-            />
-          </ListItemSuffix>
-        </ListItem>
+})}
+       
 
-        <ListItem
-          onClick={() => {
-            window.location.href = '/UCP/Accounts';
-          }}
-        >
-          <ListItemPrefix>
-            <i className="fa-solid fa-users h-5 w-5"></i>
-          </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.ManageAccounts" />
-        </ListItem>
-
-        <ListItem
-          onClick={() => {
-            window.location.href = '/UCP/Invoice';
-          }}
-        >
-          <ListItemPrefix>
-            <i className="fa-solid fa-file-invoice"></i>
-          </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.InvoiceEstimate" />
-        </ListItem>
-
-        <ListItem
-          onClick={() => {
-            window.location.href = '/UCP/Profil';
-          }}
-        >
-          <ListItemPrefix>
-            <UserCircleIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Profil" />
-        </ListItem>
-        <ListItem
-          onClick={() => {
-            window.location.href = '/';
-          }}
-        >
-          <ListItemPrefix>
-            <i className="fa-solid fa-arrow-left"></i>
-          </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Back" />
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <PowerIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          <TranslatedText TranslationPath="UCP.SideBar.Logout" />
-        </ListItem>
       </List>
       <Alert
         open={openAlert}

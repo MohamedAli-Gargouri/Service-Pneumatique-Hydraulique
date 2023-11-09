@@ -4,10 +4,29 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 BreadcrumbsWithIcon.propTypes = {
   Parent: PropTypes.object,
   Child: PropTypes.object,
   List: PropTypes.bool.isRequired,
+};
+//Animations Config
+const Animations = {
+  hidden: {
+    opacity: 0,
+    y: -200,
+    x: 0,
+    scale: 0.5,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
 };
 
 /*
@@ -23,8 +42,11 @@ BreadcrumbsWithIcon.propTypes = {
 export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
   const LightModeState = useSelector((state) => state.lightMode);
   return (
-    <div
-      className={` animate-QuickTopToBottom rounded-md shadow-sm mx-4 grid grid-cols-1  justify-center items-center gap-3 bg-cover ${
+    <motion.div
+    initial={"hidden"}
+    variants={Animations}
+    animate={'visible'}
+      className={`rounded-md shadow-sm mx-4 grid grid-cols-1  justify-center items-center gap-3 bg-cover ${
         LightModeState == LightMode().type
           ? 'bg-whiteTheme_T2 tc-whiteTheme_T1'
           : 'bg-darkTheme_T2 tc-darkTheme_T1'
@@ -106,6 +128,6 @@ export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
           </a>
         )}
       </Breadcrumbs>
-    </div>
+    </motion.div>
   );
 }

@@ -20,10 +20,28 @@ import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { SET_ACCESS_TOKEN  } from '../../redux/actions/AccessTokenActions';
 import { SET_LOGGED,UNSET_LOGGED } from '../../redux/actions/isLoggedActions';
+import { motion } from 'framer-motion';
 Input.propTypes=
 {
   label:PropTypes.any
 }
+const Animations = {
+  hidden: {
+    opacity: 0,
+    y: -500,
+    x: 0,
+    scale: 0.5,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
 export default function LoginCard() {
   const LightModeState = useSelector((state) => state.lightMode);
   const isLogged = useSelector((state) => state.isLogged);
@@ -85,9 +103,13 @@ export default function LoginCard() {
 })
   return (
     <div className=" min-h-screen BackgroundImage bg-cover  bg-center flex flex-row justify-center items-center">
+      <motion.div
+      initial={"hidden"}
+      variants={Animations}
+      animate={'visible'}
+      >
         <Card
           className={`
-           animate-QuickBottomToTop
           ${
             LightModeState == LightMode().type
               ? 'bg-whiteTheme_T2'
@@ -186,6 +208,7 @@ export default function LoginCard() {
             </Typography>
           </CardFooter>
         </Card>
+        </motion.div>
 
 
 

@@ -20,6 +20,38 @@ import PhoneInput from '../../components/Input/Phone';
 import Footer from '../../components/footer';
 import PropTypes from 'prop-types';
 import React from 'react'; 
+import { motion } from 'framer-motion';
+
+//Animations Config
+const Animations = {
+  hidden: {
+    opacity: 0,
+    y: 0,
+    x: 0,
+    scale: 0.5,
+  },
+  hiddenLeft: {
+    opacity: 0,
+    y: 0,
+    x: -500,
+    scale: 0.5,
+  },
+  hiddenRight: {
+    opacity: 0,
+    y: 0,
+    x: 500,
+    scale: 0.5,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
 export default function ContactCard() {
   Input.propTypes=
   {
@@ -37,10 +69,14 @@ export default function ContactCard() {
     <>
       <Navbar />
       <div className="BackgroundImage py-4 px-2  bg-cover bg-center min-h-screen flex flex-row flex-wrap  justify-center items-center gap-4">
-        <div className=" mt-[20vh]">
+        <motion.div 
+          className=" mt-[20vh]"
+          initial={"hiddenLeft"}
+          variants={Animations}
+          animate={'visible'}
+          >
           <Card
             className={`
-            animate-QuickLeftToRight
             backdrop-blur-lg ${
               LightModeState == LightMode().type
                 ? 'bg-whiteTheme_T3'
@@ -216,11 +252,15 @@ export default function ContactCard() {
 
             </CardBody>
           </Card>
-        </div>
-        <div className=" mt-6 md:mt-[20vh]">
+
+        </motion.div>
+        <motion.div 
+        initial={"hiddenRight"}
+        variants={Animations}
+        animate={'visible'}
+        className=" mt-6 md:mt-[20vh]">
           <Card
             className={`
-              animate-QuickRightToLeft
                 ${
               LightModeState == LightMode().type
                 ? 'bg-whiteTheme_T3'
@@ -304,7 +344,7 @@ export default function ContactCard() {
               </Button>
             </CardFooter>
           </Card>
-        </div>
+        </motion.div>
       </div>
       <Footer />
     </>

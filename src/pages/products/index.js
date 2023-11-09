@@ -18,7 +18,8 @@ import ProductImage3 from "./../../assets/images/products/product_3.webp"
 import Pagination from "../../utils/Table/Pagination"
 import TranslatedText from '../../utils/Translation';
 import PropTypes from 'prop-types'; 
-import { debounce } from 'lodash';    
+import { debounce } from 'lodash';  
+import { motion } from 'framer-motion';  
   Select.propTypes=
   {
     label:PropTypes.any

@@ -18,10 +18,22 @@ import ReactDOMServer from 'react-dom/server';
 import { CreateToast } from '../../utils/Toast';
 import { enableScroll,disableScroll } from '../../utils/others/Scroll';
 import PropTypes from "prop-types"
+import { motion } from 'framer-motion';
 Products_FilterMenu.propTypes=
 {
   IsMobile:PropTypes.bool.isRequired
 }
+const ListAnimations = {
+  hidden: { opacity: 0, y: 0,x:-200 },
+  visible: (index) => ({
+    opacity: 1,
+    y: 0,
+    x:0,
+    transition: {
+      delay: 0.5 + index * 0.2,
+    },
+  }),
+};
 export default function Products_FilterMenu({IsMobile}) {
   const Menus=[
     {
@@ -155,9 +167,15 @@ export default function Products_FilterMenu({IsMobile}) {
 
     {Menus.map((Menu,index)=>{
 return(
+  <motion.div
+  key={"MENU"+Menu.MenuID}
+  initial="hidden"
+  animate={'visible'}
+  variants={ListAnimations}
+  custom={index}
+  >
 <Accordion
-key={"MENU"+Menu.MenuID}
-className={` md:animate-QuickLeftToRight ${
+className={`${
   LightModeState == LightMode().type
     ? 'tc-whiteTheme_T1'
     : 'tc-darkTheme_T1'
@@ -213,6 +231,7 @@ icon={Menu.icon}
   </List>
 </AccordionBody>
 </Accordion>
+</motion.div>
 )
 
     })}
