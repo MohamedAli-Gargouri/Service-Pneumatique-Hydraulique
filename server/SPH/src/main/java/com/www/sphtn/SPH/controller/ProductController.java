@@ -28,6 +28,14 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class ProductController {
 
+    @Value("${spring.listing.highStockThreshold}")
+    private String highStockThreshold;
+
+    @Value("${spring.listing.lowStockThreshold}")
+    private String lowStockThreshold;
+
+    @Value("${spring.listing.pageSize}")
+    private String pageSize;
     @Value("${spring.admin.defaultAdminUserName}")
     private String rootUsername;
     @Autowired
@@ -46,18 +54,31 @@ public class ProductController {
     private FileRepository fileRepository;
     @GetMapping("/all")
     public ResponseEntity<Object>  GetProducts(
-            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(required = false) Integer size,
             @RequestParam(defaultValue = "0") int Page,
-            @RequestParam(defaultValue = "false") boolean getAll)
+            @RequestParam(defaultValue = "false") boolean getAll,
+            @RequestParam(defaultValue = "false") boolean filterLowStock,
+            @RequestParam(defaultValue = "false") boolean filterHighStock
+    )
     {
+        int pageSize = size!=null ? size : Integer.parseInt(this.pageSize);
+        PageRequest pageable =  PageRequest.of(Page, pageSize);
         if(getAll)
         {
             return ResponseEntity.ok().body(repository.findAll());
         }
+        if(filterLowStock)
+        {
+
+            return ResponseEntity.ok().body(repository.findByStoreQuantityPlusStockQuantityLessThan(Integer.parseInt(lowStockThreshold),pageable));
+        }
+        if(filterHighStock)
+        {
+            return ResponseEntity.ok().body(repository.findByStoreQuantityPlusStockQuantityGreaterThan(Integer.parseInt(highStockThreshold),pageable));
+        }
         else
         {
-            PageRequest pageable =  PageRequest.of(Page, size);
-            return ResponseEntity.ok().body(repository.findAll((PageRequest) pageable));
+            return ResponseEntity.ok().body(repository.findAll(pageable));
         }
     }
 
@@ -130,7 +151,7 @@ public class ProductController {
                 //Testing if one of the SubCategoryValues is not within the Product Category
                 if(!subCategoryValueRepository.findById(subCategoryValueId).get().getSubCategory().getCategory().getId().equals(createProductRequest.getCategoryId()))
                 {
-                        throw new ProductExceptions.WrongProductCategory_CategoryValues();
+                    throw new ProductExceptions.WrongProductCategory_CategoryValues();
                 }
             });
 
@@ -220,8 +241,8 @@ public class ProductController {
                 }
             });
 
-           Optional<Product> prodById=repository.findById(editProductRequest.getId());
-           Optional<Product> prodByProdCode=repository.findByProductCode(editProductRequest.getProductCode());
+            Optional<Product> prodById=repository.findById(editProductRequest.getId());
+            Optional<Product> prodByProdCode=repository.findByProductCode(editProductRequest.getProductCode());
             if(prodById.isEmpty())
             {
                 throw new ProductExceptions.WrongProductID();
@@ -351,4 +372,3 @@ public class ProductController {
 
 
 }
-

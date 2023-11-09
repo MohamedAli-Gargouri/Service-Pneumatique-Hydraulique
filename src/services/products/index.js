@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 
 import axios from 'axios';
 const axiosInstance = axios.create({
@@ -59,3 +60,37 @@ accessToken
     
 
 };
+
+const API_URL_GETALLPRODUCTS = process.env.REACT_APP_API_URL+'/api/v1/product/all';
+//This function get all the categories
+export const getProducts = async (size,page,getAll,filterLowStock,filterHighStock,accessToken) => {
+
+    try
+    {
+        const data={
+        }
+        const response =axiosInstance.get(`${API_URL_GETALLPRODUCTS}?size=${size}&Page=${page}&getAll=${getAll}&filterLowStock=${filterLowStock}&filterHighStock=${filterHighStock}`,{
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+        });
+        return response;
+    }
+    catch (e)
+    {
+        //Handle Error Code//
+    }
+    
+
+};
+getProducts.propTypes={
+    size:PropTypes.number.isRequired,
+    page:PropTypes.number.isRequired,
+    getAll:PropTypes.bool.isRequired,
+    filterLowStock:PropTypes.bool.isRequired,
+    filterHighStock:PropTypes.bool.isRequired,
+    accessToken:PropTypes.string.isRequired
+}
+
+
+

@@ -23,8 +23,8 @@ import {
   Avatar,
   IconButton,
   Tooltip,
+  Spinner
 } from '@material-tailwind/react';
-import Pagination from '../../utils/Table/Pagination';
 import SortData from '../../utils/Table/SortRows';
 import TabFilter from '../../utils/Table/TabFilter';
 import SearchRow from '../../utils/Table/Search';
@@ -33,7 +33,10 @@ import CategoryDialog from '../../components/Dialog/Category';
 import CustomTooltip from '../../components/ToolTip';
 import { CreateToast } from '../../utils/Toast';
 import ReactDOMServer from 'react-dom/server';
-
+import Pagination from '../../utils/Table/tablePagination';
+import {getProducts} from "../../services/products/index"
+import {getImageBlobUrl} from "../../utils/file"
+import noImgProduct from "../../assets/images/products/noImgProduct.webp"
 const TABLE_HEAD = [
   {
     label: (
@@ -203,36 +206,116 @@ const TABLE_ROWS = [
 ];
 
 export default function Products_Table() {
+  const accessToken = useSelector((state) => state.userAccessToken);
   const [OpenCategoryDialog, SetOpenCategoryDialog] = React.useState(false);
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
   const LightModeState = useSelector((state) => state.lightMode);
 
-  const [AllData, SetAllData] = React.useState(TABLE_ROWS);
-  const [VisibleData, SetVisibleData] = React.useState([]);
+  const [data, setData] = React.useState([]);
   const [sortDirection, setSortDirection] = React.useState('asc'); // 'asc' or 'desc'
-  const [currentPage, setCurrentPage] = React.useState(1); // 'asc' or 'desc'
-
+  const [currentPage, setCurrentPage] = React.useState(0); // 'asc' or 'desc'
+  const [totalPages, setTotalPages] = React.useState(1);
+  const [isLoadingTable, setIsLoadingTable] = React.useState(false);
   const TABS = [
     {
       label: <TranslatedText TranslationPath="UCP.Products.TabFilter.All" />,
-      value: 'All',
-      Filter_fn: () =>
-        TabFilter('Status', 'All', TABLE_ROWS, SetAllData, currentPage),
+      value: 'All',     
     },
     {
       label: <TranslatedText TranslationPath="UCP.Products.TabFilter.Low" />,
       value: 'Low',
-      Filter_fn: () =>
-        TabFilter('Status', 'Low Stock', TABLE_ROWS, SetAllData, currentPage),
     },
     {
       label: <TranslatedText TranslationPath="UCP.Products.TabFilter.High" />,
       value: 'High',
-      Filter_fn: () =>
-        TabFilter('Status', 'High Stock', TABLE_ROWS, SetAllData, currentPage),
     },
   ];
 
+//This function calls the backend and gets the filtered data based on the filter type
+  async function filterData(filterName)
+  {
+    let newData=[]
+    setIsLoadingTable(true)
+    const requestResponse=await getProducts(5,currentPage,false,
+      filterName=="All"?false:filterName=="Low"?true:false,
+      filterName=="All"?false:filterName=="High"?true:false,accessToken)
+      console.log(requestResponse)
+    const promises=requestResponse.data.content.map(async(product)=>{
+      
+      let blobProductImg=noImgProduct
+      if(product.productImages.length>0)
+      {
+        blobProductImg=await getImageBlobUrl(product.productImages[0].extension,product.productImages[0].fileBinary)
+      }
+
+      newData=[...newData,{
+        ProductCode: product.productCode,
+        img: blobProductImg,
+        Brand: product.productBrand,
+        Model: product.productName,
+        Price: product.productPrice,
+        Category: product.category.name,
+        Shop_Quantity: product.storeQuantity,
+        StockRoom_Quantity: product.stockQuantity,
+        SDescription: product.shortDescription,
+        LDescription: product.longDescription,
+        Information: product.additionalInformation,
+        Shipping: product.shippingInformation,
+        Status: (product.stockQuantity+product.storeQuantity<10)?"Low Stock":"High Stock",
+      }]
+    
+    
+    })
+    
+    await Promise.all(promises)
+    setData(newData)
+    setTotalPages(requestResponse.data.totalPages)
+    setIsLoadingTable(false)
+  }
+  React.useEffect(()=>{
+    async function loadData()
+    {
+      let newData=[]
+      setIsLoadingTable(true)
+      const requestResponse=await getProducts(5,currentPage,false,false,false,accessToken)
+      console.log(requestResponse)
+      const promises=requestResponse.data.content.map(async(product)=>{
+        
+        let blobProductImg=noImgProduct
+        if(product.productImages.length>0)
+        {
+          blobProductImg=await getImageBlobUrl(product.productImages[0].extension,product.productImages[0].fileBinary)
+        }
+
+        newData=[...newData,{
+          ProductCode: product.productCode,
+          img: blobProductImg,
+          Brand: product.productBrand,
+          Model: product.productName,
+          Price: product.productPrice,
+          Category: product.category.name,
+          Shop_Quantity: product.storeQuantity,
+          StockRoom_Quantity: product.stockQuantity,
+          SDescription: product.shortDescription,
+          LDescription: product.longDescription,
+          Information: product.additionalInformation,
+          Shipping: product.shippingInformation,
+          Status: (product.stockQuantity+product.storeQuantity<10)?"Low Stock":"High Stock",
+        }]
+      
+      
+      })
+      
+      await Promise.all(promises)
+      console.log(newData)
+      setData(newData)
+      setTotalPages(requestResponse.data.totalPages)
+      setIsLoadingTable(false)
+      
+    }
+
+    loadData()
+  },[currentPage])
   const HandleProductDelete = () => {
     try {
       const promise = new Promise((resolve, reject) => {
@@ -314,14 +397,12 @@ export default function Products_Table() {
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <Tabs value="All" className="w-full md:w-max">
             <TabsHeader className=" overflow-auto">
-              {TABS.map(({ label, value, Filter_fn }) => (
+              {TABS.map(({ label, value }) => (
                 <Tab
                   style={{ textWrap: 'nowrap' }}
                   key={value}
                   value={value}
-                  onClick={() => {
-                    Filter_fn();
-                  }}
+                  onClick={() => {filterData(value)}}
                 >
                   &nbsp;&nbsp;{label}&nbsp;&nbsp;
                 </Tab>
@@ -332,7 +413,7 @@ export default function Products_Table() {
             <Input
               label={<TranslatedText TranslationPath="Global.Actions.Search" />}
               onChange={(e) => {
-                SearchRow(TABLE_ROWS, AllData, SetAllData, e);
+                SearchRow(TABLE_ROWS, data, setData, e);
               }}
               labelProps={{
                 style: {
@@ -345,6 +426,10 @@ export default function Products_Table() {
         </div>
       </CardHeader>
       <CardBody className="overflow-scroll px-0">
+      {isLoadingTable?<div className=' w-full flex justify-center items-center'>
+            <Spinner color="red" className=" m-2 h-5 w-5" />  
+            </div>
+            :
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
@@ -356,8 +441,8 @@ export default function Products_Table() {
                         head.value,
                         sortDirection,
                         setSortDirection,
-                        VisibleData,
-                        SetVisibleData,
+                        data,
+                        setData,
                         'Products',
                       );
                   }}
@@ -378,7 +463,8 @@ export default function Products_Table() {
             </tr>
           </thead>
           <tbody>
-            {VisibleData.map(
+            {
+            data.map(
               (
                 {
                   ProductCode,
@@ -537,15 +623,13 @@ export default function Products_Table() {
               },
             )}
           </tbody>
-        </table>
+        </table>}
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
         <Pagination
-          AllData={AllData}
-          VisibleData={VisibleData}
-          SetVisibleData={SetVisibleData}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
         />
       </CardFooter>
       <ConfirmDeleteDialog

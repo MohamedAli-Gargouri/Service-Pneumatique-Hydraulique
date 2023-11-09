@@ -147,7 +147,7 @@ export default function App() {
           <Route key={index} path={route.path} element={route.element} />
           
         ))}
-        <Route path='*' key={routes.length+1}  element={<NotFound/>} />
+        {/*<Route path='*' key={routes.length+1}  element={<NotFound/>} />*/}
       </Routes>
     </div>
   );

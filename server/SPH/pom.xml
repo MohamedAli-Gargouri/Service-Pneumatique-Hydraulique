@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.www.sph-tn</groupId>
 	<artifactId>SPH</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.5.1-SNAPSHOT</version>
 	<name>SPH</name>
-	<description>This is the backened for SPH e commerce website.</description>
+	<description>This is the backened for SPH ecommerce website.</description>
 	<properties>
 		<java.version>20</java.version>
 	</properties>

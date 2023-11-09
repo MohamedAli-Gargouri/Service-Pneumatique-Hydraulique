@@ -45,7 +45,7 @@ public class NotificationController {
         else
         {
             PageRequest pageable =  PageRequest.of(Page, size);
-            return ResponseEntity.ok().body(repository.findAll((PageRequest) pageable));
+            return ResponseEntity.ok().body(repository.findAll(pageable));
         }
 
     }

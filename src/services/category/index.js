@@ -72,7 +72,7 @@ export const getSubCategories = async (size,page,getAll,accessToken) => {
     {
         const data={
         }
-        const response =axiosInstance.get(`${API_URL_GETALLSUBCATEGORIES}?size=${size}&page=${page}&getAll=${getAll}`,{
+        const response =axiosInstance.get(`${API_URL_GETALLSUBCATEGORIES}?size=${size}&Page=${page}&getAll=${getAll}`,{
             headers: {
                 Authorization: `Bearer ${accessToken}`,
               },

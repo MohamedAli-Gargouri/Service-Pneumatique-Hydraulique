@@ -6,6 +6,11 @@ arrayBufferToBase64.propTypes={
 readBinaryData.propTypes={
     file:PropTypes.any.isRequired,
 }
+getImageBlobUrl.propTypes={
+  extension:PropTypes.string.isRequired,
+  fileBinary:PropTypes.string.isRequired
+  
+}
 //This function encodes a binary ArrayBuffer to Base64
 export function arrayBufferToBase64(arrayBuffer) {
     // Step 1: Convert ArrayBuffer to Uint8Array
@@ -92,5 +97,33 @@ export function getFileExtensionFromArrayBuffer(arrayBuffer) {
 
   return fileExtension;
 }
+
+
+export function getImageBlobUrl(extension,fileBinary) {
+  return new Promise((resolve, reject) => {
+    // Convert the binary string to a Blob
+    const byteCharacters = atob(fileBinary);
+    const byteNumbers = new Array(byteCharacters.length);
+    
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: `image/${extension}` });
+    // Create a data URL from the Blob
+    const urlCreator = window.URL || window.webkitURL;
+    const imageUrl = urlCreator.createObjectURL(blob);
+
+    if (imageUrl) {
+      resolve(imageUrl);
+    } else {
+      reject(new Error('Failed to create Blob URL.'));
+    }
+  });
+}
+
+export default getImageBlobUrl;
+
   
 
