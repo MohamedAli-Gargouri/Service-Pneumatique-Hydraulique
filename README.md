@@ -1,4 +1,5 @@
-![SPH Logo](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/f7a29032-cab5-4c51-be21-262ffa04d408)
+![SPH Logo](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/ad25defe-a219-4912-91e2-d40ef71de7b9)
+
 
 ## Introduction
 
@@ -93,57 +94,63 @@ You're now ready to work on your project in IntelliJ IDEA with the necessary set
 <details>
 <summary>Authentification</summary>
    
-   
-![Screenshot 2023-11-06 210630](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/03a212c3-5f01-432b-ba8f-3ca9ce1e561d)
-   
-![Screenshot 2023-11-06 210649](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/e17b4e35-ad7b-456f-a4df-2e685d9a796a)
+![Screenshot 2023-11-16 211709](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/6df5a616-ddd5-413c-b488-0c54af4486c3)
+
+![Screenshot 2023-11-16 211722](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/49dd0228-f663-4755-9e71-22b7e7fedded)
+
+
 
 </details>
 
 <details>
 <summary>Presentation</summary>
    
-![Screenshot 2023-11-06 210423](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/0de1c0b1-6041-410e-8ae6-358ce8cdf069)
-   
-![Screenshot 2023-11-06 210536](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/e3963a54-f800-437c-9d89-41493e1d0b17)
-   
-![Screenshot 2023-11-06 210553](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/125cdc66-1624-4a87-a8bd-6903d9750c48)
+![Screenshot 2023-11-16 211534](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/b92a36e1-3fce-47d7-97b3-c024e26473b6)
 
-![Screenshot 2023-11-06 210611](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/a122b733-2f82-41e6-928a-32f76bc92a03)
+![Screenshot 2023-11-16 211600](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/b739a59c-c9fe-4c48-b885-b99fa62e6d7c)
+
+![Screenshot 2023-11-16 211631](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/03733b1e-6d82-4bea-9cea-d9495ac4db63)
+
+![Screenshot 2023-11-16 211652](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/d83fcb98-104c-43a4-a49f-a2d2b2ee6d90)
+
 
 </details>
 
 <details>
 <summary>Products</summary>
    
-![Screenshot 2023-11-06 210715](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/ad8e3122-3a5f-4ecc-b32f-bca768a1b671)
-   
-![Screenshot 2023-11-06 211810](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/94874b8a-380e-44be-8b63-6665c4dc9925)
-   
+![Screenshot 2023-11-16 211815](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/8f92fe50-b9a0-429b-94d1-9c6932f32f01)
+
+![Screenshot 2023-11-16 211838](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/dd2ec5d2-b330-4da6-a474-3f06f77a1a97)
+
+![Screenshot 2023-11-16 211901](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/d5d8d8e5-c227-4662-839f-babff726eac0)
+
+![Screenshot 2023-11-16 211936](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/ece6f8f5-35f7-4a1b-bc9f-deaa15c54a23)
 
 </details>
 
 <details>
 <summary>Control Center</summary>
    
-![Screenshot 2023-11-06 210751](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/7735aa68-b4ed-4b23-84de-fd6177aa6487)
-   
-![Screenshot 2023-11-06 210813](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/22cb0d6f-9746-48b8-b0d7-78508e99b3a2)
-   
-![Screenshot 2023-11-06 210905](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/92983891-b50e-4004-a39f-32af33894285)
-   
-![Screenshot 2023-11-06 210931](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/df9853df-eacb-46da-b1c4-13f2aaf2aec9)
-   
-![Screenshot 2023-11-06 211004](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/a1664f1c-d42c-4022-b440-31e20d4b41ea)
-   
-![Screenshot 2023-11-06 211204](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/faa50977-a3fa-43a6-9fa7-5f7a18964b82)
+![Screenshot 2023-11-16 212110](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/11b7a14a-c736-4459-a699-03093aeb549b)
 
-![Screenshot 2023-11-06 211220](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/d0be11dd-087b-4477-b19e-7c78d984c5a8)
-![Screenshot 2023-11-06 211239](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/abadacca-5440-4712-a3fa-aae2c11b63e9)
+![Screenshot 2023-11-16 212129](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/3b4021a3-15d7-4427-b187-383eee122ff4)
 
-![Screenshot 2023-11-06 211351](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/e9fcdfbb-7f40-442e-80a3-22d5aad74f23)
+![Screenshot 2023-11-16 212155](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/24bd9d49-1e1f-4830-a6a7-4d84740d9912)
 
-![Screenshot 2023-11-06 211515](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/b356904b-0b2f-47c7-88fc-2af49f5a6673)
+![Screenshot 2023-11-16 212230](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/36ac40d5-ee00-44f8-9087-c75fae7cab3e)
+
+![Screenshot 2023-11-16 212253](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/a94f1388-d4e6-4f8b-8479-54eee0839379)
+
+![Screenshot 2023-11-16 212315](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/29a957f5-bd5c-4397-bbb1-775a4d0e57fe)
+
+![Screenshot 2023-11-16 212340](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/6c8c16a7-fdb8-42a2-a02a-fb5ed3307a43)
+
+![Screenshot 2023-11-16 212354](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/929ac248-5c48-4ea6-b79a-0082788a4f00)
+
+![Screenshot 2023-11-16 212452](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/6bd10102-b5db-40b8-a908-7902dce6ea49)
+
+![Screenshot 2023-11-16 212518](https://github.com/DALI-1/Service-Pneumatique-Hydraulique/assets/99611104/0db1e4c7-509f-4cc5-ac89-f67b042e9cf1)
 
 
 </details>
