@@ -69,8 +69,8 @@ public class AuthService {
                 if (!file.exists() || !file.isFile()) {
                     throw new IOException("File not found or is not a regular file.");
                 }
-                String fileName = file.getName();
-                String fileExtension = fileName.substring(fileName.lastIndexOf('.'));
+                String fileName = file.getName().substring(0,file.getName().lastIndexOf('.'));
+                String fileExtension = fileName.substring(fileName.lastIndexOf('.')+1);
                 long fileSize = file.length();
                 byte[] fileBytes = Files.readAllBytes(file.toPath());
 

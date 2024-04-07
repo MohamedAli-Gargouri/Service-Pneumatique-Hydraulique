@@ -487,7 +487,7 @@
       }
     },
     "DialogMessages": {
-      "Session":
+      "Session": 
       {
         "Logout":"You logged out successfully.",
         "SessionExpired":"Session expired.."
@@ -504,24 +504,23 @@
         "selectInput":"Please select at least one option from the dropdown.",
         "emailInput":"Please fill in the  input with a valid Email.",
         "passwordInput":"Invalid password, Use at least 8 characters, one uppercase, one lowercase and one number.",
-        "confirmPasswordInput":"Confirm password does not match the password."
+        "confirmPasswordInput":"Confirm password does not match the password.",
+        "manySelectionError":"Please select only one option.",
+        "noSelectionError":"Please select an item."
+        
       },
       "Register": {
-        "Register_Success": "Your new account is registered successfully.",
-        "Register_Error": "Account registration failed.",
         "UsedEmail_Error": "The Email is used, please pick another.",
         "UsedPhoneNumber_Error": "The Phone Number is used, please pick another.",
         "UsedUsername_Error": "The username is used, please pick another."
       },
       "Login": {
-        "Login_Success": "You logged in successfully.",
-        "Login_Error": "Failed to log you in.",
         "WrongCreds_Error":"You inserted the wrong password or Username."
       },
       "Promise": {
-        "Pending": "Please wait for the task to complete...",
-        "Resolve": "Task Completed successfully.",
-        "Reject": "Task Failed."
+        "Pending": "Your request is being processed. Please wait a moment.",
+        "Resolve": "Success! Your request has been processed successfully.",
+        "Reject": "Oops! Something went wrong while processing your request. Please try again later."
       },
       "Cart": {
         "RemoveProduct": "Product removed from your cart.",
@@ -530,55 +529,21 @@
         "NoProducts":"You don't have any products in your cart." 
       },
       "MyOrders": {
-        "CreateOrder_Success": "Your order is submitted Successfully.",
-        "CreateOrder_Error": "Your order submission failed.",
-        "DeleteOrder_Success": "Your order is deleted successfully.",
-        "DeleteOrder_Error": "Your Order's deletion failed."
       },
       "Orders": {
         "CancelOrder_Title": "Cancel Order",
         "PauseOrder_Title": "Pause Order",
         "ResumeOrder_Title": "Resume Order",
         "SetOrderReady_Title": "Mark Order Ready",
-        "MarkOrderAsPaid_Title": "Mark Order as Paid",
-
-        "CancelOrder_Confirm": "Are you sure you want to cancel this client's order?",
-        "PauseOrder_Confirm": "Are you sure you want to Pause this client's order?",
-        "ResumeOrder_Confirm": "Are you sure you want to Resume this client's order?",
-        "SetOrderReady_Confirm": "Are you sure you want to mark this client's order as ready and waiting to be picked up from the store?",
-        "MarkOrderAsPaid_Confirm": "Are you sure you want mark this client's order as paid and closed?",
-
-        "CancelOrder_Success": "The Order is cancelled successfully.",
-        "PauseOrder_Success": "The Order is paused successfully.",
-        "ResumeOrder_Success": "The Order is resumed successfully.",
-        "SetOrderReady_Success": "The Order is now marked ready for pickup.",
-        "MarkOrderAsPaid_Success": "The Order is now marked paid and finished.",
-
-        "CancelOrder_Error": "The Order cancelation failed.",
-        "PauseOrder_Error": "The Order pause failed.",
-        "ResumeOrder_Error": "The Order resume failed.",
-        "SetOrderReady_Error": "The Order Markation as ready failed.",
-        "MarkOrderAsPaid_Error": "The Order markation as paid failed."
+        "MarkOrderAsPaid_Title": "Mark Order as Paid"
+        
       },
       "Order": {},
       "Products": {
         "DeleteProduct_Title": "Delete Product",
-
         "DeleteProduct_Confirm": "Are you sure you want to delete this product from your platform?",
-        "DeleteProduct_Success": "Product deleted successfully.",
-        "DeleteProduct_Error": "Product deletion failed",
-
-        "EditProduct_Success": "Product's information edited successfully.",
-        "EditProduct_Error": "Product's information edit failed",
-
-        "AddProduct_Success": "Product added successfully.",
         "AddProduct_ProductCodeExist_Error": "Please pick a different Product Code, this one is already in use.",
-        "AddProduct_Error": "Product add failed",
-
         "DeleteProductImg_Confirm": "Are you sure you want to delete this product image?",
-        "DeleteProductImg_Success": "Product Image deleted successfully.",
-        "DeleteProductImg_Error": "Product Image deletion failed",
-
         "ProductThreeImagesLimit_Error": "You cannot add more than three images per product."
       },
       "Category": {
@@ -586,22 +551,8 @@
         "DeleteCategory_Title": "Delete Category",
 
         "DeleteCategory_Confirm": "Are you sure you want to delete this Category from your platform? (Be careful, this will result on the removal of all products within this category!)",
-        "DeleteCategory_Success": "Your Category and all of its products are deleted successfully.",
-        "DeleteCategory_Error": "Your Category deletion failed.",
-
-        "EditCategory_Success": "Your Category edited successfully.",
-        "EditCategory_Error": "Your Category edited failed.",
-
-        "AddCategory_Success": "Your Category Added successfully",
-        "AddCategory_Error": "Your Category Add failed.",
         "AddCategory_NamedUsed": "Please pick another name for your new category, this one exists",
-
-        "AddSubCategory_Success": "Your sub-Category Added successfully",
-        "AddSubCategory_Error": "Your sub-Category Add failed.",
         "AddSubCategory_NamedUsed": "Please pick another name for your new sub-category, this one exists",
-        
-        "AddSubCategoryValue_Success": "Your sub-Category values saved successfully",
-        "AddSubCategoryValue_Error": "Your sub-Category values Add failed.",
         "AddSubCategoryValue_ValueUsed": "Sub-category values must be unique, please pick unique values."
       
       },
@@ -611,24 +562,12 @@
         "DeleteNotification_Confirm": "Are you sure you want to delete this Notification from your inbox? (This is permanent)",
         "DeleteNotification_Success": "Notification deleted successfully.",
         "DeleteMessage_Title": "Delete Message",
-        "DeleteMessage_Confirm": "Are you sure you want to delete this message from your inbox? (This is permanent)",
-        "DeleteMessage_Success": "Message deleted successfully.",
-
-        "DeleteNotification_Error": "Error, Notification is not deleted.",
-        "DeleteMessage_Error": "Error, Message is not deleted."
+        "DeleteMessage_Confirm": "Are you sure you want to delete this message from your inbox? (This is permanent)"
       },
       "Invoice": {
-        "DownloadInvoice_Success": "Invoice / Estimation is being downloaded.",
-        "DownloadInvoice_Error": "Invoice / Estimation failed to be downloaded.",
-
-        "AddProductInvoice_Success": "The selected products are added to your Invoice / Estimate",
-        "AddProductInvoice_Error": "Error, The selected products are not added to your Invoice / Estimate",
-        "DeleteProduct_Confirm": "Are you sure you want to delete this product from the Invoice / Estimate?",
-        "DeleteProduct_Success": "Product Deleted from the Invoice / Estimate"
+        "DeleteProduct_Confirm": "Are you sure you want to delete this product from the Invoice / Estimate?"
       },
       "Profile": {
-        "SaveProfile_Success": "Your new profile information are saved successfully.",
-        "SaveProfile_Error": "Error, Your new profile information are not saved successfully.",
         "SaveProfile_Error2": "Error, Your Image size, format or size is not supported.",
         "SaveProfile_Error3": "Error, the confirmation password is wrong, please type your current password."
       },
@@ -636,27 +575,17 @@
         "SetDeleteUser_Title": "Delete User",
 
         "SetDeleteUser_Confirm": "Are you sure you want to delete this user from your platform ?",
-        "SetDeleteUser_Success": "The user is deleted successfully.",
-        "SetDeleteUser_Error": "Error, could not delete the user.",
         "SetDeleteUser_Error2": "Error, you cannot delete the owner of the platform.",
-
         "SetAdmin_Title": "Set Admin",
 
         "SetAdmin_Confirm": "Are you sure you want to give this user admin privileges (This will give him access to do everything)",
-        "SetAdmin_Success": "The user is set to admin successfully.",
-        "SetAdmin_Error": "Error, could not set this user an admin.",
-
         "SetEmployee_Title": "Set Employee",
 
         "SetEmployee_Confirm": "Are you sure you want to give this user Employee privileges (This will give him access to deal with client orders)",
-        "SetEmployee_Success": "The user is set to Employee successfully.",
-        "SetEmployee_Error": "Error, could not set this user an Employee.",
-
         "SetUser_Title": "Remove privileges",
 
         "SetUser_Confirm": "Are you sure you want to remove this user's privileges? (This will make him a client with no special privileges)",
         "SetUser_Success": "The user's privileges are removed successfully.",
-        "SetUser_Error": "Error, could not set this user's privileges ",
         "SetUser_Error2": "Error, You cannot strip away the admin privileges from the platform owner."
       }
     }

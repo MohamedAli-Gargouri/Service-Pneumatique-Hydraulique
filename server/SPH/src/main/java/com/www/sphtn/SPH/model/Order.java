@@ -1,5 +1,6 @@
 package com.www.sphtn.SPH.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +27,7 @@ public class Order {
     private Date paidDateTime;
     private Date pauseDateTime;
     private Date readyDateTime;
-    @DBRef
+    @DBRef(lazy = true)
     private User createdBy;
     @DBRef
     private User resumedBy;
@@ -38,9 +39,7 @@ public class Order {
     private User paidBy;
     @DBRef
     private User readyBy;
-    @DBRef
+    @DBRef(lazy = false)
     private List<Product> orderProducts;
-
     private List<Integer> orderQuantities;
-
 }

@@ -6,6 +6,8 @@ import ProductCarousel from '../../components/Carousel/productsCarousel';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
+import { LightMode } from '../../redux/actions/LightActions';
 //Animations Config
 const Animations = {
   hidden: {
@@ -42,25 +44,28 @@ const Presentation = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
   });
-
+  const { t, i18n } = useTranslation();
+  var isLightMode = LightModeState == LightMode().type;
+  React.useEffect(() => {
+    isLightMode = LightModeState == LightMode().type;
+  }, [LightModeState]);
   return (
     <React.Fragment>
-      <div
-        className={`Presentation flex flex-wrap  items-center justify-center `}
-      >
+      <div className={`Presentation flex flex-wrap  items-center justify-center `}>
         <div className=" flex flex-col flex-wrap  justify-center items-center">
           <div className="col-span-12">
             <div className="flex items-center justify-center h-full mt-4">
-              <motion.hr 
-               initial={"hiddenLeft"}
-               variants={Animations}
-               animate={inView ? 'visible' : 'hiddenLeft'}
-               ref={ref} 
-              className="border-red-600 rounded-lg w-[30%] h-[0.35rem] bg-red-600 m-4" />
-              
-              <motion.img 
+              <motion.hr
+                initial={'hiddenLeft'}
+                variants={Animations}
+                animate={inView ? 'visible' : 'hiddenLeft'}
                 ref={ref}
-                initial={"hidden"}
+                className="border-accent-primary background-accent-primary rounded-lg w-[30%] h-[0.35rem] m-4"
+              />
+
+              <motion.img
+                ref={ref}
+                initial={'hidden'}
                 variants={Animations}
                 animate={inView ? 'visible' : 'hidden'}
                 loading="lazy"
@@ -69,11 +74,12 @@ const Presentation = () => {
                 className="block  object-fit: cover w-1/5 h-1/1 relative "
               />
               <motion.hr
-               initial={"hiddenRight"}
-               variants={Animations}
-               animate={inView ? 'visible' : 'hiddenRight'}
-               ref={ref}
-               className="border-red-600 rounded-lg w-[30%] h-[0.35rem] bg-red-600 m-4" />
+                initial={'hiddenRight'}
+                variants={Animations}
+                animate={inView ? 'visible' : 'hiddenRight'}
+                ref={ref}
+                className="border-accent-primary background-accent-primary rounded-lg w-[30%] h-[0.35rem] m-4"
+              />
             </div>
           </div>
 
@@ -83,12 +89,8 @@ const Presentation = () => {
                 <div className="grid grid-cols-12 gap-4">
                   <div className="col-span-12">
                     <div className="flex items-center justify-center">
-                      <Typography
-                        variant="h1"
-                        
-                        className={` text-center m-4 `}
-                      >
-                        <TranslatedText TranslationPath="Home.Services.Service_SubTitle" />
+                      <Typography variant="h1" className={` text-center m-4 `}>
+                        {t('Home.Services.Service_SubTitle')}
                       </Typography>
                     </div>
                   </div>
@@ -98,8 +100,8 @@ const Presentation = () => {
           </div>
           <div className="col-span-12">
             <div className="flex items-center justify-center h-full">
-              <Typography variant="paragraph"  className={`m-4 `}>
-                <TranslatedText TranslationPath="Home.Presentation" />{' '}
+              <Typography variant="paragraph" className={`m-4 `}>
+                {t('Home.Presentation')}
               </Typography>
             </div>
           </div>

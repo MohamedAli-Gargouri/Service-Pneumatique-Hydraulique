@@ -1,31 +1,26 @@
-import {
-  Input,
-  Button,
-  Select,
-  Option,
-  Textarea,
-} from '@material-tailwind/react';
+import { Input, Button, Select, Option, Textarea } from '@material-tailwind/react';
 import React from 'react';
-import TranslatedText,{TranslateString} from '../../utils/Translation';
 import AnimatedTab from '../../components/Tab';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import Gallery from '../../components/Gallery';
-import { CreateToast } from '../../utils/Toast';
-import ReactDOMServer from 'react-dom/server';
+import { Notify } from '../../utils/Toast/toast';
 import ProductImg1 from '../../assets/images/products/product_1.webp';
 import ProductImg2 from '../../assets/images/products/product_2.webp';
 import ProductImg3 from '../../assets/images/products/product_3.webp';
 import { LightMode } from '../../redux/actions/LightActions';
 import MultiSelect from '../Input/MultiSelect';
+import { useTranslation } from 'react-i18next';
 export default function Product() {
   const LightModeState = useSelector((state) => state.lightMode);
+  const { t, i18n } = useTranslation();
+  var isLightMode = LightModeState == LightMode().type;
   const AddedImages = React.useRef([]);
-  const [SelectedCategory,SetSelectedCategory]=React.useState("Comp")
-  const Categories=[
-    {categoryID:1,CategoryName:"Compressors",CategoryValue:"Comp"},
-    {categoryID:2,CategoryName:"Tubes",CategoryValue:"Tub"},
-    {categoryID:3,CategoryName:"Secheurs",CategoryValue:"Secheur"}
-  ]
+  const [SelectedCategory, SetSelectedCategory] = React.useState('Comp');
+  const Categories = [
+    { categoryID: 1, CategoryName: 'Compressors', CategoryValue: 'Comp' },
+    { categoryID: 2, CategoryName: 'Tubes', CategoryValue: 'Tub' },
+    { categoryID: 3, CategoryName: 'Secheurs', CategoryValue: 'Secheur' },
+  ];
 
   const SubCategories = [
     { SubCategory: 'Size, 100ML', id: 1 },
@@ -38,28 +33,27 @@ export default function Product() {
     { SubCategory: 'Power, 10cv', id: 4 },
   ]);
 
-
-  const Tabs=[
+  const Tabs = [
     {
-      TabID:1,
-      TabName:TranslateString("Product.Description"),
-      TabLogo:<i className="fa-solid fa-circle-info mx-2"></i>,
+      TabID: 1,
+      TabName: t('Product.Description'),
+      TabLogo: <i className="fa-solid fa-circle-info mx-2"></i>,
     },
     {
-      TabID:2,
-      TabName:TranslateString("Product.AddInfo"),
-      TabLogo:<i className="fa-solid fa-info mx-2"></i>,
+      TabID: 2,
+      TabName: t('Product.AddInfo'),
+      TabLogo: <i className="fa-solid fa-info mx-2"></i>,
     },
     {
-      TabID:3,
-      TabName:TranslateString("Product.Shipping"),
-      TabLogo:<i className="fa-solid fa-truck-fast mx-2"></i>,
-    }
-  ]
+      TabID: 3,
+      TabName: t('Product.Shipping'),
+      TabLogo: <i className="fa-solid fa-truck-fast mx-2"></i>,
+    },
+  ];
 
-  const LongDescRef=React.useRef();
-  const InformationRef=React.useRef();
-  const ShippingRef=React.useRef()
+  const LongDescRef = React.useRef();
+  const InformationRef = React.useRef();
+  const ShippingRef = React.useRef();
   const HandleEditProduct = () => {
     try {
       const promise = new Promise((resolve, reject) => {
@@ -68,32 +62,10 @@ export default function Product() {
         }, 3000);
       });
 
-      CreateToast(
-        promise,
-        "",
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Products.EditProduct_Success" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Products.EditProduct_Error" />,
-        ),
-        /*Custom request Errors message*/
-        [],
-        /*Custom Request Error codes */
-        [],
-        /*Default Connection Errors */
-        [
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
-        ],
-        'promise',
-        LightModeState == LightMode().type,
-      );
-    } catch (e) {/*Catch logic here */}
+      Notify.displayPromiseNotification(promise, [], [], LightModeState == LightMode().type);
+    } catch (e) {
+      /*Catch logic here */
+    }
   };
 
   return (
@@ -127,35 +99,26 @@ export default function Product() {
                 color: LightModeState == LightMode().type ? 'black' : 'white',
               },
             }}
-            label={
-              <TranslatedText TranslationPath="UCP.EditProduct.TabInputs.PName" />
-            }
+            label={t('UCP.EditProduct.TabInputs.PName')}
             icon={<i className="fa-solid fa-info"></i>}
           />
 
-
-
           <Select
-          label={TranslateString ("UCP.AddProduct.TabInputs.PCategory")}
-          value={SelectedCategory}
-          onChange={(e)=>SetSelectedCategory(e)}
-        >
-          {
-            Categories.map((Category)=>{
-              return(
-                <Option key={Category.categoryID} value={Category.CategoryValue}>{Category.CategoryName}</Option>
-              )
-
-            })
-          }
-        </Select>
+            label={t('UCP.AddProduct.TabInputs.PCategory')}
+            value={SelectedCategory}
+            onChange={(e) => SetSelectedCategory(e)}
+          >
+            {Categories.map((Category) => {
+              return (
+                <Option key={Category.categoryID} value={Category.CategoryValue}>
+                  {Category.CategoryName}
+                </Option>
+              );
+            })}
+          </Select>
 
           <div className=" w-full">
-            <MultiSelect
-              Data={SubCategories}
-              DataLabelName="SubCategory"
-              SelectData={MultiSelect_SelectData}
-            />
+            <MultiSelect Data={SubCategories} DataLabelName="SubCategory" SelectData={MultiSelect_SelectData} />
           </div>
 
           <Input
@@ -165,9 +128,7 @@ export default function Product() {
                 color: LightModeState == LightMode().type ? 'black' : 'white',
               },
             }}
-            label={
-              <TranslatedText TranslationPath="UCP.EditProduct.TabInputs.PPrice" />
-            }
+            label={t('UCP.EditProduct.TabInputs.PPrice')}
             icon={<i className="fa-solid fa-dollar-sign"></i>}
           />
 
@@ -178,9 +139,7 @@ export default function Product() {
                 color: LightModeState == LightMode().type ? 'black' : 'white',
               },
             }}
-            label={
-              <TranslatedText TranslationPath="UCP.EditProduct.TabInputs.PCode" />
-            }
+            label={t('UCP.EditProduct.TabInputs.PCode')}
             icon={<i className="fa-solid fa-barcode"></i>}
           />
 
@@ -191,9 +150,7 @@ export default function Product() {
                 color: LightModeState == LightMode().type ? 'black' : 'white',
               },
             }}
-            label={
-              <TranslatedText TranslationPath="UCP.EditProduct.TabInputs.StoreQuantity" />
-            }
+            label={t('UCP.EditProduct.TabInputs.StoreQuantity')}
             icon={<i className="fa-solid fa-store"></i>}
           />
           <Input
@@ -203,9 +160,7 @@ export default function Product() {
                 color: LightModeState == LightMode().type ? 'black' : 'white',
               },
             }}
-            label={
-              <TranslatedText TranslationPath="UCP.EditProduct.TabInputs.StockQuantity" />
-            }
+            label={t('UCP.EditProduct.TabInputs.StockQuantity')}
             icon={<i className="fa-solid fa-warehouse"></i>}
           />
           <Textarea
@@ -215,9 +170,7 @@ export default function Product() {
               },
             }}
             size="lg"
-            label={
-              TranslateString("UCP.EditProduct.TabInputs.SDescription")
-            }
+            label={t('UCP.EditProduct.TabInputs.SDescription')}
             defaultValue="Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus."
           />
 
@@ -225,43 +178,45 @@ export default function Product() {
         </div>
       </div>
       <div className="w-full">
+        <AnimatedTab
+          data={(() => {
+            const TempTabs = Tabs.map((tab, index) => ({
+              label: tab.TabName,
+              value: tab.TabName,
+              icon: tab.TabLogo,
+              desc: (
+                <Textarea
+                  key={index === 0 ? 'Tab0' : index === 1 ? 'Tab1' : 'Tab2'}
+                  ref={index === 0 ? LongDescRef : index === 1 ? InformationRef : ShippingRef}
+                  size="lg"
+                  label={
+                    index === 0
+                      ? t('UCP.EditProduct.TabFilter.LDescription')
+                      : index === 1
+                      ? t('UCP.EditProduct.TabFilter.Additonalinfo')
+                      : t('UCP.EditProduct.TabFilter.Shipping')
+                  }
+                  defaultValue={
+                    index === 0
+                      ? 'Best Product Description'
+                      : index === 1
+                      ? 'Best Product Additional Information'
+                      : 'Best Product Shipping policies'
+                  }
+                />
+              ),
+            }));
 
-      <AnimatedTab
-        data={(() => {
-          const TempTabs = Tabs.map((tab, index) => ({
-            label: tab.TabName,
-            value: tab.TabName,
-            icon: tab.TabLogo,
-            desc: (
-            <Textarea
-            key={index === 0 ? "Tab0" : index === 1 ? "Tab1" : "Tab2"}
-            ref={index === 0 ? LongDescRef : index === 1 ? InformationRef : ShippingRef}
-            size="lg"
-            label={
-              index === 0 ? TranslateString("UCP.EditProduct.TabFilter.LDescription") : index === 1 ? TranslateString("UCP.EditProduct.TabFilter.Additonalinfo") : TranslateString("UCP.EditProduct.TabFilter.Shipping")
-              
-            }
-            defaultValue={index === 0 ? "Best Product Description" : index === 1 ? "Best Product Additional Information" : "Best Product Shipping policies"}
-            />
-            ),
-          }));
-          
-          return TempTabs;
-        })()
-
-
-        }
-        DefaultSelectValue={TranslateString("Product.Description")}
-      />
+            return TempTabs;
+          })()}
+          DefaultSelectValue={t('Product.Description')}
+        />
       </div>
 
       <div className=" flex justify-center">
-        <Button
-          className=" flex items-center gap-3"
-          onClick={HandleEditProduct}
-        >
+        <Button className=" flex items-center gap-3" onClick={HandleEditProduct}>
           <i className="fa-solid fa-floppy-disk"></i>
-          <TranslatedText TranslationPath="UCP.EditProduct.TabActions.SaveProduct" />
+          {t('UCP.EditProduct.TabActions.SaveProduct')}
         </Button>
       </div>
     </React.Fragment>

@@ -1,7 +1,4 @@
-import {
-  MagnifyingGlassIcon,
-  ChevronUpDownIcon,
-} from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
 import ConfirmDeleteDialog from '../../components/Dialog/Confirm';
@@ -22,7 +19,7 @@ import Pagination from '../../utils/Table/Pagination';
 import SortData from '../../utils/Table/SortRows';
 import SearchRow from '../../utils/Table/Search';
 import TranslatedText from '../../utils/Translation';
-import { CreateToast } from '../../utils/Toast';
+import { Notify } from '../../utils/Toast/toast';
 import ReactDOMServer from 'react-dom/server';
 
 const TABLE_HEAD2_ContactNotification = [
@@ -35,27 +32,19 @@ const TABLE_HEAD2_ContactNotification = [
     value: 'Email',
   },
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.InboxTable.TabHeader.FirstName" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.InboxTable.TabHeader.FirstName" />,
     value: 'First Name',
   },
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.InboxTable.TabHeader.LastName" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.InboxTable.TabHeader.LastName" />,
     value: 'Last Name',
   },
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.InboxTable.TabHeader.PhoneNumber" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.InboxTable.TabHeader.PhoneNumber" />,
     value: 'Phone Number',
   },
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.InboxTable.TabHeader.Message" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.InboxTable.TabHeader.Message" />,
     value: 'Message',
   },
   { label: '', value: '' },
@@ -71,9 +60,7 @@ const TABLE_HEAD_OrderNotification = [
     value: 'Order',
   },
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.InboxTable.TabHeader.Message" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.InboxTable.TabHeader.Message" />,
     value: 'Message',
   },
   { label: '', value: '' },
@@ -118,7 +105,6 @@ const TABLE_ROWS_ContactNofiications = [
 ];
 
 export default function Inbox_Table() {
-
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
   const LightModeState = useSelector((state) => state.lightMode);
   const [SelectedTab, SetSelectedTab] = React.useState('Orders');
@@ -131,18 +117,14 @@ export default function Inbox_Table() {
 
   const TABS = [
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.InboxTable.TabFilter.Orders" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.InboxTable.TabFilter.Orders" />,
       value: 'Orders',
       Tab_fn: () => {
         SetSelectedTab('Orders');
       },
     },
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.InboxTable.TabFilter.Contacts" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.InboxTable.TabFilter.Contacts" />,
       value: 'Contacts',
       Tab_fn: () => {
         SetSelectedTab('Contacts');
@@ -158,32 +140,10 @@ export default function Inbox_Table() {
         }, 3000);
       });
 
-      CreateToast(
-        promise,
-        "",
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Success" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Error" />
-        ),
-        /*Custom request Errors message*/
-        [],
-        /*Custom Request Error codes */
-        [],
-        /*Default Connection Errors */
-        [
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
-        ],
-        'promise',
-        LightModeState == LightMode().type,
-      );
-    } catch (e) {/*Catch Logic here*/}
+      Notify.displayPromiseNotification(promise, [], [], LightModeState == LightMode().type);
+    } catch (e) {
+      /*Catch Logic here*/
+    }
   };
 
   const HandleMessageDelete = () => {
@@ -194,44 +154,14 @@ export default function Inbox_Table() {
         }, 3000);
       });
 
-      CreateToast(
-        promise,
-        "",
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Success" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Error" />,
-        ),
-        /*Custom request Errors message*/
-        [],
-        /*Custom Request Error codes */
-        [],
-        /*Default Connection Errors */
-        [
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
-        ],
-        'promise',
-        LightModeState == LightMode().type,
-      );
-    } catch (e) {/*Catch logic here */}
+      Notify.displayPromiseNotification(promise, [], [], LightModeState == LightMode().type);
+    } catch (e) {
+      /*Catch logic here */
+    }
   };
   return (
     <>
-      <CardHeader
-        floated={false}
-        shadow={false}
-        className={`rounded-none bg-transparent ${
-          LightModeState == LightMode().type
-            ? 'tc-whiteTheme_T1 '
-            : 'tc-darkTheme_T1 '
-        }`}
-      >
+      <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent `}>
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
             <Typography variant="h5">
@@ -264,9 +194,9 @@ export default function Inbox_Table() {
               label={<TranslatedText TranslationPath="Global.Actions.Search" />}
               onChange={(e) => {
                 SearchRow(
-                  SelectedTab=="Orders"?TABLE_ROWS_OrderNotifications:TABLE_ROWS_ContactNofiications,
-                  SelectedTab=="Orders"?AllOrders:AllContacts,
-                  SelectedTab=="Orders"?SetAllOrders:SetAllContacts,
+                  SelectedTab == 'Orders' ? TABLE_ROWS_OrderNotifications : TABLE_ROWS_ContactNofiications,
+                  SelectedTab == 'Orders' ? AllOrders : AllContacts,
+                  SelectedTab == 'Orders' ? SetAllOrders : SetAllContacts,
                   e,
                 );
               }}
@@ -287,7 +217,7 @@ export default function Inbox_Table() {
               {SelectedTab == 'Orders'
                 ? TABLE_HEAD_OrderNotification.map((head, index) => (
                     <th
-                      key={"Orders_TableHead"+index}
+                      key={'Orders_TableHead' + index}
                       onClick={() => {
                         if (index !== TABLE_HEAD_OrderNotification.length - 1)
                           SortData(
@@ -307,10 +237,7 @@ export default function Inbox_Table() {
                       >
                         {head.label}{' '}
                         {index !== TABLE_HEAD_OrderNotification.length - 1 && (
-                          <ChevronUpDownIcon
-                            strokeWidth={2}
-                            className="h-4 w-4"
-                          />
+                          <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                         )}
                       </Typography>
                     </th>
@@ -318,10 +245,7 @@ export default function Inbox_Table() {
                 : TABLE_HEAD2_ContactNotification.map((head, index) => (
                     <th
                       onClick={() => {
-                        if (
-                          index !==
-                          TABLE_HEAD2_ContactNotification.length - 1
-                        )
+                        if (index !== TABLE_HEAD2_ContactNotification.length - 1)
                           SortData(
                             head.value,
                             sortDirection,
@@ -331,7 +255,7 @@ export default function Inbox_Table() {
                             'Inbox_Contact',
                           );
                       }}
-                      key={"Contacts_TableHead"+index}
+                      key={'Contacts_TableHead' + index}
                       className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                     >
                       <Typography
@@ -339,12 +263,8 @@ export default function Inbox_Table() {
                         className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                       >
                         {head.label}{' '}
-                        {index !==
-                          TABLE_HEAD2_ContactNotification.length - 1 && (
-                          <ChevronUpDownIcon
-                            strokeWidth={2}
-                            className="h-4 w-4"
-                          />
+                        {index !== TABLE_HEAD2_ContactNotification.length - 1 && (
+                          <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                         )}
                       </Typography>
                     </th>
@@ -359,137 +279,117 @@ export default function Inbox_Table() {
 
                     index,
                   ) => {
-                    const isLast =
-                      index === TABLE_ROWS_OrderNotifications.length - 1;
-                    const classes = isLast
-                      ? 'p-4'
-                      : 'p-4 border-b border-blue-gray-50';
+                    const isLast = index === TABLE_ROWS_OrderNotifications.length - 1;
+                    const classes = isLast ? 'p-4' : 'p-4 border-b border-blue-gray-50';
 
                     return (
-                      <tr key={"Order"+Order.Notification_ID}>
+                      <tr key={'Order' + Order.Notification_ID}>
                         <td className={classes}>
-                            <Typography variant="small" className="font-normal">
-                              #{Order.Notification_ID}
-                            </Typography>
+                          <Typography variant="small" className="font-normal">
+                            #{Order.Notification_ID}
+                          </Typography>
                         </td>
 
                         <td className={classes}>
-                            <Typography variant="small" className="font-normal">
-                              #{Order.OrderID}
-                            </Typography>
+                          <Typography variant="small" className="font-normal">
+                            #{Order.OrderID}
+                          </Typography>
                         </td>
                         <td className={classes}>
-                            <Chip
-                              size="sm"
-                              variant="filled"
-                              value={Order.Notification_Message}
-                              color={
-                                Order.NotificationType === 'Good'
-                                  ? 'green'
-                                  : Order.NotificationType === 'Normal'
-                                  ? 'amber'
-                                  : 'red'
-                              }
-                            />
-
+                          <Chip
+                            size="sm"
+                            variant="filled"
+                            value={Order.Notification_Message}
+                            color={
+                              Order.NotificationType === 'Good'
+                                ? 'green'
+                                : Order.NotificationType === 'Normal'
+                                ? 'amber'
+                                : 'red'
+                            }
+                          />
                         </td>
 
                         <td className={classes}>
-                            <IconButton
-                              variant="text"
-                              onClick={() => {
-                                SetOpenDeleteDialog(true);
-                              }}
-                            >
-                              <i className="fa-solid fa-trash"></i>
-                            </IconButton>
+                          <IconButton
+                            variant="text"
+                            onClick={() => {
+                              SetOpenDeleteDialog(true);
+                            }}
+                          >
+                            <i className="fa-solid fa-trash"></i>
+                          </IconButton>
                         </td>
                       </tr>
                     );
                   },
                 )
-              : AllContacts.map(
-                  (
-                    Contact,
-                    index,
-                  ) => {
-                    const isLast =
-                      index === TABLE_ROWS_OrderNotifications.length - 1;
-                    const classes = isLast
-                      ? 'p-4'
-                      : 'p-4 border-b border-blue-gray-50';
+              : AllContacts.map((Contact, index) => {
+                  const isLast = index === TABLE_ROWS_OrderNotifications.length - 1;
+                  const classes = isLast ? 'p-4' : 'p-4 border-b border-blue-gray-50';
 
-                    return (
-                      <tr key={"Contacts"+Contact.Notification_ID}>
-                        <td className={classes}>
-                            <Typography variant="small" className="font-normal">
-                              #{Contact.Notification_ID}
-                            </Typography>
-                        </td>
+                  return (
+                    <tr key={'Contacts' + Contact.Notification_ID}>
+                      <td className={classes}>
+                        <Typography variant="small" className="font-normal">
+                          #{Contact.Notification_ID}
+                        </Typography>
+                      </td>
 
-                        <td className={classes}>
+                      <td className={classes}>
+                        <Typography variant="small" className="font-normal">
+                          {Contact.Email}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography variant="small" className="font-normal">
+                          {Contact.F_Name}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography variant="small" className="font-normal">
+                          {Contact.L_Name}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography variant="small" className="font-normal">
+                          {Contact.PhoneNumber}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Chip
+                          size="sm"
+                          variant="filled"
+                          value={Contact.Notification_Message}
+                          color={
+                            Contact.NotificationType === 'Good'
+                              ? 'green'
+                              : Contact.NotificationType === 'Normal'
+                              ? 'amber'
+                              : 'red'
+                          }
+                        />
+                      </td>
 
-                            <Typography variant="small" className="font-normal">
-                              {Contact.Email}
-                            </Typography>
-
-                        </td>
-                        <td className={classes}>
-
-                            <Typography variant="small" className="font-normal">
-                              {Contact.F_Name}
-                            </Typography>
-
-                        </td>
-                        <td className={classes}>
-                            <Typography variant="small" className="font-normal">
-                              {Contact.L_Name}
-                            </Typography>
-                        </td>
-                        <td className={classes}>
-
-                            <Typography variant="small" className="font-normal">
-                              {Contact.PhoneNumber}
-                            </Typography>
-
-                        </td>
-                        <td className={classes}>
-
-                            <Chip
-                              size="sm"
-                              variant="filled"
-                              value={Contact.Notification_Message}
-                              color={
-                                Contact.NotificationType === 'Good'
-                                  ? 'green'
-                                  : Contact.NotificationType === 'Normal'
-                                  ? 'amber'
-                                  : 'red'
-                              }
-                            />
-
-                        </td>
-
-                        <td className={classes}>
-                            <IconButton
-                              variant="text"
-                              onClick={() => {
-                                SetOpenDeleteDialog(true);
-                              }}
-                            >
-                              <i className="fa-solid fa-trash"></i>
-                            </IconButton>
-                        </td>
-                      </tr>
-                    );
-                  },
-                )}
+                      <td className={classes}>
+                        <IconButton
+                          variant="text"
+                          onClick={() => {
+                            SetOpenDeleteDialog(true);
+                          }}
+                        >
+                          <i className="fa-solid fa-trash"></i>
+                        </IconButton>
+                      </td>
+                    </tr>
+                  );
+                })}
           </tbody>
         </table>
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
         <Pagination
-          AllData={SelectedTab=='Orders'?AllOrders:AllContacts}
+          AllData={SelectedTab == 'Orders' ? AllOrders : AllContacts}
           VisibleData={VisibleData}
           SetVisibleData={SetVisibleData}
           currentPage={currentPage}
@@ -505,12 +405,8 @@ export default function Inbox_Table() {
             SetOpenDeleteDialog(!OpenDeleteDialog);
           }}
           Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
-          Title={
-            <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Title" />
-          }
-          Content={
-            <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Confirm" />
-          }
+          Title={<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Title" />}
+          Content={<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteNotification_Confirm" />}
         />
       ) : (
         <ConfirmDeleteDialog
@@ -521,12 +417,8 @@ export default function Inbox_Table() {
             SetOpenDeleteDialog(!OpenDeleteDialog);
           }}
           Icon={'<i className="fa-solid fa-trash h-5 w-5 mx-1"></i>'}
-          Title={
-            <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Title" />
-          }
-          Content={
-            <TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Confirm" />
-          }
+          Title={<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Title" />}
+          Content={<TranslatedText TranslationPath="UCP.DialogMessages.Inbox.DeleteMessage_Confirm" />}
         />
       )}
     </>

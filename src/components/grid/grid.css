@@ -1,0 +1,49 @@
+.maingrdContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.toolbar{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.grdHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    
+}
+
+@media screen and (max-width: 768px) {
+    .grdHeader {
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+    }
+    .toolbar{
+        justify-content: center;
+        align-items: center;    
+    }
+}
+
+/* Hiding the drag to group message */
+.dx-datagrid-group-panel .dx-group-panel-message{
+ display: none;
+}
+
+ /* increasing the table header font */
+.dx-header-row .dx-header-filter-indicator.dx-text-content-alignment-left, .dx-header-row .dx-sort-indicator.dx-text-content-alignment-left{
+ font-weight: 900;
+}
+ /* increasing the table header font when hidden */
+.dx-field-item-label-text{
+    font-weight: 900;
+}

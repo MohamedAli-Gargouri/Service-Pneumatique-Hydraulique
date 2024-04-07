@@ -30,7 +30,7 @@ import SortData from '../../utils/Table/SortRows';
 import TabFilter from '../../utils/Table/TabFilter';
 import SearchRow from '../../utils/Table/Search';
 import TranslatedText from '../../utils/Translation';
-import { CreateToast } from '../../utils/Toast';
+import { Notify } from '../../utils/Toast/toast';
 const TABLE_HEAD = [
   {
     label: <TranslatedText TranslationPath="UCP.Orders.TabHeader.OrderID" />,
@@ -41,9 +41,7 @@ const TABLE_HEAD = [
     value: 'Client',
   },
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.Orders.TabHeader.ClientNumber" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.Orders.TabHeader.ClientNumber" />,
     value: 'Number',
   },
   {
@@ -136,16 +134,11 @@ const TABLE_ROWS = [
 
 export default function Orders_Table() {
   const LightModeState = useSelector((state) => state.lightMode);
-  const [OpenConfirmDialog_Cancel, SetOpenConfirmDialog_Cancel] =
-    React.useState(false);
-  const [OpenConfirmDialog_Pause, SetOpenConfirmDialog_Pause] =
-    React.useState(false);
-  const [OpenConfirmDialog_Resume, SetOpenConfirmDialog_Resume] =
-    React.useState(false);
-  const [OpenConfirmDialog_Ready, SetOpenConfirmDialog_Ready] =
-    React.useState(false);
-  const [OpenConfirmDialog_Pay, SetOpenConfirmDialog_Pay] =
-    React.useState(false);
+  const [OpenConfirmDialog_Cancel, SetOpenConfirmDialog_Cancel] = React.useState(false);
+  const [OpenConfirmDialog_Pause, SetOpenConfirmDialog_Pause] = React.useState(false);
+  const [OpenConfirmDialog_Resume, SetOpenConfirmDialog_Resume] = React.useState(false);
+  const [OpenConfirmDialog_Ready, SetOpenConfirmDialog_Ready] = React.useState(false);
+  const [OpenConfirmDialog_Pay, SetOpenConfirmDialog_Pay] = React.useState(false);
 
   const [AllData, SetAllData] = React.useState(TABLE_ROWS);
   const [VisibleData, SetVisibleData] = React.useState([]);
@@ -156,40 +149,32 @@ export default function Orders_Table() {
     {
       label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.All" />,
       value: 'All',
-      Filter_fn: () =>
-        TabFilter('status', 'All', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'All', TABLE_ROWS, SetAllData, currentPage),
     },
     {
       label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.Paid" />,
       value: 'Paid',
-      Filter_fn: () =>
-        TabFilter('status', 'Paid', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Paid', TABLE_ROWS, SetAllData, currentPage),
     },
     {
       label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.Ready" />,
       value: 'Ready',
-      Filter_fn: () =>
-        TabFilter('status', 'Ready', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Ready', TABLE_ROWS, SetAllData, currentPage),
     },
     {
       label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.Pending" />,
       value: 'Pending',
-      Filter_fn: () =>
-        TabFilter('status', 'Pending', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Pending', TABLE_ROWS, SetAllData, currentPage),
     },
     {
       label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.Paused" />,
       value: 'Paused',
-      Filter_fn: () =>
-        TabFilter('status', 'Paused', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Paused', TABLE_ROWS, SetAllData, currentPage),
     },
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.Orders.TabFilter.Cancelled" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.Orders.TabFilter.Cancelled" />,
       value: 'Cancelled',
-      Filter_fn: () =>
-        TabFilter('status', 'Cancelled', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Cancelled', TABLE_ROWS, SetAllData, currentPage),
     },
   ];
 
@@ -201,32 +186,10 @@ export default function Orders_Table() {
         }, 3000);
       });
 
-      CreateToast(
-        promise,
-        "",
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Success" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Error" />
-        ),
-        /*Custom request Errors message*/
-        [],
-        /*Custom Request Error codes */
-        [],
-        /*Default Connection Errors */
-        [
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
-        ],
-        'promise',
-        LightModeState == LightMode().type,
-      );
-    } catch (e) {/*Catch Logic here*/}
+      Notify.displayPromiseNotification(promise, [], [], LightModeState == LightMode().type);
+    } catch (e) {
+      /*Catch Logic here*/
+    }
   };
 
   const HandleOrderPause = () => {
@@ -237,32 +200,10 @@ export default function Orders_Table() {
         }, 3000);
       });
 
-      CreateToast(
-        promise,
-        "",
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Success" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Error" />,
-        ),
-        /*Custom request Errors message*/
-        [],
-        /*Custom Request Error codes */
-        [],
-        /*Default Connection Errors */
-        [
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
-        ],
-        'promise',
-        LightModeState == LightMode().type,
-      );
-    } catch (e) {/*Catch Logic here*/}
+      Notify.displayPromiseNotification(promise, [], [], LightModeState == LightMode().type);
+    } catch (e) {
+      /*Catch Logic here*/
+    }
   };
 
   const HandleOrderResume = () => {
@@ -273,32 +214,10 @@ export default function Orders_Table() {
         }, 3000);
       });
 
-      CreateToast(
-        promise,
-        "",
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Success" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Error" />,
-        ),
-        /*Custom request Errors message*/
-        [],
-        /*Custom Request Error codes */
-        [],
-        /*Default Connection Errors */
-        [
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
-        ],
-        'promise',
-        LightModeState == LightMode().type,
-      );
-    } catch (e) {/*Catch Logic here*/}
+      Notify.displayPromiseNotification(promise, [], [], LightModeState == LightMode().type);
+    } catch (e) {
+      /*Catch Logic here*/
+    }
   };
 
   const HandleOrderMarkedPaid = () => {
@@ -309,32 +228,10 @@ export default function Orders_Table() {
         }, 1000);
       });
 
-      CreateToast(
-        promise,
-        "",
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Success" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Error" />,
-        ),
-        /*Custom request Errors message*/
-        [],
-        /*Custom Request Error codes */
-        [],
-        /*Default Connection Errors */
-        [
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
-        ],
-        'promise',
-        LightModeState == LightMode().type,
-      );
-    } catch (e) {/*Catch Logic here*/}
+      Notify.displayPromiseNotification(promise, [], [], LightModeState == LightMode().type);
+    } catch (e) {
+      /*Catch Logic here*/
+    }
   };
 
   const HandleOrderMarkedReady = () => {
@@ -345,45 +242,15 @@ export default function Orders_Table() {
         }, 1000);
       });
 
-      CreateToast(
-        promise,
-        "",
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Success" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />,
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Error" />,
-        ),
-        /*Custom request Errors message*/
-        [],
-        /*Custom Request Error codes */
-        [],
-        /*Default Connection Errors */
-        [
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
-        ],
-        'promise',
-        LightModeState == LightMode().type,
-      );
-    } catch (e) {/*Catch Logic here*/}
+      Notify.displayNotification(promise, [], [], LightModeState == LightMode().type);
+    } catch (e) {
+      /*Catch Logic here*/
+    }
   };
 
   return (
     <>
-      <CardHeader
-        floated={false}
-        shadow={false}
-        className={`rounded-none bg-transparent ${
-          LightModeState == LightMode().type
-            ? 'tc-whiteTheme_T1 '
-            : 'tc-darkTheme_T1 '
-        }`}
-      >
+      <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent `}>
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
             <Typography variant="h5">
@@ -435,14 +302,7 @@ export default function Orders_Table() {
                 <th
                   onClick={() => {
                     if (index !== TABLE_HEAD.length - 1)
-                      SortData(
-                        head.value,
-                        sortDirection,
-                        setSortDirection,
-                        VisibleData,
-                        SetVisibleData,
-                        'Orders',
-                      );
+                      SortData(head.value, sortDirection, setSortDirection, VisibleData, SetVisibleData, 'Orders');
                   }}
                   key={head.value}
                   className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
@@ -452,164 +312,142 @@ export default function Orders_Table() {
                     className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                   >
                     {head.label}{' '}
-                    {index !== TABLE_HEAD.length - 1 && (
-                      <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
-                    )}
+                    {index !== TABLE_HEAD.length - 1 && <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />}
                   </Typography>
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {VisibleData.map(
-              (
-                {
-                  img,
-                  name,
-                  email,
-                  Total,
-                  status,
-                  number,
-                  OrderID,
-                  online,
-                  date,
-                },
-                index,
-              ) => {
-                const isLast = index === TABLE_ROWS.length - 1;
-                const classes = isLast
-                  ? 'p-4'
-                  : 'p-4 border-b border-blue-gray-50';
+            {VisibleData.map(({ img, name, email, Total, status, number, OrderID, online, date }, index) => {
+              const isLast = index === TABLE_ROWS.length - 1;
+              const classes = isLast ? 'p-4' : 'p-4 border-b border-blue-gray-50';
 
-                return (
-                  <tr key={OrderID}>
-                    <td className={classes}>
+              return (
+                <tr key={OrderID}>
+                  <td className={classes}>
+                    <div className="flex flex-col">
+                      <Typography variant="small" className="font-normal">
+                        #{OrderID}
+                      </Typography>
+                    </div>
+                  </td>
+
+                  <td className={classes}>
+                    <div className="flex items-center gap-3">
+                      <Avatar src={img} alt={name} size="sm" />
                       <div className="flex flex-col">
                         <Typography variant="small" className="font-normal">
-                          #{OrderID}
+                          {name}
+                        </Typography>
+                        <Typography variant="small" className="font-normal opacity-70">
+                          {email}
                         </Typography>
                       </div>
-                    </td>
-
-                    <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <Avatar src={img} alt={name} size="sm" />
-                        <div className="flex flex-col">
-                          <Typography variant="small" className="font-normal">
-                            {name}
-                          </Typography>
-                          <Typography
-                            variant="small"
-                            className="font-normal opacity-70"
-                          >
-                            {email}
-                          </Typography>
-                        </div>
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <div className="flex flex-col">
-                        <Typography variant="small" className="font-normal">
-                          {number}
-                        </Typography>
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <div className="w-max">
-                        <Chip
-                          size="sm"
-                          variant="filled"
-                          value={status}
-                          color={
-                            status === 'Paid' || status === 'Ready'
-                              ? 'green'
-                              : status === 'Pending'
-                              ? 'amber'
-                              : status === 'Paused'
-                              ? 'pink'
-                              : 'red'
-                          }
-                        />
-                      </div>
-                    </td>
-                    <td className={classes}>
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <div className="flex flex-col">
                       <Typography variant="small" className="font-normal">
-                        {date}
+                        {number}
                       </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography variant="small" className="font-normal">
-                        {Total} TND
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Tooltip content="Inspect Order">
-                        <IconButton
-                          variant="text"
-                          onClick={() => {
-                            window.location.href = '/UCP/Order';
-                          }}
-                        >
-                          <EyeIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <div className="w-max">
+                      <Chip
+                        size="sm"
+                        variant="filled"
+                        value={status}
+                        color={
+                          status === 'Paid' || status === 'Ready'
+                            ? 'green'
+                            : status === 'Pending'
+                            ? 'amber'
+                            : status === 'Paused'
+                            ? 'pink'
+                            : 'red'
+                        }
+                      />
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <Typography variant="small" className="font-normal">
+                      {date}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography variant="small" className="font-normal">
+                      {Total} TND
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Tooltip content="Inspect Order">
+                      <IconButton
+                        variant="text"
+                        onClick={() => {
+                          window.location.href = '/UCP/Order';
+                        }}
+                      >
+                        <EyeIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
 
-                      <Tooltip content="Mark Order as PAID">
-                        <IconButton
-                          variant="text"
-                          onClick={() => {
-                            SetOpenConfirmDialog_Pay(true);
-                          }}
-                        >
-                          <CurrencyDollarIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip content="Mark Order as READY">
-                        <IconButton
-                          variant="text"
-                          onClick={() => {
-                            SetOpenConfirmDialog_Ready(true);
-                          }}
-                        >
-                          <i className="fa-solid fa-clipboard-check"></i>
-                        </IconButton>
-                      </Tooltip>
+                    <Tooltip content="Mark Order as PAID">
+                      <IconButton
+                        variant="text"
+                        onClick={() => {
+                          SetOpenConfirmDialog_Pay(true);
+                        }}
+                      >
+                        <CurrencyDollarIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip content="Mark Order as READY">
+                      <IconButton
+                        variant="text"
+                        onClick={() => {
+                          SetOpenConfirmDialog_Ready(true);
+                        }}
+                      >
+                        <i className="fa-solid fa-clipboard-check"></i>
+                      </IconButton>
+                    </Tooltip>
 
-                      <Tooltip content="Resume Order">
-                        <IconButton
-                          variant="text"
-                          onClick={() => {
-                            SetOpenConfirmDialog_Resume(true);
-                          }}
-                        >
-                          <i className="fa-solid fa-play"></i>
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip content="Pause Order">
-                        <IconButton
-                          variant="text"
-                          onClick={() => {
-                            SetOpenConfirmDialog_Pause(true);
-                          }}
-                        >
-                          <PauseIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip content="Cancel Order">
-                        <IconButton
-                          variant="text"
-                          onClick={() => {
-                            SetOpenConfirmDialog_Cancel(true);
-                          }}
-                        >
-                          <XMarkIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                    </td>
-                  </tr>
-                );
-              },
-            )}
+                    <Tooltip content="Resume Order">
+                      <IconButton
+                        variant="text"
+                        onClick={() => {
+                          SetOpenConfirmDialog_Resume(true);
+                        }}
+                      >
+                        <i className="fa-solid fa-play"></i>
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip content="Pause Order">
+                      <IconButton
+                        variant="text"
+                        onClick={() => {
+                          SetOpenConfirmDialog_Pause(true);
+                        }}
+                      >
+                        <PauseIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip content="Cancel Order">
+                      <IconButton
+                        variant="text"
+                        onClick={() => {
+                          SetOpenConfirmDialog_Cancel(true);
+                        }}
+                      >
+                        <XMarkIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </CardBody>
@@ -630,12 +468,8 @@ export default function Orders_Table() {
           SetOpenConfirmDialog_Cancel(!OpenConfirmDialog_Cancel);
         }}
         Icon={'<i className="fa-solid fa-ban h-5 w-5 mx-1"></i>'}
-        Title={
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Title" />
-        }
-        Content={
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Confirm" />
-        }
+        Title={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Title" />}
+        Content={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.CancelOrder_Confirm" />}
       />
       <ConfirmDialog
         color="yellow"
@@ -645,12 +479,8 @@ export default function Orders_Table() {
           SetOpenConfirmDialog_Pause(!OpenConfirmDialog_Pause);
         }}
         Icon={'<i className="fa-solid fa-circle-pause h-5 w-5 mx-1"></i>'}
-        Title={
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Title" />
-        }
-        Content={
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Confirm" />
-        }
+        Title={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Title" />}
+        Content={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.PauseOrder_Confirm" />}
       />
       <ConfirmDialog
         color="green"
@@ -660,12 +490,8 @@ export default function Orders_Table() {
           SetOpenConfirmDialog_Resume(!OpenConfirmDialog_Resume);
         }}
         Icon={'<i className="fa-solid fa-play h-5 w-5 mx-1"></i>'}
-        Title={
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Title" />
-        }
-        Content={
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Confirm" />
-        }
+        Title={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Title" />}
+        Content={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.ResumeOrder_Confirm" />}
       />
       <ConfirmDialog
         color="green"
@@ -675,12 +501,8 @@ export default function Orders_Table() {
           SetOpenConfirmDialog_Ready(!OpenConfirmDialog_Ready);
         }}
         Icon={'<i className="fa-solid fa-clipboard-check h-5 w-5 mx-1"></i>'}
-        Title={
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Title" />
-        }
-        Content={
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Confirm" />
-        }
+        Title={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Title" />}
+        Content={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.SetOrderReady_Confirm" />}
       />
       <ConfirmDialog
         color="green"
@@ -690,12 +512,8 @@ export default function Orders_Table() {
           SetOpenConfirmDialog_Pay(!OpenConfirmDialog_Pay);
         }}
         Icon={'<i className="fa-solid fa-money-bill-1-wave w-5 h-5 mx-1"></i>'}
-        Title={
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Title" />
-        }
-        Content={
-          <TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Confirm" />
-        }
+        Title={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Title" />}
+        Content={<TranslatedText TranslationPath="UCP.DialogMessages.Orders.MarkOrderAsPaid_Confirm" />}
       />
     </>
   );

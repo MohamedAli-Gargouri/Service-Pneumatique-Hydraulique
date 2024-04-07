@@ -1,6 +1,5 @@
 import { Typography, Card } from '@material-tailwind/react';
 import React from 'react';
-import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
 import ReactCardFlip from 'react-card-flip';
@@ -19,6 +18,7 @@ import websiteBackgroundimg from '../../assets/images/partners/WebsiteBackground
 import useElementInViewport from '../../utils/hooks';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
 //Animations Config
 const Animations = {
   hidden: {
@@ -122,54 +122,47 @@ const Partners = () => {
     },
   ];
   const LightModeState = useSelector((state) => state.lightMode);
-  const [PartnersCards, SetPartnersCards] = React.useState(
-    Array(Partners.length).fill(true),
-  );
-  const PartnersGridRef = React.useRef()
-  const HandleShowcase=()=>
-  {
-        SetPartnersCards(Array(Partners.length).fill(false));
-  
-  }
-  const IsElementInView=useElementInViewport(PartnersGridRef,0,HandleShowcase,true)
+  const [PartnersCards, SetPartnersCards] = React.useState(Array(Partners.length).fill(true));
+  const PartnersGridRef = React.useRef();
+  const HandleShowcase = () => {
+    SetPartnersCards(Array(Partners.length).fill(false));
+  };
+  const IsElementInView = useElementInViewport(PartnersGridRef, 0, HandleShowcase, true);
+  const { t, i18n } = useTranslation();
+  var isLightMode = LightModeState == LightMode().type;
+  React.useEffect(() => {
+    isLightMode = LightModeState == LightMode().type;
+  }, [LightModeState]);
   const HandleCardFlip = (index) => {
     const Prevstate = [...PartnersCards];
     Prevstate[index] = !Prevstate[index];
     SetPartnersCards(Prevstate);
   };
 
-
   return (
     <React.Fragment>
-      <div
-        className={`flex items-center justify-center h-full pt-4 pb-4 ${
-          LightModeState == LightMode().type
-            ? 'bg-whiteTheme_T2'
-            : 'bg-darkTheme_T2'
-        } `}
-      >
-        <motion.hr 
-        initial={"hiddenLeft"}
-        variants={Animations}
-        animate={inView ? 'visible' : 'hiddenLeft'}
-        ref={ref}  
-        className=" border-red-600 rounded-lg w-[30%] h-[0.35rem] bg-red-600 m-4" />
+      <div className={`flex items-center justify-center h-full pt-4 pb-4 `}>
+        <motion.hr
+          initial={'hiddenLeft'}
+          variants={Animations}
+          animate={inView ? 'visible' : 'hiddenLeft'}
+          ref={ref}
+          className="border-accent-primary background-accent-primary rounded-lg w-[30%] h-[0.35rem] m-4"
+        />
         <Typography variant="h4" className={` text-center font-extrabold `}>
-          <TranslatedText TranslationPath="Home.Partners.Partner_Title" />
+          {t('Home.Partners.Partner_Title')}
         </Typography>
         <motion.hr
-        initial={"hiddenRight"}
-        variants={Animations}
-        animate={inView ? 'visible' : 'hiddenRight'}
-        ref={ref}
-         className=" border-red-600 rounded-lg w-[30%] h-[0.35rem] bg-red-600 m-4" />
+          initial={'hiddenRight'}
+          variants={Animations}
+          animate={inView ? 'visible' : 'hiddenRight'}
+          ref={ref}
+          className="border-accent-primary background-accent-primary rounded-lg w-[30%] h-[0.35rem] m-4"
+        />
       </div>
 
-      <Typography
-        variant="small"
-        className={` mt-4 text-center font-extrabold `}
-      >
-        <TranslatedText TranslationPath="Home.Partners.Partner_Description" />
+      <Typography variant="small" className={` mt-4 text-center font-extrabold `}>
+        {t('Home.Partners.Partner_Description')}
       </Typography>
 
       <div
@@ -181,7 +174,7 @@ const Partners = () => {
             <Card
               key={Partner.PartnerID}
               onClick={() => HandleCardFlip(index)}
-              className=" shadow-lg backdrop-blur-md col-span-1 h-40 w-full hover:cursor-pointer md:hover:scale-95"
+              className="bg-white-c shadow-lg backdrop-blur-md col-span-1 h-40 w-full hover:cursor-pointer md:hover:scale-95"
             >
               <ReactCardFlip
                 isFlipped={PartnersCards[index]}
@@ -198,10 +191,7 @@ const Partners = () => {
                   style={{ backgroundImage: `url(${websiteBackgroundimg})` }}
                   className="p-4 bg-cover bg-center rounded-lg h-full w-full flex justify-center items-center "
                 >
-                  <Typography
-                    variant="h6"
-                    className=" italic whitespace-pre-wrap"
-                  >
+                  <Typography variant="h6" className=" italic whitespace-pre-wrap">
                     {Partner.Website}
                   </Typography>
                 </div>

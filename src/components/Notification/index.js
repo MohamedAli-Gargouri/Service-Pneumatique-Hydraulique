@@ -1,48 +1,32 @@
 import React from 'react';
-import {
-  Collapse,
-  Button,
-  Badge,
-  IconButton,
-} from '@material-tailwind/react';
+import { Collapse, Button, Badge, IconButton } from '@material-tailwind/react';
 import NotificationTable from '../Table/Notification';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
-import TranslatedText from '../../utils/Translation';
+import { useTranslation } from 'react-i18next';
 export default function Notification() {
   const [open, setOpen] = React.useState(false);
   const LightModeState = useSelector((state) => state.lightMode);
+  const { t, i18n } = useTranslation();
+  var isLightMode = LightModeState == LightMode().type;
+  React.useEffect(() => {
+    isLightMode = LightModeState == LightMode().type;
+  }, [LightModeState]);
   const toggleOpen = () => setOpen((cur) => !cur);
 
   return (
     <div className="relative ">
       <Badge content="5" className="" placement="top-end">
-        <IconButton
-          variant="text"
-          className=" text-white rounded-full"
-          onClick={toggleOpen}
-        >
+        <IconButton variant="text" className=" text-white-c rounded-full" onClick={toggleOpen}>
           <i className="fa-solid fa-bell"></i>
         </IconButton>
       </Badge>
-      <Collapse
-        open={open}
-        className={`z-50  w-[90vw] md:w-[40vw] top-[3rem] right-[-3rem] absolute md:right-[0.5rem]`}
-      >
+      <Collapse open={open} className={`z-50 w-[90vw] md:w-[40vw] top-[3rem] right-[-3rem] absolute md:right-[0.5rem]`}>
         <div
-          className={`overflow-auto rounded-lg  shadow-lg ${
-            LightModeState == LightMode().type
-              ? 'tc-whiteTheme_T1 bg-whiteTheme_T3'
-              : 'tc-darkTheme_T1 bg-darkTheme_T2'
-          } w-full h-full overflow-hidden p-0  flex flex-col  justify-stretch items-end`}
+          className={`background-secondary overflow-auto rounded-lg shadow-lg w-full h-full p-0  flex flex-col  justify-stretch items-end`}
         >
-          <div
-            style={{ backgroundColor: '#e53935', color: 'white' }}
-            className={`text-center w-full  `}
-          >
-            <p>
-              <TranslatedText TranslationPath="UCP.Notifications.Title" />
-            </p>
+          <div style={{ backgroundColor: '#e53935', color: 'white' }} className={`text-center w-full  `}>
+            <p>{t('UCP.Notifications.Title')}</p>
           </div>
           <div className="Body p-2 w-full">
             <NotificationTable />
@@ -56,7 +40,7 @@ export default function Notification() {
                 window.location.href = '/UCP/Inbox';
               }}
             >
-              <TranslatedText TranslationPath="UCP.Notifications.TabActions.ViewAll" />
+              {t('UCP.Notifications.TabActions.ViewAll')}
             </Button>
           </div>
         </div>

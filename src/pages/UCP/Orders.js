@@ -1,6 +1,4 @@
-import {
-  Card,
-} from '@material-tailwind/react';
+import { Card } from '@material-tailwind/react';
 import Orders from '../../components/Table/Orders';
 import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
@@ -10,44 +8,238 @@ import SideBar from '../../components/SideBar';
 import React from 'react';
 import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.webp';
-
+import Grid from '../../components/grid/grid';
+import {
+  cancelOrder,
+  getAllOrders,
+  markOrderPaid,
+  markOrderReady,
+  pauseOrder,
+  resumeOrder,
+} from '../../services/orders';
+import { ordersGridColumns, ordersGridHeaderWidgets } from './Orders.config';
+import getImageBlobUrl from '../../utils/file';
+import dataItemNoImage from '../../assets/images/products/noImgProduct.webp';
+import { GridBuilder } from '../../types/components/grid';
+import { Binder } from '../../utils/binder';
+import { Notify } from '../../utils/Toast/toast';
+import ReactDOMServer from 'react-dom/server';
+import { useTranslation } from 'react-i18next';
 export default function UCP_Orders() {
+  /****************************************************************************************************************************** */
+  //-------------------------------------------------------------INITIALIZATION--------------------------------------------------//
+  /******************************************************************************************************************************/
+  const accessToken = useSelector((state) => state.userAccessToken);
   const LightModeState = useSelector((state) => state.lightMode);
+  const [data, setData] = React.useState([]);
+  const [selectedRows, setSelectedRows] = React.useState([]);
+  const { t, i18n } = useTranslation();
+  var isLightMode = LightModeState == LightMode().type;
+  React.useEffect(() => {
+    isLightMode = LightModeState == LightMode().type;
+  }, [LightModeState]);
+  const gridConfiguration = new GridBuilder()
+    .setDataField('idOrder')
+    .setNoDataMessage('No Orders Found')
+    .setGridTitle('List of Orders')
+    .setOnSelectionChangeCallBackMethod(onSelectionChange)
+    .build();
+  function onSelectionChange(event) {
+    setSelectedRows(event.selectedRowsData);
+  }
+
+  /**
+   * This function is responsible for binding the configuration functions to the component's functions.
+   */
+  function bindConfigurationToComponent() {
+    var toolbarWidgets = [
+      { id: 0, callbackfunction: handleOrderInspect },
+      { id: 1, callbackfunction: handleMarkOrderPaid },
+      { id: 2, callbackfunction: handleMarkOrderReady },
+      { id: 3, callbackfunction: handleOrderResume },
+      { id: 4, callbackfunction: handleOrderPause },
+      { id: 5, callbackfunction: handleOrderCancel },
+    ];
+    Binder(ordersGridHeaderWidgets, toolbarWidgets, 'callbackfunction', 'id');
+  }
+
+  function handleOrderInspect() {
+    if (selectedRows.length == 0) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info', isLightMode);
+    } else if (selectedRows.length > 1) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info', isLightMode);
+    } else {
+      window.location.href = '/UCP/Order?orderId=' + selectedRows[0].idOrder;
+    }
+  }
+  /**
+   * This function marks the selected Order as Paid
+   */
+  function handleMarkOrderPaid() {
+    if (selectedRows.length == 0) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info', isLightMode);
+    } else if (selectedRows.length > 1) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info', isLightMode);
+    } else {
+      try {
+        var promise = markOrderPaid(selectedRows[0].idOrder, accessToken).then(() => {
+          loadData();
+        });
+        Notify.displayPromiseNotification(promise, [], [], isLightMode);
+      } catch (e) {
+        //catch errors here.
+      }
+    }
+  }
+  /**
+   * This function marks the selected Order as ready to be taken.
+   */
+  function handleMarkOrderReady() {
+    if (selectedRows.length == 0) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info', isLightMode);
+    } else if (selectedRows.length > 1) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info', isLightMode);
+    } else {
+      try {
+        var promise = markOrderReady(selectedRows[0].idOrder, accessToken).then(() => {
+          loadData();
+        });
+        Notify.displayPromiseNotification(
+          promise,
+          [t('UCP.DialogMessages.Validation.manySelectionError')],
+          ['ORDER_ERROR09'],
+          isLightMode,
+        );
+      } catch (e) {
+        //catch errors here.
+      }
+    }
+  }
+  /**
+   * This function marks the selected Order as paused
+   */
+  function handleOrderPause() {
+    if (selectedRows.length == 0) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info', isLightMode);
+    } else if (selectedRows.length > 1) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info', isLightMode);
+    } else {
+      try {
+        var promise = pauseOrder(selectedRows[0].idOrder, accessToken).then(() => {
+          loadData();
+        });
+        Notify.displayPromiseNotification(promise, [], [], isLightMode);
+      } catch (e) {
+        /*Catch Logic here*/
+      }
+    }
+  }
+  /**
+   * This function resumes the selected order
+   */
+  function handleOrderResume() {
+    if (selectedRows.length == 0) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info', isLightMode);
+    } else if (selectedRows.length > 1) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info', isLightMode);
+    } else {
+      try {
+        var promise = resumeOrder(selectedRows[0].idOrder, accessToken).then(() => {
+          loadData();
+        });
+        Notify.displayPromiseNotification(promise, [], [], isLightMode);
+      } catch (e) {
+        //catch errors here.
+      }
+    }
+  }
+  /**
+   * This function cancel the selected Order
+   */
+  function handleOrderCancel() {
+    if (selectedRows.length == 0) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info', isLightMode);
+    } else if (selectedRows.length > 1) {
+      Notify.displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info', isLightMode);
+    } else {
+      try {
+        var promise = cancelOrder(selectedRows[0].idOrder, accessToken).then(() => {
+          loadData();
+        });
+        Notify.displayPromiseNotification(promise, [], [], isLightMode);
+      } catch (e) {
+        //catch errors here.
+      }
+    }
+  }
+  bindConfigurationToComponent();
+  React.useEffect(() => {
+    loadData();
+  }, []);
+  async function loadData() {
+    let newData = [];
+    const requestResponse = await getAllOrders(accessToken);
+    const promises = requestResponse.data.map(async (dataItem, index) => {
+      let ordererProfileImg = dataItemNoImage;
+      if (dataItem.createdBy.profileImage != null) {
+        ordererProfileImg = await getImageBlobUrl(
+          dataItem.createdBy.profileImage.extension,
+          dataItem.createdBy.profileImage.fileBinary,
+        );
+      }
+
+      var total = 0;
+      dataItem.orderProducts.map((product, index) => {
+        total += product.productPrice * dataItem.orderQuantities[index];
+      });
+      newData = [
+        ...newData,
+        {
+          idOrder: dataItem.id,
+          orderNum: '# ' + index,
+          orderStatus: dataItem.orderStatus,
+          orderProducts: dataItem.orderProducts,
+          orderQuantity: dataItem.orderQuantities,
+          orderCreationDate: dataItem.createDateTime,
+          orderTotal: total,
+          ordererProfileImg: ordererProfileImg,
+          ordererEmail: dataItem.createdBy.email,
+          ordererName: dataItem.createdBy.firstName + ' ' + dataItem.createdBy.lastName,
+          ordererPhoneNumber: '(' + dataItem.createdBy.internationalDialNumber + ')' + dataItem.createdBy.phoneNumber,
+        },
+      ];
+    });
+
+    await Promise.all(promises);
+    setData(newData);
+  }
+
   return (
     <>
       <div className="flex flex-row items-stretch">
-        <aside
-          className={`mb-2 rounded-b-xl p-4 shadow-lg ${
-            LightModeState == LightMode().type
-              ? 'tc-whiteTheme_T1 bg-whiteTheme_T2'
-              : 'tc-darkTheme_T1 bg-darkTheme_T2'
-          }   hidden xl:block w-[20vw]`}
-        >
+        <aside className={`background-secondary mb-2 rounded-b-xl p-4 shadow-lg hidden xl:block w-[20vw]`}>
           <SideBar />
         </aside>
 
-        <main className="w-full min-h-screen flex flex-col justify-start items-center ">
+        <main className=" w-full min-h-screen flex flex-col justify-start items-center ">
           <section
             className=" flex flex-col justify-center items-stretch w-full text-center h-[17vh] p-4 shadow-xl shadow-blue-gray-900/ bg-cover"
             style={{ backgroundImage: `url(${Topbarbg})` }}
           >
             <TopBar
-              SectionName={
-                <TranslatedText TranslationPath="UCP.TopNav.TabTitles.Orders" />
-              }
+              SectionName={t('UCP.TopNav.TabTitles.Orders')}
               Icon='<i className="fa-solid fa-clipboard-list"></i>'
             />
           </section>
 
           <section className="w-full flex justify-center  text-center">
-            <Card
-              className={`p-2 w-full  min-h-[82vh] m-2 ${
-                LightModeState == LightMode().type
-                  ? 'tc-whiteTheme_T1 bg-whiteTheme_T2'
-                  : 'tc-darkTheme_T1 bg-darkTheme_T2'
-              }`}
-            >
-              <Orders />
+            <Card className={`background-secondary p-2 w-full  min-h-[82vh] m-2 `}>
+              <Grid
+                configuration={gridConfiguration}
+                dataSource={data}
+                columns={ordersGridColumns}
+                widgets={ordersGridHeaderWidgets}
+              />
             </Card>
           </section>
         </main>

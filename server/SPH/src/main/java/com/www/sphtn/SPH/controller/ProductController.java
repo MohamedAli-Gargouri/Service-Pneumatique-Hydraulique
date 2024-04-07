@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,7 +59,8 @@ public class ProductController {
             @RequestParam(defaultValue = "0") int Page,
             @RequestParam(defaultValue = "false") boolean getAll,
             @RequestParam(defaultValue = "false") boolean filterLowStock,
-            @RequestParam(defaultValue = "false") boolean filterHighStock
+            @RequestParam(defaultValue = "false") boolean filterHighStock,
+            @RequestParam(required = false) String searchTerm
     )
     {
         int pageSize = size!=null ? size : Integer.parseInt(this.pageSize);
@@ -75,6 +77,11 @@ public class ProductController {
         if(filterHighStock)
         {
             return ResponseEntity.ok().body(repository.findByStoreQuantityPlusStockQuantityGreaterThan(Integer.parseInt(highStockThreshold),pageable));
+        }
+        else if (searchTerm != null && !searchTerm.isEmpty()) {
+            // Customize this query based on your entity fields
+            TextCriteria textCriteria = TextCriteria.forDefaultLanguage().matchingAny(searchTerm);
+            return ResponseEntity.ok().body(repository.findAllBy(textCriteria, pageable));
         }
         else
         {

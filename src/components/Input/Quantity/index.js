@@ -2,41 +2,35 @@ import React from 'react';
 import { Input, Button } from '@material-tailwind/react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../../redux/actions/LightActions';
-import PropTypes from "prop-types"
-QuantityInput.propTypes={
-  ProductID:PropTypes.number.isRequired,
-  quantity:PropTypes.number.isRequired,
-  incrementHandler:PropTypes.func.isRequired,
-  decrementHandler:PropTypes.func.isRequired,
-  onchangeHandler: PropTypes.func.isRequired
-}
-export default function QuantityInput({
-    ProductID,
-    quantity,
-    incrementHandler,
-    decrementHandler,
-    onchangeHandler
-}) {
-
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+QuantityInput.propTypes = {
+  ProductID: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  incrementHandler: PropTypes.func.isRequired,
+  decrementHandler: PropTypes.func.isRequired,
+  onchangeHandler: PropTypes.func.isRequired,
+};
+export default function QuantityInput({ ProductID, quantity, incrementHandler, decrementHandler, onchangeHandler }) {
   const LightModeState = useSelector((state) => state.lightMode);
+  const { t, i18n } = useTranslation();
+  var isLightMode = LightModeState == LightMode().type;
+  React.useEffect(() => {
+    isLightMode = LightModeState == LightMode().type;
+  }, [LightModeState]);
   const increment = () => {
-    incrementHandler(ProductID,quantity+1)
+    incrementHandler(ProductID, quantity + 1);
   };
   const decrement = () => {
-        decrementHandler(ProductID,quantity-1)
+    decrementHandler(ProductID, quantity - 1);
   };
   const onChange = ({ target }) => {
-        onchangeHandler(ProductID,target.value)
+    onchangeHandler(ProductID, target.value);
   };
 
   return (
     <div className="flex flex-row  justify-center items-center  w-full m-2">
-      <Button
-        onClick={decrement}
-        variant="text"
-        size="sm"
-        className=" rounded hover:scale-110 flex items-center m-1"
-      >
+      <Button onClick={decrement} variant="text" size="sm" className=" rounded hover:scale-110 flex items-center m-1">
         <i className="fa-solid fa-minus aspect-square"></i>
       </Button>
 
@@ -56,17 +50,12 @@ export default function QuantityInput({
         }}
         labelProps={{
           style: {
-            color: LightModeState == LightMode().type ? 'black' : 'white',
+            color: isLightMode ? 'black' : 'white',
           },
         }}
       />
 
-      <Button
-        onClick={increment}
-        size="sm"
-        variant="text"
-        className="rounded hover:scale-110 flex items-center m-1"
-      >
+      <Button onClick={increment} size="sm" variant="text" className="rounded hover:scale-110 flex items-center m-1">
         <i className="fa-solid fa-plus aspect-square"></i>
       </Button>
     </div>

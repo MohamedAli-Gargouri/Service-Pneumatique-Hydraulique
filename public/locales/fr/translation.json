@@ -31,11 +31,11 @@
       "Filters_and_accessories": "Propreté et longévité des systèmes hydrauliques et pneumatiques.",
       "Cylinders_and_accessories": "Précision et puissance pour les systèmes hydrauliques et pneumatiques.",
       "sensors": "Rétroaction en temps réel pour les systèmes hydrauliques et pneumatiques.",
-      "compressors": "Compression d'air et de gaz fiable pour les systèmes hydrauliques et pneumatiques.",
+      "compressors": "Compression d`air et de gaz fiable pour les systèmes hydrauliques et pneumatiques.",
       "Dryer_tank_and_drain": "Solutions sans humidité pour les systèmes hydrauliques et pneumatiques.",
       "Wika_pressure_gauge_and_thermometer_regulation": "WIKA : Régulation précise du manomètre et du thermomètre pour des performances optimales des systèmes hydrauliques et pneumatiques.",
       "valves": "Optimisez le contrôle des fluides pour vos systèmes hydrauliques et pneumatiques.",
-      "Maxdryer": "Élimination avancée de l'humidité pour une efficacité optimale des systèmes hydrauliques et pneumatiques.",
+      "Maxdryer": "Élimination avancée de l`humidité pour une efficacité optimale des systèmes hydrauliques et pneumatiques.",
       "solenoid_valve": "Contrôle efficace des fluides pour les systèmes hydrauliques et pneumatiques.",
       "actuators": "Propulser des mouvements précis dans les systèmes hydrauliques et pneumatiques."
     },
@@ -52,8 +52,8 @@
 
   "Home": {
     "HeroTitle": "Service Pneumatique Hydraulique",
-    "HeroDescription": "Bienvenue chez SPH, votre source de confiance pour les compresseurs d'air et les solutions d'air innovantes ! Chez SPH, nous nous engageons à révolutionner la façon dont les industries exploitent la puissance de l’air. Avec une passion pour l'excellence et un engagement envers la qualité, nous sommes fiers de proposer une gamme complète de compresseurs d'air de pointe et de solutions liées à l'air pour répondre aux divers besoins des entreprises de divers secteurs.",
-    "Presentation": "SPH (Service Pneumatique Hydraulique), société de négoce, distribution et fabrication de composants pneumatiques et hydrauliques. Depuis sa création en 1992 et après la grande expérience dans le domaine de l'automatisation en général qui lui a permis de devenir une référence en Tunisie, SPH tient à maintenir cette référence.",
+    "HeroDescription": "Bienvenue chez SPH, votre source de confiance pour les compresseurs d`air et les solutions d`air innovantes ! Chez SPH, nous nous engageons à révolutionner la façon dont les industries exploitent la puissance de l’air. Avec une passion pour l`excellence et un engagement envers la qualité, nous sommes fiers de proposer une gamme complète de compresseurs d`air de pointe et de solutions liées à l`air pour répondre aux divers besoins des entreprises de divers secteurs.",
+    "Presentation": "SPH (Service Pneumatique Hydraulique), société de négoce, distribution et fabrication de composants pneumatiques et hydrauliques. Depuis sa création en 1992 et après la grande expérience dans le domaine de l`automatisation en général qui lui a permis de devenir une référence en Tunisie, SPH tient à maintenir cette référence.",
     "ContactusBtn": "Contactez-nous",
     "CheckProducts": "Vérifier les produits",
     "Services": {
@@ -62,7 +62,7 @@
       "Service1": "Vente",
       "Service2": "Conseil",
       "Service3": "Assistance Technique",
-      "Service_Description": "Chez Nous Vous Trouvez Un Service Complet Auprès Des Experts De La Métier De L'hydrolique Et Du Pneumatique"
+      "Service_Description": "Chez Nous Vous Trouvez Un Service Complet Auprès Des Experts De La Métier De L`hydrolique Et Du Pneumatique"
     },
     "Partners": {
       "Partner_Title": "Nos Partenaires",
@@ -110,16 +110,16 @@
 
   },
   "Login": {
-    "Login_Title": "S'identifier",
-    "Username_Label": "Nom d'utilisateur",
+    "Login_Title": "S`identifier",
+    "Username_Label": "Nom d`utilisateur",
     "Password_Label": "Mot de passe",
     "RememberMeLabel": "Souviens-toi de moi",
-    "SignInButtonLabel": "S'IDENTIFIER",
-    "SignUpRecommandationLabel": "Vous n'avez pas de compte ?"
+    "SignInButtonLabel": "S`IDENTIFIER",
+    "SignUpRecommandationLabel": "Vous n`avez pas de compte ?"
   },
   "Register": {
-    "Register_Title": "S'inscrire",
-    "UserName_Label": "Nom d'utilisateur",
+    "Register_Title": "S`inscrire",
+    "UserName_Label": "Nom d`utilisateur",
     "Email_Label": "E-mail",
     "FirstName_Label": "Prénom",
     "LastName_Label": "Nom de famille",
@@ -128,7 +128,7 @@
     "Confirm_Password_Label": "Confirmez le mot de passe",
     "PasswordCondition_Label": "Utilisez au moins 8 caractères, une majuscule, une minuscule et un chiffre.",
     "RememberMeLabel": "Souviens-toi de moi",
-    "SignInButtonLabel": "S'INSCRIRE",
+    "SignInButtonLabel": "S`INSCRIRE",
     "SignUpRecommandationLabel": "Avoir un compte?"
   },
   "Contact": {
@@ -170,7 +170,7 @@
       },
       "TabHeader": {
         "AccountID": "Identifiant de compte",
-        "Username": "Nom d'utilisateur",
+        "Username": "Nom d`utilisateur",
         "FullName": "Nom et prénom",
         "privilege": "Privilège",
         "TotalSpent": "Total dépensé"
@@ -414,36 +414,36 @@
         "DemanderInformations": "Informations sur le demandeur",
         "Invoice_EstimateLimits": "Limites de facture / devis",
         "TaxDiscount": "Taxe / Remise",
-        "HostInformations": "Informations sur l'hôte",
+        "HostInformations": "Informations sur l`hôte",
         "Invoice_Estimate_Products": "Facture / Devis Produits"
       },
       "TabActions": {
         "DownloadInvoice_Estimate": "Télécharger la facture / devis",
         "GenerateINvoice_Estimate": "Générer une facture / un devis",
-        "TogglePreview": "Basculer l'aperçu",
+        "TogglePreview": "Basculer l`aperçu",
         "Refresh": "Rafraîchir",
         "Invoice": "Facture",
         "Estimate": "Devis",
         "Person": "Personne",
         "Company": "Entreprise",
-        "PreviewDisabledMsg": "L'aperçu est désactivé",
+        "PreviewDisabledMsg": "L`aperçu est désactivé",
         "GeneratingDownload": "Génération de votre téléchargement, veuillez patienter."
       },
       "TabInputs": {
         "InvoiceNumber": "Numéro de facture",
         "D_FirstName": "Prénom",
         "D_LastName": "Nom de famille",
-        "D_CompanyName": "Nom de l'entreprise",
+        "D_CompanyName": "Nom de l`entreprise",
         "D_Adress": "Adresse",
         "D_PhoneNumber": "Numéro de téléphone",
         "D_FiscaleNumber": "Numéro fiscal",
         "CreateDate": "Date de création",
         "LimitDate": "Date limite",
         "Discount": "Pourcentage de remise",
-        "TaxRate": "Pourcentage d'impôt",
+        "TaxRate": "Pourcentage d`impôt",
         "H_FirstName": "Prénom",
         "H_LastName": "Nom de famille",
-        "H_CompanyName": "Nom de l'entreprise",
+        "H_CompanyName": "Nom de l`entreprise",
         "H_Adress": "Adresse",
         "H_PhoneNumber": "Numéro de téléphone",
         "H_FiscaleNumber": "Numéro fiscal"
@@ -487,8 +487,8 @@
         "SessionExpired":"La session a expiré.."
       },
       "Connection":{
-        "ConnectionLost":"Impossible d'établir une connexion au serveur. S'il vous plaît, vérifiez votre connexion à internet et réessayez.",
-        "ServerLoaded":"Le serveur subit actuellement une charge élevée et votre demande n'a pas pu aboutir. Veuillez réessayer plus tard.",
+        "ConnectionLost":"Impossible d`établir une connexion au serveur. S`il vous plaît, vérifiez votre connexion à internet et réessayez.",
+        "ServerLoaded":"Le serveur subit actuellement une charge élevée et votre demande n`a pas pu aboutir. Veuillez réessayer plus tard.",
         "ServiceUnavaiable":"Le service est momentanément indisponible. Veuillez réessayer plus tard"
       },
       "Validation": {
@@ -498,158 +498,92 @@
         "selectInput":"Veuillez sélectionner au moins une option dans la liste déroulante.",
         "emailInput":"Veuillez remplir le formulaire avec un e-mail valide.",
         "passwordInput":"Mot de passe invalide, utilisez au moins 8 caractères, une majuscule, une minuscule et un chiffre.",
-        "confirmPasswordInput":"Confirmer que le mot de passe ne correspond pas au mot de passe."
+        "confirmPasswordInput":"Confirmer que le mot de passe ne correspond pas au mot de passe.",
+        "manySelectionError":"Veuillez sélectionner une seule option.",
+        "noSelectionError":"Veuillez sélectionner un élément."
       },
       "Register": {
-        "Register_Success": "Votre nouveau compte est enregistré avec succès.",
-        "Register_Error": "Lenregistrement du compte a échoué.",
         "UsedEmail_Error": "L e-mail est utilisé, veuillez en choisir un autre.",
         "UsedPhoneNumber_Error": "Le numéro de téléphone est utilisé, veuillez en choisir un autre.",
-        "UsedUsername_Error": "Le nom d'utilisateur est utilisé, veuillez en choisir un autre."
+        "UsedUsername_Error": "Le nom d`utilisateur est utilisé, veuillez en choisir un autre."
       },
       "Login": {
-        "Login_Success": "Vous vous êtes connecté avec succès.",
-        "Login_Error": "Échec de votre connexion.",
-        "WrongCreds_Error":"Vous avez inséré un mauvais mot de passe ou nom d'utilisateur."
+        "WrongCreds_Error":"Vous avez inséré un mauvais mot de passe ou nom d`utilisateur."
       },
       "Promise": {
-        "Pending": "Veuillez attendre que la tâche soit terminée...",
-        "Resolve": "Tâche terminée avec succès.",
-        "Reject": "La tâche a échoué."
+        "Pending": "Votre demande est en cours de traitement. Patientez s`il-vous-plait.",
+        "Resolve": "Succès! Votre demande a été traitée avec succès.",
+        "Reject": "Oops! Une erreur s`est produite lors du traitement de votre demande. Veuillez réessayer plus tard."
       },
       "Cart": {
         "RemoveProduct": "Produit retiré de votre panier.",
         "AddProduct":"Produit ajouté à votre panier.",
         "QuantityError":"Assurez-vous de sélectionner une valeur de quantité comprise entre 1 et 100",
-        "NoProducts":"Vous n'avez aucun produit dans votre panier."
+        "NoProducts":"Vous n`avez aucun produit dans votre panier."
       },
       "MyOrders": {
         "DeleteOrder_Confirm": "Etes-vous sûr de vouloir supprimer votre commande ?",
-        "CreateOrder_Confirm": "Êtes-vous sûr de vouloir soumettre une commande avec les produits actuels dans votre panier ?",
-        "CreateOrder_Success": "Votre commande est soumise avec succès.",
-        "CreateOrder_Error": "La soumission de votre commande a échoué.",
-        "DeleteOrder_Success": "Votre commande est supprimée avec succès.",
-        "DeleteOrder_Error": "La suppression de votre commande a échoué."
+        "CreateOrder_Confirm": "Êtes-vous sûr de vouloir soumettre une commande avec les produits actuels dans votre panier ?"
       },
       "Orders": {
         "CancelOrder_Title": "Annuler la commande",
         "PauseOrder_Title": "Suspendre la commande",
         "ResumeOrder_Title": "Reprendre la commande",
         "SetOrderReady_Title": "Marquer la commande comme prête",
-        "MarkOrderAsPaid_Title": "Marquer la commande comme payée",
-
-        "CancelOrder_Confirm": "Êtes-vous sûr de vouloir annuler la commande de ce client ?",
-        "PauseOrder_Confirm": "Êtes-vous sûr de vouloir suspendre la commande de ce client ?",
-        "ResumeOrder_Confirm": "Êtes-vous sûr de vouloir reprendre la commande de ce client ?",
-        "SetOrderReady_Confirm": "Êtes-vous sûr de vouloir marquer la commande de ce client comme étant prête et en attente d'être récupérée au magasin ?",
-        "MarkOrderAsPaid_Confirm": "Êtes-vous sûr de vouloir marquer la commande de ce client comme payée et clôturée ?",
-
-        "CancelOrder_Success": "La commande est annulée avec succès.",
-        "PauseOrder_Success": "La commande est mise en pause avec succès.",
-        "ResumeOrder_Success": "La commande est reprise avec succès.",
-        "SetOrderReady_Success": "La commande est maintenant marquée comme prête à être récupérée.",
-        "MarkOrderAsPaid_Success": "La commande est désormais marquée comme payée et terminée.",
-
-        "CancelOrder_Error": "L'annulation de la commande a échoué.",
-        "PauseOrder_Error": "La pause de la commande a échoué.",
-        "ResumeOrder_Error": "La reprise de la commande a échoué.",
-        "SetOrderReady_Error": "La marque de commande comme étant prête a échoué.",
-        "MarkOrderAsPaid_Error": "La marque de la commande comme payée a échoué."
+        "MarkOrderAsPaid_Title": "Marquer la commande comme payée"
       },
       "Order": {},
       "Products": {
         "DeleteProduct_Title": "Supprimer le produit",
 
         "DeleteProduct_Confirm": "Êtes-vous sûr de vouloir supprimer ce produit de votre plateforme ?",
-        "DeleteProduct_Success": "Produit supprimé avec succès.",
-        "DeleteProduct_Error": "Échec de la suppression du produit",
 
-        "EditProduct_Success": "Les informations sur le produit ont été modifiées avec succès.",
-        "EditProduct_Error": "Échec de la modification des informations sur le produit",
-
-        "AddProduct_Success": "Produit ajouté avec succès.",
         "AddProduct_ProductCodeExist_Error": "Veuillez choisir un code produit différent, celui-ci est déjà utilisé.",
-        "AddProduct_Error": "Échec de l'ajout du produit",
         "ProductThreeImagesLimit_Error": "Vous ne pouvez pas ajouter plus de trois images par produit.",
-        "DeleteProductImg_Confirm": "Êtes-vous sûr de vouloir supprimer cette image de produit ?",
-        "DeleteProductImg_Success": "Image du produit supprimée avec succès.",
-        "DeleteProductImg_Error": "Échec de la suppression de l'image du produit"
+        "DeleteProductImg_Confirm": "Êtes-vous sûr de vouloir supprimer cette image de produit ?"
       },
       "Category": {
         "Category_Title": "Gérer les catégories",
         "DeleteCategory_Title": "Supprimer la catégorie",
 
         "DeleteCategory_Confirm": "Êtes-vous sûr de vouloir supprimer cette catégorie de votre plateforme ? (Attention, cela entraînera la suppression de tous les produits de cette catégorie !)",
-        "DeleteCategory_Success": "Votre catégorie et tous ses produits ont été supprimés avec succès.",
-        "DeleteCategory_Error": "La suppression de votre catégorie a échoué.",
-
-        "EditCategory_Success": "Votre catégorie a été modifiée avec succès.",
-        "EditCategory_Error": "La modification de votre catégorie a échoué.",
-
-        "AddCategory_Success": "Votre catégorie ajoutée avec succès",
-        "AddCategory_Error": "Votre ajout de catégorie a échoué.",
         "AddCategory_NamedUsed": "Veuillez choisir un autre nom pour votre nouvelle catégorie, celui-ci existe",
-
-        "AddSubCategory_Success": "Votre sous-catégorie ajoutée avec succèsy",
-        "AddSubCategory_Error": "Votre ajout de sous-catégorie a échoué.",
         "AddSubCategory_NamedUsed": "Veuillez choisir un autre nom pour votre nouvelle sous-catégorie, celle-ci existe",
-
-        "AddSubCategoryValue_Success": "Vos valeurs de sous-catégorie ont été enregistrées avec succès",
-        "AddSubCategoryValue_Error": "L'ajout des valeurs de votre sous-catégorie a échoué.",
         "AddSubCategoryValue_ValueUsed": "Les valeurs des sous-catégories doivent être uniques. Veuillez sélectionner des valeurs uniques."
       },
       "Inbox": {
         "DeleteNotification_Title": "Supprimer la notification",
-        "DeleteNotification_Confirm": "Êtes-vous sûr de vouloir supprimer cette notification de votre boîte de réception ? (C'est permanent)",
-        "DeleteNotification_Success": "Notification supprimée avec succès.",
-
+        "DeleteNotification_Confirm": "Êtes-vous sûr de vouloir supprimer cette notification de votre boîte de réception ? (C`est permanent)",        
         "DeleteMessage_Title": "Supprimer le message",
-        "DeleteMessage_Confirm": "Êtes-vous sûr de vouloir supprimer ce message de votre boîte de réception ? (C'est permanent)",
-        "DeleteMessage_Success": "Message supprimé avec succès.",
-        "DeleteNotification_Error": "Erreur, la notification n'est pas supprimée.",
-        "DeleteMessage_Error": "Erreur, le message n'est pas supprimé."
+        "DeleteMessage_Confirm": "Êtes-vous sûr de vouloir supprimer ce message de votre boîte de réception ? (C`est permanent)"
+
       },
       "Invoice": {
-        "DownloadInvoice_Success": "La facture/devis est en cours de téléchargement.",
-        "DownloadInvoice_Error": "La facture/devis n'a pas pu être téléchargée.",
-
-        "AddProductInvoice_Success": "Les produits sélectionnés sont ajoutés à votre Facture / Devis",
-        "AddProductInvoice_Error": "Erreur, Les produits sélectionnés ne sont pas ajoutés à votre Facture / Devis",
-        "DeleteProduct_Confirm": "Êtes-vous sûr de vouloir supprimer ce produit de la facture/devis ?",
-        "DeleteProduct_Success": "Produit supprimé de la facture/devis"
+        "DeleteProduct_Confirm": "Êtes-vous sûr de vouloir supprimer ce produit de la facture/devis ?"
       },
       "Profile": {
-        "SaveProfile_Success": "Vos nouvelles informations de profil sont enregistrées avec succès.",
-        "SaveProfile_Error": "Erreur, vos nouvelles informations de profil n'ont pas été enregistrées avec succès.",
-        "SaveProfile_Error2": "Erreur, la taille, le format ou la taille de votre image n'est pas pris en charge.",
+        "SaveProfile_Error2": "Erreur, la taille, le format ou la taille de votre image n`est pas pris en charge.",
         "SaveProfile_Error3": "Erreur, le mot de passe de confirmation est erroné, veuillez saisir votre mot de passe actuel."
       },
       "Accounts": {
         "SetDeleteUser_Title": "Supprimer utilisateur",
 
         "SetDeleteUser_Confirm": "Etes-vous sûr de vouloir supprimer cet utilisateur de votre plateforme ?",
-        "SetDeleteUser_Success": "L utilisateur est supprimé avec succès.",
-        "SetDeleteUser_Error": "Erreur : impossible de supprimer l'utilisateur.",
         "SetDeleteUser_Error2": "Erreur, vous ne pouvez pas supprimer le propriétaire de la plateforme.",
 
         "SetAdmin_Title": "Définir administrateur",
 
-        "SetAdmin_Confirm": "Êtes-vous sûr de vouloir donner à cet utilisateur les privilèges d'administrateur (cela lui donnera accès à tout)",
-        "SetAdmin_Success": "L utilisateur est défini comme administrateur avec succès.",
-        "SetAdmin_Error": "Erreur : impossible de définir cet utilisateur comme administrateur.",
+        "SetAdmin_Confirm": "Êtes-vous sûr de vouloir donner à cet utilisateur les privilèges d`administrateur (cela lui donnera accès à tout)",
 
         "SetEmployee_Title": "Définir employé",
 
-        "SetEmployee_Confirm": "Êtes-vous sûr de vouloir accorder à cet utilisateur les privilèges d'employé (cela lui donnera accès au traitement des commandes des clients)",
-        "SetEmployee_Success": "L utilisateur est défini avec succès sur Employé.",
-        "SetEmployee_Error": "Erreur : impossible de définir cet utilisateur comme employé.",
+        "SetEmployee_Confirm": "Êtes-vous sûr de vouloir accorder à cet utilisateur les privilèges d`employé (cela lui donnera accès au traitement des commandes des clients)",
+
 
         "SetUser_Title": "Supprimer les privilèges",
 
         "SetUser_Confirm": "Êtes-vous sûr de vouloir supprimer les privilèges de cet utilisateur ? (Cela fera de lui un client sans privilèges particuliers)",
-        "SetUser_Success": "Les privilèges de l utilisateur sont supprimés avec succès.",
-        "SetUser_Error": "Erreur : impossible de définir les privilèges de cet utilisateur",
-        "SetUser_Error2": "Erreur : vous ne pouvez pas supprimer les privilèges d'administrateur du propriétaire de la plate-forme."
+        "SetUser_Error2": "Erreur : vous ne pouvez pas supprimer les privilèges d`administrateur du propriétaire de la plate-forme."
       }
     }
   },

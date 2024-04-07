@@ -9,13 +9,13 @@ import com.www.sphtn.SPH.Exceptions.Auth.AuthExceptions;
 import com.www.sphtn.SPH.Exceptions.General.MissingParam;
 import com.www.sphtn.SPH.Exceptions.Order.OrderExceptions;
 import com.www.sphtn.SPH.Exceptions.Products.ProductExceptions;
+import com.www.sphtn.SPH.Utils.DTOConverter;
 import com.www.sphtn.SPH.model.*;
 import com.www.sphtn.SPH.repository.*;
 import com.www.sphtn.SPH.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +47,8 @@ public class OrderController {
     {
         if(getAll)
         {
-            return ResponseEntity.ok().body(repository.findAll());
+
+            return ResponseEntity.ok().body(DTOConverter.ToOrdersDTO(repository.findAll()));
         }
         else
         {
@@ -146,6 +147,7 @@ public class OrderController {
                 Order newOrder= Order.builder()
                         .orderProducts(orderProducts)
                         .orderQuantities(quantities)
+                        .createDateTime(new Date())
                         .orderStatus(Status.PENDING)
                         .createdBy(requester)
                         .build();
@@ -158,6 +160,7 @@ public class OrderController {
                 Order newOrder= Order.builder()
                         .orderProducts(orderProducts)
                         .orderQuantities(quantities)
+                        .createDateTime(new Date())
                         .orderStatus(Status.PAUSED)
                         .pausedBy(SYSTEM_USER)
                         .pauseDateTime(new Date())

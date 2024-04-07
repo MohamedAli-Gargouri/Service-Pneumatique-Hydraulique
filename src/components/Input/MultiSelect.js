@@ -1,25 +1,28 @@
 import React from 'react';
 
-
 import Multiselect from 'multiselect-react-dropdown';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
 import './MultiSelect.css';
-import PropTypes from "prop-types"
-MultiSelect.propTypes={
-  Data:PropTypes.array.isRequired,
-  DataLabelName:PropTypes.string.isRequired,
-  SelectData:PropTypes.object.isRequired
-}
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+MultiSelect.propTypes = {
+  Data: PropTypes.array.isRequired,
+  DataLabelName: PropTypes.string.isRequired,
+  SelectData: PropTypes.object.isRequired,
+};
 export default function MultiSelect({ Data, DataLabelName, SelectData }) {
   const LightModeState = useSelector((state) => state.lightMode);
+  const { t, i18n } = useTranslation();
+  var isLightMode = LightModeState == LightMode().type;
+  React.useEffect(() => {
+    isLightMode = LightModeState == LightMode().type;
+  }, [LightModeState]);
   const OnSubCategorySelect = (Selected) => {
-
     SelectData.current = Selected;
   };
   const OnSubCategoryRemove = (Selected) => {
     SelectData.current = Selected;
-
   };
 
   const setPlaceholderStyle = (placeholderColor) => {
@@ -32,7 +35,7 @@ export default function MultiSelect({ Data, DataLabelName, SelectData }) {
     document.head.appendChild(styleTag);
   };
 
-  if (LightModeState == LightMode().type) {
+  if (isLightMode) {
     setPlaceholderStyle('black');
   } else {
     setPlaceholderStyle('white');
@@ -58,11 +61,7 @@ export default function MultiSelect({ Data, DataLabelName, SelectData }) {
             color: 'inherit',
           },
           optionContainer: {
-            background: `${
-              LightModeState == LightMode().type
-                ? 'white'
-                : 'rgba(51, 51, 51, 1)'
-            }`,
+            background: `${isLightMode ? 'white' : 'rgba(51, 51, 51, 1)'}`,
           },
         }}
         options={Data} // Options to display in the dropdown

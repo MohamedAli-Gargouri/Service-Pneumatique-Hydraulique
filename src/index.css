@@ -2,110 +2,124 @@
 @tailwind components;
 @tailwind utilities;
 @import url('./resources/AwsomeFonts/css/all.min.css');
+
 @font-face {
   font-family: 'Roboto';
-  src: url('/src/resources/Googlefonts/Roboto-Regular.ttf') format('truetype');
-  /* Add other font properties (e.g., font-weight, font-style) here */
-}
-
-html {
-  height: -webkit-fill-available;
-}
-body {
-  scroll-behavior: smooth;
+  src:
+    url('../public/styles/fonts/Roboto-400.woff2') format('woff2'),
+    url('../public/styles/fonts/Roboto-400.woff') format('woff'),
+    url('../public/styles/fonts/Roboto-400.ttf') format('truetype');
   font-family: 'Roboto', sans-serif;
-  height: 100%;
-  height: -webkit-fill-available;
 }
-
-/*=========VARIABLES======================*/
 :root {
-  /*=========SCREEN-SIZES============*/
+  --accent-primary-color: rgba(255, 87, 34, 1);
   --screen-Width: calc(var(--vw, 1vw) * 100);
   --screen-height: calc(var(--vh, 1vh) * 100);
   --HalfScreen-height: calc(var(--screen-height) / 2);
   --HalfScreen-Width: calc(var(--screen-Width) / 2);
   --FifthScreen-height: calc(var(--screen-height) / 5);
-
-  /*=============COLORS===============*/
-
-  --WHITE_THEME_COLOR_T1: rgba(236, 239, 241, 1);
-  --WHITE_THEME_COLOR_T2: rgba(255, 255, 255, 0.8);
-  --BLACK_THEME_COLOR_T1: #2e2b2b;
-  --RED_THEME_COLOR_T1: rgba(191, 54, 12, 1);
-  --BLACK_THEME_COLOR_T2: #3b3b3b;
-
-  --BLACK_THEME_BORDER_COLOR_T2: #555555;
-
-  --LOADING_THEME_COLOR: #ffcdd2;
-  --WHITE_TXT_COLOR: black;
-  --BLACK_TXT_COLOR: white;
+  --tw-text-blue-override-color: inherit; /*--> Set to inheirt to force the theme color*/
 }
-
-/*=============CLASSES=====================*/
-
-/*================LIGHTING CLASSES==============*/
-
-.bg-whiteTheme_T1 {
-  background-color: var(--WHITE_THEME_COLOR_T1) !important;
-  border-color: var(--WHITE_THEME_COLOR_T1) !important;
-  border: 0px solid;
-  /*backdrop-filter: blur(1px);*/
+/*********************************************************************************************************/
+/**----------------------------------OVERRIDING TAILWIND STYLES------------------------------------------*/
+/*********************************************************************************************************/
+.text-blue-gray-100 {
+  color: var(--tw-text-blue-override-color);
 }
-
-.bg-whiteTheme_T2 {
-  background-color: var(--WHITE_THEME_COLOR_T2) !important;
-  border-color: var(--WHITE_THEME_COLOR_T2) !important;
-  border: 0px solid;
-  opacity: 1;
+.text-blue-gray-200 {
+  color: var(--tw-text-blue-override-color);
 }
-
-.bg-whiteTheme_T3 {
-  background-color: white !important;
-  border-color: white !important;
-  opacity: 1;
-  border: 0px solid;
-  /*backdrop-filter: blur(1px);*/
+.text-blue-gray-300 {
+  color: var(--tw-text-blue-override-color);
 }
-
-.bg-RedTheme_T1 {
-  background-color: var(--RED_THEME_COLOR_T1) !important;
-  border-color: var(--RED_THEME_COLOR_T1) !important;
+.text-blue-gray-400 {
+  color: var(--tw-text-blue-override-color);
 }
-.bg-darkTheme_T1 {
-  background-color: var(--BLACK_THEME_COLOR_T1) !important;
-  border-color: var(--BLACK_THEME_COLOR_T1) !important;
-  border: 0px solid;
+.text-blue-gray-500 {
+  color: var(--tw-text-blue-override-color);
 }
-.bg-darkTheme_T2 {
-  background: linear-gradient(
-    -45deg,
-    var(--BLACK_THEME_COLOR_T2),
-    var(--BLACK_THEME_COLOR_T1)
-  ) !important;
-  border-color: var(--BLACK_THEME_BORDER_COLOR_T2) !important;
-  opacity: 0.9;
-  border: 1px solid;
-  backdrop-filter: blur(26px) !important;
+.text-blue-gray-600 {
+  color: var(--tw-text-blue-override-color);
 }
-.bg-LoadingTheme_T1 {
-  background-color: var(--LOADING_THEME_COLOR) !important;
-  border-color: var(--LOADING_THEME_COLOR) !important;
-  /*backdrop-filter: blur(1px);*/
+.text-blue-gray-700 {
+  color: var(--tw-text-blue-override-color);
 }
-.tc-darkTheme_T1 {
-  color: var(--BLACK_TXT_COLOR) !important;
+.text-blue-gray-800 {
+  color: var(--tw-text-blue-override-color);
 }
-
-.tc-whiteTheme_T1 {
-  color: var(--WHITE_TXT_COLOR) !important;
+.text-blue-gray-900 {
+  color: var(--tw-text-blue-override-color);
 }
-
-/*==============NORMAL CLASSES=============*/
+.text-gray-100 {
+  color: var(--tw-text-blue-override-color);
+}
+.text-gray-200 {
+  color: var(--tw-text-blue-override-color);
+}
+.text-gray-300 {
+  color: var(--tw-text-blue-override-color);
+}
+.text-gray-400 {
+  color: var(--tw-text-blue-override-color);
+}
+.text-gray-500 {
+  color: var(--tw-text-blue-override-color);
+}
+.text-gray-600 {
+  color: var(--tw-text-blue-override-color);
+}
+.text-gray-700 {
+  color: var(--tw-text-blue-override-color);
+}
+.bg-white {
+  background-color: inherit;
+}
+.bg-black {
+  background-color: inherit;
+}
+.text-white {
+  color: inherit;
+}
+.text-black {
+  color: inherit;
+}
+.border {
+  border: 0;
+}
+/*********************************************************************************************************/
+.border-accent-primary {
+  border-color: var(--accent-primary-color);
+  border: 1;
+}
+.border-left-4-accent-primary {
+  border-left: 4px solid var(--accent-primary-color);
+}
+.background-accent-primary {
+  background-color: var(--accent-primary-color);
+  color: white;
+}
+.color-accent-primary {
+  color: var(--accent-primary-color);
+}
+.ring-accent-primary {
+  border: 1px solid !important;
+  border: var(--accent-primary-color);
+}
 .custom-text-shadow {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
-
+.text-white-c {
+  color: white;
+}
+.text-black-c {
+  color: black;
+}
+.bg-white-c {
+  background-color: white;
+}
+.bg-black-c {
+  background-color: black;
+}
 .shadowed-text {
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
@@ -174,13 +188,13 @@ body {
 
 /* Customize the scrollbar thumb (the draggable part) */
 ::-webkit-scrollbar-thumb {
-  background-color: #e53935; /* Color of the thumb */
+  background-color: var(--accent-primary-color); /* Color of the thumb */
   border-radius: 0px; /* Rounded corners for the thumb */
 }
 
 /* Customize the scrollbar track when the thumb is being dragged */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #b71c1c;
+  background-color: var(--accent-primary-color);
 }
 
 /* Customize the scrollbar track when it's not visible */
@@ -202,7 +216,6 @@ body {
 .text-blue-gray-400 {
   color: inherit !important;
 }
-.Toastify__toast-container
-{
+.Toastify__toast-container {
   z-index: 15000 !important;
 }

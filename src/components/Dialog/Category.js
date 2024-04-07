@@ -16,28 +16,24 @@ import AddCategory from '../Category/Add';
 import CategoryTable from '../Table/Category';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
-import PropTypes from "prop-types"
-CategoryDialog.propTypes={
-  Icon:PropTypes.string,
-  Open:PropTypes.bool.isRequired, 
-  HandleOpen:PropTypes.func.isRequired,
-  Title:PropTypes.node.isRequired,
-  Content:PropTypes.string 
-}
+import PropTypes from 'prop-types';
+CategoryDialog.propTypes = {
+  Icon: PropTypes.string,
+  Open: PropTypes.bool.isRequired,
+  HandleOpen: PropTypes.func.isRequired,
+  Title: PropTypes.node.isRequired,
+  Content: PropTypes.string,
+};
 export default function CategoryDialog({ Icon, Open, HandleOpen, Title, Content }) {
   const LightModeState = useSelector((state) => state.lightMode);
   const mdbreakpoint = 720;
   const CategoryTabs = [
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.CategoryTable.TabFilter.Manage" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.CategoryTable.TabFilter.Manage" />,
       value: 'Manage',
     },
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.CategoryTable.TabFilter.Add" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.CategoryTable.TabFilter.Add" />,
       value: 'Add',
     },
   ];
@@ -47,33 +43,23 @@ export default function CategoryDialog({ Icon, Open, HandleOpen, Title, Content 
         open={Open}
         handler={HandleOpen}
         size="xxl"
-        className={` ${
-          LightModeState == LightMode().type
-            ? 'bg-whiteTheme_T3 tc-whiteTheme_T1'
-            : 'bg-darkTheme_T1 tc-darkTheme_T1'
-        }`}
         animate={{
           mount: { scale: 1, y: 0 },
           unmount: { scale: 0.9, y: -100 },
         }}
       >
         <DialogHeader>
-            <div className={`m-1 flex justify-center items-center gap-2 font-black  `} dangerouslySetInnerHTML={{ __html: Icon }}></div> {Title}
+          <div
+            className={`m-1 flex justify-center items-center gap-2 font-black  `}
+            dangerouslySetInnerHTML={{ __html: Icon }}
+          ></div>{' '}
+          {Title}
         </DialogHeader>
         <DialogBody divider className="p-0 m-0 h-full w-full overflow-scroll">
           {Content}
 
           <Tabs value="Manage">
-            <TabsHeader
-              className="p-0!"
-              indicatorProps={{
-                className: ` ${
-                  LightModeState == LightMode().type
-                    ? ' tc-whiteTheme_T1'
-                    : ' tc-darkTheme_T1'
-                }`,
-              }}
-            >
+            <TabsHeader className="p-0!">
               {CategoryTabs.map(({ label, value }) => (
                 <Tab style={{ textWrap: 'nowrap' }} key={value} value={value}>
                   {value == 'Manage' ? (
@@ -85,13 +71,7 @@ export default function CategoryDialog({ Icon, Open, HandleOpen, Title, Content 
                 </Tab>
               ))}
             </TabsHeader>
-            <TabsBody
-              className={`w-full h-full ${
-                LightModeState == LightMode().type
-                  ? ' tc-whiteTheme_T1'
-                  : ' tc-darkTheme_T1'
-              }`}
-            >
+            <TabsBody className={`w-full h-full `}>
               {CategoryTabs.map(({ value, desc }) => (
                 <TabPanel className="w-full h-full" key={value} value={value}>
                   {value == 'Manage' ? (

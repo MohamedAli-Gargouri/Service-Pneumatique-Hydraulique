@@ -1,7 +1,4 @@
-import {
-  MagnifyingGlassIcon,
-  ChevronUpDownIcon,
-} from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
 import {
@@ -103,42 +100,28 @@ export default function Order_Table() {
     {
       label: <TranslatedText TranslationPath="UCP.Order.TabFilter.All" />,
       value: 'All',
-      Filter_fn: () =>
-        TabFilter('status', 'All', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'All', TABLE_ROWS, SetAllData, currentPage),
     },
     {
       label: <TranslatedText TranslationPath="UCP.Order.TabFilter.Low" />,
       value: 'Low',
-      Filter_fn: () =>
-        TabFilter('status', 'Low Stock', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Low Stock', TABLE_ROWS, SetAllData, currentPage),
     },
     {
       label: <TranslatedText TranslationPath="UCP.Order.TabFilter.High" />,
       value: 'High',
-      Filter_fn: () =>
-        TabFilter('status', 'High Stock', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'High Stock', TABLE_ROWS, SetAllData, currentPage),
     },
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.Order.TabFilter.Unavailable" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.Order.TabFilter.Unavailable" />,
       value: 'Unavailable',
-      Filter_fn: () =>
-        TabFilter('status', 'Unavailable', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Unavailable', TABLE_ROWS, SetAllData, currentPage),
     },
   ];
 
   return (
     <>
-      <CardHeader
-        floated={false}
-        shadow={false}
-        className={`rounded-none bg-transparent ${
-          LightModeState == LightMode().type
-            ? 'tc-whiteTheme_T1 '
-            : 'tc-darkTheme_T1 '
-        }`}
-      >
+      <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent `}>
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
             <Typography variant="h5">
@@ -190,14 +173,7 @@ export default function Order_Table() {
                 <th
                   onClick={() => {
                     if (index !== TABLE_HEAD.length - 1) {
-                      SortData(
-                        head.value,
-                        sortDirection,
-                        setSortDirection,
-                        VisibleData,
-                        SetVisibleData,
-                        'Order',
-                      );
+                      SortData(head.value, sortDirection, setSortDirection, VisibleData, SetVisibleData, 'Order');
                     }
                   }}
                   key={head.value}
@@ -208,97 +184,70 @@ export default function Order_Table() {
                     className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                   >
                     {head.label}{' '}
-                    {index !== TABLE_HEAD.length - 1 && (
-                      <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
-                    )}
+                    {index !== TABLE_HEAD.length - 1 && <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />}
                   </Typography>
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {VisibleData.map(
-              (
-                {
-                  img,
-                  name,
-                  Description,
-                  P_Code,
-                  Quantity,
-                  Unit,
-                  status,
-                  Total,
-                },
-                index,
-              ) => {
-                const isLast = index === TABLE_ROWS.length - 1;
-                const classes = isLast
-                  ? 'p-4'
-                  : 'p-4 border-b border-blue-gray-50';
+            {VisibleData.map(({ img, name, Description, P_Code, Quantity, Unit, status, Total }, index) => {
+              const isLast = index === TABLE_ROWS.length - 1;
+              const classes = isLast ? 'p-4' : 'p-4 border-b border-blue-gray-50';
 
-                return (
-                  <tr key={P_Code}>
-                    <td className={classes}>
+              return (
+                <tr key={P_Code}>
+                  <td className={classes}>
+                    <div className="flex flex-col">
+                      <Typography variant="small" className="font-normal">
+                        #{P_Code}
+                      </Typography>
+                    </div>
+                  </td>
+
+                  <td className={classes}>
+                    <div className="flex items-center gap-3">
+                      <Avatar src={img} alt={name} size="sm" />
                       <div className="flex flex-col">
                         <Typography variant="small" className="font-normal">
-                          #{P_Code}
+                          {name}
+                        </Typography>
+                        <Typography variant="small" className="font-normal opacity-70">
+                          {Description}
                         </Typography>
                       </div>
-                    </td>
-
-                    <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <Avatar src={img} alt={name} size="sm" />
-                        <div className="flex flex-col">
-                          <Typography variant="small" className="font-normal">
-                            {name}
-                          </Typography>
-                          <Typography
-                            variant="small"
-                            className="font-normal opacity-70"
-                          >
-                            {Description}
-                          </Typography>
-                        </div>
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <div className="flex flex-col">
-                        <Typography variant="small" className="font-normal">
-                          {Quantity}x
-                        </Typography>
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <div className="w-max">
-                        <Chip
-                          size="sm"
-                          variant="filled"
-                          value={status}
-                          color={
-                            status === 'High Stock'
-                              ? 'green'
-                              : status === 'Low Stock'
-                              ? 'amber'
-                              : 'red'
-                          }
-                        />
-                      </div>
-                    </td>
-                    <td className={classes}>
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <div className="flex flex-col">
                       <Typography variant="small" className="font-normal">
-                        {Unit} TND
+                        {Quantity}x
                       </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography variant="small" className="font-normal">
-                        {Total} TND
-                      </Typography>
-                    </td>
-                  </tr>
-                );
-              },
-            )}
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <div className="w-max">
+                      <Chip
+                        size="sm"
+                        variant="filled"
+                        value={status}
+                        color={status === 'High Stock' ? 'green' : status === 'Low Stock' ? 'amber' : 'red'}
+                      />
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <Typography variant="small" className="font-normal">
+                      {Unit} TND
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography variant="small" className="font-normal">
+                      {Total} TND
+                    </Typography>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </CardBody>

@@ -1,8 +1,4 @@
-import {
-  MagnifyingGlassIcon,
-  EyeIcon,
-  ChevronUpDownIcon,
-} from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, EyeIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import {
   CardHeader,
   Input,
@@ -29,37 +25,27 @@ import SortData from '../../utils/Table/SortRows';
 import TabFilter from '../../utils/Table/TabFilter';
 import SearchRow from '../../utils/Table/Search';
 import TranslatedText from '../../utils/Translation';
-import { CreateToast } from '../../utils/Toast';
+import { Notify } from '../../utils/Toast/toast';
 import ReactDOMServer from 'react-dom/server';
 const TABLE_HEAD = [
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.OrderID" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.OrderID" />,
     value: 'Order',
   },
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Employee" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Employee" />,
     value: 'Employee',
   },
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Status" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Status" />,
     value: 'Status',
   },
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Date" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Date" />,
     value: 'Date',
   },
   {
-    label: (
-      <TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Total" />
-    ),
+    label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabHeader.Total" />,
     value: 'Total',
   },
   { label: '', value: '' },
@@ -136,53 +122,35 @@ export default function MyOrders_Table() {
 
   const TABS = [
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.All" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.All" />,
       value: 'All',
-      Filter_fn: () =>
-        TabFilter('status', 'All', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'All', TABLE_ROWS, SetAllData, currentPage),
     },
 
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Paid" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Paid" />,
       value: 'Paid',
-      Filter_fn: () =>
-        TabFilter('status', 'Paid', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Paid', TABLE_ROWS, SetAllData, currentPage),
     },
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Ready" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Ready" />,
       value: 'Ready',
-      Filter_fn: () =>
-        TabFilter('status', 'Ready', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Ready', TABLE_ROWS, SetAllData, currentPage),
     },
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Pending" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Pending" />,
       value: 'Pending',
-      Filter_fn: () =>
-        TabFilter('status', 'Pending', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Pending', TABLE_ROWS, SetAllData, currentPage),
     },
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Paused" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Paused" />,
       value: 'Paused',
-      Filter_fn: () =>
-        TabFilter('status', 'Paused', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Paused', TABLE_ROWS, SetAllData, currentPage),
     },
     {
-      label: (
-        <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Cancelled" />
-      ),
+      label: <TranslatedText TranslationPath="UCP.MyOrdersTable.TabFilter.Cancelled" />,
       value: 'Cancelled',
-      Filter_fn: () =>
-        TabFilter('status', 'Cancelled', TABLE_ROWS, SetAllData, currentPage),
+      Filter_fn: () => TabFilter('status', 'Cancelled', TABLE_ROWS, SetAllData, currentPage),
     },
   ];
 
@@ -194,46 +162,16 @@ export default function MyOrders_Table() {
         }, 1000);
       });
 
-      CreateToast(
-        promise,
-        "",
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Success" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.Promise.Pending" />
-        ),
-        ReactDOMServer.renderToStaticMarkup(
-          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Error" />
-        ),
-        /*Custom request Errors message*/
-        [],
-        /*Custom Request Error codes */
-        [],
-        /*Default Connection Errors */
-        [
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ConnectionLost" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServerLoaded" />),
-        ReactDOMServer.renderToStaticMarkup(<TranslatedText TranslationPath="UCP.DialogMessages.Connection.ServiceUnavaiable" />)
-        ],
-        'promise',
-        LightModeState == LightMode().type,
-      );
-    } catch (e) {/*Catch Logic here*/}
+      Notify.displayPromiseNotification(promise, [], [], LightModeState == LightMode().type);
+    } catch (e) {
+      /*Catch Logic here*/
+    }
   };
   return (
     <>
-      <CardHeader
-        floated={false}
-        shadow={false}
-        className={`rounded-none bg-transparent ${
-          LightModeState == LightMode().type
-            ? 'tc-whiteTheme_T1 '
-            : 'tc-darkTheme_T1 '
-        }`}
-      >
+      <CardHeader floated={false} shadow={false} className={`rounded-none bg-transparent `}>
         <div className="mb-8 flex items-center justify-between gap-1">
-          <div >
+          <div>
             <Typography variant="h5">
               <TranslatedText TranslationPath="UCP.MyOrdersTable.Title" />
             </Typography>
@@ -295,14 +233,7 @@ export default function MyOrders_Table() {
                 <th
                   onClick={() => {
                     if (index !== TABLE_HEAD.length - 1)
-                      SortData(
-                        head.value,
-                        sortDirection,
-                        setSortDirection,
-                        VisibleData,
-                        SetVisibleData,
-                        'MyOrders',
-                      );
+                      SortData(head.value, sortDirection, setSortDirection, VisibleData, SetVisibleData, 'MyOrders');
                   }}
                   key={head.value}
                   className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
@@ -312,106 +243,94 @@ export default function MyOrders_Table() {
                     className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                   >
                     {head.label}{' '}
-                    {index !== TABLE_HEAD.length - 1 && (
-                      <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
-                    )}
+                    {index !== TABLE_HEAD.length - 1 && <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />}
                   </Typography>
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {VisibleData.map(
-              (
-                { img, name, email, Total, status, OrderID, online, date },
-                index,
-              ) => {
-                const isLast = index === TABLE_ROWS.length - 1;
-                const classes = isLast
-                  ? 'p-4'
-                  : 'p-4 border-b border-blue-gray-50';
+            {VisibleData.map(({ img, name, email, Total, status, OrderID, online, date }, index) => {
+              const isLast = index === TABLE_ROWS.length - 1;
+              const classes = isLast ? 'p-4' : 'p-4 border-b border-blue-gray-50';
 
-                return (
-                  <tr key={OrderID}>
-                    <td className={classes}>
+              return (
+                <tr key={OrderID}>
+                  <td className={classes}>
+                    <div className="flex flex-col">
+                      <Typography variant="small" className="font-normal">
+                        #{OrderID}
+                      </Typography>
+                    </div>
+                  </td>
+
+                  <td className={classes}>
+                    <div className="flex items-center gap-3">
+                      <Avatar src={img} alt={name} size="sm" />
                       <div className="flex flex-col">
                         <Typography variant="small" className="font-normal">
-                          #{OrderID}
+                          {name}
+                        </Typography>
+                        <Typography variant="small" className="font-normal opacity-70">
+                          {email}
                         </Typography>
                       </div>
-                    </td>
+                    </div>
+                  </td>
 
-                    <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <Avatar src={img} alt={name} size="sm" />
-                        <div className="flex flex-col">
-                          <Typography variant="small" className="font-normal">
-                            {name}
-                          </Typography>
-                          <Typography
-                            variant="small"
-                            className="font-normal opacity-70"
-                          >
-                            {email}
-                          </Typography>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td className={classes}>
-                      <div className="w-max">
-                        <Chip
-                          size="sm"
-                          variant="filled"
-                          value={status}
-                          color={
-                            status === 'Paid' || status == 'Ready'
-                              ? 'green'
-                              : status === 'Pending'
-                              ? 'amber'
-                              : status === 'Paused'
-                              ? 'pink'
-                              : 'red'
-                          }
-                        />
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <Typography variant="small" className="font-normal">
-                        {date}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography variant="small" className="font-normal">
-                        {Total} TND
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Tooltip content="Inspect Order">
-                        <IconButton
-                          variant="text"
-                          onClick={() => {
-                            window.location.href = '/UCP/Order';
-                          }}
-                        >
-                          <EyeIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip content="Cancel Order">
-                        <IconButton
-                          variant="text"
-                          onClick={() => {
-                            SetConfirmCancelDialog(true);
-                          }}
-                        >
-                          <i className="fa-solid fa-xmark h-4 w-4"></i>
-                        </IconButton>
-                      </Tooltip>
-                    </td>
-                  </tr>
-                );
-              },
-            )}
+                  <td className={classes}>
+                    <div className="w-max">
+                      <Chip
+                        size="sm"
+                        variant="filled"
+                        value={status}
+                        color={
+                          status === 'Paid' || status == 'Ready'
+                            ? 'green'
+                            : status === 'Pending'
+                            ? 'amber'
+                            : status === 'Paused'
+                            ? 'pink'
+                            : 'red'
+                        }
+                      />
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <Typography variant="small" className="font-normal">
+                      {date}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography variant="small" className="font-normal">
+                      {Total} TND
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Tooltip content="Inspect Order">
+                      <IconButton
+                        variant="text"
+                        onClick={() => {
+                          window.location.href = '/UCP/Order';
+                        }}
+                      >
+                        <EyeIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip content="Cancel Order">
+                      <IconButton
+                        variant="text"
+                        onClick={() => {
+                          SetConfirmCancelDialog(true);
+                        }}
+                      >
+                        <i className="fa-solid fa-xmark h-4 w-4"></i>
+                      </IconButton>
+                    </Tooltip>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </CardBody>
@@ -433,9 +352,7 @@ export default function MyOrders_Table() {
         }}
         Icon={'<i className="fa-solid fa-store-slash h-4 w-4 m-1"></i>'}
         Title={'Cancel Order'}
-        Content={
-          <TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Confirm" />
-        }
+        Content={<TranslatedText TranslationPath="UCP.DialogMessages.MyOrders.DeleteOrder_Confirm" />}
       />
     </>
   );

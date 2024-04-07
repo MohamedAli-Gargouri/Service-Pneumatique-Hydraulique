@@ -1,58 +1,57 @@
-import {
-  Typography,
-  Button,
-  Rating,
-  Chip
-} from '@material-tailwind/react';
+import { Typography, Button, Rating, Chip } from '@material-tailwind/react';
 import React from 'react';
 import Navbar from '../../components/NavBar';
-import { TranslateString } from '../../utils/Translation';
 import AnimatedTab from '../../components/Tab';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import Footer from '../../components/footer';
 import Gallery from '../../components/Gallery';
 import Breadcrump from '../../components/Breadcrump';
 import useCart from '../../utils/hooks/Cart';
-
-import TranslatedText from '../../utils/Translation';
-export default function Products() {
-  const {OrderCart,AddProduct,SetQuantity,RemoveProduct}=useCart()
+import { useTranslation } from 'react-i18next';
+import { LightMode } from '../../redux/actions/LightActions';
+export default function PreviewProductComponent() {
+  const { OrderCart, AddProduct, SetQuantity, RemoveProduct } = useCart();
   const ProductInfo = JSON.parse(localStorage.getItem('ProductPreviewProps'));
-
-  const Product={ProductID:ProductInfo.ProductID,
-    ProductBrand:ProductInfo.ProductBrand,
-    ProductName:ProductInfo.ProductName, 
-    ProductCategory:ProductInfo.ProductCategory,
-    ProductImages:ProductInfo.ProductImages,
-    ProductPrice:ProductInfo.ProductPrice,
-    ProductQuantity:1
-    }
-  const Tabs=[
+  const { t, i18n } = useTranslation();
+  const Product = {
+    ProductID: ProductInfo.ProductID,
+    ProductBrand: ProductInfo.ProductBrand,
+    ProductName: ProductInfo.ProductName,
+    ProductCategory: ProductInfo.ProductCategory,
+    ProductImages: ProductInfo.ProductImages,
+    ProductPrice: ProductInfo.ProductPrice,
+    ProductQuantity: 1,
+  };
+  const Tabs = [
     {
-      TabID:1,
-      TabName:TranslateString("Product.Description"),
-      TabLogo:<i className="fa-solid fa-circle-info mx-2"></i>,
+      TabID: 1,
+      TabName: t('Product.Description'),
+      TabLogo: <i className="fa-solid fa-circle-info mx-2"></i>,
     },
     {
-      TabID:2,
-      TabName:TranslateString("Product.AddInfo"),
-      TabLogo:<i className="fa-solid fa-info mx-2"></i>,
+      TabID: 2,
+      TabName: t('Product.AddInfo'),
+      TabLogo: <i className="fa-solid fa-info mx-2"></i>,
     },
     {
-      TabID:3,
-      TabName:TranslateString("Product.Shipping"),
-      TabLogo:<i className="fa-solid fa-truck-fast mx-2"></i>,
-    }
-  ]
+      TabID: 3,
+      TabName: t('Product.Shipping'),
+      TabLogo: <i className="fa-solid fa-truck-fast mx-2"></i>,
+    },
+  ];
   const LightModeState = useSelector((state) => state.lightMode);
+  var isLightMode = LightModeState == LightMode().type;
+  React.useEffect(() => {
+    isLightMode = LightModeState == LightMode().type;
+  }, [LightModeState]);
   return (
     <React.Fragment>
       <Navbar />
       <div className="pt-[20vh] md:pt-[15vh] ">
         <Breadcrump
           List={false}
-          Parent={{ PageUrl: '/Products', PageName: <TranslatedText TranslationPath="Product.Shop" /> }}
-          Child={{ PageUrl: '/ProductDetails', PageName: <TranslatedText TranslationPath="Product.Product" /> }}
+          Parent={{ PageUrl: '/Products', PageName: t('Product.Shop') }}
+          Child={{ PageUrl: '/ProductDetails', PageName: t('Product.Product') }}
         />
       </div>
       <div className="mb-[1rem]  grid grid-cols-2 w-full justify-center items-center gap-3 ">
@@ -61,12 +60,12 @@ export default function Products() {
         </div>
 
         <div className="col-span-2 md:col-span-1 flex flex-col items-center justify-center w-full">
-        <Typography variant="h5" className=" font-semibold">
+          <Typography variant="h5" className=" font-semibold">
             {ProductInfo.ProductCategory}
           </Typography>
 
           <Typography variant="h6" className=" font-thin">
-           {ProductInfo.ProductBrand}
+            {ProductInfo.ProductBrand}
           </Typography>
 
           <Typography variant="h6" className=" font-thin">
@@ -77,26 +76,21 @@ export default function Products() {
             {ProductInfo.ProductPrice} TND
           </Typography>
           <Typography variant="paragraph" className=" font-thin m-4 md:m-0">
-        {ProductInfo.ProductShortDescription}
+            {ProductInfo.ProductShortDescription}
           </Typography>
 
-            <Button
-              className=" my-2 flex items-center justify-center gap-1 w-[50%] hover:scale-110 "
-              onClick={()=>AddProduct(Product)}
-            >
-              <i className="fa-solid fa-cart-plus"></i>
-              <TranslatedText TranslationPath="Global.Actions.AddCart" />
-            </Button>
+          <Button
+            className=" my-2 flex items-center justify-center gap-1 w-[50%] hover:scale-110 "
+            onClick={() => AddProduct(Product)}
+          >
+            <i className="fa-solid fa-cart-plus"></i> {t('Global.Actions.AddCart')}
+          </Button>
 
-          <div className=' mt-2 flex gap-1 justify-center items-center flex-wrap'>
-    { 
-      ProductInfo.ProductSubCategory.map((SubCategory,index)=>{
-    return(
-      <Chip key={"Subcategory"+index} value={SubCategory.SubCategoryName} />
-    )
-      })
-    }
-</div>
+          <div className=" mt-2 flex gap-1 justify-center items-center flex-wrap">
+            {ProductInfo.ProductSubCategory.map((SubCategory, index) => {
+              return <Chip key={'Subcategory' + index} value={SubCategory.SubCategoryName} />;
+            })}
+          </div>
         </div>
       </div>
 
@@ -107,18 +101,23 @@ export default function Products() {
             value: tab.TabName,
             icon: tab.TabLogo,
             desc: (
-              <Typography key={index === 0 ? "Tab0" : index === 1 ? "Tab1" : "Tab2"} variant="paragraph" className="font-extralight">
-                {index === 0 ? ProductInfo.ProductLongDesc : index === 1 ? ProductInfo.ProductInformation : ProductInfo.ProductShipping}
+              <Typography
+                key={index === 0 ? 'Tab0' : index === 1 ? 'Tab1' : 'Tab2'}
+                variant="paragraph"
+                className="font-extralight"
+              >
+                {index === 0
+                  ? ProductInfo.ProductLongDesc
+                  : index === 1
+                  ? ProductInfo.ProductInformation
+                  : ProductInfo.ProductShipping}
               </Typography>
             ),
           }));
-          
+
           return TempTabs;
-        })()
-
-
-        }
-        DefaultSelectValue={TranslateString("Product.Description")}
+        })()}
+        DefaultSelectValue={t('Product.Description')}
       />
 
       <Footer />

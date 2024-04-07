@@ -11,7 +11,8 @@ import TranslatedText from '../../utils/Translation';
 import { Typography, Button } from '@material-tailwind/react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
+import { useTranslation } from 'react-i18next';
+import { LightMode } from '../../redux/actions/LightActions';
 //Animations Config
 const BannerLeftSideAnimations = {
   hidden: {
@@ -54,6 +55,11 @@ const Home = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
   });
+  const { t, i18n } = useTranslation();
+  var isLightMode = LightModeState == LightMode().type;
+  React.useEffect(() => {
+    isLightMode = LightModeState == LightMode().type;
+  }, [LightModeState]);
   return (
     <React.Fragment>
       <Navbar />
@@ -61,37 +67,38 @@ const Home = () => {
         style={{ backgroundImage: `url(${HeroImage})` }}
         className=" grid grid-cols-2 justify-center items-center flex-wrap md:flex-nowrap gap-0 bg-cover aspect-video  h-[170vh] md:h-[100vh] w-full  "
       >
-        <motion.div 
-         initial={"hidden"}
-         variants={BannerLeftSideAnimations}
-         animate={inView ? 'visible' : 'hidden'}
-         ref={ref} 
-         className=" col-span-2 md:col-span-1 p-1 flex justify-center items-center order-2 mt-0 md:order-1 w-full aspect-square">
-          <img loading="lazy"
+        <motion.div
+          initial={'hidden'}
+          variants={BannerLeftSideAnimations}
+          animate={inView ? 'visible' : 'hidden'}
+          ref={ref}
+          className=" col-span-2 md:col-span-1 p-1 flex justify-center items-center order-2 mt-0 md:order-1 w-full aspect-square"
+        >
+          <img
+            loading="lazy"
             className="m-0 aspect-square  max-w-[15rem] md:max-w-md  lg:max-w-xl Imageshadow"
             src={HeroCompressor}
           />
         </motion.div>
 
-        <motion.div 
-        initial={"hidden"}
-        variants={BannerRightSideAnimations}
-        animate={inView ? 'visible' : 'hidden'}
-        ref={ref} 
-        className="col-span-2 md:col-span-1 w-full order-1 mt-28 md:mt-0  md:h-full  flex justify-center  items-start md:items-center p-4">
+        <motion.div
+          initial={'hidden'}
+          variants={BannerRightSideAnimations}
+          animate={inView ? 'visible' : 'hidden'}
+          ref={ref}
+          className="col-span-2 md:col-span-1 w-full order-1 mt-28 md:mt-0  md:h-full  flex justify-center  items-start md:items-center p-4"
+        >
           <div
             style={{
-              background:
-                'linear-gradient(to right, rgb(229, 57, 53,0.0), rgb(0, 0, 0,0.3))',
+              background: 'linear-gradient(to right, rgb(229, 57, 53,0.0), rgb(0, 0, 0,0.3))',
             }}
-            className="w-full md:w-fit  text-white Imageshadow text-center  backdrop-blur-md rounded-lg flex flex-col justify-start gap-0 items-center pt-3"
+            className="w-full md:w-fit text-white-c Imageshadow text-center  backdrop-blur-md rounded-lg flex flex-col justify-start gap-0 items-center pt-3"
           >
-            <Typography variant="h1">
-              <TranslatedText TranslationPath="Home.HeroTitle" />
-            </Typography>
+            <Typography variant="h1"> {t('Home.HeroTitle')}</Typography>
 
             <Typography variant="h6" className=" italic">
-              <TranslatedText TranslationPath="Home.HeroDescription" />
+              {' '}
+              {t('Home.HeroDescription')}
             </Typography>
 
             <div className="flex items-center justify-center h-full">
@@ -102,8 +109,7 @@ const Home = () => {
                 className=" italic shadowed-div flex items-center gap-3 m-4 hover:scale-x-105 hover:scale-y-105"
               >
                 <i className="fa-solid fa-phone"></i>
-
-                <TranslatedText TranslationPath="Home.ContactusBtn" />
+                {t('Home.ContactusBtn')}
               </Button>
 
               <Button
@@ -113,7 +119,7 @@ const Home = () => {
                 className=" italic shadowed-div flex items-center gap-3 m-4 hover:scale-x-105 hover:scale-y-105"
               >
                 <i className="fa-solid fa-cart-shopping"></i>
-                <TranslatedText TranslationPath="Home.CheckProducts" />
+                {t('Home.CheckProducts')}
               </Button>
             </div>
           </div>

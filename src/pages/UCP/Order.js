@@ -1,6 +1,4 @@
-import {
-  Card,
-} from '@material-tailwind/react';
+import { Card } from '@material-tailwind/react';
 import TranslatedText from '../../utils/Translation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/LightActions';
@@ -10,18 +8,18 @@ import SideBar from '../../components/SideBar';
 import React from 'react';
 import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.webp';
+import { useTranslation } from 'react-i18next';
 export default function UCP_Order() {
   const LightModeState = useSelector((state) => state.lightMode);
+  const { t, i18n } = useTranslation();
+  var isLightMode = LightModeState == LightMode().type;
+  React.useEffect(() => {
+    isLightMode = LightModeState == LightMode().type;
+  }, [LightModeState]);
   return (
     <>
       <div className="flex flex-row items-stretch">
-        <aside
-          className={`mb-2 rounded-b-xl p-4 shadow-lg ${
-            LightModeState == LightMode().type
-              ? 'tc-whiteTheme_T1 bg-whiteTheme_T2'
-              : 'tc-darkTheme_T1 bg-darkTheme_T2'
-          }   hidden xl:block w-[20vw]`}
-        >
+        <aside className={`background-secondary mb-2 rounded-b-xl p-4 shadow-lg hidden xl:block w-[20vw]`}>
           <SideBar />
         </aside>
 
@@ -31,21 +29,13 @@ export default function UCP_Order() {
             style={{ backgroundImage: `url(${Topbarbg})` }}
           >
             <TopBar
-              SectionName={
-                <TranslatedText TranslationPath="UCP.TopNav.TabTitles.Order" />
-              }
+              SectionName={t('UCP.TopNav.TabTitles.Order')}
               Icon='<i className="fa-solid fa-clipboard-list"></i>'
             />
           </section>
 
           <section className="w-full flex justify-center  text-center">
-            <Card
-              className={`p-2 w-full  min-h-[82vh] m-2   ${
-                LightModeState == LightMode().type
-                  ? 'tc-whiteTheme_T1 bg-whiteTheme_T2'
-                  : 'tc-darkTheme_T1 bg-darkTheme_T2'
-              }`}
-            >
+            <Card className={`background-secondary p-2 w-full  min-h-[82vh] m-2 `}>
               <Order />
             </Card>
           </section>
