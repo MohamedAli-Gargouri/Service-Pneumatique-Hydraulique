@@ -3,14 +3,14 @@ import { addProduct, removeProduct, setProductQuantity } from '../../redux/actio
 import { useDispatch } from 'react-redux';
 import { useNotify } from './useNotify';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useTranslation } from 'react-i18next';
 //This hook handle the add, remove and quantity update for the cart//
 const useCart = () => {
   const { displayNotification, displayPromiseNotification } = useNotify();
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const dispatch = useDispatch();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const CartList = useSelector((state: RootState) => state.cartList);
   const RemoveProduct = (ProductID: any) => {
     dispatch(removeProduct(ProductID));

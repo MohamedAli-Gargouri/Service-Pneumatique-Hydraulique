@@ -17,13 +17,13 @@ import actuators from '../../assets/images/productNavMenu/actuators.webp';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/light-actions';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 
 export default function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -120,10 +120,24 @@ export default function NavListMenu() {
           <img loading="lazy" className="Imageshadow w-full h-full" src={icon} />
         </div>
         <div>
-          <Typography variant="h6" color="blue-gray" className={`flex items-center text-sm`}>
+          <Typography
+            variant="h6"
+            color="blue-gray"
+            className={`flex items-center text-sm`}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {title}
           </Typography>
-          <Typography variant="small" color="gray" className={`font-normal`}>
+          <Typography
+            variant="small"
+            color="gray"
+            className={`font-normal`}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {description}
           </Typography>
         </div>

@@ -4,10 +4,10 @@ import logo from '../../assets/images/SPH Logo.webp';
 import { LightMode } from '../../redux/actions/light-actions';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 export default function FooterWithSocialLinks() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -74,6 +74,9 @@ export default function FooterWithSocialLinks() {
                 <Typography
                   variant="small"
                   className={` underline underline-offset-2 mt-4 mb-3 font-medium opacity-40`}
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
                 >
                   {title}
                 </Typography>
@@ -83,6 +86,9 @@ export default function FooterWithSocialLinks() {
                       <Typography
                         as="h6"
                         className={` font-thin opacity-60 mr-1 py-1.5  transition-colors hover:opacity-75 `}
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
                       >
                         {link.label}:
                       </Typography>
@@ -91,6 +97,9 @@ export default function FooterWithSocialLinks() {
                         as="small"
                         href="#"
                         className={` leading-4 font-normal transition-colors hover:opacity-75 `}
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
                       >
                         {link.value}
                       </Typography>
@@ -102,11 +111,23 @@ export default function FooterWithSocialLinks() {
           </div>
         </div>
         <div className={`w-full  flex  flex-col  flex-wrap justify-center items-center mt-5`}>
-          <Typography variant="small" className={`mb-4 text-center font-normal  md:mb-0 `}>
+          <Typography
+            variant="small"
+            className={`mb-4 text-center font-normal  md:mb-0 `}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             &copy; {currentYear}{' '}
             <a href="https://www.facebook.com/ServicePneumatiqueHydraulique">{t('Global.Footer.Rights')}</a>
           </Typography>
-          <Typography as="small" className={' underline underline-offset-4'}>
+          <Typography
+            as="small"
+            className={' underline underline-offset-4'}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {t('Global.Footer.Dev')}
           </Typography>
         </div>

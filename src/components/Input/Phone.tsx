@@ -4,12 +4,11 @@ import { Input, Menu, MenuHandler, MenuList, MenuItem, Button } from '@material-
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/light-actions';
 import PropTypes from 'prop-types';
+import { RootState } from 'types/components/general';
 PhoneInput.propTypes = {
   internationalDialRef: PropTypes.object.isRequired,
   phoneNumberRef: PropTypes.object.isRequired,
 };
-
-import { RootState } from 'redux/reducers';
 export default function PhoneInput({ internationalDialRef, phoneNumberRef }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const countryArray = Object.entries(countries);

@@ -7,7 +7,7 @@ TooltipCustomStyles.propTypes = {
 };
 import { LightMode } from '../../redux/actions/light-actions';
 import { useSelector } from 'react-redux';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 export default function TooltipCustomStyles({ Header, Content }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   return (
@@ -16,8 +16,21 @@ export default function TooltipCustomStyles({ Header, Content }) {
       className={`border border-blue-gray-50 px-4 py-3 shadow-xl shadow-black/10`}
       content={
         <div className="w-80">
-          <Typography className="font-medium">{Header}</Typography>
-          <Typography variant="small" className="font-normal opacity-80">
+          <Typography
+            className="font-medium"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
+            {Header}
+          </Typography>
+          <Typography
+            variant="small"
+            className="font-normal opacity-80"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {Content}
           </Typography>
         </div>

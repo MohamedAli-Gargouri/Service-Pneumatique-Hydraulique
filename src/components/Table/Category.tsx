@@ -30,7 +30,7 @@ import {
   DELETESubCategory,
 } from '../../services/category';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 Categories_Table.propTypes = {
   HandleOpen: PropTypes.func.isRequired,
 };
@@ -38,7 +38,7 @@ export default function Categories_Table({ HandleOpen }) {
   const accessToken = useSelector((state: RootState) => state.userAccessToken);
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const [OpenDeleteDialog, SetOpenDeleteDialog] = React.useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { displayNotification, displayPromiseNotification } = useNotify();
   const [TABLE_ROWS, SetTABLE_ROWS] = React.useState([]);
   const [AllData, SetAllData] = React.useState(TABLE_ROWS);
@@ -305,6 +305,9 @@ export default function Categories_Table({ HandleOpen }) {
                   <Typography
                     variant="small"
                     className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+                    placeholder={undefined}
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     {head.label}{' '}
                     {index !== TABLE_HEAD.length - 1 && <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />}
@@ -322,7 +325,13 @@ export default function Categories_Table({ HandleOpen }) {
                 <tr key={CategoryID}>
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         #{CategoryID}
                       </Typography>
                     </div>
@@ -351,7 +360,13 @@ export default function Categories_Table({ HandleOpen }) {
 
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         {type == 1
                           ? t('UCP.CategoryTable.TabHeader.CategoryTypeValue1')
                           : t('UCP.CategoryTable.TabHeader.CategoryTypeValue2')}

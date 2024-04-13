@@ -9,10 +9,10 @@ import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.webp';
 import AddProduct from '../../components/Product/Add';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 export default function UCP_AddProduct() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;

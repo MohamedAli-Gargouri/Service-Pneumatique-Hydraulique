@@ -104,10 +104,10 @@ export default function Grid({ dataSource, configuration, columns, widgets }) {
           row.value === 'High Stock' || row.value === 'Ready' || row.value === 'PAID'
             ? 'green'
             : row.value === 'PAUSED' || row.value === 'PENDING'
-            ? 'amber'
-            : row.value === 'Low Stock' || row.value === 'READY'
-            ? 'pink'
-            : 'red'
+              ? 'amber'
+              : row.value === 'Low Stock' || row.value === 'READY'
+                ? 'pink'
+                : 'red'
         }
       />
     );
@@ -120,8 +120,22 @@ export default function Grid({ dataSource, configuration, columns, widgets }) {
        ***********************************************************************************************************************/}
       <div className="grdHeader">
         <div className="grdTitle">
-          <Typography variant="h5">{configuration.gridTitle}</Typography>
-          <Typography className="mt-1 font-normal">{configuration.gridTitleDescription}</Typography>
+          <Typography
+            variant="h5"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
+            {configuration.gridTitle}
+          </Typography>
+          <Typography
+            className="mt-1 font-normal"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
+            {configuration.gridTitleDescription}
+          </Typography>
         </div>
         <div className="toolbar">
           {widgets.map((widget, index) => {

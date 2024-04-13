@@ -16,7 +16,7 @@ import { productsGridHeaderWidgets } from './Products.config';
 import { Binder } from '../../utils/binder';
 import CategoryDialog from '../../components/Dialog/Category';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useNotify } from 'utils/hooks/useNotify';
 export default function UCP_Products() {
   /****************************************************************************************************************************** */
@@ -28,7 +28,7 @@ export default function UCP_Products() {
   const [data, setData] = React.useState([]);
   const [selectedRows, setSelectedRows] = React.useState([]);
   const [OpenCategoryDialog, SetOpenCategoryDialog] = React.useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;

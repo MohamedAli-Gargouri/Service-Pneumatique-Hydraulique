@@ -8,7 +8,7 @@ export interface PaginationParam {
   totalPages: number;
 }
 export function Pagination(param: PaginationParam) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const next = () => {
     if (param.currentPage === param.totalPages) return;
@@ -40,13 +40,13 @@ export function Pagination(param: PaginationParam) {
         {Array.from({ length: param.totalPages }, (_, index) => (
           <IconButton
             className="rounded-full"
-            placeholder={undefined}
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
             key={'Pagination' + index}
             variant={param.currentPage === index ? 'filled' : 'text'}
             color="red"
             onClick={() => param.setCurrentPage(index)}
+            placeholder={undefined}
           >
             {index + 1}
           </IconButton>

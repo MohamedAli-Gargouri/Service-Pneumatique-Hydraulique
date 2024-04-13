@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../../redux/actions/light-actions';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 QuantityInput.propTypes = {
   ProductID: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
@@ -14,7 +14,7 @@ QuantityInput.propTypes = {
 };
 export default function QuantityInput({ ProductID, quantity, incrementHandler, decrementHandler, onchangeHandler }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;

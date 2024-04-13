@@ -7,15 +7,15 @@ import PlaceHolderImg from '../../assets/images/Placeholderimg.webp';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/light-actions';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+import { RootState } from 'types/components/general';
+import { useNotify } from 'utils/hooks/useNotify';
 Gallery.propTypes = {
   AddedImages: PropTypes.object,
   Images: PropTypes.array.isRequired,
   Addable: PropTypes.bool.isRequired,
   Deletable: PropTypes.bool.isRequired,
 };
-import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
-import { useNotify } from 'utils/hooks/useNotify';
 export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { displayNotification, displayPromiseNotification } = useNotify();
@@ -24,7 +24,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
   const [ProductImages, SetProductImages] = useState(
     Images != undefined ? (Images.length == 0 ? [PlaceHolderImg] : Images) : [PlaceHolderImg],
   );
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;

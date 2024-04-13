@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { Menu, MenuHandler, MenuList, MenuItem, Typography, IconButton } from '@material-tailwind/react';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { SetArabic, SetEnglish, SetFrench } from 'redux/actions/language-actions';
 export default function LanguageList() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
@@ -53,7 +53,13 @@ export default function LanguageList() {
             onPointerLeaveCapture={undefined}
           >
             <img loading="lazy" src={enflag} alt={'en'} className={`h-5 w-5 rounded-full object-cover`} />
-            <Typography variant="small" className="font-normal">
+            <Typography
+              variant="small"
+              className="font-normal"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               English
             </Typography>
           </MenuItem>
@@ -66,7 +72,13 @@ export default function LanguageList() {
             onPointerLeaveCapture={undefined}
           >
             <img loading="lazy" src={frflag} alt={'fr'} className={`h-5 w-5 rounded-full object-cover`} />
-            <Typography variant="small" className="font-normal">
+            <Typography
+              variant="small"
+              className="font-normal"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               Frencais
             </Typography>
           </MenuItem>
@@ -79,7 +91,13 @@ export default function LanguageList() {
             onPointerLeaveCapture={undefined}
           >
             <img loading="lazy" src={tnflag} alt={'ar'} className={`h-5 w-5 rounded-full object-cover`} />
-            <Typography variant="small" className="font-normal">
+            <Typography
+              variant="small"
+              className="font-normal"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               Arab
             </Typography>
           </MenuItem>

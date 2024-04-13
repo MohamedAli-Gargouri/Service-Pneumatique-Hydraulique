@@ -34,7 +34,14 @@ export default function BackgroundBlogCard({ text, backgroundImage }) {
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
       >
-        <Typography variant="h5" color="white" className="mb-6 font-medium leading-[1.5]">
+        <Typography
+          variant="h5"
+          color="white"
+          className="mb-6 font-medium leading-[1.5]"
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           {text}
         </Typography>
         <Button

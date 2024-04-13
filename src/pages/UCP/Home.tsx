@@ -11,7 +11,7 @@ import SPHVideosrc from '../../assets/videos/SPH.mp4';
 import Carousel from '../../components/Carousel';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 const Animations = {
   hidden: {
     opacity: 0,
@@ -84,7 +84,7 @@ export default function UCP_Home() {
       col: 'yellow',
     },
   ]);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -129,12 +129,24 @@ export default function UCP_Home() {
                       >
                         <div className=" p-2 md:p-4  rounded-sm background-accent-primary text-white-c self-center md:self-start ">
                           {Insight.logo}
-                          <Typography variant="h6" className="">
+                          <Typography
+                            variant="h6"
+                            className=""
+                            placeholder={undefined}
+                            onPointerEnterCapture={undefined}
+                            onPointerLeaveCapture={undefined}
+                          >
                             <CountUp end={Insight.Count} duration={10} />
                           </Typography>
                         </div>
 
-                        <Typography variant="lead" className="">
+                        <Typography
+                          variant="lead"
+                          className=""
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {Insight.Name}
                         </Typography>
                       </Card>

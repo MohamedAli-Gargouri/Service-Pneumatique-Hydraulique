@@ -16,7 +16,7 @@ import CategoryTable from '../Table/Category';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/light-actions';
 import PropTypes from 'prop-types';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useTranslation } from 'react-i18next';
 CategoryDialog.propTypes = {
   Icon: PropTypes.string,
@@ -28,7 +28,7 @@ CategoryDialog.propTypes = {
 export default function CategoryDialog({ Icon, Open, HandleOpen, Title, Content }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const mdbreakpoint = 720;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const CategoryTabs = [
     {
       label: t('UCP.CategoryTable.TabFilter.Manage'),

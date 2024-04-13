@@ -32,7 +32,7 @@ import { RESET_ALL } from './redux/actions/GlobalActions';
 import { refreshTheme } from 'devextreme/viz/themes';
 import themes from 'devextreme/ui/themes';
 import { useTranslation } from 'react-i18next';
-import { RootState } from './redux/reducers';
+import { RootState } from './types/components/general';
 export default function App() {
   const isLoggedState = useSelector((state: RootState) => state.isLogged);
   const LightModeState = useSelector((state: RootState) => state.lightMode);
@@ -40,7 +40,7 @@ export default function App() {
   const { displayNotification } = useNotify();
   const dispatch = useDispatch();
   const isLightMode = LightModeState === LightMode().type;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   React.useEffect(() => {
     if (isLightMode) {
       themes.current('material.light');

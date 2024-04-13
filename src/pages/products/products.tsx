@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 Select.propTypes = {
   label: PropTypes.any,
 };
@@ -181,7 +181,7 @@ export default function Products() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const [DisplayVariant, setDisplayVariant] = React.useState(window.innerWidth < smBreakpoint ? 0 : 1);
   const [MobileDraweropen, SetMobileDraweropen] = React.useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -340,8 +340,8 @@ export default function Products() {
                 DisplayVariant == 1 || DisplayVariant == 0
                   ? 'grid-cols-1'
                   : DisplayVariant == 2
-                  ? 'grid-cols-2'
-                  : 'grid-cols-3'
+                    ? 'grid-cols-2'
+                    : 'grid-cols-3'
               }`}
             >
               {VisibleData.map((Product) => {

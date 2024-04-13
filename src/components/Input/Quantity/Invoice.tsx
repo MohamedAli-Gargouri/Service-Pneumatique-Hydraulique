@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../../redux/actions/light-actions';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 InvoiceQuantityInput.propTypes = {
   Id: PropTypes.number.isRequired,
   IdLabel: PropTypes.string.isRequired,
@@ -18,7 +18,7 @@ export default function InvoiceQuantityInput({ Id, IdLabel, Quantities, Quantity
   //Idlabel is the label inside the list of quantities
   //ID is the ID of the product
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;

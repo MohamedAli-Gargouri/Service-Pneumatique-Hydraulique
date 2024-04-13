@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 import { LightMode } from '../../redux/actions/light-actions';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 //Animations Config
 const Animations = {
   hidden: {
@@ -44,7 +44,7 @@ const Presentation = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
   });
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -89,7 +89,13 @@ const Presentation = () => {
                 <div className="grid grid-cols-12 gap-4">
                   <div className="col-span-12">
                     <div className="flex items-center justify-center">
-                      <Typography variant="h1" className={` text-center m-4 `}>
+                      <Typography
+                        variant="h1"
+                        className={` text-center m-4 `}
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         {t('Home.Services.Service_SubTitle')}
                       </Typography>
                     </div>
@@ -100,7 +106,13 @@ const Presentation = () => {
           </div>
           <div className="col-span-12">
             <div className="flex items-center justify-center h-full">
-              <Typography variant="paragraph" className={`m-4 `}>
+              <Typography
+                variant="paragraph"
+                className={`m-4 `}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {t('Home.Presentation')}
               </Typography>
             </div>

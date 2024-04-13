@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useNotify } from 'utils/hooks/useNotify';
 Invoice_ProductsDialog.propTypes = {
   SetAllData: PropTypes.func.isRequired,
@@ -18,7 +18,7 @@ Invoice_ProductsDialog.propTypes = {
 };
 export default function Invoice_ProductsDialog({ SetAllData, Open, HandleOpen, Content, Icon, Title }) {
   const mdbreakpoint = 720;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const P_Selected = React.useRef([]);
   const P_Quantities = React.useRef([]);

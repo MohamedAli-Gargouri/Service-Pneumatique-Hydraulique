@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import React from 'react';
 import { Alert, IconButton } from '@material-tailwind/react';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useTranslation } from 'react-i18next';
 
 const TABLE_ROWS_OrderNotifications = [
@@ -30,7 +30,7 @@ const TABLE_ROWS_OrderNotifications = [
 ];
 
 export default function Notifications_Table() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const [VisibleData, SetVisibleData] = React.useState(
     TABLE_ROWS_OrderNotifications.slice(0, Math.min(5, TABLE_ROWS_OrderNotifications.length)),

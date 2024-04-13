@@ -22,7 +22,7 @@ import { GridBuilder } from '../../types/components/grid';
 import { Binder } from '../../utils/binder';
 import ReactDOMServer from 'react-dom/server';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useNotify } from 'utils/hooks/useNotify';
 export default function UCP_Orders() {
   /****************************************************************************************************************************** */
@@ -32,7 +32,7 @@ export default function UCP_Orders() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const [data, setData] = React.useState([]);
   const [selectedRows, setSelectedRows] = React.useState([]);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { displayNotification, displayPromiseNotification } = useNotify();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {

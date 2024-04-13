@@ -3,7 +3,7 @@ import { Button, Dialog, DialogHeader, DialogBody, DialogFooter, Typography } fr
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/light-actions';
 import PropTypes from 'prop-types';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 ConfirmDialog.propTypes = {
   Open: PropTypes.bool.isRequired,
   color: PropTypes.string,
@@ -33,6 +33,9 @@ export default function ConfirmDialog({ Open, color, Title, Icon, Content, Actio
             variant="paragraph"
             color={color == undefined ? (LightModeState == LightMode().type ? 'black' : 'white') : color}
             className={`m-1 flex justify-center items-center gap-2 font-black  `}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             <i className={Icon + ' mx-1'}></i>
             {Title}

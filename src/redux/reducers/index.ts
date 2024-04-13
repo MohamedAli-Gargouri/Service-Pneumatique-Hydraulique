@@ -15,4 +15,3 @@ const allReducers = combineReducers({
   isLogged: isLoggedReducer,
 });
 export default allReducers;
-export type RootState = ReturnType<typeof allReducers>;

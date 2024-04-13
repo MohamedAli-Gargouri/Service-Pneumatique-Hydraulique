@@ -18,14 +18,14 @@ import Pagination from '../../utils/Table/Pagination';
 import SortData from '../../utils/Table/SortRows';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 
 Invoice_SelectedProducts_Table.propTypes = {
   ProductsData: PropTypes.array.isRequired,
   SetProductsData: PropTypes.func.isRequired,
 };
 export default function Invoice_SelectedProducts_Table({ ProductsData, SetProductsData }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const TABLE_HEAD = [
     {
       label: t('UCP.InvoiceSelectedProductsTable.TabHeader.ProductCode'),
@@ -79,8 +79,22 @@ export default function Invoice_SelectedProducts_Table({ ProductsData, SetProduc
       >
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-            <Typography variant="h5">{t('UCP.InvoiceSelectedProductsTable.Title')}</Typography>
-            <Typography className="mt-1 font-normal">{t('UCP.InvoiceSelectedProductsTable.Description')}</Typography>
+            <Typography
+              variant="h5"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.InvoiceSelectedProductsTable.Title')}
+            </Typography>
+            <Typography
+              className="mt-1 font-normal"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.InvoiceSelectedProductsTable.Description')}
+            </Typography>
           </div>
 
           <Button
@@ -118,6 +132,9 @@ export default function Invoice_SelectedProducts_Table({ ProductsData, SetProduc
                   <Typography
                     variant="small"
                     className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+                    placeholder={undefined}
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     {head.label}{' '}
                     {index !== TABLE_HEAD.length - 1 && <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />}
@@ -135,7 +152,13 @@ export default function Invoice_SelectedProducts_Table({ ProductsData, SetProduc
                 <tr key={ProductCode}>
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         #{ProductCode}
                       </Typography>
                     </div>
@@ -152,10 +175,22 @@ export default function Invoice_SelectedProducts_Table({ ProductsData, SetProduc
                         onPointerLeaveCapture={undefined}
                       />
                       <div className="flex flex-col">
-                        <Typography variant="small" className="font-normal">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {Brand}
                         </Typography>
-                        <Typography variant="small" className="font-normal opacity-70">
+                        <Typography
+                          variant="small"
+                          className="font-normal opacity-70"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {Model}
                         </Typography>
                       </div>
@@ -163,14 +198,26 @@ export default function Invoice_SelectedProducts_Table({ ProductsData, SetProduc
                   </td>
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         {Price} TND
                       </Typography>
                     </div>
                   </td>
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         {Quantity}x
                       </Typography>
                     </div>
@@ -178,7 +225,13 @@ export default function Invoice_SelectedProducts_Table({ ProductsData, SetProduc
 
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         {Quantity * Price} TND
                       </Typography>
                     </div>

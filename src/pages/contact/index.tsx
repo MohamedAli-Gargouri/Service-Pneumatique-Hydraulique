@@ -21,7 +21,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 //Animations Config
 const Animations = {
   hidden: {
@@ -62,7 +62,7 @@ export default function ContactCard() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const phoneInputRef = React.useRef(null);
   const internationalDialNumberRef = React.useRef(null);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -86,7 +86,12 @@ export default function ContactCard() {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              <Typography variant="h3">
+              <Typography
+                variant="h3"
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 <i className="fa-solid fa-circle-info mx-2 "></i> {t('Contact.Title1')}
               </Typography>
             </CardHeader>
@@ -102,7 +107,13 @@ export default function ContactCard() {
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
               >
-                <Typography variant="h6" className={` mx-1 `}>
+                <Typography
+                  variant="h6"
+                  className={` mx-1 `}
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   {t('Contact.SubTitle1')}
                 </Typography>
                 <ListItem
@@ -200,7 +211,13 @@ export default function ContactCard() {
                   </ListItemSuffix>
                 </ListItem>
 
-                <Typography variant="h6" className={`mx-1 `}>
+                <Typography
+                  variant="h6"
+                  className={`mx-1 `}
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   {t('Contact.SubTitle2')}
                 </Typography>
 
@@ -318,7 +335,13 @@ export default function ContactCard() {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              <Typography variant="h3" color="white">
+              <Typography
+                variant="h3"
+                color="white"
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 <i className="fa-solid fa-envelope mx-2 "></i>
                 {t('Contact.Title2')}
               </Typography>

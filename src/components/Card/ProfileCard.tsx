@@ -29,10 +29,24 @@ export default function ProfileCard({ image, name, position }) {
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
       >
-        <Typography variant="h4" color="blue-gray" className="mb-2">
+        <Typography
+          variant="h4"
+          color="blue-gray"
+          className="mb-2"
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           {name}
         </Typography>
-        <Typography color="blue" className="font-medium" textGradient>
+        <Typography
+          color="blue"
+          className="font-medium"
+          textGradient
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           {position}
         </Typography>
       </CardBody>
@@ -43,17 +57,44 @@ export default function ProfileCard({ image, name, position }) {
         onPointerLeaveCapture={undefined}
       >
         <Tooltip content="Like">
-          <Typography as="a" href="#facebook" variant="lead" color="blue" textGradient>
+          <Typography
+            as="a"
+            href="#facebook"
+            variant="lead"
+            color="blue"
+            textGradient
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             <i className="fab fa-facebook" />
           </Typography>
         </Tooltip>
         <Tooltip content="Follow">
-          <Typography as="a" href="#twitter" variant="lead" color="light-blue" textGradient>
+          <Typography
+            as="a"
+            href="#twitter"
+            variant="lead"
+            color="light-blue"
+            textGradient
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             <i className="fab fa-twitter" />
           </Typography>
         </Tooltip>
         <Tooltip content="Follow">
-          <Typography as="a" href="#instagram" variant="lead" color="purple" textGradient>
+          <Typography
+            as="a"
+            href="#instagram"
+            variant="lead"
+            color="purple"
+            textGradient
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             <i className="fab fa-instagram" />
           </Typography>
         </Tooltip>

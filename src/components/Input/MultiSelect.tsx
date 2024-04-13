@@ -6,7 +6,7 @@ import { LightMode } from '../../redux/actions/light-actions';
 import './MultiSelect.css';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 MultiSelect.propTypes = {
   Data: PropTypes.array.isRequired,
   DataLabelName: PropTypes.string.isRequired,
@@ -14,7 +14,7 @@ MultiSelect.propTypes = {
 };
 export default function MultiSelect({ Data, DataLabelName, SelectData }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;

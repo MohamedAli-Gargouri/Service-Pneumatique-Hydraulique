@@ -1,13 +1,13 @@
 import React from 'react';
 import { SelectInputValidation } from 'types/components/input-validation';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useSelector } from 'react-redux';
 import { LightMode } from 'redux/actions/light-actions';
 import { useNotify } from 'utils/hooks/useNotify';
 export function useInputValidation() {
   const { displayNotification, displayPromiseNotification } = useNotify();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const isLightMode = LightModeState === LightMode().type;
 

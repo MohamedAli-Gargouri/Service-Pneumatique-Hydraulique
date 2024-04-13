@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 import { LightMode } from 'redux/actions/light-actions';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 //Animations Config
 const BannerLeftSideAnimations = {
   hidden: {
@@ -55,7 +55,7 @@ const Home = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
   });
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -94,9 +94,23 @@ const Home = () => {
             }}
             className="w-full md:w-fit text-white-c Imageshadow text-center  backdrop-blur-md rounded-lg flex flex-col justify-start gap-0 items-center pt-3"
           >
-            <Typography variant="h1"> {t('Home.HeroTitle')}</Typography>
+            <Typography
+              variant="h1"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {' '}
+              {t('Home.HeroTitle')}
+            </Typography>
 
-            <Typography variant="h6" className=" italic">
+            <Typography
+              variant="h6"
+              className=" italic"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {' '}
               {t('Home.HeroDescription')}
             </Typography>

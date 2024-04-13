@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/light-actions';
 import PropTypes from 'prop-types';
 import { createCategory, createSubCategory, getCategories, createSubCategoryValue } from '../../services/category';
+import { arrayBufferToBase64, readBinaryData } from 'utils/file';
+import { useTranslation } from 'react-i18next';
+import { RootState } from 'types/components/general';
+import { useNotify } from 'utils/hooks/useNotify';
+import { useInputValidation } from 'utils/hooks/useInputValidation';
 AddCategory.propTypes = {
   HandleOpen: PropTypes.func.isRequired,
 };
-import { arrayBufferToBase64, readBinaryData } from 'utils/file';
-import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
-import { useNotify } from 'utils/hooks/useNotify';
-import { useInputValidation } from 'utils/hooks/useInputValidation';
 export default function AddCategory({ HandleOpen }) {
   const { displayNotification, displayPromiseNotification } = useNotify();
   const accessToken = useSelector((state: RootState) => state.userAccessToken);
@@ -20,7 +20,7 @@ export default function AddCategory({ HandleOpen }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { validateInputs } = useInputValidation();
   const [SelectedCategory, SetSelectedCategory] = React.useState('');
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -53,9 +53,7 @@ export default function AddCategory({ HandleOpen }) {
           .then(() => {
             HandleOpen();
           })
-          .catch(() => {
-            null;
-          });
+          .catch(() => {});
       }
     } catch (e) {
       /*Catch logic */
@@ -114,11 +112,11 @@ export default function AddCategory({ HandleOpen }) {
             HandleOpen();
           })
           .catch((e) => {
-            null;
+            /**Catched Error */
           });
       }
     } catch (e) {
-      null;
+      /**Catched Error */
     }
   };
   const addInputField = () => {
@@ -161,7 +159,13 @@ export default function AddCategory({ HandleOpen }) {
   return (
     <div className={`w-full h-[80vh] flex flex-col md:flex-row justify-center items-start gap-4  `}>
       <div className="w-full  flex flex-col justify-center items-center">
-        <Typography variant="h6" className="text-center">
+        <Typography
+          variant="h6"
+          className="text-center"
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           <i className="fa-solid fa-arrow-up-wide-short h-5 w-5 mx-2"></i>
           {t('UCP.CategoryTable.TabLabels.AddMain')}
         </Typography>
@@ -209,7 +213,13 @@ export default function AddCategory({ HandleOpen }) {
       </div>
 
       <div className="w-full flex flex-col gap-4 justify-center items-center">
-        <Typography variant="h6" className="text-center">
+        <Typography
+          variant="h6"
+          className="text-center"
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           <i className="fa-solid fa-arrow-down-wide-short h-5 w-5 mx-2"></i>
           {t('UCP.CategoryTable.TabLabels.AddSub')}
         </Typography>

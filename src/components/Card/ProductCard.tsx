@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 ProductCard.propTypes = {
   ProductID: PropTypes.number.isRequired,
   ProductShortDescription: PropTypes.string.isRequired,
@@ -68,7 +68,7 @@ export default function ProductCard({
   const [isHovered, setIsHovered] = React.useState(false);
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { AddProduct, SetQuantity, RemoveProduct } = useCart();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -123,21 +123,52 @@ export default function ProductCard({
             </div>
 
             <div className="col-span-2 sm:col-span-3 mx-2 flex flex-col justify-center items-start text-center ">
-              <Typography variant="h6" className={` font-semibold`}>
+              <Typography
+                variant="h6"
+                className={` font-semibold`}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {ProductCategory}
               </Typography>
-              <Typography variant="h6" className={` font-thin`}>
+              <Typography
+                variant="h6"
+                className={` font-thin`}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {ProductBrand}
               </Typography>
-              <Typography variant="h6" className={` font-thin`}>
+              <Typography
+                variant="h6"
+                className={` font-thin`}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {ProductName}
               </Typography>
 
-              <Typography variant="h6" color="green" className={` font-serif`}>
+              <Typography
+                variant="h6"
+                color="green"
+                className={` font-serif`}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {ProductPrice} TND
               </Typography>
 
-              <Typography variant="small" className={`font-thin`}>
+              <Typography
+                variant="small"
+                className={`font-thin`}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {ProductShortDescription}
               </Typography>
 
@@ -255,22 +286,53 @@ export default function ProductCard({
           </div>
 
           <div className=" text-center">
-            <Typography variant="h6" className={`font-semibold `}>
+            <Typography
+              variant="h6"
+              className={`font-semibold `}
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {ProductCategory}
             </Typography>
 
-            <Typography variant="h6" className={` font-thin `}>
+            <Typography
+              variant="h6"
+              className={` font-thin `}
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {ProductBrand}
             </Typography>
-            <Typography variant="h6" className={`font-thin `}>
+            <Typography
+              variant="h6"
+              className={`font-thin `}
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {ProductName}
             </Typography>
 
-            <Typography variant="h6" color={'green'} className={`font-serif`}>
+            <Typography
+              variant="h6"
+              color={'green'}
+              className={`font-serif`}
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {ProductPrice} TND
             </Typography>
 
-            <Typography variant="paragraph" className={`font-thin`}>
+            <Typography
+              variant="paragraph"
+              className={`font-thin`}
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {ProductShortDescription}
             </Typography>
             <Rating

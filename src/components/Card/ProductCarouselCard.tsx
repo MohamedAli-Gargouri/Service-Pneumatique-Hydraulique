@@ -6,7 +6,7 @@ import React from 'react';
 import NoProductImg from '../../assets/images/products/NoProductImg.webp';
 import useCart from '../../utils/hooks/useCart';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 ProductCarouselCard.propTypes = {
   ProductShortDescription: PropTypes.string.isRequired,
   ProductImages: PropTypes.array.isRequired,
@@ -40,10 +40,10 @@ export default function ProductCarouselCard({
     ProductImages.length == 0
       ? NoProductImg
       : ProductImages.length > 2
-      ? IsHovered
-        ? ProductImages[1]
-        : ProductImages[0]
-      : ProductImages[0];
+        ? IsHovered
+          ? ProductImages[1]
+          : ProductImages[0]
+        : ProductImages[0];
 
   const Product = {
     ProductID: ProductID,
@@ -68,7 +68,7 @@ export default function ProductCarouselCard({
     ProductInformation: ProductInformation,
     ProductShipping: ProductShipping,
   };
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -99,10 +99,30 @@ export default function ProductCarouselCard({
       </CardHeader>
       <CardBody placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
         <div className="mb-2 flex items-center justify-between">
-          <Typography className="font-medium">{ProductName}</Typography>
-          <Typography className="font-medium">{ProductPrice} TND</Typography>
+          <Typography
+            className="font-medium"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
+            {ProductName}
+          </Typography>
+          <Typography
+            className="font-medium"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
+            {ProductPrice} TND
+          </Typography>
         </div>
-        <Typography variant="small" className="font-normal opacity-75">
+        <Typography
+          variant="small"
+          className="font-normal opacity-75"
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           {ProductShortDescription}
         </Typography>
       </CardBody>

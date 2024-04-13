@@ -19,11 +19,11 @@ import Pagination from '../../utils/Table/Pagination';
 import SortData from '../../utils/Table/SortRows';
 import SearchRow from '../../utils/Table/Search';
 import { useNotify } from '../../utils/hooks/useNotify';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useTranslation } from 'react-i18next';
 
 export default function Inbox_Table() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const TABLE_HEAD2_ContactNotification = [
     {
       label: t('UCP.InboxTable.TabHeader.ID'),
@@ -170,8 +170,22 @@ export default function Inbox_Table() {
       >
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-            <Typography variant="h5">{t('UCP.InboxTable.Title')}</Typography>
-            <Typography className="mt-1 font-normal">{t('UCP.InboxTable.Description')}</Typography>
+            <Typography
+              variant="h5"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.InboxTable.Title')}
+            </Typography>
+            <Typography
+              className="mt-1 font-normal"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.InboxTable.Description')}
+            </Typography>
           </div>
         </div>
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
@@ -251,6 +265,9 @@ export default function Inbox_Table() {
                       <Typography
                         variant="small"
                         className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
                       >
                         {head.label}{' '}
                         {index !== TABLE_HEAD_OrderNotification.length - 1 && (
@@ -278,6 +295,9 @@ export default function Inbox_Table() {
                       <Typography
                         variant="small"
                         className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
                       >
                         {head.label}{' '}
                         {index !== TABLE_HEAD2_ContactNotification.length - 1 && (
@@ -302,13 +322,25 @@ export default function Inbox_Table() {
                     return (
                       <tr key={'Order' + Order.Notification_ID}>
                         <td className={classes}>
-                          <Typography variant="small" className="font-normal">
+                          <Typography
+                            variant="small"
+                            className="font-normal"
+                            placeholder={undefined}
+                            onPointerEnterCapture={undefined}
+                            onPointerLeaveCapture={undefined}
+                          >
                             #{Order.Notification_ID}
                           </Typography>
                         </td>
 
                         <td className={classes}>
-                          <Typography variant="small" className="font-normal">
+                          <Typography
+                            variant="small"
+                            className="font-normal"
+                            placeholder={undefined}
+                            onPointerEnterCapture={undefined}
+                            onPointerLeaveCapture={undefined}
+                          >
                             #{Order.OrderID}
                           </Typography>
                         </td>
@@ -321,8 +353,8 @@ export default function Inbox_Table() {
                               Order.NotificationType === 'Good'
                                 ? 'green'
                                 : Order.NotificationType === 'Normal'
-                                ? 'amber'
-                                : 'red'
+                                  ? 'amber'
+                                  : 'red'
                             }
                           />
                         </td>
@@ -351,28 +383,58 @@ export default function Inbox_Table() {
                   return (
                     <tr key={'Contacts' + Contact.Notification_ID}>
                       <td className={classes}>
-                        <Typography variant="small" className="font-normal">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           #{Contact.Notification_ID}
                         </Typography>
                       </td>
 
                       <td className={classes}>
-                        <Typography variant="small" className="font-normal">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {Contact.Email}
                         </Typography>
                       </td>
                       <td className={classes}>
-                        <Typography variant="small" className="font-normal">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {Contact.F_Name}
                         </Typography>
                       </td>
                       <td className={classes}>
-                        <Typography variant="small" className="font-normal">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {Contact.L_Name}
                         </Typography>
                       </td>
                       <td className={classes}>
-                        <Typography variant="small" className="font-normal">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {Contact.PhoneNumber}
                         </Typography>
                       </td>
@@ -385,8 +447,8 @@ export default function Inbox_Table() {
                             Contact.NotificationType === 'Good'
                               ? 'green'
                               : Contact.NotificationType === 'Normal'
-                              ? 'amber'
-                              : 'red'
+                                ? 'amber'
+                                : 'red'
                           }
                         />
                       </td>

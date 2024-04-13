@@ -5,7 +5,7 @@ import QuantityInput from '../Input/Quantity';
 import { useSelector } from 'react-redux';
 import useCart from '../../utils/hooks/useCart';
 import PropTypes from 'prop-types';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 CartCard.propTypes = {
   ProductID: PropTypes.number.isRequired,
   ProductImages: PropTypes.array.isRequired,
@@ -52,15 +52,34 @@ export default function CartCard({
         </div>
         <div className=" col-span-3 flex flex-col justify-center items-center">
           <div className=" flex  justify-evenly gap-1 items-start">
-            <Typography variant="h6" className={` font-thin`}>
+            <Typography
+              variant="h6"
+              className={` font-thin`}
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {ProductBrand}
             </Typography>
 
-            <Typography variant="paragraph" className={`font-thin`}>
+            <Typography
+              variant="paragraph"
+              className={`font-thin`}
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {ProductName}
             </Typography>
           </div>
-          <Typography variant="paragraph" color="green" className={` self-center font-semibold`}>
+          <Typography
+            variant="paragraph"
+            color="green"
+            className={` self-center font-semibold`}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {ProductQuantity}x {ProductPrice} ({parseInt(ProductQuantity, 10) * parseInt(ProductPrice, 10)}) TND
           </Typography>
         </div>

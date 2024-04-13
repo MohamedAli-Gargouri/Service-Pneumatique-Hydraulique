@@ -11,11 +11,11 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/light-actions';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useNotify } from 'utils/hooks/useNotify';
 const PreviewInvoiceTab = ({ PreviewInvoice, SetPreviewInvoice, GenerateNewPDF, PDFLoaded, GeneratedPDF }) => {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -96,7 +96,7 @@ const GenerateInvoiceTab = ({
   SetProductsData,
 }) => {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -507,7 +507,7 @@ GenerateInvoiceTab.propTypes = {
 
 const Invoice = () => {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { displayNotification, displayPromiseNotification } = useNotify();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {

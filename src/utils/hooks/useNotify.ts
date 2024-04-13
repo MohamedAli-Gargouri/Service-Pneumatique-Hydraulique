@@ -1,21 +1,12 @@
-import { ToastPosition, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { LightMode } from 'redux/actions/light-actions';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
+import { toastOptionsType } from '#/types/components/general';
 
-type toastOptionsType = {
-  position: ToastPosition;
-  autoClose: number;
-  hideProgressBar: boolean;
-  closeOnClick: boolean;
-  pauseOnHover: boolean;
-  draggable: boolean;
-  progress: undefined;
-  theme: 'light' | 'dark';
-};
 export function useNotify() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const isLightMode = LightModeState === LightMode().type;
   /**
@@ -37,7 +28,7 @@ export function useNotify() {
     const DefaultRejectMessage = t('UCP.DialogMessages.Promise.Reject');
     const DefaultPendingMessage = t('UCP.DialogMessages.Promise.Pending');
     const DefaultResolveMessage = t('UCP.DialogMessages.Promise.Resolve');
-    const MdScreen = 720;
+    const MdScreen: number = 720;
     const currentWindowWidth = window.innerWidth;
     const toastOptions: toastOptionsType = {
       position: currentWindowWidth < MdScreen ? 'bottom-center' : 'bottom-right',

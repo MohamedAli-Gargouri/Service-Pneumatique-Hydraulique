@@ -8,10 +8,10 @@ import ProfileCard from '../../components/Card/ProfileCard';
 import COCEOPFP from '../../assets/images/team/Co-CEO.png';
 import CEOPFP from '../../assets/images/team/CEO.png';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 const Employees = () => {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -24,6 +24,9 @@ const Employees = () => {
           variant="h4"
           color="black"
           className={`m-4 font-extrabold ${LightModeState == LightMode().type ? 'TextWhiteMode' : 'TextDarkMode'}`}
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
         >
           {t('Home.Team.Team_title')}
         </Typography>

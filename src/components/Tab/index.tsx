@@ -4,14 +4,14 @@ import { LightMode } from '../../redux/actions/light-actions';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 AnimatedTab.propTypes = {
   data: PropTypes.array.isRequired,
   DefaultSelectValue: PropTypes.string,
 };
 export default function AnimatedTab({ data, DefaultSelectValue }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;

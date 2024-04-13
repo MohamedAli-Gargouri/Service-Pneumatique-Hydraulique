@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import './navbar.css';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { openCart } from 'redux/actions/cart-actions';
 const Animations = {
   hidden: {
@@ -53,7 +53,7 @@ export default function ComplexNavbar() {
   const CartList = useSelector((state: RootState) => state.cartList);
   const isLoggedState = useSelector((state: RootState) => state.isLogged);
   const dispatch = useDispatch();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -112,7 +112,12 @@ export default function ComplexNavbar() {
               alt="SPH Logo"
               className=" max-w-xs max-h-10 rounded-full animate-LogoRotate hover:scale-95"
             />
-            <Typography className={`hidden xl:block mr-4 ml-4 cursor-pointer py-1.5 lg:ml-2`}>
+            <Typography
+              className={`hidden xl:block mr-4 ml-4 cursor-pointer py-1.5 lg:ml-2`}
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {t('navbar.companyname')}
             </Typography>
 

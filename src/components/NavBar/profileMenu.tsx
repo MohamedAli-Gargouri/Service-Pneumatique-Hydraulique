@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { RESET_ALL } from '../../redux/actions/GlobalActions';
 
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useNotify } from 'utils/hooks/useNotify';
 const profileMenuItems = [
   {
@@ -29,7 +29,7 @@ export default function ProfileMenu() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const dispatch = useDispatch();
   const { displayNotification, displayPromiseNotification } = useNotify();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -37,7 +37,7 @@ export default function ProfileMenu() {
   const closeMenu = () => setIsMenuOpen(false);
 
   const HandleMenuItemClick = (value, path) => {
-    closeMenu;
+    closeMenu();
     if (value == 'Sign_Out') {
       dispatch(RESET_ALL());
       displayNotification(t('UCP.DialogMessages.Session.Logout'), 'info');
@@ -98,7 +98,15 @@ export default function ProfileMenu() {
                 strokeWidth: 2,
                 style: { color: `${isLastItem ? 'red' : 'inherit'}` },
               })}
-              <Typography as="small" variant="small" className={`font-normal`} color={isLastItem ? 'red' : 'inherit'}>
+              <Typography
+                as="small"
+                variant="small"
+                className={`font-normal`}
+                color={isLastItem ? 'red' : 'inherit'}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {label}
               </Typography>
             </MenuItem>

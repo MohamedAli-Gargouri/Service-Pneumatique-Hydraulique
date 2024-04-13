@@ -7,12 +7,12 @@ import React from 'react';
 import TopBar from '../../components/Topbar';
 import Topbarbg from '../../assets/images/Topbarbg.webp';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useNotify } from 'utils/hooks/useNotify';
 export default function UCP_Profile() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const [imageSrc, setImageSrc] = React.useState('');
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { displayNotification, displayPromiseNotification } = useNotify();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
@@ -135,7 +135,13 @@ export default function UCP_Profile() {
                   onPointerLeaveCapture={undefined}
                   crossOrigin={undefined}
                 />
-                <Typography variant="small" className="mt-2 flex items-center gap-1 font-normal">
+                <Typography
+                  variant="small"
+                  className="mt-2 flex items-center gap-1 font-normal"
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

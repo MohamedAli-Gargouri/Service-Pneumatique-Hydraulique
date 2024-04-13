@@ -22,10 +22,10 @@ import TabFilter from '../../utils/Table/TabFilter';
 import SearchRow from '../../utils/Table/Search';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 
 export default function Order_Table() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const TABLE_HEAD = [
     { label: 'Product Code', value: 'Product Code' },
     {
@@ -132,8 +132,22 @@ export default function Order_Table() {
       >
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-            <Typography variant="h5">{t('UCP.Order.Title')}</Typography>
-            <Typography className="mt-1 font-normal">{t('UCP.Order.Description')}</Typography>
+            <Typography
+              variant="h5"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.Order.Title')}
+            </Typography>
+            <Typography
+              className="mt-1 font-normal"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.Order.Description')}
+            </Typography>
           </div>
         </div>
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
@@ -201,6 +215,9 @@ export default function Order_Table() {
                   <Typography
                     variant="small"
                     className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+                    placeholder={undefined}
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     {head.label}{' '}
                     {index !== TABLE_HEAD.length - 1 && <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />}
@@ -218,7 +235,13 @@ export default function Order_Table() {
                 <tr key={P_Code}>
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         #{P_Code}
                       </Typography>
                     </div>
@@ -235,10 +258,22 @@ export default function Order_Table() {
                         onPointerLeaveCapture={undefined}
                       />
                       <div className="flex flex-col">
-                        <Typography variant="small" className="font-normal">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {name}
                         </Typography>
-                        <Typography variant="small" className="font-normal opacity-70">
+                        <Typography
+                          variant="small"
+                          className="font-normal opacity-70"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {Description}
                         </Typography>
                       </div>
@@ -246,7 +281,13 @@ export default function Order_Table() {
                   </td>
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         {Quantity}x
                       </Typography>
                     </div>
@@ -262,12 +303,24 @@ export default function Order_Table() {
                     </div>
                   </td>
                   <td className={classes}>
-                    <Typography variant="small" className="font-normal">
+                    <Typography
+                      variant="small"
+                      className="font-normal"
+                      placeholder={undefined}
+                      onPointerEnterCapture={undefined}
+                      onPointerLeaveCapture={undefined}
+                    >
                       {Unit} TND
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Typography variant="small" className="font-normal">
+                    <Typography
+                      variant="small"
+                      className="font-normal"
+                      placeholder={undefined}
+                      onPointerEnterCapture={undefined}
+                      onPointerLeaveCapture={undefined}
+                    >
                       {Total} TND
                     </Typography>
                   </td>

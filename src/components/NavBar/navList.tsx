@@ -5,11 +5,11 @@ import { HomeIcon, PhoneIcon, ArrowLeftOnRectangleIcon, ArrowRightOnRectangleIco
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/light-actions';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 export default function NavList() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const isLoggedState = useSelector((state: RootState) => state.isLogged);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -49,7 +49,15 @@ export default function NavList() {
           }
         }
         return (
-          <Typography key={'NAV' + key} as="a" href={route} variant="small">
+          <Typography
+            key={'NAV' + key}
+            as="a"
+            href={route}
+            variant="small"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             <MenuItem
               className="flex items-center gap-2"
               placeholder={undefined}

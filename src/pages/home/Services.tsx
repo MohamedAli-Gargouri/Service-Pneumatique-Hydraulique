@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 import { LightMode } from '../../redux/actions/light-actions';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 const Animations = {
   hidden: {
     opacity: 0,
@@ -54,7 +54,7 @@ const Services = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
   });
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -69,7 +69,13 @@ const Services = () => {
           ref={ref}
           className="border-accent-primary background-accent-primary rounded-lg w-[30%] h-[0.35rem] m-4"
         />
-        <Typography variant="h4" className={` text-center font-extrabold `}>
+        <Typography
+          variant="h4"
+          className={` text-center font-extrabold `}
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           {t('Home.Services.Service_Title')}
         </Typography>
 
@@ -100,24 +106,48 @@ const Services = () => {
 
           <motion.div className={` text-center flex flex-col items-center justify-center md:items-start flex-wrap`}>
             <motion.div initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={ListAnimations} custom={2}>
-              <Typography variant="h1" className={`m-1 font-extrabold  `}>
+              <Typography
+                variant="h1"
+                className={`m-1 font-extrabold  `}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {t('Home.Services.Service1')}
               </Typography>
             </motion.div>
 
             <motion.div initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={ListAnimations} custom={3}>
-              <Typography variant="h1" className={`m-1 font-extrabold `}>
+              <Typography
+                variant="h1"
+                className={`m-1 font-extrabold `}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {t('Home.Services.Service2')}
               </Typography>
             </motion.div>
 
             <motion.div initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={ListAnimations} custom={4}>
-              <Typography variant="h1" className={`m-1 font-extrabold `}>
+              <Typography
+                variant="h1"
+                className={`m-1 font-extrabold `}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {t('Home.Services.Service3')}
               </Typography>
             </motion.div>
             <motion.div initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={ListAnimations} custom={5}>
-              <Typography variant="paragraph" className={`m-1 font-black p-4 `}>
+              <Typography
+                variant="paragraph"
+                className={`m-1 font-black p-4 `}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {t('Home.Services.Service_Description')}
               </Typography>
             </motion.div>

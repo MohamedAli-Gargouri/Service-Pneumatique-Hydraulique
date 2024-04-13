@@ -9,11 +9,11 @@ import Breadcrump from '../../components/Breadcrump';
 import useCart from '../../utils/hooks/useCart';
 import { useTranslation } from 'react-i18next';
 import { LightMode } from '../../redux/actions/light-actions';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 export default function PreviewProductComponent() {
   const { OrderCart, AddProduct, SetQuantity, RemoveProduct } = useCart();
   const ProductInfo = JSON.parse(localStorage.getItem('ProductPreviewProps'));
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const Product = {
     ProductID: ProductInfo.ProductID,
     ProductBrand: ProductInfo.ProductBrand,
@@ -61,22 +61,53 @@ export default function PreviewProductComponent() {
         </div>
 
         <div className="col-span-2 md:col-span-1 flex flex-col items-center justify-center w-full">
-          <Typography variant="h5" className=" font-semibold">
+          <Typography
+            variant="h5"
+            className=" font-semibold"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {ProductInfo.ProductCategory}
           </Typography>
 
-          <Typography variant="h6" className=" font-thin">
+          <Typography
+            variant="h6"
+            className=" font-thin"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {ProductInfo.ProductBrand}
           </Typography>
 
-          <Typography variant="h6" className=" font-thin">
+          <Typography
+            variant="h6"
+            className=" font-thin"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {ProductInfo.ProductName}
           </Typography>
           <Rating placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
-          <Typography variant="h6" color="green" className=" font-serif">
+          <Typography
+            variant="h6"
+            color="green"
+            className=" font-serif"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {ProductInfo.ProductPrice} TND
           </Typography>
-          <Typography variant="paragraph" className=" font-thin m-4 md:m-0">
+          <Typography
+            variant="paragraph"
+            className=" font-thin m-4 md:m-0"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {ProductInfo.ProductShortDescription}
           </Typography>
 
@@ -109,12 +140,15 @@ export default function PreviewProductComponent() {
                 key={index === 0 ? 'Tab0' : index === 1 ? 'Tab1' : 'Tab2'}
                 variant="paragraph"
                 className="font-extralight"
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
                 {index === 0
                   ? ProductInfo.ProductLongDesc
                   : index === 1
-                  ? ProductInfo.ProductInformation
-                  : ProductInfo.ProductShipping}
+                    ? ProductInfo.ProductInformation
+                    : ProductInfo.ProductShipping}
               </Typography>
             ),
           }));

@@ -14,7 +14,7 @@ import { arrayBufferToBase64, getFileExtensionFromArrayBuffer } from '../../util
 import { post_Product } from '../../services/products';
 import { useInputValidation } from '../../utils/hooks/useInputValidation';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 export default function Product() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const accessToken = useSelector((state: RootState) => state.userAccessToken);
@@ -22,7 +22,7 @@ export default function Product() {
   const { validateInputs } = useInputValidation();
   const AddedImages = React.useRef([]);
   const [SubCategories, setSubCategories] = React.useState([]);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -336,8 +336,8 @@ export default function Product() {
                     index === 0
                       ? t('UCP.AddProduct.TabFilter.LDescription')
                       : index === 1
-                      ? t('UCP.AddProduct.TabFilter.Additonalinfo')
-                      : t('UCP.AddProduct.TabFilter.Shipping')
+                        ? t('UCP.AddProduct.TabFilter.Additonalinfo')
+                        : t('UCP.AddProduct.TabFilter.Shipping')
                   }
                   defaultValue=""
                   onPointerEnterCapture={undefined}

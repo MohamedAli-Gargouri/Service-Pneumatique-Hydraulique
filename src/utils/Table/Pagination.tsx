@@ -2,20 +2,15 @@ import React from 'react';
 import { Typography, Button } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-interface PaginationParam {
-  AllData: Array<any>;
-  VisibleData: Array<any>;
-  SetVisibleData: Function;
-  currentPage: number;
-  setCurrentPage: Function;
-}
+import { PaginationParam } from '#/types/components/params';
+
 /**
  *
  * @param param
  * @returns
  */
 function Pagination(param: PaginationParam) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const itemsPerPage = 10;
   const startIndex = (param.currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -44,7 +39,13 @@ function Pagination(param: PaginationParam) {
 
   return (
     <>
-      <Typography variant="small" className=" text-center font-normal">
+      <Typography
+        variant="small"
+        className=" text-center font-normal"
+        placeholder={undefined}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+      >
         {t('Table.Labels.Page.Part1') + param.currentPage}
         {t('Table.Labels.Page.Part2') + totalPages}
       </Typography>

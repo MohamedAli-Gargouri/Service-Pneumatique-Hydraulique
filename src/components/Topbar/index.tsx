@@ -9,7 +9,7 @@ import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import Notification from '../Notification';
 import LanguageSelect from '../NavBar/languageListSelect';
 import PropTypes from 'prop-types';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 UCP_TopBar.propTypes = {
   Icon: PropTypes.string.isRequired,
   SectionName: PropTypes.node.isRequired,
@@ -129,7 +129,13 @@ export default function UCP_TopBar({ Icon, SectionName }) {
           </Card>
         </Collapse>
       </div>
-      <Typography variant="h3" className={` text-white-c text-center xl:text-left col-span-1 `}>
+      <Typography
+        variant="h3"
+        className={` text-white-c text-center xl:text-left col-span-1 `}
+        placeholder={undefined}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+      >
         <IconButton
           className="rounded-full"
           onClick={() => window.history.back()}

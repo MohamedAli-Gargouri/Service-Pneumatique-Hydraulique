@@ -6,7 +6,7 @@ import { LightMode } from '../../redux/actions/light-actions';
 import SPHLOGO from '../../assets/images/SPH Logo.webp';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 const ListAnimations = {
   hidden: { opacity: 0, y: 0, x: -100, scale: 0.5 },
   visible: (index) => ({
@@ -23,7 +23,7 @@ const ListAnimations = {
 export default function UCP_SideNavbar() {
   const [openAlert, setOpenAlert] = React.useState(true);
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   const menuList = [
     {
@@ -101,7 +101,14 @@ export default function UCP_SideNavbar() {
     <React.Fragment>
       <div className="my-4 flex flex-col justify-center items-center">
         <img loading="lazy" src={SPHLOGO} className="Imageshadow w-22 h-12 m-1" />
-        <Typography variant="h5">{t('UCP.SideBar.Title')}</Typography>
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
+          {t('UCP.SideBar.Title')}
+        </Typography>
       </div>
       <List placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
         {menuList.map((menuItem, index) => {
@@ -147,12 +154,24 @@ export default function UCP_SideNavbar() {
       <Alert open={openAlert} className="mt-auto background-accent-primary" onClose={() => setOpenAlert(false)}>
         <div className=" flex justify-evenly items-center">
           <i className="fa-solid fa-arrows-rotate  h-6 w-6"></i>
-          <Typography variant="h6" className="mb-1">
+          <Typography
+            variant="h6"
+            className="mb-1"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             Available Update
           </Typography>
         </div>
 
-        <Typography variant="small" className="font-normal opacity-80">
+        <Typography
+          variant="small"
+          className="font-normal opacity-80"
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           Version 0.0.0.2 is available.
         </Typography>
         <div className="mt-4 flex gap-3">
@@ -162,10 +181,20 @@ export default function UCP_SideNavbar() {
             variant="small"
             className="font-medium opacity-80"
             onClick={() => setOpenAlert(false)}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             Dismiss
           </Typography>
-          <Typography as="a" variant="small" className="font-medium">
+          <Typography
+            as="a"
+            variant="small"
+            className="font-medium"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             Update now.
           </Typography>
         </div>

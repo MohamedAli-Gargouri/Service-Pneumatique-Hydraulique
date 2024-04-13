@@ -10,14 +10,14 @@ import SortData from '../../utils/Table/SortRows';
 import SearchRow from '../../utils/Table/Search';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 Invoice_ProductsList_Table.propTypes = {
   P_Selected: PropTypes.object.isRequired,
   P_Quantities: PropTypes.object.isRequired,
   P_Products: PropTypes.object.isRequired,
 };
 export default function Invoice_ProductsList_Table({ P_Selected, P_Quantities, P_Products }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const TABLE_HEAD = [
     { label: '', value: '' },
     {
@@ -219,8 +219,22 @@ export default function Invoice_ProductsList_Table({ P_Selected, P_Quantities, P
       >
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-            <Typography variant="h5">{t('UCP.InvoiceProductList.Title')}</Typography>
-            <Typography className="mt-1 font-normal">{t('UCP.InvoiceProductList.Description')}</Typography>
+            <Typography
+              variant="h5"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.InvoiceProductList.Title')}
+            </Typography>
+            <Typography
+              className="mt-1 font-normal"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.InvoiceProductList.Description')}
+            </Typography>
           </div>
         </div>
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
@@ -264,6 +278,9 @@ export default function Invoice_ProductsList_Table({ P_Selected, P_Quantities, P
                   <Typography
                     variant="small"
                     className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+                    placeholder={undefined}
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     {head.label}{' '}
                     {index !== TABLE_HEAD.length - 1 && <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />}
@@ -297,7 +314,13 @@ export default function Invoice_ProductsList_Table({ P_Selected, P_Quantities, P
 
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         #{ProductCode}
                       </Typography>
                     </div>
@@ -314,10 +337,22 @@ export default function Invoice_ProductsList_Table({ P_Selected, P_Quantities, P
                         onPointerLeaveCapture={undefined}
                       />
                       <div className="flex flex-col">
-                        <Typography variant="small" className="font-normal">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {Brand}
                         </Typography>
-                        <Typography variant="small" className="font-normal opacity-70">
+                        <Typography
+                          variant="small"
+                          className="font-normal opacity-70"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {Model}
                         </Typography>
                       </div>
@@ -325,7 +360,13 @@ export default function Invoice_ProductsList_Table({ P_Selected, P_Quantities, P
                   </td>
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         {Price}
                       </Typography>
                     </div>

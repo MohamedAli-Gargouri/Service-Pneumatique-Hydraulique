@@ -10,11 +10,11 @@ import ProductImg3 from '../../assets/images/products/product_3.webp';
 import { LightMode } from '../../redux/actions/light-actions';
 import MultiSelect from '../Input/MultiSelect';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 export default function Product() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { displayNotification, displayPromiseNotification } = useNotify();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   const AddedImages = React.useRef([]);
   const [SelectedCategory, SetSelectedCategory] = React.useState('Comp');
@@ -218,15 +218,15 @@ export default function Product() {
                     index === 0
                       ? t('UCP.EditProduct.TabFilter.LDescription')
                       : index === 1
-                      ? t('UCP.EditProduct.TabFilter.Additonalinfo')
-                      : t('UCP.EditProduct.TabFilter.Shipping')
+                        ? t('UCP.EditProduct.TabFilter.Additonalinfo')
+                        : t('UCP.EditProduct.TabFilter.Shipping')
                   }
                   defaultValue={
                     index === 0
                       ? 'Best Product Description'
                       : index === 1
-                      ? 'Best Product Additional Information'
-                      : 'Best Product Shipping policies'
+                        ? 'Best Product Additional Information'
+                        : 'Best Product Shipping policies'
                   }
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}

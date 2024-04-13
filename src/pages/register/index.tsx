@@ -7,7 +7,7 @@ import { register } from '../../services/auth';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useNotify } from 'utils/hooks/useNotify';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useInputValidation } from 'utils/hooks/useInputValidation';
 const Animations = {
   hidden: {
@@ -31,7 +31,7 @@ export default function RegisterCard() {
   const isLogged = useSelector((state: RootState) => state.isLogged);
   const { displayNotification, displayPromiseNotification } = useNotify();
   const { validateInputs } = useInputValidation();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -105,7 +105,13 @@ export default function RegisterCard() {
               onPointerLeaveCapture={undefined}
             >
               <i className="fa-solid fa-right-to-bracket fa-2x text-white-c"></i>
-              <Typography variant="h3" className="text-white-c">
+              <Typography
+                variant="h3"
+                className="text-white-c"
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {t('Register.Register_Title')}
               </Typography>
             </CardHeader>
@@ -206,7 +212,13 @@ export default function RegisterCard() {
                   crossOrigin={undefined}
                 />
               </div>
-              <Typography variant="small" className={`mt-2 flex items-center gap-1 font-normal`}>
+              <Typography
+                variant="small"
+                className={`mt-2 flex items-center gap-1 font-normal`}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -240,9 +252,24 @@ export default function RegisterCard() {
               >
                 {t('Register.SignInButtonLabel')}
               </Button>
-              <Typography variant="small" className={`mt-6 flex justify-center`}>
+              <Typography
+                variant="small"
+                className={`mt-6 flex justify-center`}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {t('Register.SignUpRecommandationLabel')}
-                <Typography as="a" href="/login" variant="small" color="red" className="ml-1 font-bold">
+                <Typography
+                  as="a"
+                  href="/login"
+                  variant="small"
+                  color="red"
+                  className="ml-1 font-bold"
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   {t('Login.Login_Title')}
                 </Typography>
               </Typography>

@@ -5,7 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 BreadcrumbsWithIcon.propTypes = {
   Parent: PropTypes.object,
   Child: PropTypes.object,
@@ -32,7 +32,7 @@ const Animations = {
 
 export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;

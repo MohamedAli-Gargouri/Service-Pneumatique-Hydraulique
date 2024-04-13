@@ -14,6 +14,7 @@ import {
   IconButton,
   Tooltip,
 } from '@material-tailwind/react';
+
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { LightMode } from '../../redux/actions/light-actions';
@@ -25,11 +26,11 @@ import TabFilter from '../../utils/Table/TabFilter';
 import SearchRow from '../../utils/Table/Search';
 import { useNotify } from '../../utils/hooks/useNotify';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { openCart } from 'redux/actions/cart-actions';
 
 export default function MyOrders_Table() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const TABLE_HEAD = [
     {
       label: t('UCP.MyOrdersTable.TabHeader.OrderID'),
@@ -180,8 +181,22 @@ export default function MyOrders_Table() {
       >
         <div className="mb-8 flex items-center justify-between gap-1">
           <div>
-            <Typography variant="h5">{t('UCP.MyOrdersTable.Title')}</Typography>
-            <Typography className="mt-1 font-normal">{t('UCP.MyOrdersTable.Description')}</Typography>
+            <Typography
+              variant="h5"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.MyOrdersTable.Title')}
+            </Typography>
+            <Typography
+              className="mt-1 font-normal"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.MyOrdersTable.Description')}
+            </Typography>
           </div>
           <div className="flex flex-col gap-2 sm:flex-row">
             <Button
@@ -263,6 +278,9 @@ export default function MyOrders_Table() {
                   <Typography
                     variant="small"
                     className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+                    placeholder={undefined}
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
                   >
                     {head.label}{' '}
                     {index !== TABLE_HEAD.length - 1 && <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />}
@@ -280,7 +298,13 @@ export default function MyOrders_Table() {
                 <tr key={OrderID}>
                   <td className={classes}>
                     <div className="flex flex-col">
-                      <Typography variant="small" className="font-normal">
+                      <Typography
+                        variant="small"
+                        className="font-normal"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
                         #{OrderID}
                       </Typography>
                     </div>
@@ -297,10 +321,22 @@ export default function MyOrders_Table() {
                         onPointerLeaveCapture={undefined}
                       />
                       <div className="flex flex-col">
-                        <Typography variant="small" className="font-normal">
+                        <Typography
+                          variant="small"
+                          className="font-normal"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {name}
                         </Typography>
-                        <Typography variant="small" className="font-normal opacity-70">
+                        <Typography
+                          variant="small"
+                          className="font-normal opacity-70"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
                           {email}
                         </Typography>
                       </div>
@@ -317,21 +353,33 @@ export default function MyOrders_Table() {
                           status === 'Paid' || status == 'Ready'
                             ? 'green'
                             : status === 'Pending'
-                            ? 'amber'
-                            : status === 'Paused'
-                            ? 'pink'
-                            : 'red'
+                              ? 'amber'
+                              : status === 'Paused'
+                                ? 'pink'
+                                : 'red'
                         }
                       />
                     </div>
                   </td>
                   <td className={classes}>
-                    <Typography variant="small" className="font-normal">
+                    <Typography
+                      variant="small"
+                      className="font-normal"
+                      placeholder={undefined}
+                      onPointerEnterCapture={undefined}
+                      onPointerLeaveCapture={undefined}
+                    >
                       {date}
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Typography variant="small" className="font-normal">
+                    <Typography
+                      variant="small"
+                      className="font-normal"
+                      placeholder={undefined}
+                      onPointerEnterCapture={undefined}
+                      onPointerLeaveCapture={undefined}
+                    >
                       {Total} TND
                     </Typography>
                   </td>

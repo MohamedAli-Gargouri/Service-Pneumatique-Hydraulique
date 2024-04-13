@@ -33,7 +33,7 @@ import {
   Search,
   SearchPanel,
 } from 'devextreme-react/data-grid';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useTranslation } from 'react-i18next';
 
 export default function Products_Table() {
@@ -50,7 +50,7 @@ export default function Products_Table() {
   const [totalPages, setTotalPages] = React.useState(1);
   const [isLoadingTable, setIsLoadingTable] = React.useState(false);
   const exportFormats = ['pdf'];
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   React.useEffect(() => {
     async function loadData() {
       let newData = [];
@@ -120,8 +120,22 @@ export default function Products_Table() {
       >
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-            <Typography variant="h5">{t('UCP.Products.Title')}</Typography>
-            <Typography className="mt-1 font-normal">{t('UCP.Products.Description')}</Typography>
+            <Typography
+              variant="h5"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.Products.Title')}
+            </Typography>
+            <Typography
+              className="mt-1 font-normal"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t('UCP.Products.Description')}
+            </Typography>
           </div>
           <div className="flex flex-col gap-2 sm:flex-row">
             <Button
@@ -215,10 +229,10 @@ export default function Products_Table() {
       </CardBody>
       <CardFooter
         className="flex items-center justify-between border-t border-blue-gray-50 p-4"
-        children={''}
         placeholder={undefined}
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
+        children={''}
       ></CardFooter>
       <ConfirmDeleteDialog
         color="red"

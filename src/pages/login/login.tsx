@@ -10,7 +10,7 @@ import { SET_ACCESS_TOKEN } from '../../redux/actions/AccessTokenActions';
 import { SET_LOGGED, UNSET_LOGGED } from '../../redux/actions/isLoggedActions';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 import { useNotify } from 'utils/hooks/useNotify';
 import { useInputValidation } from 'utils/hooks/useInputValidation';
 Input.propTypes = {
@@ -37,7 +37,7 @@ export default function LoginCard() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const isLogged = useSelector((state: RootState) => state.isLogged);
   const { validateInputs } = useInputValidation();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   const { displayPromiseNotification } = useNotify();
   React.useEffect(() => {
@@ -89,7 +89,13 @@ export default function LoginCard() {
             className="mb-4 grid h-28 place-items-center"
           >
             <i className="fa-solid fa-right-to-bracket fa-2x text-white-c"></i>
-            <Typography variant="h3" className="text-white-c">
+            <Typography
+              variant="h3"
+              className="text-white-c"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {t('Login.Login_Title')}
             </Typography>
           </CardHeader>
@@ -152,9 +158,24 @@ export default function LoginCard() {
             >
               {t('Login.SignInButtonLabel')}
             </Button>
-            <Typography variant="small" className="mt-6 flex justify-center">
+            <Typography
+              variant="small"
+              className="mt-6 flex justify-center"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {t('Login.SignUpRecommandationLabel')}
-              <Typography as="a" href="/register" variant="small" color="red" className="ml-1 font-bold">
+              <Typography
+                as="a"
+                href="/register"
+                variant="small"
+                color="red"
+                className="ml-1 font-bold"
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 {t('Register.Register_Title')}
               </Typography>
             </Typography>

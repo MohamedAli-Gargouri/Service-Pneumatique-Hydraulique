@@ -8,7 +8,7 @@ import CartCard from '../Card/CartCard';
 import { LightMode } from '../../redux/actions/light-actions';
 import useCart from '../../utils/hooks/useCart';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 export default function Cart() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export default function Cart() {
   const CartList = useSelector((state: RootState) => state.cartList);
   const { OrderCart, AddProduct, SetQuantity, RemoveProduct } = useCart();
   const CartStatus = useSelector((state: RootState) => state.cartStatus);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -51,7 +51,14 @@ export default function Cart() {
       >
         {/*==========================S-Header========================== */}
         <div className="mb-6 flex items-center justify-between">
-          <Typography variant="h5" className="text-center" color={'blue'}>
+          <Typography
+            variant="h5"
+            className="text-center"
+            color={'blue'}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             <i className="fa-solid fa-bag-shopping m-4 "></i>
             {t('Cart.Labels.Title')}
           </Typography>
@@ -77,12 +84,25 @@ export default function Cart() {
         {/*==========================E-Header========================== */}
 
         <div className="Total w-full flex justify-between items-center ">
-          <Typography variant="h6" className="text-center">
+          <Typography
+            variant="h6"
+            className="text-center"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             <i className="fa-solid fa-dollar-sign m-2"></i>
             {t('Cart.Labels.Total')}:
           </Typography>
 
-          <Typography variant="paragraph" className="text-center  font-bold" color="green">
+          <Typography
+            variant="paragraph"
+            className="text-center  font-bold"
+            color="green"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             {CartTotal(CartList)} TND
           </Typography>
         </div>
@@ -116,7 +136,13 @@ export default function Cart() {
             );
           })}
           {CartList.length == 0 && (
-            <Typography variant="h6" className="text-center font-thin">
+            <Typography
+              variant="h6"
+              className="text-center font-thin"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {' '}
               {t('UCP.DialogMessages.Cart.NoProducts')}
             </Typography>

@@ -19,7 +19,7 @@ import useElementInViewport from '../../utils/hooks/useElementInViewport';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
-import { RootState } from 'redux/reducers';
+import { RootState } from 'types/components/general';
 //Animations Config
 const Animations = {
   hidden: {
@@ -129,7 +129,7 @@ const Partners = () => {
     SetPartnersCards(Array(Partners.length).fill(false));
   };
   const IsElementInView = useElementInViewport(PartnersGridRef, 0, HandleShowcase, true);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isLightMode = LightModeState == LightMode().type;
   React.useEffect(() => {
     isLightMode = LightModeState == LightMode().type;
@@ -150,7 +150,13 @@ const Partners = () => {
           ref={ref}
           className="border-accent-primary background-accent-primary rounded-lg w-[30%] h-[0.35rem] m-4"
         />
-        <Typography variant="h4" className={` text-center font-extrabold `}>
+        <Typography
+          variant="h4"
+          className={` text-center font-extrabold `}
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           {t('Home.Partners.Partner_Title')}
         </Typography>
         <motion.hr
@@ -162,7 +168,13 @@ const Partners = () => {
         />
       </div>
 
-      <Typography variant="small" className={` mt-4 text-center font-extrabold `}>
+      <Typography
+        variant="small"
+        className={` mt-4 text-center font-extrabold `}
+        placeholder={undefined}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+      >
         {t('Home.Partners.Partner_Description')}
       </Typography>
 
@@ -195,7 +207,13 @@ const Partners = () => {
                   style={{ backgroundImage: `url(${websiteBackgroundimg})` }}
                   className="p-4 bg-cover bg-center rounded-lg h-full w-full flex justify-center items-center "
                 >
-                  <Typography variant="h6" className=" italic whitespace-pre-wrap">
+                  <Typography
+                    variant="h6"
+                    className=" italic whitespace-pre-wrap"
+                    placeholder={undefined}
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
+                  >
                     {Partner.Website}
                   </Typography>
                 </div>
