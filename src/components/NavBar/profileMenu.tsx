@@ -30,19 +30,19 @@ export default function ProfileMenu() {
   const dispatch = useDispatch();
   const { displayNotification, displayPromiseNotification } = useNotify();
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const closeMenu = () => setIsMenuOpen(false);
 
   const HandleMenuItemClick = (value, path) => {
     closeMenu();
-    if (value == 'Sign_Out') {
+    if (value === 'Sign_Out') {
       dispatch(RESET_ALL());
       displayNotification(t('UCP.DialogMessages.Session.Logout'), 'info');
     }
-    if (value == 'Control_Center') {
+    if (value === 'Control_Center') {
       //*ControlCenterLogic*//
       window.location.href = path;
     }

@@ -10,9 +10,9 @@ export default function NavList() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const isLoggedState = useSelector((state: RootState) => state.isLogged);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const navListItems = [
     {

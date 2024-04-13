@@ -16,7 +16,7 @@ export default function LanguageList() {
   //=======Setting Translation-start=================//
   const { t, i18n } = useTranslation();
   const HandleLanguageChange = (SelectedLanguage) => {
-    dispatch(SelectedLanguage == 'fr' ? SetFrench() : SelectedLanguage == 'en' ? SetEnglish() : SetArabic());
+    dispatch(SelectedLanguage === 'fr' ? SetFrench() : SelectedLanguage === 'en' ? SetEnglish() : SetArabic());
     setSelectedLanguage(SelectedLanguage);
     i18n.changeLanguage(SelectedLanguage);
   };
@@ -33,7 +33,7 @@ export default function LanguageList() {
           >
             <img
               loading="lazy"
-              src={SelectedLanguage == 'en' ? enflag : SelectedLanguage == 'fr' ? frflag : tnflag}
+              src={SelectedLanguage === 'en' ? enflag : SelectedLanguage === 'fr' ? frflag : tnflag}
               alt={'language'}
               className={`p-0`}
             />

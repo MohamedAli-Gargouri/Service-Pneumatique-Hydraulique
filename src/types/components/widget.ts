@@ -1,64 +1,142 @@
+import { color } from '@material-tailwind/react/types/components/typography';
+import { size } from '@material-tailwind/react/types/components/button';
+export type WidgetType = 'BUTTON';
+
+/**
+ *
+ * Generic Class that represents a Widget instance within our Grid Builder Component
+ * @export
+ * @class Widget
+ */
 export class Widget {
-  id;
-  caption = 'Button';
-  size = 'sm';
-  type = 'BUTTON'; // BUTTON, ... MORE TO BE ADDED
-  callbackfunction = this.defaultCallbackFunction;
-  hasConfirmationPopup = false;
-  confirmationPopupMessage = 'Are you sure you want to perform this action ?';
-  confirmationPopupColor = 'yellow';
-  confirmationPopupTitle = 'Title';
-  icon = 'fa-solid fa-question';
+  id: number;
+  caption: string = 'Button';
+  size: size = 'sm';
+  type: WidgetType = 'BUTTON'; // BUTTON, ... MORE TO BE ADDED
+  callbackfunction: Function = this.defaultCallbackFunction;
+  hasConfirmationPopup: boolean = false;
+  confirmationPopupMessage: string = 'Are you sure you want to perform this action ?';
+  confirmationPopupColor: color = 'yellow';
+  confirmationPopupTitle: string = 'Title';
+  icon: string = 'fa-solid fa-question';
   defaultCallbackFunction() {
     // This is just a default callback function.
   }
 }
 export class WidgetBuilder {
-  #widget;
+  private widget: Widget;
   constructor() {
-    this.#widget = new Widget();
+    this.widget = new Widget();
   }
-  setId(id) {
-    this.#widget.id = id;
+  /**
+   *  Sets the Id of the Widget Builder Instance
+   * @param {number} id Value of the setted ID
+   * @returns WigetBuilder instance with the Id Set
+   */
+  setId(id: number) {
+    this.widget.id = id;
     return this;
   }
-  setIcon(icon) {
-    this.#widget.icon = icon;
+  /**
+   *  Sets the Icon of the Widget Builder Instance
+   * @param {string} icon The string value of the Icon (Font Awsome string, e.g fa-solid fa-question )
+   * @returns  WigetBuilder instance with the Icon Set
+   */
+  setIcon(icon: string) {
+    this.widget.icon = icon;
     return this;
   }
-  setConfirmationPopupTitle(ConfirmationPopupTitle) {
-    this.#widget.confirmationPopupTitle = ConfirmationPopupTitle;
+  /**
+   *  Sets the popup Title of the Widget Builder Instance
+   * @param {string} ConfirmationPopupTitle The value of the Title
+   * @returns WigetBuilder instance with the Popup Title Set
+   */
+  setConfirmationPopupTitle(ConfirmationPopupTitle: string) {
+    this.widget.confirmationPopupTitle = ConfirmationPopupTitle;
     return this;
   }
-  setConfirmationPopupColor(ConfirmationPopupColor) {
-    this.#widget.confirmationPopupColor = ConfirmationPopupColor;
+  /**
+   *  Sets the confirmation poup color of the Widget Builder Instance
+   * @param {color} ConfirmationPopupColor The value of the Color
+   * @returns WigetBuilder instance with the Color of the Confirmation popup Set
+   */
+  setConfirmationPopupColor(ConfirmationPopupColor: color) {
+    this.widget.confirmationPopupColor = ConfirmationPopupColor;
     return this;
   }
-  setConfirmationPopupMessage(ConfirmationPopupMessage) {
-    this.#widget.confirmationPopupMessage = ConfirmationPopupMessage;
+  /**
+   *  Sets the confirmation Message of the Widget Builder Instance
+   * @param {string} ConfirmationPopupMessage The value of the popup Message
+   * @returns WigetBuilder instance with the Color of the ConfirmationPopupMessage Set
+   */
+  setConfirmationPopupMessage(ConfirmationPopupMessage: string) {
+    this.widget.confirmationPopupMessage = ConfirmationPopupMessage;
     return this;
   }
-  setSIze(size) {
-    this.#widget.size = size;
+  /**
+   *  Sets the size the Widget Builder Instance
+   * @param {size} size The value of the popup Message
+   * @returns WigetBuilder instance with the Size set
+   */
+  setSIze(size: size) {
+    this.widget.size = size;
     return this;
   }
-  setType(type) {
-    this.#widget.type = type;
+  /**
+   *  Sets the type the Widget Builder Instance
+   * @param {WidgetType} type The value of the popup Message
+   * @returns WigetBuilder instance with the Type set
+   */
+  setType(type: WidgetType) {
+    this.widget.type = type;
     return this;
   }
-  setCaption(caption) {
-    this.#widget.caption = caption;
+
+  /**
+   * @param {string} caption
+   * @return {WidgetBuilder}
+   * @memberof WidgetBuilder
+   */
+  /**
+   *
+   * Sets the Caption the Widget Builder Instance
+   * @param {string} caption
+   * @return {*}
+   * @memberof WidgetBuilder
+   */
+  setCaption(caption: string) {
+    this.widget.caption = caption;
     return this;
   }
-  setCallbackfunction(callbackfunction) {
-    this.#widget.callbackfunction = callbackfunction;
+  /**
+   *
+   *
+   * @param {Function} callbackfunction
+   * @return {*}
+   * @memberof WidgetBuilder
+   */
+  setCallbackfunction(callbackfunction: Function) {
+    this.widget.callbackfunction = callbackfunction;
     return this;
   }
-  setConfirmationPopup(ConfirmationPopup) {
-    this.#widget.hasConfirmationPopup = ConfirmationPopup;
+  /**
+   *
+   *
+   * @param {boolean} ConfirmationPopup
+   * @return {*}
+   * @memberof WidgetBuilder
+   */
+  setConfirmationPopup(ConfirmationPopup: boolean) {
+    this.widget.hasConfirmationPopup = ConfirmationPopup;
     return this;
   }
+  /**
+   *
+   *
+   * @return {*}
+   * @memberof WidgetBuilder
+   */
   build() {
-    return this.#widget;
+    return this.widget;
   }
 }

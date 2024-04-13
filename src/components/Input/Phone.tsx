@@ -14,9 +14,9 @@ export default function PhoneInput({ internationalDialRef, phoneNumberRef }) {
   const countryArray = Object.entries(countries);
   const [country, setCountry] = React.useState(['TN', countries.TN]);
   const selectedCountryName = (country[1] as ICountry).name;
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   React.useEffect(() => {
     internationalDialRef.current = (country[1] as ICountry).phone[0];

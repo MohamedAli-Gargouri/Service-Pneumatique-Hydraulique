@@ -217,15 +217,15 @@ export default function Inbox_Table() {
               label={t('Global.Actions.Search')}
               onChange={(e) => {
                 SearchRow(
-                  SelectedTab == 'Orders' ? TABLE_ROWS_OrderNotifications : TABLE_ROWS_ContactNofiications,
-                  SelectedTab == 'Orders' ? AllOrders : AllContacts,
-                  SelectedTab == 'Orders' ? SetAllOrders : SetAllContacts,
+                  SelectedTab === 'Orders' ? TABLE_ROWS_OrderNotifications : TABLE_ROWS_ContactNofiications,
+                  SelectedTab === 'Orders' ? AllOrders : AllContacts,
+                  SelectedTab === 'Orders' ? SetAllOrders : SetAllContacts,
                   e,
                 );
               }}
               labelProps={{
                 style: {
-                  color: LightModeState == LightMode().type ? 'black' : 'white',
+                  color: LightModeState === LightMode().type ? 'black' : 'white',
                 },
               }}
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}
@@ -245,7 +245,7 @@ export default function Inbox_Table() {
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
-              {SelectedTab == 'Orders'
+              {SelectedTab === 'Orders'
                 ? TABLE_HEAD_OrderNotification.map((head, index) => (
                     <th
                       key={'Orders_TableHead' + index}
@@ -309,7 +309,7 @@ export default function Inbox_Table() {
             </tr>
           </thead>
           <tbody>
-            {SelectedTab == 'Orders'
+            {SelectedTab === 'Orders'
               ? AllOrders.map(
                   (
                     Order,
@@ -479,14 +479,14 @@ export default function Inbox_Table() {
         onPointerLeaveCapture={undefined}
       >
         <Pagination
-          AllData={SelectedTab == 'Orders' ? AllOrders : AllContacts}
+          AllData={SelectedTab === 'Orders' ? AllOrders : AllContacts}
           VisibleData={VisibleData}
           SetVisibleData={SetVisibleData}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
       </CardFooter>
-      {SelectedTab == 'Orders' ? (
+      {SelectedTab === 'Orders' ? (
         <ConfirmDeleteDialog
           color="red"
           Open={OpenDeleteDialog}

@@ -24,7 +24,7 @@ const useCart = () => {
         displayNotification(t('UCP.DialogMessages.Cart.QuantityError'), 'info');
       }
     } else {
-      if (NewQuantity == '') {
+      if (NewQuantity === '') {
         dispatch(setProductQuantity(ProductID, 1));
       }
     }

@@ -63,10 +63,10 @@ export default function Accounts_Table() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { displayNotification, displayPromiseNotification } = useNotify();
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
 
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const TABLE_HEAD = [
     {
@@ -237,7 +237,7 @@ export default function Accounts_Table() {
               }}
               labelProps={{
                 style: {
-                  color: LightModeState == LightMode().type ? 'black' : 'white',
+                  color: LightModeState === LightMode().type ? 'black' : 'white',
                 },
               }}
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}

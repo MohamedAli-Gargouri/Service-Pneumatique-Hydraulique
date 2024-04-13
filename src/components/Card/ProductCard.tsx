@@ -69,9 +69,9 @@ export default function ProductCard({
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { AddProduct, SetQuantity, RemoveProduct } = useCart();
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const ProductDetails = {
     ProductID: ProductID,
@@ -97,7 +97,7 @@ export default function ProductCard({
     ProductQuantity: 1,
   };
 
-  if (variant == 1) {
+  if (variant === 1) {
     return (
       <motion.div initial={'hidden'} variants={Animations} animate={inView ? 'visible' : 'hidden'} ref={ref}>
         <Card
@@ -227,7 +227,7 @@ export default function ProductCard({
       </motion.div>
     );
   }
-  if (variant == 2 || variant == 3 || variant == 0) {
+  if (variant === 2 || variant === 3 || variant === 0) {
     return (
       <motion.div initial={'hidden'} variants={Animations} animate={inView ? 'visible' : 'hidden'} ref={ref}>
         <Card

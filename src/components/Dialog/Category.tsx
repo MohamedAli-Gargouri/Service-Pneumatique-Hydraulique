@@ -84,7 +84,7 @@ export default function CategoryDialog({ Icon, Open, HandleOpen, Title, Content 
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}
                 >
-                  {value == 'Manage' ? (
+                  {value === 'Manage' ? (
                     <i className="fa-solid fa-list-check h-5 w-5 m-1"></i>
                   ) : (
                     <i className="fa-solid fa-plus h-5 w-5 m-1"></i>
@@ -101,7 +101,7 @@ export default function CategoryDialog({ Icon, Open, HandleOpen, Title, Content 
             >
               {CategoryTabs.map(({ value }) => (
                 <TabPanel className="w-full h-full" key={value} value={value}>
-                  {value == 'Manage' ? (
+                  {value === 'Manage' ? (
                     <CategoryTable HandleOpen={HandleOpen} />
                   ) : (
                     <AddCategory HandleOpen={HandleOpen} />

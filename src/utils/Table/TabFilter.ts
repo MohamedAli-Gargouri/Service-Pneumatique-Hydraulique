@@ -5,7 +5,7 @@ export default function FilterData(
   SetAllData: Function,
   currentPage: any,
 ) {
-  if (FilterValue == 'All') {
+  if (FilterValue === 'All') {
     SetAllData(TABLE_ROWS);
   } else {
     const FilteredData = TABLE_ROWS.filter(function (obj) {

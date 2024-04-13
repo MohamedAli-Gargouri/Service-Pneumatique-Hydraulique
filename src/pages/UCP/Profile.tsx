@@ -14,9 +14,9 @@ export default function UCP_Profile() {
   const [imageSrc, setImageSrc] = React.useState('');
   const { t } = useTranslation();
   const { displayNotification, displayPromiseNotification } = useNotify();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -65,13 +65,13 @@ export default function UCP_Profile() {
                 <img
                   loading="lazy"
                   className="h-[30vh] w-[30vh] rounded-full object-cover object-center mb-4 "
-                  src={imageSrc == '' ? 'https://via.placeholder.com/300x200.png?text=Placeholder+Image' : imageSrc}
+                  src={imageSrc === '' ? 'https://via.placeholder.com/300x200.png?text=Placeholder+Image' : imageSrc}
                   alt="nature image"
                 />
                 <Input
                   labelProps={{
                     style: {
-                      color: LightModeState == LightMode().type ? 'black' : 'white',
+                      color: LightModeState === LightMode().type ? 'black' : 'white',
                     },
                   }}
                   label={t('UCP.Profil.TabInputs.ProfilImage')}
@@ -112,7 +112,7 @@ export default function UCP_Profile() {
                 <Input
                   labelProps={{
                     style: {
-                      color: LightModeState == LightMode().type ? 'black' : 'white',
+                      color: LightModeState === LightMode().type ? 'black' : 'white',
                     },
                   }}
                   label={t('UCP.Profil.TabInputs.NewPassword')}

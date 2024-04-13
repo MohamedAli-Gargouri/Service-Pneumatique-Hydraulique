@@ -15,9 +15,9 @@ MultiSelect.propTypes = {
 export default function MultiSelect({ Data, DataLabelName, SelectData }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const OnSubCategorySelect = (Selected) => {
     SelectData.current = Selected;

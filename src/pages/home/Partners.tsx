@@ -130,9 +130,9 @@ const Partners = () => {
   };
   const IsElementInView = useElementInViewport(PartnersGridRef, 0, HandleShowcase, true);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const HandleCardFlip = (index: any) => {
     const Prevstate = [...PartnersCards];

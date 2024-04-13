@@ -41,9 +41,9 @@ export default function PreviewProductComponent() {
     },
   ];
   const LightModeState = useSelector((state: RootState) => state.lightMode);
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   return (
     <React.Fragment>

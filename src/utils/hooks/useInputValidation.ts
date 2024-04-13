@@ -37,7 +37,7 @@ export function useInputValidation() {
       //Verifying if any of the text inputs is an empty string
       if (TextInputsList.length > 0) {
         TextInputsList.map((textInputValue) => {
-          if (textInputValue == '' || textInputValue == undefined) {
+          if (textInputValue === '' || textInputValue === undefined) {
             throw new Error('TextInputEmpty');
           }
         });
@@ -46,7 +46,7 @@ export function useInputValidation() {
       //Verifying if any of the email inputs is follows the Email format
       if (EmailInputList.length > 0) {
         EmailInputList.map((email) => {
-          if (emailPattern.test(email) == false) {
+          if (emailPattern.test(email) === false) {
             throw new Error('WrongEmailFormat');
           }
         });
@@ -55,7 +55,7 @@ export function useInputValidation() {
       //Verifying if any of the password inputs is follows the password format
       if (PasswordList.length > 0) {
         PasswordList.map((password) => {
-          if (passwordPattern.test(password) == false) {
+          if (passwordPattern.test(password) === false) {
             throw new Error('WrongPasswordFormat');
           }
         });
@@ -73,11 +73,11 @@ export function useInputValidation() {
         SelectInputsList.map((SelectInput) => {
           let SelectedValuesCount = 0;
           SelectInput.map((Item) => {
-            if (Item.selected == true) {
+            if (Item.selected === true) {
               SelectedValuesCount++;
             }
           });
-          if (SelectedValuesCount == 0) {
+          if (SelectedValuesCount === 0) {
             throw new Error('SelectInputEmpty');
           }
         });
@@ -86,7 +86,7 @@ export function useInputValidation() {
       ///Verifiying if any of the input numbers is 0
       if (NumbersList.length > 0) {
         NumbersList.map((numberInputValue) => {
-          if (numberInputValue == 0) {
+          if (numberInputValue === 0) {
             throw new Error('NumberInputEmpty');
           }
         });
@@ -94,7 +94,7 @@ export function useInputValidation() {
 
       if (PhoneNumbersList.length > 0) {
         PhoneNumbersList.map((phoneNumber: string) => {
-          if (/^\d{8}$/.test(phoneNumber) == false) {
+          if (/^\d{8}$/.test(phoneNumber) === false) {
             throw new Error('InvalidPhoneNumber');
           }
         });

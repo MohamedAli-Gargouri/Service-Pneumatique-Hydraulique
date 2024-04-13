@@ -21,9 +21,9 @@ export default function AddCategory({ HandleOpen }) {
   const { validateInputs } = useInputValidation();
   const [SelectedCategory, SetSelectedCategory] = React.useState('');
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const TranslatedInputLabel = t('UCP.CategoryTable.TabInputs.SubCategoryValue');
   const [Categories, setCategories] = React.useState([]);
@@ -74,7 +74,7 @@ export default function AddCategory({ HandleOpen }) {
       SubCategoryValues.map((value, index) => {
         for (var i = 0; i < SubCategoryValues.length; i++) {
           if (i != index) {
-            if (value == SubCategoryValues[i]) {
+            if (value === SubCategoryValues[i]) {
               IsUnique = false;
             }
           }
@@ -270,7 +270,7 @@ export default function AddCategory({ HandleOpen }) {
                   onPointerLeaveCapture={undefined}
                   crossOrigin={undefined}
                 />
-                {index == inputValues.length - 1 && (
+                {index === inputValues.length - 1 && (
                   <>
                     <IconButton
                       variant="text"

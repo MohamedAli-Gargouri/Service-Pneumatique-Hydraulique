@@ -8,7 +8,7 @@ export default function SortData(
 ) {
   let CollumnName = '';
 
-  if (Table == 'MyOrders') {
+  if (Table === 'MyOrders') {
     switch (ColumTitle) {
       case 'Order':
         CollumnName = 'OrderID';
@@ -27,7 +27,7 @@ export default function SortData(
         break;
     }
   }
-  if (Table == 'Order') {
+  if (Table === 'Order') {
     switch (ColumTitle) {
       case 'Product Code':
         CollumnName = 'P_Code';
@@ -50,7 +50,7 @@ export default function SortData(
     }
   }
 
-  if (Table == 'Orders') {
+  if (Table === 'Orders') {
     switch (ColumTitle) {
       case 'Order ID':
         CollumnName = 'OrderID';
@@ -73,7 +73,7 @@ export default function SortData(
     }
   }
 
-  if (Table == 'Products') {
+  if (Table === 'Products') {
     switch (ColumTitle) {
       case 'Product Code':
         CollumnName = 'ProductCode';
@@ -111,7 +111,7 @@ export default function SortData(
     }
   }
 
-  if (Table == 'Accounts') {
+  if (Table === 'Accounts') {
     switch (ColumTitle) {
       case 'Account ID':
         CollumnName = 'AccountId';
@@ -130,7 +130,7 @@ export default function SortData(
     }
   }
 
-  if (Table == 'Inbox_Order') {
+  if (Table === 'Inbox_Order') {
     switch (ColumTitle) {
       case 'Order':
         CollumnName = 'OrderID';
@@ -141,7 +141,7 @@ export default function SortData(
     }
   }
 
-  if (Table == 'Inbox_Contact') {
+  if (Table === 'Inbox_Contact') {
     switch (ColumTitle) {
       case 'Email':
         CollumnName = 'Email';

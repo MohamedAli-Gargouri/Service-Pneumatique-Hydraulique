@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { LightMode } from 'redux/actions/light-actions';
 import { RootState } from 'types/components/general';
-import { toastOptionsType } from '#/types/components/general';
+import { toastOptionsType } from 'types/components/general';
 
 export function useNotify() {
   const { t } = useTranslation();
@@ -50,28 +50,28 @@ export function useNotify() {
           render(data: any) {
             //Handling Connection Errors//
             //Connection Lost
-            if (data.code == 'ERR_NETWORK') {
+            if (data.code === 'ERR_NETWORK') {
               return ConnectionErrors[0];
             }
             // Gateway Timeout, heavy load
-            if (data.response.status == 504) {
+            if (data.response.status === 504) {
               return ConnectionErrors[1];
             }
             //Service Unavailable
-            if (data.response.status == 503) {
+            if (data.response.status === 503) {
               return ConnectionErrors[2];
             }
             //Handling  backened Error//
             //bad request, wrong parameters
-            if (data.response.status == 400) {
+            if (data.response.status === 400) {
               let RejectMessagesIndex = -1;
               const backendErrorCode = data.response.data.errorCode;
-              RejectMessageCodes.map((rejectMessageCode, index) => {
-                if (rejectMessageCode == backendErrorCode) {
+              RejectMessageCodes.forEach((rejectMessageCode, index) => {
+                if (rejectMessageCode === backendErrorCode) {
                   RejectMessagesIndex = index;
                 }
               });
-              if (RejectMessagesIndex != -1) {
+              if (RejectMessagesIndex !== -1) {
                 return RejectMessages[RejectMessagesIndex];
               }
             }

@@ -1,6 +1,6 @@
-import allReducers from '#/redux/reducers';
+import allReducers from 'redux/reducers';
 import { ToastPosition } from 'react-toastify';
-
+export type RootState = ReturnType<typeof allReducers>;
 export type toastOptionsType = {
   position: ToastPosition;
   autoClose: number;
@@ -11,5 +11,11 @@ export type toastOptionsType = {
   progress: any;
   theme: 'light' | 'dark';
 };
-
-export type RootState = ReturnType<typeof allReducers>;
+export type ScreenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+// export enum ScreenSize {
+//   'xs' = 'xs',
+//   'sm' = 'sm',
+//   'md' = 'md',
+//   'lg' = 'lg',
+//   'xl' = 'xl',
+// }

@@ -31,7 +31,7 @@ export default function ConfirmDialog({ Open, color, Title, Icon, Content, Actio
         <DialogHeader placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
           <Typography
             variant="paragraph"
-            color={color == undefined ? (LightModeState == LightMode().type ? 'black' : 'white') : color}
+            color={color === undefined ? (LightModeState === LightMode().type ? 'black' : 'white') : color}
             className={`m-1 flex justify-center items-center gap-2 font-black  `}
             placeholder={undefined}
             onPointerEnterCapture={undefined}
@@ -64,7 +64,7 @@ export default function ConfirmDialog({ Open, color, Title, Icon, Content, Actio
           </Button>
           <Button
             variant="text"
-            color={color == undefined ? 'blue' : color}
+            color={color === undefined ? 'blue' : color}
             onClick={() => {
               Action();
               HandleOpen();
@@ -73,7 +73,7 @@ export default function ConfirmDialog({ Open, color, Title, Icon, Content, Actio
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
           >
-            <i color={color == undefined ? 'blue' : color} className={Icon + ' mx-1'}></i>
+            <i color={color === undefined ? 'blue' : color} className={Icon + ' mx-1'}></i>
             <span>Confirm</span>
           </Button>
         </DialogFooter>

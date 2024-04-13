@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 
 // Import an encryption library like CryptoJS
 import CryptoJS from 'crypto-js';
-import { RootState } from '#/types/components/general';
+import { RootState } from 'types/components/general';
 
 // Define a secret key for encryption
 const secretKey: any = process.env.REACT_APP_REDUX_LOCALSTORAGE_SECRETKEY;

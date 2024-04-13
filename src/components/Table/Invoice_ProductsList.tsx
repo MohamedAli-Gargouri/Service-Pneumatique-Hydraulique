@@ -191,7 +191,7 @@ export default function Invoice_ProductsList_Table({ P_Selected, P_Quantities, P
   };
 
   const VerifySelect = (PCode) => {
-    return Selected.some((item) => item.ProductCode == PCode);
+    return Selected.some((item) => item.ProductCode === PCode);
   };
 
   //==============These useeffects here help lift the state up to the upper component=============//
@@ -246,7 +246,7 @@ export default function Invoice_ProductsList_Table({ P_Selected, P_Quantities, P
               }}
               labelProps={{
                 style: {
-                  color: LightModeState == LightMode().type ? 'black' : 'white',
+                  color: LightModeState === LightMode().type ? 'black' : 'white',
                 },
               }}
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}

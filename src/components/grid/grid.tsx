@@ -19,7 +19,7 @@ import {
   Selection,
 } from 'devextreme-react/data-grid';
 import { Button, Avatar, Chip, Typography, IconButton, Tooltip } from '@material-tailwind/react';
-import { ColumnBuilder } from '../../types/components/column';
+import { ColumnBuilder } from 'types/components/column';
 import PropTypes from 'prop-types';
 import './grid.css';
 import ConfirmDialog from '../Dialog/Confirm';
@@ -52,7 +52,7 @@ export default function Grid({ dataSource, configuration, columns, widgets }) {
   const updateWidgetPopupsVisibility = (id, newPopupStatus) => {
     setWidgetPopupsVisibility((prevStates) => {
       const updatedStates = [...prevStates];
-      updatedStates.find((widgetPopupVisibility) => widgetPopupVisibility.widgetId == id).isPopupOpen = newPopupStatus;
+      updatedStates.find((widgetPopupVisibility) => widgetPopupVisibility.widgetId === id).isPopupOpen = newPopupStatus;
       return updatedStates;
     });
   };
@@ -93,7 +93,7 @@ export default function Grid({ dataSource, configuration, columns, widgets }) {
   };
 
   const highLightTemplate = (row) => {
-    var columnTemplateData = columns.find((col) => col.dataField == row.column.dataField).templateData;
+    var columnTemplateData = columns.find((col) => col.dataField === row.column.dataField).templateData;
     return (
       <Chip
         size="sm"
@@ -139,7 +139,7 @@ export default function Grid({ dataSource, configuration, columns, widgets }) {
         </div>
         <div className="toolbar">
           {widgets.map((widget, index) => {
-            if (widget.hasConfirmationPopup == true) {
+            if (widget.hasConfirmationPopup === true) {
               return (
                 <>
                   <Tooltip content={widget.caption}>
@@ -150,7 +150,7 @@ export default function Grid({ dataSource, configuration, columns, widgets }) {
                       onClick={() => {
                         updateWidgetPopupsVisibility(
                           widget.id,
-                          !widgetPopupsVisibility.find((widgetPopup) => widgetPopup.widgetId == widget.id).isPopupOpen,
+                          !widgetPopupsVisibility.find((widgetPopup) => widgetPopup.widgetId === widget.id).isPopupOpen,
                         );
                       }}
                       className=" mx-1"
@@ -162,12 +162,12 @@ export default function Grid({ dataSource, configuration, columns, widgets }) {
                     </IconButton>
                   </Tooltip>
                   <ConfirmDialog
-                    Open={widgetPopupsVisibility.find((widgetPopup) => widgetPopup.widgetId == widget.id).isPopupOpen}
+                    Open={widgetPopupsVisibility.find((widgetPopup) => widgetPopup.widgetId === widget.id).isPopupOpen}
                     Action={widget.callbackfunction}
                     HandleOpen={() => {
                       updateWidgetPopupsVisibility(
                         widget.id,
-                        !widgetPopupsVisibility.find((widgetPopup) => widgetPopup.widgetId == widget.id).isPopupOpen,
+                        !widgetPopupsVisibility.find((widgetPopup) => widgetPopup.widgetId === widget.id).isPopupOpen,
                       );
                     }}
                     color={widget.confirmationPopupColor}
@@ -241,7 +241,7 @@ export default function Grid({ dataSource, configuration, columns, widgets }) {
         <GroupPanel visible={true} />
         <Grouping autoExpandAll={false} />
         {columns.map((column, index) => {
-          if (column.type == 'IMG') {
+          if (column.type === 'IMG') {
             return (
               <Column
                 key={index}
@@ -255,12 +255,12 @@ export default function Grid({ dataSource, configuration, columns, widgets }) {
                 caption={column.caption}
                 dataType={column.dataType}
                 allowGrouping={column.allowGrouping}
-                hidingPriority={column.hidingPriority == 'auto' ? 0 : column.hidingPriority}
+                hidingPriority={column.hidingPriority === 'auto' ? 0 : column.hidingPriority}
                 cellRender={(event) => ImageCellTemplate(event)}
               ></Column>
             );
           } else {
-            if (column.template == 'HIGHLIGHT') {
+            if (column.template === 'HIGHLIGHT') {
               return (
                 <Column
                   width={column.width}
@@ -274,7 +274,7 @@ export default function Grid({ dataSource, configuration, columns, widgets }) {
                   caption={column.caption}
                   dataType={column.dataType}
                   allowGrouping={column.allowGrouping}
-                  hidingPriority={column.hidingPriority == 'auto' ? 0 : column.hidingPriority}
+                  hidingPriority={column.hidingPriority === 'auto' ? 0 : column.hidingPriority}
                   cellRender={(event) => highLightTemplate(event)}
                 ></Column>
               );

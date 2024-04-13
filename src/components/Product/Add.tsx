@@ -23,9 +23,9 @@ export default function Product() {
   const AddedImages = React.useRef([]);
   const [SubCategories, setSubCategories] = React.useState([]);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const Tabs = [
     {

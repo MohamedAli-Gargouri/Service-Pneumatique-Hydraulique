@@ -63,9 +63,9 @@ export default function ContactCard() {
   const phoneInputRef = React.useRef(null);
   const internationalDialNumberRef = React.useRef(null);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   return (
     <>

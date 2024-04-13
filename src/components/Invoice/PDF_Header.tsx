@@ -152,7 +152,7 @@ export default function InvoiceHeader({
           <Text style={{ fontSize: 11, fontWeight: 'black' }}>
             Phone Num: <Text style={{ fontSize: 9 }}>{H_PhoneNumber}</Text>
           </Text>
-          {DocumentType == 'Invoice' ? (
+          {DocumentType === 'Invoice' ? (
             <Text style={{ fontSize: 11, fontWeight: 'black' }}>
               Tax Registration: <Text style={{ fontSize: 9 }}>{H_TaxNumber}</Text>
             </Text>
@@ -164,7 +164,7 @@ export default function InvoiceHeader({
         <View style={{ backgroundColor: '#e53935', width: '60%', height: '15rem' }}></View>
         <View>
           <Text>{DocumentType}</Text>
-          {DocumentType == 'Invoice' ? (
+          {DocumentType === 'Invoice' ? (
             <Text style={{ fontSize: 9, fontWeight: 'black' }}>
               Invoice Num: <Text style={{ fontSize: 7, fontWeight: 'black' }}>{InvoiceNumber}</Text>
             </Text>
@@ -188,7 +188,7 @@ export default function InvoiceHeader({
             <Text style={{ fontSize: 11, fontWeight: 'black' }}>
               Phone Num: <Text style={{ fontSize: 9 }}>{D_PhoneNumber}</Text>
             </Text>
-            {DocumentType == 'Invoice' ? (
+            {DocumentType === 'Invoice' ? (
               <Text style={{ fontSize: 11, fontWeight: 'black' }}>
                 Tax Registration: <Text style={{ fontSize: 9 }}>{D_TaxNumber}</Text>
               </Text>

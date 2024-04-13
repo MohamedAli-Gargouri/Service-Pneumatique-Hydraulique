@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Button } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { PaginationParam } from '#/types/components/params';
+import { PaginationParam } from 'types/components/params';
 
 /**
  *

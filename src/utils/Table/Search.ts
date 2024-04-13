@@ -1,6 +1,6 @@
 export default function Search(TABLE_ROWS: Array<any>, AllData: Array<any>, SetAllData: Function, e: any) {
   const SearchedString = e.target.value;
-  if (SearchedString == '') {
+  if (SearchedString === '') {
     SetAllData(TABLE_ROWS);
   } else {
     const FilteredData = TABLE_ROWS.filter(function (obj) {

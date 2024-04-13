@@ -34,9 +34,9 @@ export default function UCP_Orders() {
   const [selectedRows, setSelectedRows] = React.useState([]);
   const { t } = useTranslation();
   const { displayNotification, displayPromiseNotification } = useNotify();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const gridConfiguration = new GridBuilder()
     .setDataField('idOrder')
@@ -64,7 +64,7 @@ export default function UCP_Orders() {
   }
 
   function handleOrderInspect() {
-    if (selectedRows.length == 0) {
+    if (selectedRows.length === 0) {
       displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info');
     } else if (selectedRows.length > 1) {
       displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info');
@@ -76,7 +76,7 @@ export default function UCP_Orders() {
    * This function marks the selected Order as Paid
    */
   function handleMarkOrderPaid() {
-    if (selectedRows.length == 0) {
+    if (selectedRows.length === 0) {
       displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info');
     } else if (selectedRows.length > 1) {
       displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info');
@@ -95,7 +95,7 @@ export default function UCP_Orders() {
    * This function marks the selected Order as ready to be taken.
    */
   function handleMarkOrderReady() {
-    if (selectedRows.length == 0) {
+    if (selectedRows.length === 0) {
       displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info');
     } else if (selectedRows.length > 1) {
       displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info');
@@ -114,7 +114,7 @@ export default function UCP_Orders() {
    * This function marks the selected Order as paused
    */
   function handleOrderPause() {
-    if (selectedRows.length == 0) {
+    if (selectedRows.length === 0) {
       displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info');
     } else if (selectedRows.length > 1) {
       displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info');
@@ -133,7 +133,7 @@ export default function UCP_Orders() {
    * This function resumes the selected order
    */
   function handleOrderResume() {
-    if (selectedRows.length == 0) {
+    if (selectedRows.length === 0) {
       displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info');
     } else if (selectedRows.length > 1) {
       displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info');
@@ -152,7 +152,7 @@ export default function UCP_Orders() {
    * This function cancel the selected Order
    */
   function handleOrderCancel() {
-    if (selectedRows.length == 0) {
+    if (selectedRows.length === 0) {
       displayNotification(t('UCP.DialogMessages.Validation.noSelectionError'), 'info');
     } else if (selectedRows.length > 1) {
       displayNotification(t('UCP.DialogMessages.Validation.manySelectionError'), 'info');

@@ -38,10 +38,10 @@ export default function LoginCard() {
   const isLogged = useSelector((state: RootState) => state.isLogged);
   const { validateInputs } = useInputValidation();
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   const { displayPromiseNotification } = useNotify();
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   if (isLogged) {
     window.location.href = '/home';

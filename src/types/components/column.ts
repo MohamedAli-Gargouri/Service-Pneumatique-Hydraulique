@@ -1,103 +1,213 @@
+export type ColumnDataType = 'string' | 'date' | 'number' | 'boolean';
+export type ColumnType = 'NORMAL' | 'IMG';
+export type ColumnAlignment = 'left' | 'right' | 'centered';
+export type ColumnTemplate = 'DEFAULT' | 'HIGHLIGHT';
 export class Column {
-  id;
-  dataField = '';
-  caption = '';
-  dataType = 'string'; // date, datetime, number,boolean, string, object
-  allowGrouping = false;
-  type = 'NORMAL'; // Either: IMG, NORMAL
-  alignment = 'left'; // either left, right or centered
-  template = 'DEFAULT'; // DEFAULT, HIGHLIGHT
-  templateData = ''; // This can be anything
-  allowSearch = true; // false or true
-  allowExporting = false; // false or true
-  allowFiltering = true; // false or true
-  allowHeaderFiltering = true; // false or true
-  width;
-  hidingPriority = 'auto';
+  public id: number;
+  public dataField: string = '';
+  public caption: string = '';
+  public dataType: ColumnDataType = 'string'; // date, datetime, number,boolean, string, object
+  public allowGrouping: boolean = false;
+  public type: ColumnType = 'NORMAL'; // Either: IMG, NORMAL
+  public alignment: ColumnAlignment = 'left'; // either left, right or centered
+  public template: ColumnTemplate = 'DEFAULT'; // DEFAULT, HIGHLIGHT
+  public templateData: any = ''; // This can be anything
+  public allowSearch: boolean = true; // false or true
+  public allowExporting: boolean = false; // false or true
+  public allowFiltering: boolean = true; // false or true
+  public allowHeaderFiltering: boolean = true; // false or true
+  public width: string | number;
+  public hidingPriority: number | 'auto' = 'auto';
 }
+/**
+ *
+ * Generic Class that represents a Column within a Datagrid
+ * @export
+ * @class ColumnBuilder
+ */
+
 export class ColumnBuilder {
-  #column;
+  private column: Column;
   constructor() {
-    this.#column = new Column();
+    this.column = new Column();
   }
 
-  setHidingPriority(hidingPriority) {
-    this.#column.hidingPriority = hidingPriority;
+  /**
+   *
+   * Sets the Hiding
+   * @param {(number | 'auto')} hidingPriority
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setHidingPriority(hidingPriority: number | 'auto'): any {
+    this.column.hidingPriority = hidingPriority;
     return this;
   }
-  setTemplate(template) {
-    this.#column.template = template;
+  /**
+   *
+   *
+   * @param {ColumnTemplate} template
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setTemplate(template: ColumnTemplate): any {
+    this.column.template = template;
     return this;
   }
-  setWidth(width) {
-    this.#column.width = width;
+  /**
+   *
+   *
+   * @param {(string | number)} width
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setWidth(width: string | number): any {
+    this.column.width = width;
     return this;
   }
-  setTemplateData(templateData) {
-    this.#column.templateData = templateData;
+  /**
+   *
+   *
+   * @param {*} templateData
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setTemplateData(templateData: any): any {
+    this.column.templateData = templateData;
     return this;
   }
-  setallowSearch(allowSearch) {
-    this.#column.allowSearch = allowSearch;
+  /**
+   *
+   *
+   * @param {boolean} allowSearch
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setallowSearch(allowSearch: boolean): any {
+    this.column.allowSearch = allowSearch;
     return this;
   }
-  setAllowExporting(allowExporting) {
-    this.#column.allowExporting = allowExporting;
+  /**
+   *
+   *
+   * @param {boolean} allowExporting
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setAllowExporting(allowExporting: boolean): any {
+    this.column.allowExporting = allowExporting;
     return this;
   }
-  setAllowFiltering(allowFiltering) {
-    this.#column.allowFiltering = allowFiltering;
+  /**
+   *
+   *
+   * @param {boolean} allowFiltering
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setAllowFiltering(allowFiltering: boolean): any {
+    this.column.allowFiltering = allowFiltering;
     return this;
   }
 
-  setAllowHeaderFiltering(allowHeaderFiltering) {
-    this.#column.allowHeaderFiltering = allowHeaderFiltering;
-    return this;
-  }
-  setId(id) {
-    this.#column.id = id;
-    return this;
-  }
-  setAlignment(alignment) {
-    this.#column.alignment = alignment;
-    return this;
-  }
-  setDataField(dataField) {
-    this.#column.dataField = dataField;
-    return this;
-  }
-  setCaption(caption) {
-    this.#column.caption = caption;
+  /**
+   *
+   *
+   * @param {boolean} allowHeaderFiltering
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setAllowHeaderFiltering(allowHeaderFiltering: boolean): any {
+    this.column.allowHeaderFiltering = allowHeaderFiltering;
     return this;
   }
   /**
    *
-   * @param {*} dataType  date, datetime, number,boolean, string, object
-   * @returns
+   *
+   * @param {number} id
+   * @return {*}
+   * @memberof ColumnBuilder
    */
-  setDataType(dataType) {
-    this.#column.dataType = dataType;
+  setId(id: number): any {
+    this.column.id = id;
     return this;
   }
   /**
    *
-   * @param { IMG | NORMAL} Type IMG for image, NORMAL FOR DATES, TEXT,  NUMBER AND OTHERS.
-   * @returns
+   *
+   * @param {ColumnAlignment} alignment
+   * @return {*}
+   * @memberof ColumnBuilder
    */
-  setType(Type) {
-    this.#column.type = Type;
+  setAlignment(alignment: ColumnAlignment): any {
+    this.column.alignment = alignment;
     return this;
   }
   /**
    *
-   * @param {{src:"",alt:""}} img
-   * @returns
+   *
+   * @param {string} dataField
+   * @return {*}
+   * @memberof ColumnBuilder
    */
-  setAllowGrouping(allowGrouping) {
-    this.#column.allowGrouping = allowGrouping;
+  setDataField(dataField: string): any {
+    this.column.dataField = dataField;
     return this;
   }
-  build() {
-    return this.#column;
+  /**
+   *
+   *
+   * @param {string} caption
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setCaption(caption: string): any {
+    this.column.caption = caption;
+    return this;
+  }
+
+  /**
+   *
+   *
+   * @param {ColumnDataType} dataType
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setDataType(dataType: ColumnDataType): any {
+    this.column.dataType = dataType;
+    return this;
+  }
+
+  /**
+   *
+   *
+   * @param {ColumnType} Type
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setType(Type: ColumnType): any {
+    this.column.type = Type;
+    return this;
+  }
+
+  /**
+   *
+   *
+   * @param {boolean} allowGrouping
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  setAllowGrouping(allowGrouping: boolean): any {
+    this.column.allowGrouping = allowGrouping;
+    return this;
+  }
+  /**
+   *
+   *
+   * @return {*}
+   * @memberof ColumnBuilder
+   */
+  build(): any {
+    return this.column;
   }
 }

@@ -31,10 +31,10 @@ export default function UCP_TopBar({ Icon, SectionName }) {
     dispatch(openCart());
   };
   const HandleLightModeSwitch = () => {
-    if (LightModeState == LightMode().type) {
+    if (LightModeState === LightMode().type) {
       dispatch(DarkMode());
     }
-    if (LightModeState == DarkMode().type) {
+    if (LightModeState === DarkMode().type) {
       dispatch(LightMode());
     }
   };
@@ -92,7 +92,7 @@ export default function UCP_TopBar({ Icon, SectionName }) {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              {LightModeState == LightMode().type ? (
+              {LightModeState === LightMode().type ? (
                 <MoonIcon className=" text-white-c h-4 w-4 md:h-6 md:w-6" />
               ) : (
                 <SunIcon className="text-white-c h-6 w-6" />

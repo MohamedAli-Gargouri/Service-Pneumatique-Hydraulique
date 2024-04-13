@@ -54,9 +54,9 @@ export default function ComplexNavbar() {
   const isLoggedState = useSelector((state: RootState) => state.isLogged);
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const toggleCart = () => {
     dispatch(openCart());
@@ -65,7 +65,7 @@ export default function ComplexNavbar() {
     if (isLightMode) {
       dispatch(DarkMode());
     }
-    if (LightModeState == DarkMode().type) {
+    if (LightModeState === DarkMode().type) {
       dispatch(LightMode());
     }
   };

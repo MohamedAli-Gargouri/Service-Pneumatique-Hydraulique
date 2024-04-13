@@ -32,9 +32,9 @@ export default function RegisterCard() {
   const { displayNotification, displayPromiseNotification } = useNotify();
   const { validateInputs } = useInputValidation();
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   if (isLogged) {
     window.location.href = '/home';

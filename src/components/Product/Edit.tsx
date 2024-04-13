@@ -15,7 +15,7 @@ export default function Product() {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { displayNotification, displayPromiseNotification } = useNotify();
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   const AddedImages = React.useRef([]);
   const [SelectedCategory, SetSelectedCategory] = React.useState('Comp');
   const Categories = [
@@ -86,7 +86,7 @@ export default function Product() {
           <Input
             labelProps={{
               style: {
-                color: LightModeState == LightMode().type ? 'black' : 'white',
+                color: LightModeState === LightMode().type ? 'black' : 'white',
               },
             }}
             label={'Brand'}
@@ -101,7 +101,7 @@ export default function Product() {
             defaultValue="MX-15648679"
             labelProps={{
               style: {
-                color: LightModeState == LightMode().type ? 'black' : 'white',
+                color: LightModeState === LightMode().type ? 'black' : 'white',
               },
             }}
             label={t('UCP.EditProduct.TabInputs.PName')}
@@ -136,7 +136,7 @@ export default function Product() {
             defaultValue="500TND"
             labelProps={{
               style: {
-                color: LightModeState == LightMode().type ? 'black' : 'white',
+                color: LightModeState === LightMode().type ? 'black' : 'white',
               },
             }}
             label={t('UCP.EditProduct.TabInputs.PPrice')}
@@ -150,7 +150,7 @@ export default function Product() {
             defaultValue="25648497889"
             labelProps={{
               style: {
-                color: LightModeState == LightMode().type ? 'black' : 'white',
+                color: LightModeState === LightMode().type ? 'black' : 'white',
               },
             }}
             label={t('UCP.EditProduct.TabInputs.PCode')}
@@ -164,7 +164,7 @@ export default function Product() {
             defaultValue="20"
             labelProps={{
               style: {
-                color: LightModeState == LightMode().type ? 'black' : 'white',
+                color: LightModeState === LightMode().type ? 'black' : 'white',
               },
             }}
             label={t('UCP.EditProduct.TabInputs.StoreQuantity')}
@@ -177,7 +177,7 @@ export default function Product() {
             defaultValue="500"
             labelProps={{
               style: {
-                color: LightModeState == LightMode().type ? 'black' : 'white',
+                color: LightModeState === LightMode().type ? 'black' : 'white',
               },
             }}
             label={t('UCP.EditProduct.TabInputs.StockQuantity')}
@@ -189,7 +189,7 @@ export default function Product() {
           <Textarea
             labelProps={{
               style: {
-                color: LightModeState == LightMode().type ? 'black' : 'white',
+                color: LightModeState === LightMode().type ? 'black' : 'white',
               },
             }}
             size="lg"

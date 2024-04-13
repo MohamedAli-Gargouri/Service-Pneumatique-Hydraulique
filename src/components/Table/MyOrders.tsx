@@ -246,7 +246,7 @@ export default function MyOrders_Table() {
               }}
               labelProps={{
                 style: {
-                  color: LightModeState == LightMode().type ? 'black' : 'white',
+                  color: LightModeState === LightMode().type ? 'black' : 'white',
                 },
               }}
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}
@@ -350,7 +350,7 @@ export default function MyOrders_Table() {
                         variant="filled"
                         value={status}
                         color={
-                          status === 'Paid' || status == 'Ready'
+                          status === 'Paid' || status === 'Ready'
                             ? 'green'
                             : status === 'Pending'
                               ? 'amber'

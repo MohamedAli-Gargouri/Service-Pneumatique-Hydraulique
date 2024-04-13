@@ -33,9 +33,9 @@ const Animations = {
 export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   return (
     <motion.div
@@ -44,7 +44,7 @@ export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
       animate={'visible'}
       className={`rounded-md background-secondary shadow-sm mx-4 grid grid-cols-1  justify-center items-center gap-3 bg-cover`}
     >
-      {List == true ? (
+      {List === true ? (
         <div className=" col-span-1 w-full flex flex-col justify-center items-center">
           <p className=" text-center" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '35px' }}>
             {t('Products.List')}
@@ -58,7 +58,7 @@ export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
               fontSize: '25px',
             }}
           >
-            {Child == undefined ? 'Products' : Child.PageName}
+            {Child === undefined ? 'Products' : Child.PageName}
           </p>
         </div>
       ) : null}
@@ -74,12 +74,12 @@ export default function BreadcrumbsWithIcon({ Parent, Child, List }) {
         <a href="/Home" className={`hover:opacity-60 `}>
           <i className="fa-solid fa-house"></i>
         </a>
-        {Parent == undefined ? null : (
+        {Parent === undefined ? null : (
           <a className={`hover:opacity-60 `} href={`${Parent.PageUrl}`}>
             {Parent.PageName}
           </a>
         )}
-        {Child == undefined ? null : (
+        {Child === undefined ? null : (
           <a className={`hover:opacity-60 `} href={`${Child.PageUrl}`}>
             {Child.PageName}
           </a>

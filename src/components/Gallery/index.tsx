@@ -22,12 +22,12 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
   const [SelectedImgIndex, SetSelectedImgIndex] = useState(0);
   const [OpenDeleteDialog, SetOpenDeleteDialog] = useState(false);
   const [ProductImages, SetProductImages] = useState(
-    Images != undefined ? (Images.length == 0 ? [PlaceHolderImg] : Images) : [PlaceHolderImg],
+    Images != undefined ? (Images.length === 0 ? [PlaceHolderImg] : Images) : [PlaceHolderImg],
   );
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const handleImageUpload = (e) => {
     if (ProductImages.length < 3) {
@@ -35,9 +35,11 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
       if (file) {
         const imageUrl = URL.createObjectURL(file);
         SetProductImages(
-          ProductImages.length == 1 && ProductImages[0] == PlaceHolderImg ? [imageUrl] : [...ProductImages, imageUrl],
+          ProductImages.length === 1 && ProductImages[0] === PlaceHolderImg ? [imageUrl] : [...ProductImages, imageUrl],
         );
-        SetSelectedImgIndex(ProductImages.length == 1 && ProductImages[0] == PlaceHolderImg ? 0 : ProductImages.length);
+        SetSelectedImgIndex(
+          ProductImages.length === 1 && ProductImages[0] === PlaceHolderImg ? 0 : ProductImages.length,
+        );
         AddedImages.current = [...AddedImages.current, imageUrl];
       }
     } else {
@@ -52,7 +54,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
           resolve('API Fetch is done!');
 
           SetProductImages(
-            ProductImages.length == 1
+            ProductImages.length === 1
               ? [PlaceHolderImg]
               : ProductImages.filter((a, index) => index != SelectedImgIndex),
           );
@@ -79,7 +81,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
                     SetSelectedImgIndex(index);
                   }}
                   className={` max-h-28 max-w-[7rem] ${
-                    index == SelectedImgIndex ? 'border border-accent-primary' : ''
+                    index === SelectedImgIndex ? 'border border-accent-primary' : ''
                   } Unselected bg-gray-300 rounded-md img  shadow-lg mx-1  my-1 hover:scale-110 hover:border-accent-primary transition duration-300 ease-in-out cursor-pointer`}
                 >
                   <img
@@ -96,7 +98,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
         {/*==================Here is the selected Picture=================== */}
         <div className="order-1 selectedImage flex justify-center items-center col-span-8 md:col-span-6 w-full h-full ">
           {ProductImages.map((imageurl, index) => {
-            if (index == SelectedImgIndex) {
+            if (index === SelectedImgIndex) {
               return (
                 <div
                   key={'SelectedIMG' + index}
@@ -117,12 +119,12 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
                   />
                   <div
                     className={`${
-                      (Addable == undefined && Deletable == undefined) || (Addable == false && Deletable == false)
+                      (Addable === undefined && Deletable === undefined) || (Addable === false && Deletable === false)
                         ? 'hidden'
                         : ''
                     }absolute p-2 w-full bottom-[0%] flex flex-row justify-around items-center flex-wrap`}
                   >
-                    {Addable != undefined && Addable == true ? (
+                    {Addable != undefined && Addable === true ? (
                       <IconButton
                         className="mx-2 rounded-full"
                         onClick={() => {
@@ -135,7 +137,7 @@ export default function Gallery({ AddedImages, Images, Addable, Deletable }) {
                         <i className="fa-solid fa-plus"></i>
                       </IconButton>
                     ) : null}
-                    {Deletable != undefined && Deletable == true ? (
+                    {Deletable != undefined && Deletable === true ? (
                       <IconButton
                         className="mx-2 rounded-full"
                         onClick={() => {

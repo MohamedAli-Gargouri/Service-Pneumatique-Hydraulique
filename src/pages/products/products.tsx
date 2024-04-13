@@ -182,9 +182,9 @@ export default function Products() {
   const [DisplayVariant, setDisplayVariant] = React.useState(window.innerWidth < smBreakpoint ? 0 : 1);
   const [MobileDraweropen, SetMobileDraweropen] = React.useState(false);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   const HandleDisplayVariantChange = (type) => {
     setDisplayVariant(type);
@@ -337,9 +337,9 @@ export default function Products() {
 
             <div
               className={` p-2 grid gap-4  ${
-                DisplayVariant == 1 || DisplayVariant == 0
+                DisplayVariant === 1 || DisplayVariant === 0
                   ? 'grid-cols-1'
-                  : DisplayVariant == 2
+                  : DisplayVariant === 2
                     ? 'grid-cols-2'
                     : 'grid-cols-3'
               }`}

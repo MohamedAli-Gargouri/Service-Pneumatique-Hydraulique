@@ -16,9 +16,9 @@ import { useNotify } from 'utils/hooks/useNotify';
 const PreviewInvoiceTab = ({ PreviewInvoice, SetPreviewInvoice, GenerateNewPDF, PDFLoaded, GeneratedPDF }) => {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   return (
     <>
@@ -97,9 +97,9 @@ const GenerateInvoiceTab = ({
 }) => {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   return (
     <>
@@ -159,7 +159,7 @@ const GenerateInvoiceTab = ({
         <div className=" flex justify-evenly w-full">
           <Checkbox
             labelProps={{ style: { color: 'inherit' } }}
-            checked={DocumentType == 'Invoice' ? true : false}
+            checked={DocumentType === 'Invoice' ? true : false}
             onChange={() => {
               SetDocumentType('Invoice');
             }}
@@ -172,7 +172,7 @@ const GenerateInvoiceTab = ({
           />
           <Checkbox
             labelProps={{ style: { color: 'inherit' } }}
-            checked={DocumentType == 'Estimate' ? true : false}
+            checked={DocumentType === 'Estimate' ? true : false}
             onChange={() => {
               SetDocumentType('Estimate');
             }}
@@ -184,7 +184,7 @@ const GenerateInvoiceTab = ({
             crossOrigin={undefined}
           />
         </div>
-        {DocumentType == 'Invoice' ? (
+        {DocumentType === 'Invoice' ? (
           <div className=" grid grid-cols-2 justify-center item w-full gap-3 p-2">
             <div className=" col-span-2 mx-2">
               <Input
@@ -211,7 +211,7 @@ const GenerateInvoiceTab = ({
         <div className="flex justify-evenly w-full">
           <Checkbox
             labelProps={{ style: { color: 'inherit' } }}
-            checked={DemanderType == 'Person' ? true : false}
+            checked={DemanderType === 'Person' ? true : false}
             onChange={() => {
               setDemanderType('Person');
             }}
@@ -224,7 +224,7 @@ const GenerateInvoiceTab = ({
           />
           <Checkbox
             labelProps={{ style: { color: 'inherit' } }}
-            checked={DemanderType == 'Company' ? true : false}
+            checked={DemanderType === 'Company' ? true : false}
             onChange={() => {
               setDemanderType('Company');
             }}
@@ -244,7 +244,7 @@ const GenerateInvoiceTab = ({
               HandleInvoiceValueChanges(e, 'D_FNAME');
             }}
             label={
-              DemanderType == 'Person'
+              DemanderType === 'Person'
                 ? t('UCP.Invoice.TabInputs.D_FirstName')
                 : t('UCP.Invoice.TabInputs.D_CompanyName')
             }
@@ -253,7 +253,7 @@ const GenerateInvoiceTab = ({
             onPointerLeaveCapture={undefined}
             crossOrigin={undefined}
           />
-          {DemanderType == 'Person' ? (
+          {DemanderType === 'Person' ? (
             <Input
               containerProps={{ style: { minWidth: '10px' } }}
               variant="outlined"
@@ -292,7 +292,7 @@ const GenerateInvoiceTab = ({
             onPointerLeaveCapture={undefined}
             crossOrigin={undefined}
           />
-          {DocumentType == 'Invoice' ? (
+          {DocumentType === 'Invoice' ? (
             <Input
               type="number"
               defaultValue={0}
@@ -384,7 +384,7 @@ const GenerateInvoiceTab = ({
         <div className="flex justify-evenly w-full">
           <Checkbox
             labelProps={{ style: { color: 'inherit' } }}
-            checked={HostType == 'Person' ? true : false}
+            checked={HostType === 'Person' ? true : false}
             onChange={() => {
               SetHostType('Person');
             }}
@@ -397,7 +397,7 @@ const GenerateInvoiceTab = ({
           />
           <Checkbox
             labelProps={{ style: { color: 'inherit' } }}
-            checked={HostType == 'Company' ? true : false}
+            checked={HostType === 'Company' ? true : false}
             onChange={() => {
               SetHostType('Company');
             }}
@@ -418,14 +418,14 @@ const GenerateInvoiceTab = ({
               HandleInvoiceValueChanges(e, 'H_FNAME');
             }}
             label={
-              HostType == 'Person' ? t('UCP.Invoice.TabInputs.H_FirstName') : t('UCP.Invoice.TabInputs.H_CompanyName')
+              HostType === 'Person' ? t('UCP.Invoice.TabInputs.H_FirstName') : t('UCP.Invoice.TabInputs.H_CompanyName')
             }
             className=" col-span-1"
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
             crossOrigin={undefined}
           />
-          {HostType == 'Person' ? (
+          {HostType === 'Person' ? (
             <Input
               containerProps={{ style: { minWidth: '10px' } }}
               variant="outlined"
@@ -466,7 +466,7 @@ const GenerateInvoiceTab = ({
             onPointerLeaveCapture={undefined}
             crossOrigin={undefined}
           />
-          {DocumentType == 'Invoice' ? (
+          {DocumentType === 'Invoice' ? (
             <Input
               type="number"
               defaultValue={0}
@@ -509,9 +509,9 @@ const Invoice = () => {
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { t } = useTranslation();
   const { displayNotification, displayPromiseNotification } = useNotify();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
 
   const [DemanderType, setDemanderType] = React.useState('Company');

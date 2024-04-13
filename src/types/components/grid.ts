@@ -1,46 +1,71 @@
+/**
+ *
+ *
+ * @export
+ * @class Grid
+ */
 export class Grid {
-  id;
-  dataField = 'id';
-  gridTitle = 'List';
-  gridTitleDescription = '';
-  noDataMessage = 'No Data found.';
-  onSelectionChangeCallBackMethod = this.onSelectionChangeDefaultMethod;
-
+  id: number;
+  dataField: string = 'id';
+  gridTitle: string = 'List';
+  gridTitleDescription: string = '';
+  noDataMessage: string = 'No Data found.';
+  onSelectionChangeCallBackMethod: Function = this.onSelectionChangeDefaultMethod;
   onSelectionChangeDefaultMethod() {
     // Default method, override this.
   }
 }
+
+/**
+ *
+ *
+ * @export
+ * @class GridBuilder
+ */
 export class GridBuilder {
-  #grid;
+  private grid: Grid;
   constructor() {
-    this.#grid = new Grid();
+    this.grid = new Grid();
   }
-  setId(id) {
-    this.#grid.id = id;
+  /**
+   *
+   *
+   * @param {number} id
+   * @return {*}
+   * @memberof GridBuilder
+   */
+  setId(id: number) {
+    this.grid.id = id;
     return this;
   }
-  setOnSelectionChangeCallBackMethod(onSelectionChangeCallBackMethod) {
-    this.#grid.onSelectionChangeCallBackMethod =
-      onSelectionChangeCallBackMethod;
+  /**
+   *
+   *
+   * @param {Function} onSelectionChangeCallBackMethod
+   * @return {*}
+   * @memberof GridBuilder
+   */
+  setOnSelectionChangeCallBackMethod(onSelectionChangeCallBackMethod: Function) {
+    this.grid.onSelectionChangeCallBackMethod = onSelectionChangeCallBackMethod;
     return this;
   }
-  setGridTitle(gridTitle) {
-    this.#grid.gridTitle = gridTitle;
+  setGridTitle(gridTitle: string) {
+    this.grid.gridTitle = gridTitle;
     return this;
   }
-  setGridTitleDescription(gridTitleDescription) {
-    this.#grid.gridTitleDescription = gridTitleDescription;
+  setGridTitleDescription(gridTitleDescription: string) {
+    this.grid.gridTitleDescription = gridTitleDescription;
     return this;
   }
-  setDataField(datafield) {
-    this.#grid.dataField = datafield;
+  setDataField(datafield: string) {
+    this.grid.dataField = datafield;
     return this;
   }
-  setNoDataMessage(noDataMessage) {
-    this.#grid.noDataMessage = noDataMessage;
+  setNoDataMessage(noDataMessage: string) {
+    this.grid.noDataMessage = noDataMessage;
     return this;
   }
   build() {
-    return this.#grid;
+    return this.grid;
   }
 }

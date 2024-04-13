@@ -24,7 +24,7 @@ export default function UCP_SideNavbar() {
   const [openAlert, setOpenAlert] = React.useState(true);
   const LightModeState = useSelector((state: RootState) => state.lightMode);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   const menuList = [
     {
       id: 1,

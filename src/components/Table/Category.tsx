@@ -124,7 +124,7 @@ export default function Categories_Table({ HandleOpen }) {
     const newName = e.target.value;
     const InputValuesRef_temp = [];
     InputValuesRef.current.map((Input) => {
-      if (Input.CategoryID == CategoryID) {
+      if (Input.CategoryID === CategoryID) {
         InputValuesRef_temp.push({
           CategoryID: Input.CategoryID,
           name: newName,
@@ -140,10 +140,10 @@ export default function Categories_Table({ HandleOpen }) {
   //This function handles the delete of a category
   const HandleDeleteCategory = () => {
     try {
-      var subCategory = AllData.find((category) => category.CategoryID == DeleteCategoryId.current);
+      var subCategory = AllData.find((category) => category.CategoryID === DeleteCategoryId.current);
 
       //test if its a subCategory
-      if (subCategory.type == 2) {
+      if (subCategory.type === 2) {
         const promise = DELETESubCategory(DeleteCategoryId.current, accessToken);
 
         displayPromiseNotification(
@@ -161,7 +161,7 @@ export default function Categories_Table({ HandleOpen }) {
           .catch(() => null);
       }
       //test if its a main category
-      if (subCategory.type == 1) {
+      if (subCategory.type === 1) {
         const promise = DELETECategory(DeleteCategoryId.current, accessToken);
         displayNotification(t('UCP.DialogMessages.Category.AddCategory_NamedUsed'), 'error');
         //Updating the current data with the changed name.
@@ -181,10 +181,10 @@ export default function Categories_Table({ HandleOpen }) {
   //This function handles the Edit Of a Category
   const HandleEditCategory = (CategoryID) => {
     try {
-      var subCategory = AllData.find((category) => category.CategoryID == CategoryID);
-      const newName = InputValuesRef.current.find((input) => input.CategoryID == CategoryID).name;
+      var subCategory = AllData.find((category) => category.CategoryID === CategoryID);
+      const newName = InputValuesRef.current.find((input) => input.CategoryID === CategoryID).name;
       //test if its a subCategory
-      if (subCategory.type == 2) {
+      if (subCategory.type === 2) {
         const promise = PutSubCategory(CategoryID, newName, subCategory.parent_CategoryId, accessToken);
 
         displayPromiseNotification(
@@ -201,9 +201,9 @@ export default function Categories_Table({ HandleOpen }) {
           .catch(() => null);
       }
       //test if its a main category
-      if (subCategory.type == 1) {
+      if (subCategory.type === 1) {
         const Category_IMGFile = FileInputRef.current.find(
-          (category) => category.CategoryID == CategoryID,
+          (category) => category.CategoryID === CategoryID,
         ).categoryImg_File;
         const IMGBinaryBase64 = Category_IMGFile.fileBinary;
         const IMGName = Category_IMGFile.name;
@@ -239,7 +239,7 @@ export default function Categories_Table({ HandleOpen }) {
     const FileExtension = fileData.name.split('.')[1];
     const FileSize = fileData.size;
 
-    const category = FileInputRef.current.find((category) => category.CategoryID == CategoryID);
+    const category = FileInputRef.current.find((category) => category.CategoryID === CategoryID);
     category.categoryImg_File.name = FileName;
     category.categoryImg_File.extension = FileExtension;
     category.categoryImg_File.fileBinary = fileBinaryBase64;
@@ -264,7 +264,7 @@ export default function Categories_Table({ HandleOpen }) {
             }}
             labelProps={{
               style: {
-                color: LightModeState == LightMode().type ? 'black' : 'white',
+                color: LightModeState === LightMode().type ? 'black' : 'white',
               },
             }}
             icon={<MagnifyingGlassIcon className="h-5 w-5" />}
@@ -348,7 +348,7 @@ export default function Categories_Table({ HandleOpen }) {
                         defaultValue={name}
                         labelProps={{
                           style: {
-                            color: LightModeState == LightMode().type ? 'black' : 'white',
+                            color: LightModeState === LightMode().type ? 'black' : 'white',
                           },
                         }}
                         onPointerEnterCapture={undefined}
@@ -367,7 +367,7 @@ export default function Categories_Table({ HandleOpen }) {
                         onPointerEnterCapture={undefined}
                         onPointerLeaveCapture={undefined}
                       >
-                        {type == 1
+                        {type === 1
                           ? t('UCP.CategoryTable.TabHeader.CategoryTypeValue1')
                           : t('UCP.CategoryTable.TabHeader.CategoryTypeValue2')}
                       </Typography>
@@ -387,7 +387,7 @@ export default function Categories_Table({ HandleOpen }) {
                       </IconButton>
                     </Tooltip>
 
-                    {type == 1 && (
+                    {type === 1 && (
                       <Tooltip content="Upload Image">
                         <IconButton
                           variant="text"

@@ -10,28 +10,23 @@ import './i18n';
 import Loading from './pages/loading';
 import { PersistGate } from 'redux-persist/integration/react';
 import ErrorBoundary from './pages/Error';
-//=========font & icons configuration-start ==========//
-
-//=========font & icons configuration-end ==========//
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <ErrorBoundary>
-  <React.StrictMode>
-    <ThemeProvider>
-      <BrowserRouter>
-        <Suspense fallback={<Loading />}>
-          <Provider store={store}>
-            <PersistGate persistor={persistor}>
-              <div id="App">
-                <App />
-              </div>
-            </PersistGate>
-          </Provider>
-        </Suspense>
-      </BrowserRouter>
-    </ThemeProvider>
-  </React.StrictMode>
-  </ErrorBoundary>
+    <React.StrictMode>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Suspense fallback={<Loading />}>
+            <Provider store={store}>
+              <PersistGate persistor={persistor}>
+                <div id="App">
+                  <App />
+                </div>
+              </PersistGate>
+            </Provider>
+          </Suspense>
+        </BrowserRouter>
+      </ThemeProvider>
+    </React.StrictMode>
+  </ErrorBoundary>,
 );

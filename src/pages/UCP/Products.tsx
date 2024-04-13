@@ -29,9 +29,9 @@ export default function UCP_Products() {
   const [selectedRows, setSelectedRows] = React.useState([]);
   const [OpenCategoryDialog, SetOpenCategoryDialog] = React.useState(false);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
 
   const gridConfiguration = new GridBuilder()

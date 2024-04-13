@@ -19,9 +19,9 @@ export default function Cart() {
   const { OrderCart, AddProduct, SetQuantity, RemoveProduct } = useCart();
   const CartStatus = useSelector((state: RootState) => state.cartStatus);
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   if (CartStatus) {
     disableScroll();
@@ -135,7 +135,7 @@ export default function Cart() {
               </div>
             );
           })}
-          {CartList.length == 0 && (
+          {CartList.length === 0 && (
             <Typography
               variant="h6"
               className="text-center font-thin"

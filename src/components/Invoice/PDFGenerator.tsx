@@ -1,33 +1,29 @@
 import React from 'react';
-import {
-  Page,
-  Document,
-  StyleSheet,
-} from '@react-pdf/renderer';
+import { Page, Document, StyleSheet } from '@react-pdf/renderer';
 import PDFContent from './PDF_Content';
 import PDFFooter from './PDF_Footer';
 import PDFHeader from './PDF_Header';
-import PropTypes from "prop-types"
-InvoiceTemplate.propTypes={
-  InvoiceNumber:PropTypes.number,
-  DocumentType:PropTypes.oneOf(["Estimate","Invoice"]).isRequired,
-  SetPDFLoaded:PropTypes.func.isRequired,
-  D_FirstName:PropTypes.string.isRequired,
-  D_LastName:PropTypes.string.isRequired,
-  D_Adress:PropTypes.string.isRequired,
-  D_PhoneNumber:PropTypes.number.isRequired,
-  D_TaxNumber:PropTypes.number.isRequired,
-  H_FirstName:PropTypes.string.isRequired,
-  H_LastName:PropTypes.string.isRequired,
-  H_Adress:PropTypes.string.isRequired,
-  H_PhoneNumber:PropTypes.number.isRequired,
-  H_TaxNumber:PropTypes.number.isRequired,
-  CreationDate:PropTypes.string.isRequired,
-  LimitDate:PropTypes.string.isRequired,
-  Discount:PropTypes.number.isRequired,
-  TaxRate:PropTypes.number.isRequired,
-  ProductsData:PropTypes.array.isRequired, 
-}
+import PropTypes from 'prop-types';
+InvoiceTemplate.propTypes = {
+  InvoiceNumber: PropTypes.number,
+  DocumentType: PropTypes.oneOf(['Estimate', 'Invoice']).isRequired,
+  SetPDFLoaded: PropTypes.func.isRequired,
+  D_FirstName: PropTypes.string.isRequired,
+  D_LastName: PropTypes.string.isRequired,
+  D_Adress: PropTypes.string.isRequired,
+  D_PhoneNumber: PropTypes.number.isRequired,
+  D_TaxNumber: PropTypes.number.isRequired,
+  H_FirstName: PropTypes.string.isRequired,
+  H_LastName: PropTypes.string.isRequired,
+  H_Adress: PropTypes.string.isRequired,
+  H_PhoneNumber: PropTypes.number.isRequired,
+  H_TaxNumber: PropTypes.number.isRequired,
+  CreationDate: PropTypes.string.isRequired,
+  LimitDate: PropTypes.string.isRequired,
+  Discount: PropTypes.number.isRequired,
+  TaxRate: PropTypes.number.isRequired,
+  ProductsData: PropTypes.array.isRequired,
+};
 export default function InvoiceTemplate({
   InvoiceNumber,
   DocumentType,
@@ -140,9 +136,7 @@ export default function InvoiceTemplate({
   });
 
   const ProductsLimitPerPage = 8;
-  var NbPages = Math.ceil(
-    ProductsData.length == 0 ? 1 : ProductsData.length / ProductsLimitPerPage,
-  );
+  var NbPages = Math.ceil(ProductsData.length === 0 ? 1 : ProductsData.length / ProductsLimitPerPage);
   return (
     <Document
       onRender={() => {
@@ -152,9 +146,9 @@ export default function InvoiceTemplate({
       {Array.from({ length: NbPages }, (_, pageIndex) => {
         var currentPage = pageIndex + 1;
         //======First page==========//
-        if (currentPage == 1) {
+        if (currentPage === 1) {
           return (
-            <Page key={"PAGE"+pageIndex} size="A4" style={styles.page}>
+            <Page key={'PAGE' + pageIndex} size="A4" style={styles.page}>
               <PDFHeader
                 InvoiceNumber={InvoiceNumber}
                 DocumentType={DocumentType}
@@ -179,22 +173,20 @@ export default function InvoiceTemplate({
                 ProductsData={ProductsData}
                 Data={ProductsData.slice(
                   pageIndex * ProductsLimitPerPage,
-                  NbPages == 1
-                    ? ProductsData.length
-                    : pageIndex * ProductsLimitPerPage + ProductsLimitPerPage,
+                  NbPages === 1 ? ProductsData.length : pageIndex * ProductsLimitPerPage + ProductsLimitPerPage,
                 )}
-                ShowTotal={NbPages == 1}
+                ShowTotal={NbPages === 1}
               />
 
-              <PDFFooter ShowContact={NbPages == 1} />
+              <PDFFooter ShowContact={NbPages === 1} />
             </Page>
           );
         } else {
           /* ==========If we are in the last page and our invoice contains more than one page========== */
         }
-        if (currentPage == NbPages && NbPages != 1) {
+        if (currentPage === NbPages && NbPages != 1) {
           return (
-            <Page key={"PAGE"+pageIndex} size="A4" style={styles.page}>
+            <Page key={'PAGE' + pageIndex} size="A4" style={styles.page}>
               <PDFHeader
                 InvoiceNumber={InvoiceNumber}
                 DocumentType={DocumentType}
@@ -217,10 +209,7 @@ export default function InvoiceTemplate({
                 Discount={Discount}
                 TaxRate={TaxRate}
                 ProductsData={ProductsData}
-                Data={ProductsData.slice(
-                  pageIndex * ProductsLimitPerPage,
-                  ProductsData.length,
-                )}
+                Data={ProductsData.slice(pageIndex * ProductsLimitPerPage, ProductsData.length)}
                 ShowTotal={true}
               />
 
@@ -232,7 +221,7 @@ export default function InvoiceTemplate({
         }
         if (currentPage != NbPages && NbPages != 1) {
           return (
-            <Page key={"PAGE"+pageIndex} size="A4" style={styles.page}>
+            <Page key={'PAGE' + pageIndex} size="A4" style={styles.page}>
               <PDFHeader
                 InvoiceNumber={InvoiceNumber}
                 DocumentType={DocumentType}

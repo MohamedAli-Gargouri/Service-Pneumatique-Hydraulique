@@ -37,7 +37,7 @@ export default function ProductCarouselCard({
   const [IsHovered, SetIsHovered] = React.useState(false);
   const { AddProduct, SetQuantity, RemoveProduct } = useCart();
   const DisplayedProductImg =
-    ProductImages.length == 0
+    ProductImages.length === 0
       ? NoProductImg
       : ProductImages.length > 2
         ? IsHovered
@@ -69,9 +69,9 @@ export default function ProductCarouselCard({
     ProductShipping: ProductShipping,
   };
   const { t } = useTranslation();
-  var isLightMode = LightModeState == LightMode().type;
+  var isLightMode = LightModeState === LightMode().type;
   React.useEffect(() => {
-    isLightMode = LightModeState == LightMode().type;
+    isLightMode = LightModeState === LightMode().type;
   }, [LightModeState]);
   return (
     <Card

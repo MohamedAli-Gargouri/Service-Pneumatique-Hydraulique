@@ -312,7 +312,7 @@ export default function Orders_Table() {
               }}
               labelProps={{
                 style: {
-                  color: LightModeState == LightMode().type ? 'black' : 'white',
+                  color: LightModeState === LightMode().type ? 'black' : 'white',
                 },
               }}
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}

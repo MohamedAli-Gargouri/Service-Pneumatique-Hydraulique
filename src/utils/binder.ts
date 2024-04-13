@@ -13,7 +13,7 @@ export function Binder(
 ) {
   ObjectsConfiguration.map((object) => {
     var ObjectMethod = ObjectsMethods.find(
-      (objectMethod) => objectMethod[objectIdDataField] == object[objectIdDataField],
+      (objectMethod) => objectMethod[objectIdDataField] === object[objectIdDataField],
     );
     if (ObjectMethod) {
       object[objectMethodDataField] = ObjectMethod[objectMethodDataField];

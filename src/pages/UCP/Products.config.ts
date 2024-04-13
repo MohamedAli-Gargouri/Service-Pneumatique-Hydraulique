@@ -1,4 +1,4 @@
-import { ColumnBuilder } from '../../types/components/column';
+import { ColumnBuilder } from 'types/components/column';
 import { WidgetBuilder } from '../../types/components/widget';
 /********************************************************************************************************************
  * --------------------------------------------Products Grid Configuration------------------------------------------
