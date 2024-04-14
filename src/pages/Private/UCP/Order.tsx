@@ -1,13 +1,13 @@
 import { Card } from '@material-tailwind/react';
 
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode } from '../../redux/actions/light-actions';
-import Order from '../../components/Table/Order';
-import Footer from '../../components/footer';
-import SideBar from '../../components/SideBar';
+import { LightMode } from 'redux/actions/light-actions';
+import Order from 'components/Table/Order';
+import Footer from 'components/footer';
+import SideBar from 'components/SideBar';
 import React from 'react';
-import TopBar from '../../components/Topbar';
-import Topbarbg from '../../assets/images/Topbarbg.webp';
+import TopBar from 'components/Topbar';
+import Topbarbg from 'assets/images/Topbarbg.webp';
 import { useTranslation } from 'react-i18next';
 import { RootState } from 'types/components/general';
 export default function UCP_Order() {

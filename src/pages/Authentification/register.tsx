@@ -9,6 +9,9 @@ import { useTranslation } from 'react-i18next';
 import { useNotify } from 'utils/hooks/useNotify';
 import { RootState } from 'types/components/general';
 import { useInputValidation } from 'utils/hooks/useInputValidation';
+import FormTextBox from 'components/Form/Form-TextBox';
+import { FormButtonParamBuilder, FormTextBoxParam, FormTextBoxParamBuilder } from 'types/components/params';
+import FormButton from 'components/Form/Form-Button';
 const Animations = {
   hidden: {
     opacity: 0,
@@ -39,35 +42,37 @@ export default function RegisterCard() {
   if (isLogged) {
     window.location.href = '/home';
   }
-  const userNamerRef = React.useRef(null);
-  const emailRef = React.useRef(null);
-  const firstNameRef = React.useRef(null);
-  const lastNameRef = React.useRef(null);
-  const passwordRef = React.useRef(null);
-  const internationalDialNumberRef = React.useRef(null);
-  const phoneNumberRef = React.useRef(null);
-  const confirmPasswordRef = React.useRef(null);
 
+  const userName = React.useState<string>('');
+  const email = React.useState<string>('');
+  const firstName = React.useState<string>('');
+  const lastName = React.useState<string>('');
+  const password = React.useState<string>('');
+  const confirmPassword = React.useState<string>('');
+  const phoneNumber = React.useState<string>('');
+  React.useEffect(() => {
+    console.log(phoneNumber);
+  }, [phoneNumber]);
   const HandleRegister = () => {
     if (
       validateInputs(
-        [userNamerRef.current.value, firstNameRef.current.value, lastNameRef.current.value],
-        [emailRef.current.value],
+        [userName[0], firstName[0], lastName[0]],
+        [email[0]],
         [],
-        [internationalDialNumberRef.current],
-        [phoneNumberRef.current.value],
-        [passwordRef.current.value],
-        [confirmPasswordRef.current.value],
+        [],
+        [],
+        [password[0]],
+        [confirmPassword[0]],
       )
     ) {
       const promise = register(
-        userNamerRef.current.value,
-        emailRef.current.value,
-        firstNameRef.current.value,
-        lastNameRef.current.value,
-        passwordRef.current.value,
-        internationalDialNumberRef.current,
-        phoneNumberRef.current.value,
+        userName[0],
+        email[0],
+        firstName[0],
+        lastName[0],
+        password[0],
+        phoneNumber[0].slice(0, 3),
+        phoneNumber[0].slice(3, 11),
       );
       displayPromiseNotification(
         promise,
@@ -122,95 +127,71 @@ export default function RegisterCard() {
               className={`flex flex-col gap-4 `}
             >
               <div className=" grid justify-between items-center grid-cols-1 md:grid-cols-2 gap-4">
-                <Input
-                  inputRef={userNamerRef}
-                  labelProps={{
-                    style: {
-                      color: isLightMode ? 'black' : 'white',
-                    },
-                  }}
-                  label={t('Register.UserName_Label')}
-                  size="lg"
-                  required
-                  onPointerEnterCapture={undefined}
-                  onPointerLeaveCapture={undefined}
-                  crossOrigin={undefined}
-                />
+                <FormTextBox
+                  parameter={new FormTextBoxParamBuilder()
+                    .setLabel(t('Register.UserName_Label'))
+                    .setValidation(true)
+                    .setRequired(true)
+                    .setState(userName)
+                    .build()}
+                ></FormTextBox>
 
-                <Input
-                  inputRef={emailRef}
-                  labelProps={{
-                    style: {
-                      color: isLightMode ? 'black' : 'white',
-                    },
-                  }}
-                  label={t('Register.Email_Label')}
-                  size="lg"
-                  required
-                  onPointerEnterCapture={undefined}
-                  onPointerLeaveCapture={undefined}
-                  crossOrigin={undefined}
-                />
-                <Input
-                  inputRef={firstNameRef}
-                  labelProps={{
-                    style: {
-                      color: isLightMode ? 'black' : 'white',
-                    },
-                  }}
-                  label={t('Register.FirstName_Label')}
-                  size="lg"
-                  required
-                  onPointerEnterCapture={undefined}
-                  onPointerLeaveCapture={undefined}
-                  crossOrigin={undefined}
-                />
-                <Input
-                  inputRef={lastNameRef}
-                  labelProps={{
-                    style: {
-                      color: isLightMode ? 'black' : 'white',
-                    },
-                  }}
-                  label={t('Register.LastName_Label')}
-                  size="lg"
-                  required
-                  onPointerEnterCapture={undefined}
-                  onPointerLeaveCapture={undefined}
-                  crossOrigin={undefined}
-                />
-                <Input
-                  type="password"
-                  inputRef={passwordRef}
-                  labelProps={{
-                    style: {
-                      color: isLightMode ? 'black' : 'white',
-                    },
-                  }}
-                  label={t('Register.Password_Label')}
-                  size="lg"
-                  required
-                  onPointerEnterCapture={undefined}
-                  onPointerLeaveCapture={undefined}
-                  crossOrigin={undefined}
-                />
+                <FormTextBox
+                  parameter={new FormTextBoxParamBuilder()
+                    .setMode('email')
+                    .setValidation(true)
+                    .setRequired(true)
+                    .setLabel(t('Register.Email_Label'))
+                    .setState(email)
+                    .build()}
+                ></FormTextBox>
+                <FormTextBox
+                  parameter={new FormTextBoxParamBuilder()
+                    .setLabel(t('Register.FirstName_Label'))
+                    .setValidation(true)
+                    .setRequired(true)
+                    .setState(firstName)
+                    .build()}
+                ></FormTextBox>
 
-                <PhoneInput internationalDialRef={internationalDialNumberRef} phoneNumberRef={phoneNumberRef} />
-                <Input
-                  type="password"
-                  inputRef={confirmPasswordRef}
-                  labelProps={{
-                    style: {
-                      color: isLightMode ? 'black' : 'white',
-                    },
-                  }}
-                  label={t('Register.Confirm_Password_Label')}
-                  size="lg"
-                  required
-                  onPointerEnterCapture={undefined}
-                  onPointerLeaveCapture={undefined}
-                  crossOrigin={undefined}
-                />
+                <FormTextBox
+                  parameter={new FormTextBoxParamBuilder()
+                    .setLabel(t('Register.LastName_Label'))
+                    .setValidation(true)
+                    .setRequired(true)
+                    .setState(lastName)
+                    .build()}
+                ></FormTextBox>
+
+                <FormTextBox
+                  parameter={new FormTextBoxParamBuilder()
+                    .setLabel(t('Register.Password_Label'))
+                    .setValidation(true)
+                    .setRequired(true)
+                    .setMode('password')
+                    .setState(password)
+                    .build()}
+                ></FormTextBox>
+
+                <FormTextBox
+                  parameter={new FormTextBoxParamBuilder()
+                    .setLabel(t('Register.Confirm_Password_Label'))
+                    .setValidation(true)
+                    .setRequired(true)
+                    .setMode('password')
+                    .setState(confirmPassword)
+                    .build()}
+                ></FormTextBox>
+
+                <FormTextBox
+                  parameter={new FormTextBoxParamBuilder()
+                    .setLabel(t('Register.Confirm_Password_Label'))
+                    .setValidation(true)
+                    .setRequired(true)
+                    .setMode('tel')
+                    .setState(phoneNumber)
+                    .build()}
+                ></FormTextBox>
               </div>
               <Typography
                 variant="small"
@@ -219,12 +200,7 @@ export default function RegisterCard() {
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="-mt-px h-4 w-4"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" className="mt-px h-4 w-4">
                   <path
                     fillRule="evenodd"
                     d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
@@ -240,18 +216,14 @@ export default function RegisterCard() {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              <Button
-                variant="gradient"
-                color="red"
-                fullWidth
-                className=" hover:scale-95"
-                onClick={HandleRegister}
-                placeholder={undefined}
-                onPointerEnterCapture={undefined}
-                onPointerLeaveCapture={undefined}
-              >
-                {t('Register.SignInButtonLabel')}
-              </Button>
+              <FormButton
+                parameter={new FormButtonParamBuilder()
+                  .setFullWidth(true)
+                  .setClickCallBackFunction(HandleRegister)
+                  .setText(t('Register.SignInButtonLabel'))
+                  .build()}
+              ></FormButton>
+
               <Typography
                 variant="small"
                 className={`mt-6 flex justify-center`}
@@ -264,8 +236,7 @@ export default function RegisterCard() {
                   as="a"
                   href="/login"
                   variant="small"
-                  color="red"
-                  className="ml-1 font-bold"
+                  className="ml-1 font-bold accent-primary"
                   placeholder={undefined}
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}

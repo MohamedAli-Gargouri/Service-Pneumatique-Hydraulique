@@ -1,5 +1,5 @@
 import { ColumnBuilder } from 'types/components/column';
-import { WidgetBuilder } from '../../types/components/widget';
+import { WidgetBuilder } from 'types/components/widget';
 /********************************************************************************************************************
  * --------------------------------------------Products Grid Configuration------------------------------------------
  *********************************************************************************************************************/

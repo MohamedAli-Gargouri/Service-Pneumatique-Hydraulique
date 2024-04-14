@@ -1,26 +1,18 @@
 import { Card } from '@material-tailwind/react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode } from '../../redux/actions/light-actions';
-import Footer from '../../components/footer';
-import SideBar from '../../components/SideBar';
+import { LightMode } from 'redux/actions/light-actions';
+import Footer from 'components/footer';
+import SideBar from 'components/SideBar';
 import React from 'react';
-import TopBar from '../../components/Topbar';
-import Topbarbg from '../../assets/images/Topbarbg.webp';
-import Grid from '../../components/grid/grid';
-import {
-  cancelOrder,
-  getAllOrders,
-  markOrderPaid,
-  markOrderReady,
-  pauseOrder,
-  resumeOrder,
-} from '../../services/orders';
+import TopBar from 'components/Topbar';
+import Topbarbg from 'assets/images/Topbarbg.webp';
+import Grid from 'components/grid/grid';
+import { cancelOrder, getAllOrders, markOrderPaid, markOrderReady, pauseOrder, resumeOrder } from 'services/orders';
 import { ordersGridColumns, ordersGridHeaderWidgets } from './Orders.config';
-import getImageBlobUrl from '../../utils/file';
-import dataItemNoImage from '../../assets/images/products/noImgProduct.webp';
-import { GridBuilder } from '../../types/components/grid';
-import { Binder } from '../../utils/binder';
-import ReactDOMServer from 'react-dom/server';
+import getImageBlobUrl from 'utils/file';
+import dataItemNoImage from 'assets/images/products/noImgProduct.webp';
+import { GridBuilder } from 'types/components/grid';
+import { Binder } from 'utils/binder';
 import { useTranslation } from 'react-i18next';
 import { RootState } from 'types/components/general';
 import { useNotify } from 'utils/hooks/useNotify';

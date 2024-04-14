@@ -1,11 +1,11 @@
 import { Card, Typography, Input, Button } from '@material-tailwind/react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { LightMode } from '../../redux/actions/light-actions';
-import Footer from '../../components/footer';
-import SideBar from '../../components/SideBar';
+import { LightMode } from 'redux/actions/light-actions';
+import Footer from 'components/footer';
+import SideBar from 'components/SideBar';
 import React from 'react';
-import TopBar from '../../components/Topbar';
-import Topbarbg from '../../assets/images/Topbarbg.webp';
+import TopBar from 'components/Topbar';
+import Topbarbg from 'assets/images/Topbarbg.webp';
 import { useTranslation } from 'react-i18next';
 import { RootState } from 'types/components/general';
 import { useNotify } from 'utils/hooks/useNotify';

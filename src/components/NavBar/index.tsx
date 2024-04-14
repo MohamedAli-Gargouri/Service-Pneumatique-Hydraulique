@@ -146,7 +146,11 @@ export default function ComplexNavbar() {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              {isLightMode ? <MoonIcon className="h-4 w-4 md:h-6 md:w-6" /> : <SunIcon className="h-6 w-6" />}
+              {isLightMode ? (
+                <MoonIcon className="text-primary h-4 w-4 md:h-6 md:w-6" />
+              ) : (
+                <SunIcon className="text-primary h-6 w-6" />
+              )}
             </IconButton>
 
             <LanguageSelect />
@@ -162,7 +166,7 @@ export default function ComplexNavbar() {
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}
                 >
-                  <i className="fa-solid fa-bag-shopping"></i>
+                  <i className="accent-primary fa-solid fa-bag-shopping"></i>
                 </IconButton>
               </Badge>
             )}

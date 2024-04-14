@@ -50,7 +50,7 @@ export default function NavList() {
         }
         return (
           <Typography
-            key={'NAV' + key}
+            key={key}
             as="a"
             href={route}
             variant="small"

@@ -1,14 +1,14 @@
 import { Typography, Button, Rating, Chip } from '@material-tailwind/react';
 import React from 'react';
-import Navbar from '../../components/NavBar';
-import AnimatedTab from '../../components/Tab';
+import Navbar from 'components/NavBar';
+import AnimatedTab from 'components/Tab';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import Footer from '../../components/footer';
-import Gallery from '../../components/Gallery';
-import Breadcrump from '../../components/Breadcrump';
-import useCart from '../../utils/hooks/useCart';
+import Footer from 'components/footer';
+import Gallery from 'components/Gallery';
+import Breadcrump from 'components/Breadcrump';
+import useCart from 'utils/hooks/useCart';
 import { useTranslation } from 'react-i18next';
-import { LightMode } from '../../redux/actions/light-actions';
+import { LightMode } from 'redux/actions/light-actions';
 import { RootState } from 'types/components/general';
 export default function PreviewProductComponent() {
   const { OrderCart, AddProduct, SetQuantity, RemoveProduct } = useCart();

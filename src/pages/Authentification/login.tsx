@@ -13,6 +13,10 @@ import { useTranslation } from 'react-i18next';
 import { RootState } from 'types/components/general';
 import { useNotify } from 'utils/hooks/useNotify';
 import { useInputValidation } from 'utils/hooks/useInputValidation';
+import FormButton from 'components/Form/Form-Button';
+import { FormButtonParamBuilder, FormCheckBoxParamBuilder, FormTextBoxParamBuilder } from 'types/components/params';
+import FormCheckBox from 'components/Form/Form-Checkbox';
+import FormTextBox from 'components/Form/Form-TextBox';
 Input.propTypes = {
   label: PropTypes.any,
 };
@@ -46,17 +50,16 @@ export default function LoginCard() {
   if (isLogged) {
     window.location.href = '/home';
   }
-  const userNameRef = React.useRef(null);
-  const passwordRef = React.useRef(null);
-  const rememberMeRef = React.useRef(null);
+  const userNameInputValue = React.useState<string>('DALI');
+  const passwordInputValue = React.useState<string>('');
+  const rememberMeCheckBoxValue = React.useState<boolean>(false);
   const dispatch = useDispatch();
-
   /**
    * Function that handles logging the user to the web application
    */
   const HandleLogin = () => {
-    if (validateInputs([userNameRef.current.value], [], [], [], [], [], [])) {
-      const promise = login(userNameRef.current.value, passwordRef.current.value, rememberMeRef.current.checked);
+    if (validateInputs([userNameInputValue[0]], [], [], [], [], [], [])) {
+      const promise = login(userNameInputValue[0], passwordInputValue[0], rememberMeCheckBoxValue[0]);
       displayPromiseNotification(promise, [t('UCP.DialogMessages.Login.WrongCreds_Error')], ['AUTH_ERROR01']);
       //login is successs
       promise
@@ -105,59 +108,36 @@ export default function LoginCard() {
             onPointerLeaveCapture={undefined}
             className={`flex flex-col gap-4 `}
           >
-            <Input
-              inputRef={userNameRef}
-              labelProps={{
-                style: { color: isLightMode ? 'black' : 'white' },
-              }}
-              label={t('Login.Username_Label')}
-              size="lg"
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-              crossOrigin={undefined}
-            />
-            <Input
-              type="password"
-              inputRef={passwordRef}
-              labelProps={{
-                style: {
-                  color: isLightMode ? 'black' : 'white',
-                },
-              }}
-              label={t('Login.Password_Label')}
-              size="lg"
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-              crossOrigin={undefined}
-            />
-            <div className="-ml-2.5">
-              <Checkbox
-                inputRef={rememberMeRef}
-                labelProps={{
-                  style: {
-                    color: isLightMode ? 'black' : 'white',
-                  },
-                }}
-                label={t('Login.RememberMeLabel')}
-                onPointerEnterCapture={undefined}
-                onPointerLeaveCapture={undefined}
-                crossOrigin={undefined}
-              />
-            </div>
+            <FormTextBox
+              parameter={new FormTextBoxParamBuilder()
+                .setState(userNameInputValue)
+                .setLabel(t('Login.Username_Label'))
+                .build()}
+            ></FormTextBox>
+
+            <FormTextBox
+              parameter={new FormTextBoxParamBuilder()
+                .setState(passwordInputValue)
+                .setMode('password')
+                .setLabel(t('Login.Password_Label'))
+                .build()}
+            ></FormTextBox>
+
+            <FormCheckBox
+              parameter={new FormCheckBoxParamBuilder()
+                .setText(t('Login.RememberMeLabel'))
+                .setState(rememberMeCheckBoxValue)
+                .build()}
+            ></FormCheckBox>
           </CardBody>
           <CardFooter placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-            <Button
-              placeholder={undefined}
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-              variant="gradient"
-              color="red"
-              className="hover:scale-90"
-              onClick={HandleLogin}
-              fullWidth
-            >
-              {t('Login.SignInButtonLabel')}
-            </Button>
+            <FormButton
+              parameter={new FormButtonParamBuilder()
+                .setFullWidth(true)
+                .setClickCallBackFunction(HandleLogin)
+                .setText(t('Login.SignInButtonLabel'))
+                .build()}
+            ></FormButton>
             <Typography
               variant="small"
               className="mt-6 flex justify-center"
@@ -170,8 +150,7 @@ export default function LoginCard() {
                 as="a"
                 href="/register"
                 variant="small"
-                color="red"
-                className="ml-1 font-bold"
+                className=" accent-primary ml-1 font-bold"
                 placeholder={undefined}
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}

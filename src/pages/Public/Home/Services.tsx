@@ -1,11 +1,11 @@
 import { Typography } from '@material-tailwind/react';
 import React from 'react';
-import ServiceImage from '../../assets/images/service.webp';
+import ServiceImage from 'assets/images/service.webp';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
-import { LightMode } from '../../redux/actions/light-actions';
+import { LightMode } from 'redux/actions/light-actions';
 import { RootState } from 'types/components/general';
 const Animations = {
   hidden: {

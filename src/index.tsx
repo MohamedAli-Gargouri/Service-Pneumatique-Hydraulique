@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store, { persistor } from './redux/store/store';
 import './i18n';
-import Loading from './pages/loading';
+import WaveSpinner from 'components/loading';
 import { PersistGate } from 'redux-persist/integration/react';
 import ErrorBoundary from './pages/Error';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -16,7 +16,7 @@ root.render(
     <React.StrictMode>
       <ThemeProvider>
         <BrowserRouter>
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<WaveSpinner />}>
             <Provider store={store}>
               <PersistGate persistor={persistor}>
                 <div id="App">

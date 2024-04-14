@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { LightMode } from 'redux/actions/light-actions';
 import { RootState } from 'types/components/general';
 import { toastOptionsType } from 'types/components/general';
+import { AxiosError, AxiosResponse } from 'axios';
 
 export function useNotify() {
   const { t } = useTranslation();
@@ -47,25 +48,26 @@ export function useNotify() {
         pending: DefaultPendingMessage,
         success: DefaultResolveMessage,
         error: {
-          render(data: any) {
+          render(toastError: any) {
+            const axiosError: AxiosError<any, any> = toastError.data;
             //Handling Connection Errors//
             //Connection Lost
-            if (data.code === 'ERR_NETWORK') {
+            if (axiosError.code === 'ERR_NETWORK') {
               return ConnectionErrors[0];
             }
             // Gateway Timeout, heavy load
-            if (data.response.status === 504) {
+            if (axiosError.response.status === 504) {
               return ConnectionErrors[1];
             }
             //Service Unavailable
-            if (data.response.status === 503) {
+            if (axiosError.response.status === 503) {
               return ConnectionErrors[2];
             }
             //Handling  backened Error//
             //bad request, wrong parameters
-            if (data.response.status === 400) {
+            if (axiosError.response.status === 400) {
               let RejectMessagesIndex = -1;
-              const backendErrorCode = data.response.data.errorCode;
+              const backendErrorCode = (axiosError.response.data as any).errorCode;
               RejectMessageCodes.forEach((rejectMessageCode, index) => {
                 if (rejectMessageCode === backendErrorCode) {
                   RejectMessagesIndex = index;

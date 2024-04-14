@@ -12,10 +12,5 @@ export type toastOptionsType = {
   theme: 'light' | 'dark';
 };
 export type ScreenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-// export enum ScreenSize {
-//   'xs' = 'xs',
-//   'sm' = 'sm',
-//   'md' = 'md',
-//   'lg' = 'lg',
-//   'xl' = 'xl',
-// }
+export type FormButtonType = 'normal' | 'success' | 'default' | 'danger';
+export type FormButtonStylingMode = 'contained' | 'text' | 'outlined';
